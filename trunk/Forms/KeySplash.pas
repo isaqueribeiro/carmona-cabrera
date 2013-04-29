@@ -62,7 +62,7 @@ Var
 begin
   Ini := TIniFile.Create('C:\HAS\HAS.ini');
 
-  cTempo := StrToInt(Ini.ReadString('DIVERSOS', 'TIMESPLASH', ''));
+  cTempo := StrToIntDef(Ini.ReadString('DIVERSOS', 'TIMESPLASH', '500'), 500);
   TmrSplash.Interval := cTempo;
 
   iContador := 0;
