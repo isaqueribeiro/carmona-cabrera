@@ -1,28 +1,24 @@
 [Closed Files]
-File_0=SourceModule,'E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\iMnyContaPRPesq.pas',0,1,552,55,553,1,0
-File_1=SourceModule,'E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\iMnyContaPR.pas',0,1,1,3,279,0,0
-File_2=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyEmpresa.pas',0,1,1,1,1,1,0
-File_3=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyEmpresaPesq.pas',0,1,187,67,210,1,0
-File_4=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyCaixaEnc.pas',0,1,1,1,1,1,0
-File_5=SourceModule,'C:\Produção\Construct\trunk\Reports\iMnyRFluxo.pas',0,1,206,48,222,1,0
-File_6=SourceModule,'c:\program files (x86)\borland\delphi7\DevExpress_v42\Delphi 7 Library\cxCustomData.pas',0,1,10411,1,10428,0,0
-File_7=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyCaixaData.pas',0,1,99,11,108,1,0
-File_8=SourceModule,'c:\program files (x86)\borland\delphi7\DevExpress_v42\Delphi 7 Library\cxContainer.pas',0,1,3773,39,3786,0,0
+File_0=SourceModule,'E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyResource.pas',0,1,1,82,38,1,0
+File_1=SourceModule,'E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\iMnyContaPRPesq.pas',0,1,552,55,553,1,0
+File_2=SourceModule,'E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\iMnyContaPR.pas',0,1,1,3,279,0,0
+File_3=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyEmpresa.pas',0,1,1,1,1,1,0
+File_4=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyEmpresaPesq.pas',0,1,187,67,210,1,0
+File_5=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyCaixaEnc.pas',0,1,1,1,1,1,0
+File_6=SourceModule,'C:\Produção\Construct\trunk\Reports\iMnyRFluxo.pas',0,1,206,48,222,1,0
+File_7=SourceModule,'c:\program files (x86)\borland\delphi7\DevExpress_v42\Delphi 7 Library\cxCustomData.pas',0,1,10411,1,10428,0,0
+File_8=SourceModule,'C:\Produção\Construct\trunk\Forms\iMnyCaixaData.pas',0,1,99,11,108,1,0
+File_9=SourceModule,'c:\program files (x86)\borland\delphi7\DevExpress_v42\Delphi 7 Library\cxContainer.pas',0,1,3773,39,3786,0,0
 
 [Modules]
-Module0=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyMain.pas
-Module1=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyLogin.pas
-Module2=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeySplash.pas
-Module3=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Units\KeyFuncoes.pas
-Module4=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyResource.pas
+Module0=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyLogin.pas
+Module1=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeySplash.pas
+Module2=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Units\KeyVersion.pas
+Module3=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyMain.pas
+Module4=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Units\KeyFuncoes.pas
 Module5=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\iMoney.dpr
 Count=6
 EditWindowCount=1
-
-[E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyMain.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
 
 [E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyLogin.pas]
 ModuleType=SourceModule
@@ -34,18 +30,27 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
+[E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Units\KeyVersion.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyMain.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
 [E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Units\KeyFuncoes.pas]
 ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
-[E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyResource.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
 [E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\iMoney.dpr]
 ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyResource.pas]
 FormState=0
 FormOnTop=0
 
@@ -55,7 +60,7 @@ FormOnTop=0
 
 [EditWindow0]
 ViewCount=6
-CurrentView=5
+CurrentView=4
 View0=0
 View1=1
 View2=2
@@ -98,24 +103,24 @@ TopLine=1
 LeftCol=1
 
 [View2]
-Module=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyResource.pas
-CursorX=1
-CursorY=35
+Module=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Units\KeyVersion.pas
+CursorX=17
+CursorY=34
 TopLine=1
 LeftCol=1
 
 [View3]
 Module=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeySplash.pas
-CursorX=40
-CursorY=66
-TopLine=16
+CursorX=1
+CursorY=83
+TopLine=76
 LeftCol=1
 
 [View4]
 Module=E:\Projetos\Agil Solucoes em Softwares\CarmonaCabrera\trunk\Forms\KeyLogin.pas
 CursorX=1
-CursorY=94
-TopLine=19
+CursorY=122
+TopLine=113
 LeftCol=1
 
 [View5]
@@ -194,9 +199,9 @@ ClientHeight=517
 TBDockHeight=551
 LRDockWidth=245
 Dockable=1
-SplitPos=117
+SplitPos=85
 ArrangeBy=Name
-SelectedItem=Caption
+SelectedItem=OnCreate
 ExpandedItems=
 HiddenCategories=
 

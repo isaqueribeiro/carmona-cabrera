@@ -25,6 +25,7 @@ type
     LblDesc: TLabel;
     procedure TmrSplashTimer(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     iContador :Integer;
@@ -38,7 +39,7 @@ var
 implementation
 
 uses
-  KeyFuncoes;
+  KeyFuncoes, KeyVersion;
 
 {$R *.dfm}
 
@@ -70,6 +71,16 @@ begin
 
   iContador := 0;
 
+end;
+
+procedure TFrmSplash.FormCreate(Sender: TObject);
+var
+  ver : TInfoVersao;
+begin
+  ver := TInfoVersao.GetInstance();
+
+  LblTitulo.Caption := ver.getPropertyValue(ivPRODUCT_NAME);
+  LblDesc.Caption   := ver.getPropertyValue(ivFILE_DESCRIPTION);
 end;
 
 end.
