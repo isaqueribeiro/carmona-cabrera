@@ -1,4 +1,4 @@
-program iMoney;
+program iStore;
 
 uses
   Forms,
@@ -40,8 +40,7 @@ uses
   iMnyRCaixas in 'Reports\iMnyRCaixas.pas' {FrmRCaixas},
   iMnyContaPRDoc in 'Forms\iMnyContaPRDoc.pas' {FrmContaPRDoc},
   iMnyRFluxo in 'Reports\iMnyRFluxo.pas' {FrmRFluxo},
-  KeyFuncoes in 'Units\KeyFuncoes.pas',
-  KeyVersion in 'Units\KeyVersion.pas';
+  KeyFuncoes in 'Units\KeyFuncoes.pas';
 
 {$R *.res}
 
@@ -49,12 +48,12 @@ Var
   Ini :TIniFile;
 begin
   Application.Initialize;
-  Application.Title := 'iMoney - Sistema de Gestão Financeira';
+  Application.Title := 'iStore - Sistema de Controle de Estoque';
   Application.CreateForm(TFrmMain, FrmMain);
   Application.CreateForm(TDtmResource, DtmResource);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TFrmLogin, FrmLogin);
-  Ini := TIniFile.Create(ExtractFilePath( ParamStr(0) ) + 'iMoney.ini');
+  Ini := TIniFile.Create( GetFileNameINI );
   IF Ini.ReadString('DIVERSOS', 'SPLASH', '') = 'S' Then
     Begin
       FrmSplash := TFrmSplash.Create(Application);

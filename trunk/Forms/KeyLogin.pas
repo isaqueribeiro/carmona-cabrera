@@ -83,7 +83,7 @@ var
 implementation
 
 uses
-  KeyMain, KeyFuncoes;
+  KeyMain, KeyFuncoes, KeyVersion;
 
 {$R *.dfm}
 
@@ -111,7 +111,14 @@ begin
 end;  
 
 procedure TFrmLogin.FormCreate(Sender: TObject);
+var
+  ver : TInfoVersao;
 begin
+  ver := TInfoVersao.GetInstance();
+
+  LblTitulo.Caption := ver.getPropertyValue(ivPRODUCT_NAME);
+  LblDesc.Caption   := ver.getPropertyValue(ivFILE_DESCRIPTION);
+
   Brush.Style := BsClear;
   Ini := TIniFile.Create( GetFileNameINI );
 end;
