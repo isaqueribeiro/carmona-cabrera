@@ -37,6 +37,9 @@ var
 
 implementation
 
+uses
+  KeyFuncoes;
+
 {$R *.dfm}
 
 procedure TFrmSplash.TmrSplashTimer(Sender: TObject);
@@ -57,10 +60,10 @@ end;
 
 procedure TFrmSplash.FormShow(Sender: TObject);
 Var
-  Ini :TIniFile;
-  cTempo :Cardinal;
+  Ini : TIniFile;
+  cTempo : Cardinal;
 begin
-  Ini := TIniFile.Create('C:\HAS\HAS.ini');
+  Ini := TIniFile.Create(GetFileNameINI);
 
   cTempo := StrToIntDef(Ini.ReadString('DIVERSOS', 'TIMESPLASH', '500'), 500);
   TmrSplash.Interval := cTempo;

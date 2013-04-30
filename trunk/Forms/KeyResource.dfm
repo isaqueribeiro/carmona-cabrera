@@ -23,7 +23,6 @@ object DtmResource: TDtmResource
   end
   object LookAndFeelController: TcxLookAndFeelController
     Kind = lfStandard
-    NativeStyle = True
     Left = 120
     Top = 8
   end

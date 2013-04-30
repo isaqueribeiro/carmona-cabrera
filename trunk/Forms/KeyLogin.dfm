@@ -1578,6 +1578,7 @@ object FrmLogin: TFrmLogin
       'emp_financeiro=emp_financeiro'
       'emp_diretor=emp_diretor')
     DataSet = QryEmpresa
+    BCDToCurrency = False
     Left = 344
     Top = 288
   end

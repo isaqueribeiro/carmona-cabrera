@@ -15,7 +15,8 @@ uses
   dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
   dxSkinXmas2008Blue, Menus, dxSkinscxPCPainter, cxPC, dxGDIPlusClasses,
   cxGraphics, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, DBXpress, SqlExpr, FMTBcd, frxClass, frxDBSet;
+  cxDBLookupComboBox, DBXpress, SqlExpr, FMTBcd, frxClass, frxDBSet,
+  cxLookAndFeels;
 
 type
   TFrmLogin = class(TForm)
@@ -81,7 +82,8 @@ var
 
 implementation
 
-uses KeyMain;
+uses
+  KeyMain, KeyFuncoes;
 
 {$R *.dfm}
 
@@ -89,7 +91,6 @@ procedure TFrmLogin.FormShow(Sender: TObject);
 Var
   sUsuario, sSenha :String;
 begin
-
   EdtSenha.SetFocus;
 
   sString1 := Ini.ReadString('ACESSO', 'Servidor', '');
@@ -97,7 +98,7 @@ begin
   sUsuario := Ini.ReadString('ACESSO', 'Usuario', '');
 
   sUserNet := Ini.ReadString('ACESSO', 'UserNet', '');
-  sPassNet  := Ini.ReadString('ACESSO', 'PassNet', '');
+  sPassNet := Ini.ReadString('ACESSO', 'PassNet', '');
 
   EdtUserNET.Text := sUserNet;
   EdtPassNET.Text := sPassNet;
@@ -112,7 +113,7 @@ end;
 procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
   Brush.Style := BsClear;
-  Ini := TIniFile.Create(ExtractFilePath( ParamStr(0) ) + 'iMoney.ini');
+  Ini := TIniFile.Create( GetFileNameINI );
 end;
 
 procedure TFrmLogin.btnFecharClick(Sender: TObject);
