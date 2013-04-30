@@ -1,8 +1,8 @@
 object FrmMain: TFrmMain
-  Left = 79
-  Top = 106
-  Width = 965
-  Height = 632
+  Left = 302
+  Top = 167
+  Width = 1156
+  Height = 711
   BorderIcons = [biMinimize, biMaximize, biHelp]
   Caption = ' iMoney - Gest'#227'o Financeiro'
   Color = clWhite
@@ -919,8 +919,8 @@ object FrmMain: TFrmMain
   end
   object StsBr: TdxStatusBar
     Left = 0
-    Top = 541
-    Width = 1137
+    Top = 633
+    Width = 1140
     Height = 20
     Panels = <
       item
@@ -975,7 +975,7 @@ object FrmMain: TFrmMain
     Left = 0
     Top = 28
     Width = 150
-    Height = 485
+    Height = 577
     Align = alLeft
     ActiveGroupIndex = 0
     TabOrder = 1
@@ -1050,6 +1050,7 @@ object FrmMain: TFrmMain
     Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
+    CanCustomize = False
     Categories.Strings = (
       'Barra de Encerramento'
       'Barra de Comandos')
@@ -1063,7 +1064,6 @@ object FrmMain: TFrmMain
     ImageOptions.LargeImages = DtmResource.ImgLstLrg
     PopupMenuLinks = <>
     ShowShortCutInHint = True
-    Style = bmsUseLookAndFeel
     UseSystemFont = True
     Left = 424
     Top = 24
@@ -1088,17 +1088,18 @@ object FrmMain: TFrmMain
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      IsMainMenu = True
       ItemLinks = <>
-      MultiLine = True
       OldName = 'Menu'
       OneOnRow = True
       Row = 0
       UseOwnFont = True
       Visible = True
-      WholeRow = True
+      WholeRow = False
     end
     object BrMngrEncerrar: TdxBar
+      AllowClose = False
+      AllowCustomizing = False
+      AllowQuickCustomizing = False
       Caption = 'Barra Encerramento'
       CaptionButtons = <>
       DockedDockingStyle = dsBottom

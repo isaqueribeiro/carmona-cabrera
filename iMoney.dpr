@@ -39,7 +39,8 @@ uses
   iMnyCaixaData in 'Forms\iMnyCaixaData.pas' {FrmCaixaData},
   iMnyRCaixas in 'Reports\iMnyRCaixas.pas' {FrmRCaixas},
   iMnyContaPRDoc in 'Forms\iMnyContaPRDoc.pas' {FrmContaPRDoc},
-  iMnyRFluxo in 'Reports\iMnyRFluxo.pas' {FrmRFluxo};
+  iMnyRFluxo in 'Reports\iMnyRFluxo.pas' {FrmRFluxo},
+  KeyFuncoes in 'Units\KeyFuncoes.pas';
 
 {$R *.res}
 

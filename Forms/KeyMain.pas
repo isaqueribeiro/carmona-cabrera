@@ -191,7 +191,7 @@ end;
 
 procedure TFrmMain.TmrDateTimeTimer(Sender: TObject);
 begin
-  StsBr.Panels[3].Text := 'Data: '+ FormatDateTime('dd/mm/yyyy', Date);
+  StsBr.Panels[3].Text := 'Data: ' + FormatDateTime('dd/mm/yyyy', Date);
   StSBr.Panels[4].Text := 'Hora: ' + FormatDateTime('hh:mm:ss', Time);
 end;
 
