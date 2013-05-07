@@ -44,7 +44,6 @@ type
     bbDepto: TdxBarButton;
     bbObjeto: TdxBarButton;
     bbSistema: TdxBarButton;
-    bbRecepcoes: TdxBarButton;
     bbUsuarios: TdxBarButton;
     TmrImagem: TTimer;
     bbBlock: TdxBarButton;
@@ -62,14 +61,6 @@ type
     bbEmpresas: TMenuItem;
     ActnEmpresa: TAction;
     bbSituacao: TMenuItem;
-    bbTotalizador: TMenuItem;
-    ActnTotalizador: TAction;
-    ActnOrcamento: TAction;
-    bbOrcamento: TMenuItem;
-    ActnConta: TAction;
-    bbContaContabil: TMenuItem;
-    ActnSituacao: TAction;
-    bbSeparador: TMenuItem;
     ActnCompetencia: TAction;
     bbCompetencia: TMenuItem;
     ActnSetor: TAction;
@@ -78,36 +69,13 @@ type
     bbUnidade: TMenuItem;
     ActnUnidade: TAction;
     ActnTipoCusto: TAction;
-    bbTipoCusto: TMenuItem;
     ActnCentroCusto: TAction;
     bbCentroCusto: TMenuItem;
     ActnNegocio: TAction;
     bbNegocio: TMenuItem;
-    ActnTipoDoc: TAction;
-    bbTipoDoc: TMenuItem;
-    ActnTipoPes: TAction;
-    bbTipoPes: TMenuItem;
-    ActnFormaPagto: TAction;
-    bbFormaPagto: TMenuItem;
-    ActnContaCorrente: TAction;
     bbCorrente: TMenuItem;
-    bbTipoAceite: TMenuItem;
-    ActnTipoAceite: TAction;
-    bbPessoa: TMenuItem;
-    ActnPessoa: TAction;
-    bbContaPR: TMenuItem;
-    ActnContaPR: TAction;
     bbPermissao: TMenuItem;
-    ActnCaixa: TAction;
-    Caixa1: TMenuItem;
-    ActnRFluxo: TAction;
-    bbRFluxoCaixa: TMenuItem;
-    NvBrAceite: TdxNavBarItem;
-    NvBrCaixa: TdxNavBarItem;
-    NvBrFornecedor: TdxNavBarItem;
-    NvBrContaCorrente: TdxNavBarItem;
-    ActnRCaixas: TAction;
-    Caixas1: TMenuItem;
+    N1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -183,8 +151,6 @@ begin
     begin
       MnCadastros.Enabled  := False;
       MnRelatorios.Enabled := False;
-      ActnPessoa.Enabled   := False;
-      ActnCaixa.Enabled    := False;
     end;
 
   //*** Controle de Usuários:

@@ -16,7 +16,10 @@ uses
   KeyFuncoes in 'Units\KeyFuncoes.pas',
   iStrSplash in 'Forms\iStrSplash.pas' {FrmStrSplash},
   KeyVersion in 'Units\KeyVersion.pas',
-  KeyObservable in 'Units\KeyObservable.pas';
+  KeyObservable in 'Units\KeyObservable.pas',
+  KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
+  KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
+  iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo};
 
 {$R *.res}
 

@@ -111,6 +111,8 @@ object FrmEmpresaPesq: TFrmEmpresaPesq
           OptionsBehavior.FocusFirstCellOnNewRecord = True
           OptionsBehavior.GoToNextCellOnEnter = True
           OptionsData.Appending = True
+          OptionsSelection.InvertSelect = False
+          OptionsSelection.MultiSelect = True
           OptionsSelection.CellMultiSelect = True
           OptionsView.Navigator = True
           OptionsView.NoDataToDisplayInfoText = '<Sem Dados Para Exibi'#231#227'o>'

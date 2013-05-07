@@ -17,7 +17,7 @@ uses
   cxDataStorage, cxDBData, cxGridLevel, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
   cxDBEdit, cxImageComboBox, ExtCtrls, cxPC, ActnList, cxDBLookupComboBox,
-  FMTBcd, SqlExpr, DBClient, Provider;
+  FMTBcd, SqlExpr, DBClient, Provider, cxLookAndFeels;
 
 type
   TFrmEmpresaPesq = class(TForm)

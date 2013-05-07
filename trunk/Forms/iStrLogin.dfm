@@ -1,6 +1,6 @@
 object FrmLogin: TFrmLogin
-  Left = 574
-  Top = 161
+  Left = 954
+  Top = 244
   BorderStyle = bsDialog
   Caption = 'Acesso ao Sistema'
   ClientHeight = 402
@@ -4710,13 +4710,14 @@ object FrmLogin: TFrmLogin
     LoginPrompt = False
     Params.Strings = (
       'DriverName=MySQL50'
-      'HostName=localhost'
-      'Database=iMoney'
-      'User_Name=root'
-      'Password=grokka'
+      'HostName=dbmy0035.whservidor.com'
+      'Database=tkce'
+      'User_Name=tkce'
+      'Password=450021afg'
       'BlobSize=-1'
       'ErrorResourceFile='
-      'LocaleCode=0000')
+      'LocaleCode=0000'
+      'Port=3308')
     VendorLib = 'libmysql.dll'
     Left = 336
     Top = 48

@@ -1,199 +1,32 @@
-object FrmObjeto: TFrmObjeto
-  Left = 611
-  Top = 170
-  Width = 662
-  Height = 451
+inherited FrmPadraoTabela: TFrmPadraoTabela
+  Left = 673
+  Top = 239
   BorderIcons = [biSystemMenu]
-  Caption = 'Cadastro de Objetos'
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
-  Position = poScreenCenter
+  Caption = 'Padr'#227'o Tabela Pesquisa'
   OnShow = FormShow
-  DesignSize = (
-    646
-    413)
   PixelsPerInch = 96
   TextHeight = 13
-  object PgCtrlMain: TcxPageControl
-    Left = 6
-    Top = 80
-    Width = 633
-    Height = 329
-    ActivePage = TbShtPrincipal
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 0
-    ClientRectBottom = 325
-    ClientRectLeft = 4
-    ClientRectRight = 629
-    ClientRectTop = 24
-    object TbShtPrincipal: TcxTabSheet
-      BorderWidth = 4
-      Caption = 'Principal'
-      ImageIndex = 79
-      DesignSize = (
-        617
-        293)
-      object Shape2: TShape
-        Left = 0
-        Top = 56
-        Width = 625
-        Height = 17
-        Anchors = [akLeft, akTop, akRight]
-        Brush.Color = clGradientActiveCaption
-        Pen.Color = clHighlight
-        Pen.Style = psClear
-      end
-      object LblDados: TLabel
-        Left = 2
-        Top = 57
-        Width = 93
-        Height = 13
-        Caption = 'Dados do Objeto'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindow
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Transparent = True
-      end
-      object GrpBxPesquisa: TcxGroupBox
-        Left = 0
-        Top = 0
-        Align = alTop
-        Caption = 'Pesquise o Objeto'
-        Style.LookAndFeel.Kind = lfStandard
-        StyleDisabled.LookAndFeel.Kind = lfStandard
-        StyleFocused.LookAndFeel.Kind = lfStandard
-        StyleHot.LookAndFeel.Kind = lfStandard
-        TabOrder = 0
-        Height = 49
-        Width = 617
-        object EdtPesquisar: TcxTextEdit
-          Left = 8
-          Top = 18
-          Properties.OnChange = btnPesquisarClick
-          TabOrder = 0
-          Width = 577
-        end
-        object btnPesquisar: TcxButton
-          Left = 587
-          Top = 16
-          Width = 25
-          Height = 25
-          Caption = '...'
-          Default = True
-          TabOrder = 1
-          OnClick = btnPesquisarClick
-          LookAndFeel.Kind = lfOffice11
-        end
-      end
-      object DbGrd: TcxGrid
-        Left = 0
-        Top = 80
-        Width = 617
-        Height = 213
-        Align = alBottom
-        Anchors = [akLeft, akTop, akRight, akBottom]
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 1
-        object DbGridDBTblVw: TcxGridDBTableView
-          NavigatorButtons.ConfirmDelete = False
-          NavigatorButtons.Images = DtmResource.ImgNavigator
-          NavigatorButtons.PriorPage.Visible = False
-          NavigatorButtons.NextPage.Visible = False
-          NavigatorButtons.Insert.ImageIndex = 0
-          NavigatorButtons.Append.ImageIndex = 0
-          NavigatorButtons.Append.Visible = False
-          NavigatorButtons.Delete.ImageIndex = 6
-          NavigatorButtons.Edit.ImageIndex = 10
-          NavigatorButtons.Post.ImageIndex = 2
-          NavigatorButtons.Cancel.ImageIndex = 4
-          NavigatorButtons.Refresh.ImageIndex = 19
-          NavigatorButtons.Refresh.Visible = True
-          NavigatorButtons.SaveBookmark.Visible = False
-          NavigatorButtons.GotoBookmark.Visible = False
-          NavigatorButtons.Filter.Visible = False
-          DataController.DataSource = DtSMaster
-          DataController.Summary.DefaultGroupSummaryItems = <>
-          DataController.Summary.FooterSummaryItems = <>
-          DataController.Summary.SummaryGroups = <>
-          OptionsBehavior.FocusCellOnTab = True
-          OptionsBehavior.FocusFirstCellOnNewRecord = True
-          OptionsBehavior.GoToNextCellOnEnter = True
-          OptionsData.Appending = True
-          OptionsSelection.InvertSelect = False
-          OptionsView.Navigator = True
-          OptionsView.NoDataToDisplayInfoText = '<Sem Dados Para Exibi'#231#227'o>'
-          OptionsView.ColumnAutoWidth = True
-          OptionsView.GridLines = glNone
-          OptionsView.GroupByBox = False
-          Styles.ContentEven = DtmResource.cxStlLinhaImpar
-          Styles.ContentOdd = DtmResource.cxStlLinhaPar
-          object DbGridDBTblVwobj_codigo: TcxGridDBColumn
-            Caption = 'C'#243'digo'
-            DataBinding.FieldName = 'obj_codigo'
-          end
-          object DbGridDBTblVwobj_nome: TcxGridDBColumn
-            Caption = 'Nome'
-            DataBinding.FieldName = 'obj_nome'
-            Width = 404
-          end
-          object DbGridDBTblVwobj_tipo: TcxGridDBColumn
-            Caption = 'Tipo'
-            DataBinding.FieldName = 'obj_tipo'
-            PropertiesClassName = 'TcxImageComboBoxProperties'
-            Properties.Items = <
-              item
-                Description = 'Formul'#225'rio'
-                ImageIndex = 0
-                Value = 0
-              end
-              item
-                Description = 'Processo'
-                Value = 1
-              end
-              item
-                Description = 'Relat'#243'rio'
-                Value = 2
-              end>
-            Width = 152
-          end
-        end
-        object DbGridLvl: TcxGridLevel
-          GridView = DbGridDBTblVw
-        end
-      end
-    end
+  object Bevel1: TBevel
+    Left = 0
+    Top = 73
+    Width = 784
+    Height = 4
+    Align = alTop
+    Shape = bsSpacer
   end
   object PnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 646
+    Width = 784
     Height = 73
     Align = alTop
-    TabOrder = 1
+    BorderWidth = 8
+    TabOrder = 0
     object btnFechar: TcxButton
-      Left = 8
-      Top = 8
+      Left = 9
+      Top = 9
       Width = 97
-      Height = 57
+      Height = 55
       Hint = 'Excluir'
       Caption = '&Fechar'
       Font.Charset = DEFAULT_CHARSET
@@ -203,7 +36,7 @@ object FrmObjeto: TFrmObjeto
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      OnClick = btnFecharClick
+      Align = alLeft
       Glyph.Data = {
         360D0000424D360D000000000000360000002800000022000000200000000100
         180000000000000D000000000000000000000000000000000000FAFAFAFAFAFA
@@ -314,28 +147,184 @@ object FrmObjeto: TFrmObjeto
       LookAndFeel.Kind = lfOffice11
     end
   end
-  object DtSMaster: TDataSource
-    AutoEdit = False
-    DataSet = ClntDtStMaster
-    Left = 304
-    Top = 360
-  end
-  object ActnMain: TActionList
-    Left = 368
-    Top = 328
-    object ActnInc: TAction
-      Caption = 'ActnInc'
-      ShortCut = 122
-      OnExecute = ActnIncExecute
-    end
-    object ActnAlt: TAction
-      Caption = 'ActnAlt'
-      ShortCut = 123
-      OnExecute = ActnAltExecute
-    end
-    object ActnBlock: TAction
-      Caption = 'ActnBlock'
-      ShortCut = 49220
+  object PnlTabela: TPanel
+    Left = 0
+    Top = 77
+    Width = 784
+    Height = 485
+    Align = alClient
+    BevelOuter = bvNone
+    BorderWidth = 4
+    TabOrder = 1
+    object PgCtrlMain: TcxPageControl
+      Left = 4
+      Top = 4
+      Width = 776
+      Height = 477
+      ActivePage = TbShtPrincipal
+      Align = alClient
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Images = DtmResource.ImgNavigator
+      ParentFont = False
+      TabOrder = 0
+      ClientRectBottom = 473
+      ClientRectLeft = 4
+      ClientRectRight = 772
+      ClientRectTop = 25
+      object TbShtPrincipal: TcxTabSheet
+        BorderWidth = 4
+        Caption = 'Principal'
+        ImageIndex = 28
+        object GrpBxPesquisa: TcxGroupBox
+          Left = 0
+          Top = 0
+          Align = alTop
+          Caption = 'Pesquisar'
+          Style.LookAndFeel.Kind = lfStandard
+          StyleDisabled.LookAndFeel.Kind = lfStandard
+          StyleFocused.LookAndFeel.Kind = lfStandard
+          StyleHot.LookAndFeel.Kind = lfStandard
+          TabOrder = 0
+          DesignSize = (
+            760
+            49)
+          Height = 49
+          Width = 760
+          object EdtPesquisa: TcxTextEdit
+            Left = 248
+            Top = 18
+            Properties.CharCase = ecUpperCase
+            TabOrder = 1
+            Width = 473
+          end
+          object BtnPesquisar: TcxButton
+            Left = 723
+            Top = 16
+            Width = 25
+            Height = 25
+            Hint = 'Executar pesquisa.'
+            Anchors = [akTop, akRight]
+            Caption = '...'
+            Default = True
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+            OnClick = BtnPesquisarClick
+            LookAndFeel.Kind = lfOffice11
+          end
+          object CmbTipoPesquisa: TcxImageComboBox
+            Left = 16
+            Top = 18
+            EditValue = 0
+            Properties.Images = DtmResource.ImgNavigator
+            Properties.Items = <
+              item
+                Description = 'Autom'#225'tica'
+                ImageIndex = 18
+                Value = 0
+              end>
+            TabOrder = 0
+            Width = 225
+          end
+        end
+        object DbgTabela: TcxGrid
+          Left = 0
+          Top = 68
+          Width = 760
+          Height = 372
+          Align = alClient
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+          object DbgTabelaDB: TcxGridDBTableView
+            NavigatorButtons.ConfirmDelete = False
+            NavigatorButtons.Images = DtmResource.ImgNavigator
+            NavigatorButtons.First.Hint = 'Primeiro registro'
+            NavigatorButtons.PriorPage.Visible = False
+            NavigatorButtons.Prior.Hint = 'Registro anterior'
+            NavigatorButtons.Next.Hint = 'Pr'#243'ximo registro'
+            NavigatorButtons.NextPage.Visible = False
+            NavigatorButtons.Last.Hint = #218'ltimo registro'
+            NavigatorButtons.Insert.Hint = 'Inserir registro'
+            NavigatorButtons.Insert.ImageIndex = 0
+            NavigatorButtons.Append.ImageIndex = 0
+            NavigatorButtons.Append.Visible = False
+            NavigatorButtons.Delete.Hint = 'Excluir registrp'
+            NavigatorButtons.Delete.ImageIndex = 6
+            NavigatorButtons.Edit.Hint = 'Editar registro'
+            NavigatorButtons.Edit.ImageIndex = 10
+            NavigatorButtons.Post.Hint = 'Salvar edi'#231#227'o'
+            NavigatorButtons.Post.ImageIndex = 2
+            NavigatorButtons.Cancel.Hint = 'Cancelar edi'#231#227'o'
+            NavigatorButtons.Cancel.ImageIndex = 4
+            NavigatorButtons.Refresh.Hint = 'Atualizar'
+            NavigatorButtons.Refresh.ImageIndex = 19
+            NavigatorButtons.Refresh.Visible = True
+            NavigatorButtons.SaveBookmark.Visible = False
+            NavigatorButtons.GotoBookmark.Visible = False
+            NavigatorButtons.Filter.Visible = False
+            DataController.Summary.DefaultGroupSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <>
+            DataController.Summary.SummaryGroups = <>
+            OptionsBehavior.FocusCellOnTab = True
+            OptionsBehavior.FocusFirstCellOnNewRecord = True
+            OptionsBehavior.GoToNextCellOnEnter = True
+            OptionsData.Appending = True
+            OptionsSelection.InvertSelect = False
+            OptionsView.Navigator = True
+            OptionsView.NoDataToDisplayInfoText = '<Sem dados para exibi'#231#227'o>'
+            OptionsView.ColumnAutoWidth = True
+            OptionsView.GridLines = glNone
+            OptionsView.GroupByBox = False
+            Styles.ContentEven = DtmResource.cxStlLinhaImpar
+            Styles.ContentOdd = DtmResource.cxStlLinhaPar
+          end
+          object DbgTabelaLvl: TcxGridLevel
+            GridView = DbgTabelaDB
+          end
+        end
+        object Pnl: TPanel
+          Left = 0
+          Top = 49
+          Width = 760
+          Height = 19
+          Align = alTop
+          AutoSize = True
+          TabOrder = 1
+          object ShpTitulo: TShape
+            Left = 1
+            Top = 1
+            Width = 758
+            Height = 17
+            Align = alTop
+            Brush.Color = 14860446
+            Pen.Color = 14860446
+            Pen.Style = psClear
+          end
+          object LblDados: TLabel
+            Left = 6
+            Top = 3
+            Width = 105
+            Height = 13
+            Caption = 'Dados da Pesquisa'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindow
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+        end
+      end
     end
   end
   object QryMaster: TSQLQuery
@@ -360,115 +349,24 @@ object FrmObjeto: TFrmObjeto
     SQLConnection = FrmLogin.conWebMaster
     Left = 304
     Top = 296
-    object QryMasterobj_codigo: TSmallintField
-      FieldName = 'obj_codigo'
-      Required = True
-    end
-    object QryMasterobj_nome: TStringField
-      FieldName = 'obj_nome'
-      Size = 60
-    end
-    object QryMasterobj_tipo: TSmallintField
-      FieldName = 'obj_tipo'
-    end
-    object QryMasterobj_inc: TStringField
-      FieldName = 'obj_inc'
-      Size = 60
-    end
-    object QryMasterobj_alt: TStringField
-      FieldName = 'obj_alt'
-      Size = 60
-    end
   end
-  object DtStPvdMaster: TDataSetProvider
-    DataSet = QryMaster
-    Left = 336
-    Top = 328
-  end
-  object ClntDtStMaster: TClientDataSet
+  object CdsMaster: TClientDataSet
     Aggregates = <>
+    PacketRecords = 100
     Params = <>
-    ProviderName = 'DtStPvdMaster'
-    BeforePost = ClntDtStMasterBeforePost
-    BeforeDelete = ClntDtStMasterBeforeDelete
-    OnNewRecord = ClntDtStMasterNewRecord
-    Left = 304
-    Top = 328
-    object ClntDtStMasterobj_codigo: TSmallintField
-      FieldName = 'obj_codigo'
-      Required = True
-    end
-    object ClntDtStMasterobj_nome: TStringField
-      FieldName = 'obj_nome'
-      Size = 60
-    end
-    object ClntDtStMasterobj_tipo: TSmallintField
-      FieldName = 'obj_tipo'
-    end
-    object ClntDtStMasterobj_inc: TStringField
-      FieldName = 'obj_inc'
-      Size = 60
-    end
-    object ClntDtStMasterobj_alt: TStringField
-      FieldName = 'obj_alt'
-      Size = 60
-    end
-  end
-  object QryMax: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'select'
-      '  MAX(coalesce(a.`obj_codigo`,0)) as seq'
-      'from'
-      '  `sys_objeto` a')
-    SQLConnection = FrmLogin.conWebMaster
-    Left = 336
-    Top = 296
-    object QryMaxseq: TBCDField
-      FieldName = 'seq'
-      Precision = 6
-      Size = 0
-    end
-  end
-  object QryUpdate: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'update'
-      ' `sys_objeto` a'
-      'set'
-      '  a.`obj_alt` = '#39#39)
-    SQLConnection = FrmLogin.conWebMaster
-    Left = 404
-    Top = 328
-  end
-  object QryInsert: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'insert into'
-      '  sys_objeto'
-      '  (obj_codigo, obj_nome, obj_tipo, obj_inc, obj_alt)'
-      '  values'
-      '   (12,'
-      '    '#39#39','
-      '    0,'
-      '    '#39#39','
-      '    '#39#39');')
-    SQLConnection = FrmLogin.conWebMaster
+    ProviderName = 'DspMaster'
     Left = 368
     Top = 296
   end
-  object QryDelete: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'delete'
-      'from'
-      '  `sys_objeto`')
-    SQLConnection = FrmLogin.conWebMaster
-    Left = 404
+  object DspMaster: TDataSetProvider
+    DataSet = QryMaster
+    Left = 336
+    Top = 296
+  end
+  object DtsMaster: TDataSource
+    AutoEdit = False
+    DataSet = CdsMaster
+    Left = 400
     Top = 296
   end
 end
