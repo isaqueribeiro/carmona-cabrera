@@ -1,22 +1,23 @@
-unit KeyLogin;
+unit iStrLogin;
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, cxLookAndFeelPainters, StdCtrls, cxButtons, cxTextEdit, cxLabel,
-  cxControls, cxContainer, cxEdit, cxGroupBox, jpeg, ExtCtrls, IniFiles,
-  DB, FIBDataSet, pFIBDataSet, dxSkinsCore, dxSkinBlack, dxSkinBlue,
+  cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus,
+  cxControls, cxContainer, cxEdit, dxSkinsCore, DBXpress, FMTBcd, frxClass,
+  frxDBSet, DB, SqlExpr, cxGroupBox, cxLabel, Controls, cxTextEdit,
+  StdCtrls, cxButtons, jpeg, ExtCtrls, Classes,
+  Windows, Messages, SysUtils, Variants, Graphics, Forms, Dialogs,
+  IniFiles, FIBDataSet, pFIBDataSet, dxSkinBlack, dxSkinBlue,
   dxSkinCaramel, dxSkinCoffee, dxSkinDarkSide, dxSkinGlassOceans,
   dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky,
   dxSkinMcSkin, dxSkinMoneyTwins, dxSkinOffice2007Black,
   dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
   dxSkinOffice2007Silver, dxSkinPumpkin, dxSkinSilver, dxSkinStardust,
   dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinXmas2008Blue, Menus, dxSkinscxPCPainter, cxPC, dxGDIPlusClasses,
-  cxGraphics, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, DBXpress, SqlExpr, FMTBcd, frxClass, frxDBSet,
-  cxLookAndFeels;
+  dxSkinXmas2008Blue, dxSkinscxPCPainter, cxPC, dxGDIPlusClasses,
+  cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
+  cxDBLookupComboBox;
 
 type
   TFrmLogin = class(TForm)
@@ -61,6 +62,7 @@ type
     QryEmpresaemp_custos: TStringField;
     QryEmpresaemp_financeiro: TStringField;
     QryEmpresaemp_diretor: TStringField;
+    Image1: TImage;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
@@ -73,6 +75,7 @@ type
   public
     { Public declarations }
     procedure GR_Refresh();
+
     function GR_Acesso(iUSR_CODIGO: Integer; iOBJ_NOME: String): Integer;
     function GR_Registro(sString: String): String;
   end;
@@ -83,7 +86,7 @@ var
 implementation
 
 uses
-  KeyMain, KeyFuncoes, KeyVersion;
+  iStrMain, KeyFuncoes, KeyVersion, KeyResource;
 
 {$R *.dfm}
 
@@ -165,10 +168,10 @@ begin
           ModalResult := mrOK;
 
           FrmMain.StsBr.Panels[0].Text := 'Servidor: ' + EdtServidor.Text;
-          FrmMain.StsBr.Panels[1].Text := 'Banco: ' + EdtBanco.Text;
-          FrmMain.StsBr.Panels[2].Text := 'Usuário: ' + 'root://' + UpperCase(EdtUsuario.Text);
-          FrmMain.StsBr.Panels[3].Text := 'Data: '+ FormatDateTime('dd/mm/yyyy', Date);
-          FrmMain.StSBr.Panels[4].Text := 'Hora: ' + FormatDateTime('hh:mm:ss', Time);
+          FrmMain.StsBr.Panels[1].Text := 'Banco: '    + EdtBanco.Text;
+          FrmMain.StsBr.Panels[2].Text := 'Usuário: '  + 'root://' + UpperCase(EdtUsuario.Text);
+          FrmMain.StsBr.Panels[3].Text := 'Data: '     + FormatDateTime('dd/mm/yyyy', Date);
+          FrmMain.StSBr.Panels[4].Text := 'Hora: '     + FormatDateTime('hh:mm:ss', Time);
 
           FrmMain.USR_Codigo := QryUserusr_codigo.Value;
           FrmMain.USR_Nome   := EdtUsuario.Text;

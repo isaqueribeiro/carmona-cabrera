@@ -21,7 +21,7 @@ type
     ImgMain: TImage;
     Shape1: TShape;
     LblTitulo: TLabel;
-    LblSombra: TLabel;
+    LblTituloSombra: TLabel;
     LblDesc: TLabel;
     procedure TmrSplashTimer(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -79,8 +79,9 @@ var
 begin
   ver := TInfoVersao.GetInstance();
 
-  LblTitulo.Caption := ver.getPropertyValue(ivPRODUCT_NAME);
-  LblDesc.Caption   := ver.getPropertyValue(ivFILE_DESCRIPTION);
+  LblTitulo.Caption       := ver.getPropertyValue(ivPRODUCT_NAME);
+  LblTituloSombra.Caption := ver.getPropertyValue(ivPRODUCT_NAME);
+  LblDesc.Caption         := ver.getPropertyValue(ivFILE_DESCRIPTION);
 end;
 
 end.

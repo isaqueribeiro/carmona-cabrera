@@ -63,7 +63,7 @@ function GetFileNameINI : String;
 var
   sFile : String;
 begin
-  sFile := ExtractFilePath(ParamStr(0) + 'Conexao.ini');
+  sFile := ExtractFilePath(ParamStr(0)) + 'Conexao.ini';
 
   if not FileExists(sFile) then
     sFile := ChangeFileExt(ParamStr(0), '.ini');

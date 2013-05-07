@@ -17,7 +17,7 @@ uses
   cxDataStorage, cxDBData, cxGridLevel, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
   cxDBEdit, cxImageComboBox, ExtCtrls, cxPC, ActnList, cxDBLookupComboBox,
-  FMTBcd, SqlExpr, DBClient, Provider;
+  FMTBcd, SqlExpr, DBClient, Provider, cxLookAndFeels;
 
 type
   TFrmPermissao = class(TForm)
@@ -85,7 +85,16 @@ var
 
 implementation
 
-uses KeyResource, KeyMain, KeyLogin;
+uses
+  {$IFDEF IMONEY}
+    KeyMain
+  , KeyLogin
+  {$ENDIF}
+  {$IFDEF ISTORE}
+    iStrMain
+  , iStrLogin
+  {$ENDIF}
+  , KeyResource;
 
 {$R *.dfm}
 

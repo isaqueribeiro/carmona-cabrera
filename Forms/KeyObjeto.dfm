@@ -1,7 +1,7 @@
 object FrmObjeto: TFrmObjeto
-  Left = 375
-  Top = 109
-  Width = 661
+  Left = 611
+  Top = 170
+  Width = 662
   Height = 451
   BorderIcons = [biSystemMenu]
   Caption = 'Cadastro de Objetos'
@@ -14,14 +14,18 @@ object FrmObjeto: TFrmObjeto
   OldCreateOrder = False
   Position = poScreenCenter
   OnShow = FormShow
+  DesignSize = (
+    646
+    413)
   PixelsPerInch = 96
   TextHeight = 13
   object PgCtrlMain: TcxPageControl
-    Left = 8
-    Top = 88
+    Left = 6
+    Top = 80
     Width = 633
-    Height = 321
+    Height = 329
     ActivePage = TbShtPrincipal
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -29,25 +33,30 @@ object FrmObjeto: TFrmObjeto
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ClientRectBottom = 317
+    ClientRectBottom = 325
     ClientRectLeft = 4
     ClientRectRight = 629
     ClientRectTop = 24
     object TbShtPrincipal: TcxTabSheet
+      BorderWidth = 4
       Caption = 'Principal'
       ImageIndex = 79
+      DesignSize = (
+        617
+        293)
       object Shape2: TShape
         Left = 0
-        Top = 64
+        Top = 56
         Width = 625
         Height = 17
+        Anchors = [akLeft, akTop, akRight]
         Brush.Color = clGradientActiveCaption
         Pen.Color = clHighlight
         Pen.Style = psClear
       end
       object LblDados: TLabel
-        Left = 10
-        Top = 65
+        Left = 2
+        Top = 57
         Width = 93
         Height = 13
         Caption = 'Dados do Objeto'
@@ -60,8 +69,9 @@ object FrmObjeto: TFrmObjeto
         Transparent = True
       end
       object GrpBxPesquisa: TcxGroupBox
-        Left = 2
-        Top = 8
+        Left = 0
+        Top = 0
+        Align = alTop
         Caption = 'Pesquise o Objeto'
         Style.LookAndFeel.Kind = lfStandard
         StyleDisabled.LookAndFeel.Kind = lfStandard
@@ -69,16 +79,16 @@ object FrmObjeto: TFrmObjeto
         StyleHot.LookAndFeel.Kind = lfStandard
         TabOrder = 0
         Height = 49
-        Width = 623
+        Width = 617
         object EdtPesquisar: TcxTextEdit
           Left = 8
           Top = 18
           Properties.OnChange = btnPesquisarClick
           TabOrder = 0
-          Width = 584
+          Width = 577
         end
         object btnPesquisar: TcxButton
-          Left = 592
+          Left = 587
           Top = 16
           Width = 25
           Height = 25
@@ -91,9 +101,11 @@ object FrmObjeto: TFrmObjeto
       end
       object DbGrd: TcxGrid
         Left = 0
-        Top = 88
-        Width = 625
-        Height = 201
+        Top = 80
+        Width = 617
+        Height = 213
+        Align = alBottom
+        Anchors = [akLeft, akTop, akRight, akBottom]
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -103,6 +115,21 @@ object FrmObjeto: TFrmObjeto
         TabOrder = 1
         object DbGridDBTblVw: TcxGridDBTableView
           NavigatorButtons.ConfirmDelete = False
+          NavigatorButtons.Images = DtmResource.ImgNavigator
+          NavigatorButtons.PriorPage.Visible = False
+          NavigatorButtons.NextPage.Visible = False
+          NavigatorButtons.Insert.ImageIndex = 0
+          NavigatorButtons.Append.ImageIndex = 0
+          NavigatorButtons.Append.Visible = False
+          NavigatorButtons.Delete.ImageIndex = 6
+          NavigatorButtons.Edit.ImageIndex = 10
+          NavigatorButtons.Post.ImageIndex = 2
+          NavigatorButtons.Cancel.ImageIndex = 4
+          NavigatorButtons.Refresh.ImageIndex = 19
+          NavigatorButtons.Refresh.Visible = True
+          NavigatorButtons.SaveBookmark.Visible = False
+          NavigatorButtons.GotoBookmark.Visible = False
+          NavigatorButtons.Filter.Visible = False
           DataController.DataSource = DtSMaster
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
@@ -158,7 +185,7 @@ object FrmObjeto: TFrmObjeto
   object PnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 645
+    Width = 646
     Height = 73
     Align = alTop
     TabOrder = 1
