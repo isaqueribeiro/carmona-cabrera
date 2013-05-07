@@ -1160,7 +1160,7 @@ object FrmSplash: TFrmSplash
     ParentFont = False
     Transparent = True
   end
-  object LblSombra: TLabel
+  object LblTituloSombra: TLabel
     Left = 160
     Top = 80
     Width = 111

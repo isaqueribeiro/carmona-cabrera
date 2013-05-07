@@ -13,7 +13,8 @@ uses
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinXmas2008Blue,
   dxSkinscxPCPainter, Menus, cxLookAndFeelPainters, StdCtrls, cxButtons,
   ExtCtrls, cxPC, cxControls, cxGraphics, cxMaskEdit, cxDropDownEdit,
-  cxImageComboBox, cxDBEdit, cxLabel, cxContainer, cxEdit, cxTextEdit;
+  cxImageComboBox, cxDBEdit, cxLabel, cxContainer, cxEdit, cxTextEdit,
+  cxLookAndFeels;
 
 type
   TFrmUsuario = class(TForm)
@@ -47,7 +48,17 @@ var
 
 implementation
 
-uses KeyLogin, KeyMain, KeyResource, KeyUsuarioPesq;
+uses
+  {$IFDEF IMONEY}
+    KeyMain
+  , KeyLogin
+  {$ENDIF}
+  {$IFDEF ISTORE}
+    iStrMain
+  , iStrLogin
+  {$ENDIF}
+  , KeyUsuarioPesq
+  , KeyResource;
 
 {$R *.dfm}
 

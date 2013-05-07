@@ -14,6 +14,14 @@ uses
   pFIBDataSet;
 
 type
+  TUsuario = record
+    Codigo : Integer;
+    Login  : String;
+    Nome   : String;
+    Senha  : String;
+    Nivel  : Integer;
+  end;
+
   TDtmResource = class(TDataModule)
     ImgLstSml: TImageList;
     cxStlRpstr: TcxStyleRepository;
@@ -21,6 +29,7 @@ type
     cxStlLinhaPar: TcxStyle;
     LookAndFeelController: TcxLookAndFeelController;
     ImgLstLrg: TImageList;
+    ImgNavigator: TImageList;
   private
     { Private declarations }
   public
@@ -29,7 +38,8 @@ type
 
 var
   DtmResource: TDtmResource;
-
+  gUsuario   : TUsuario;
+   
 implementation
 
 //uses KeyData;
