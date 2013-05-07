@@ -19,13 +19,13 @@ object FrmMain: TFrmMain
   PixelsPerInch = 96
   TextHeight = 13
   object LblSombra: TLabel
-    Left = 728
+    Left = 696
     Top = 264
     Width = 245
     Height = 115
     Caption = 'iStore'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clAqua
     Font.Height = -104
     Font.Name = 'Berlin Sans FB'
     Font.Style = []
@@ -33,8 +33,8 @@ object FrmMain: TFrmMain
     Transparent = True
   end
   object LblTitulo: TLabel
-    Left = 727
-    Top = 263
+    Left = 694
+    Top = 262
     Width = 245
     Height = 115
     Caption = 'iStore'
@@ -47,7 +47,7 @@ object FrmMain: TFrmMain
     Transparent = True
   end
   object ImgMain: TImage
-    Left = 528
+    Left = 496
     Top = 256
     Width = 186
     Height = 179
@@ -1805,13 +1805,13 @@ object FrmMain: TFrmMain
     Stretch = True
   end
   object LblDesc: TLabel
-    Left = 728
+    Left = 696
     Top = 368
     Width = 339
     Height = 29
     Caption = 'Sistema de Controle de Estoque'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clNavy
     Font.Height = -24
     Font.Name = 'Tahoma'
     Font.Style = []
@@ -1893,36 +1893,7 @@ object FrmMain: TFrmMain
       SelectedLinkIndex = -1
       SmallImageIndex = 29
       TopVisibleLinkIndex = 0
-      Links = <
-        item
-          Item = NvBrCaixa
-        end
-        item
-          Item = NvBrContaCorrente
-        end
-        item
-          Item = NvBrAceite
-        end
-        item
-          Item = NvBrFornecedor
-        end>
-    end
-    object NvBrAceite: TdxNavBarItem
-      Action = ActnContaPR
-      LargeImageIndex = 4
-    end
-    object NvBrCaixa: TdxNavBarItem
-      Action = ActnCaixa
-      LargeImageIndex = 3
-    end
-    object NvBrFornecedor: TdxNavBarItem
-      Action = ActnPessoa
-      Caption = '&Fornecedor'
-      LargeImageIndex = 1
-    end
-    object NvBrContaCorrente: TdxNavBarItem
-      Action = ActnContaCorrente
-      LargeImageIndex = 2
+      Links = <>
     end
   end
   object BrMngr: TdxBarManager
@@ -2349,38 +2320,6 @@ object FrmMain: TFrmMain
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     end
-    object bbRecepcoes: TdxBarButton
-      Caption = '&Recep'#231#245'es'
-      Category = 1
-      Visible = ivAlways
-      Glyph.Data = {
-        36030000424D3603000000000000360000002800000010000000100000000100
-        1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFACD5AD5AAF579DC382BA
-        DBB5DAF1E4EFFCFAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFF9F4FA4DAA53509613D29F43AF972B8D941D84A33A84BB6A99CE96BADF
-        BDE5F5EAFDFEFDFFFFFFFFFFFFFFFFFFFEFCFED3D4D5299727B2B45CFFD3AAFF
-        CB98FFC48CF0B060D0972DB9AB4698BB6360B053DAEDDDFFFFFFFFFFFFFFFFFF
-        EAE7EAAAB8AD209513E3C07DFFCE9EFFCD9AFFCF9FF6BD7FEBAA63FFCE95FFE8
-        C6A1C689ECF8F1FFFFFFFFFFFFF3F3F3CDC8CD82AA8A44A126FCCB97FFCE9EFF
-        CD9CFFCF9EF3B876EFCBA1FFEFDEE5DCB3A7D2A2FFFFFFFFFFFFFFFFFFEBEBEB
-        CDC4CC61A86E73B24CFFD9B2FCD4A2F9CC96F8C890F6C286F1C18AFCD5B3BCC8
-        91CAE8CFFFFFFFFFFFFFFFFFFFFDFDFDF4EEF45EB86AA3C479FFE5C8FCDCB3F8
-        D4A6F4CC98F1C48AEFBB79F7C18AA8C68EEFFBF4FFFFFFFFFFFFFFFFFFFFFFFF
-        F9FDFB56BF65D7D9B0FFE6C6F9D8ACF6D19FF3C993EFC287F4C690E7D0A7B4D5
-        ACFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE1F3E75ABF67F7ECD7FDE5C4F9DFB9F7
-        DAB3F5D6AEF3D1A6F9D9B6D0CCA1D2E9D5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        B8E5C681CF8BFFF6EDFDEBD0F9E3C3F6DBB6F2D3A8EFC997F7D9B9C2D0A9F0F9
-        F4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA1DBAEAFDBADFFF3DEFFE1B7FADBB0F7
-        D6A9F3CF9FF1D0A4EEDEC5CBD9B9FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFEFD
-        9DD9A7D5DEC4EAEBEBD9E7E8E7EBE6EEE9DEF4E7D4F9E3CAE0D1AEDCEAD8FFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFF7FBF89BD9A7B0C6A782A3A14ABEDD3DC2E72E
-        B8E35BBCD8DAE0CCD4E0C7F8FBF9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFEFD
-        E4F2E6DDEDE5A3C8D2D9ECF1D6F3F9BAEBF5C0E9F3F7FBFAFCFEFEFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    end
     object bbUsuarios: TdxBarButton
       Caption = '&Usu'#225'rios'
       Category = 1
@@ -2432,18 +2371,6 @@ object FrmMain: TFrmMain
     object ActnEmpresa: TAction
       Caption = '&Empresas'
     end
-    object ActnTotalizador: TAction
-      Caption = '&Totalizadores'
-    end
-    object ActnOrcamento: TAction
-      Caption = '&Or'#231'amento'
-    end
-    object ActnConta: TAction
-      Caption = '&Contas Cont'#225'beis'
-    end
-    object ActnSituacao: TAction
-      Caption = '&Situa'#231#227'o'
-    end
     object ActnCompetencia: TAction
       Caption = 'Com%pet'#234'ncia'
     end
@@ -2461,36 +2388,6 @@ object FrmMain: TFrmMain
     end
     object ActnNegocio: TAction
       Caption = '&Centro de Neg'#243'cios'
-    end
-    object ActnTipoDoc: TAction
-      Caption = '&Tipos de Documentos'
-    end
-    object ActnTipoPes: TAction
-      Caption = '&Tipos de Pessoa'
-    end
-    object ActnFormaPagto: TAction
-      Caption = '&Formas de Pagamento'
-    end
-    object ActnContaCorrente: TAction
-      Caption = '&Contas Corrente'
-    end
-    object ActnTipoAceite: TAction
-      Caption = '&Tipos de Aceite'
-    end
-    object ActnPessoa: TAction
-      Caption = '&Pessoa'
-    end
-    object ActnContaPR: TAction
-      Caption = '&Contas P/R'
-    end
-    object ActnCaixa: TAction
-      Caption = '&Caixa'
-    end
-    object ActnRFluxo: TAction
-      Caption = '&Fluxo de Caixa'
-    end
-    object ActnRCaixas: TAction
-      Caption = '&Caixas'
     end
   end
   object TmrDateTime: TTimer
@@ -2519,26 +2416,10 @@ object FrmMain: TFrmMain
         Action = ActnPermissao
       end
       object bbSituacao: TMenuItem
-        Action = ActnSituacao
+        Caption = '&Situa'#231#227'o'
       end
       object bbUsuario: TMenuItem
         Action = ActnUsuario
-      end
-      object bbSeparador: TMenuItem
-        Caption = '_________________________'
-      end
-      object bbTotalizador: TMenuItem
-        Action = ActnTotalizador
-      end
-      object bbOrcamento: TMenuItem
-        Action = ActnOrcamento
-      end
-      object bbContaContabil: TMenuItem
-        Action = ActnConta
-      end
-      object bbCompetencia: TMenuItem
-        Action = ActnCompetencia
-        Caption = 'Com&pet'#234'ncia'
       end
       object bbSeparador2: TMenuItem
         Caption = '_________________________'
@@ -2556,44 +2437,21 @@ object FrmMain: TFrmMain
         Action = ActnNegocio
       end
       object bbCorrente: TMenuItem
-        Action = ActnContaCorrente
+        Caption = '&Contas Corrente'
       end
-      object bbTipoAceite: TMenuItem
-        Action = ActnTipoAceite
+      object N1: TMenuItem
+        Caption = '_________________________'
       end
-      object bbTipoCusto: TMenuItem
-        Action = ActnTipoCusto
-      end
-      object bbTipoDoc: TMenuItem
-        Action = ActnTipoDoc
-      end
-      object bbTipoPes: TMenuItem
-        Action = ActnTipoPes
-      end
-      object bbFormaPagto: TMenuItem
-        Action = ActnFormaPagto
+      object bbCompetencia: TMenuItem
+        Action = ActnCompetencia
+        Caption = 'Com&pet'#234'ncia'
       end
     end
     object MnProcessos: TMenuItem
       Caption = '&Processos'
-      object bbPessoa: TMenuItem
-        Action = ActnPessoa
-      end
-      object bbContaPR: TMenuItem
-        Action = ActnContaPR
-      end
-      object Caixa1: TMenuItem
-        Action = ActnCaixa
-      end
     end
     object MnRelatorios: TMenuItem
       Caption = '&Relat'#243'rios'
-      object bbRFluxoCaixa: TMenuItem
-        Action = ActnRFluxo
-      end
-      object Caixas1: TMenuItem
-        Action = ActnRCaixas
-      end
     end
     object MnSair: TMenuItem
       Caption = '&Sair'

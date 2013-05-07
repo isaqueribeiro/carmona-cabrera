@@ -22,6 +22,8 @@ type
     Nivel  : Integer;
   end;
 
+  TTipoObjeto = (toFormulario, toProcesso, toRelatorio);
+
   TDtmResource = class(TDataModule)
     ImgLstSml: TImageList;
     cxStlRpstr: TcxStyleRepository;
