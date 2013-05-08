@@ -3,7 +3,7 @@ unit KeyFuncoes;
 interface
 
 uses
-  Windows, Forms, Dialogs, SysUtils, Classes;
+  Windows, Forms, Dialogs, SysUtils, Classes, Variants;
 
 type
   TTypeButtonConfirm = (tbYesNo, tbOkCancel, tbYesNoCancel);
@@ -17,6 +17,10 @@ type
     const TypeButtonConfirm : TTypeButtonConfirm = tbYesNo) : Boolean;
 
   function GetFileNameINI : String;
+  function GetDateToSGDB(const Data : Variant; const Quoted: Boolean = FALSE): string;
+  function GetDateTimeToSGDB(const Data : Variant; const Quoted: Boolean = FALSE): string;
+
+  function StrIsInteger(const S : String) : Boolean;
 
 implementation
 
@@ -56,7 +60,7 @@ begin
       iBotao := MB_YESNO;
   end;
 
-  Result := (Application.MessageBox(PChar(sMensagem), PChar(sTitulo), iBotao + MB_ICONQUESTION) = ID_YES);
+  Result := (Application.MessageBox(PChar(sMensagem), PChar(sTitulo), iBotao + MB_ICONQUESTION + MB_DEFBUTTON2) = ID_YES);
 end;
 
 function GetFileNameINI : String;
@@ -71,5 +75,47 @@ begin
   Result := sFile;
 end;
 
+function GetDateToSGDB(const Data : Variant; const Quoted: Boolean = FALSE): string;
+var
+  sFormat : String;
+begin
+
+  if VarIsNull(Data) or (Data = EncodeDate(1899, 12, 30)) then
+  begin
+    Result := 'NULL';
+    Exit;
+  end;
+
+  sFormat := 'yyyy-mm-dd'; // Formato MySQL
+  Result  := FormatDateTime(sFormat, VarToDateTime(Data));
+
+  if Quoted then
+    Result := QuotedStr(Result);
+end;
+
+function GetDateTimeToSGDB(const Data : Variant; const Quoted: Boolean = FALSE): string;
+var
+  sFormat : String;
+begin
+
+  if VarIsNull(Data) or (Data = EncodeDate(1899, 12, 30)) then
+  begin
+    Result := 'NULL';
+    Exit;
+  end;
+
+  sFormat := 'yyyy-mm-dd hh:mm:ss'; // Formato MySQL
+  Result  := FormatDateTime(sFormat, VarToDateTime(Data));
+
+  if Quoted then
+    Result := QuotedStr(Result);
+end;
+
+function StrIsInteger(const S : String) : Boolean;
+var
+  I : Integer;
+begin
+  Result := TryStrToInt(S, I);
+end;
 
 end.
