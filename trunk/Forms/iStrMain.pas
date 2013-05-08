@@ -76,6 +76,8 @@ type
     bbCorrente: TMenuItem;
     bbPermissao: TMenuItem;
     N1: TMenuItem;
+    ActnMaterialTipo: TAction;
+    mmMaterialTipo: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -84,6 +86,7 @@ type
     procedure ActnObjetoExecute(Sender: TObject);
     procedure ActnUsuarioExecute(Sender: TObject);
     procedure ActnPermissaoExecute(Sender: TObject);
+    procedure ActnMaterialTipoExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -105,7 +108,8 @@ uses
 //  KeyUsuarioPesq,
 //  KeyUsuario,
 //  KeyPermissao,
-  , iStrLogin;
+  , iStrLogin
+  , iStrMaterialTipo;
 
 {$R *.dfm}
 
@@ -212,6 +216,16 @@ begin  {
     ShowModal;
     Free;
   end;  }
+end;
+
+procedure TFrmMain.ActnMaterialTipoExecute(Sender: TObject);
+begin
+  FrmMaterialTipo := TFrmMaterialTipo.Create(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmMaterialTipo.ShowModal;
+  finally
+    FrmMaterialTipo.Free;
+  end;
 end;
 
 end.

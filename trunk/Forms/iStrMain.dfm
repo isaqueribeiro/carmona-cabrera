@@ -2389,6 +2389,11 @@ object FrmMain: TFrmMain
     object ActnNegocio: TAction
       Caption = '&Centro de Neg'#243'cios'
     end
+    object ActnMaterialTipo: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Tipos de Materiais'
+      OnExecute = ActnMaterialTipoExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2426,6 +2431,9 @@ object FrmMain: TFrmMain
       end
       object bbSetor: TMenuItem
         Action = ActnSetor
+      end
+      object mmMaterialTipo: TMenuItem
+        Action = ActnMaterialTipo
       end
       object bbUnidade: TMenuItem
         Action = ActnUnidade
