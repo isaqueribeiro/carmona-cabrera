@@ -117,6 +117,7 @@ procedure TFrmLogin.FormCreate(Sender: TObject);
 var
   ver : TInfoVersao;
 begin
+  Tag := SYS_ISTORE_ID;
   ver := TInfoVersao.GetInstance();
 
   LblTitulo.Caption := ver.getPropertyValue(ivPRODUCT_NAME);

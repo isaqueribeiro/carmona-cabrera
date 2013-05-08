@@ -1,4 +1,5 @@
 object FrmLogin: TFrmLogin
+  Tag = 2
   Left = 1005
   Top = 161
   BorderStyle = bsDialog
@@ -4719,7 +4720,6 @@ object FrmLogin: TFrmLogin
       'LocaleCode=0000'
       'Port=3308')
     VendorLib = 'libmysql.dll'
-    Connected = True
     Left = 336
     Top = 48
   end

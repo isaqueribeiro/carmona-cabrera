@@ -22,6 +22,10 @@ type
 
   function StrIsInteger(const S : String) : Boolean;
 
+const
+  SYS_IMONEY_ID = 1;
+  SYS_ISTORE_ID = 1;
+
 implementation
 
 procedure ShowMessageInformation(const sMensagem : String; const sTitulo : String = 'Informação');
@@ -72,6 +76,9 @@ begin
   if not FileExists(sFile) then
     sFile := ChangeFileExt(ParamStr(0), '.ini');
 
+  if not FileExists(sFile) then
+    ShowMessageWarning('Arquivo de configurações não encontrado!' + #13 + sFile, 'Configurações');
+    
   Result := sFile;
 end;
 
