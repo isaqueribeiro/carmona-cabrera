@@ -18,6 +18,7 @@ uses
   KeyObservable in 'Units\KeyObservable.pas',
   KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
   KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
+  KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro},
   iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo},
   KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto};
 

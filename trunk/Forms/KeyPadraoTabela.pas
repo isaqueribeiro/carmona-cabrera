@@ -23,7 +23,7 @@ type
     Bevel1: TBevel;
     PnlTabela: TPanel;
     PgCtrlMain: TcxPageControl;
-    TbShtPrincipal: TcxTabSheet;
+    TbsPrincipal: TcxTabSheet;
     GrpBxPesquisa: TcxGroupBox;
     EdtPesquisa: TcxTextEdit;
     BtnPesquisar: TcxButton;
@@ -55,6 +55,8 @@ type
       Shift: TShiftState);
     procedure CmbTipoPesquisaKeyPress(Sender: TObject; var Key: Char);
     procedure EdtPesquisaKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure DtsMasterStateChange(Sender: TObject);
   private
     { Private declarations }
     FAbrirTabela : Boolean;
@@ -91,6 +93,7 @@ begin
   FSQL_Master := TStringList.Create;
   FSQL_Master.AddStrings( QryMaster.SQL );
 
+  PgCtrlMain.ActivePage := TbsPrincipal;
   AbrirTabela := False;
 end;
 
@@ -112,11 +115,16 @@ begin
 
   Case Key of
     VK_F2:
-      if not CdsMaster.IsEmpty then
-        CdsMaster.Edit;
+      begin
+        if not CdsMaster.IsEmpty then
+          CdsMaster.Edit;
+
+        if ( (PgCtrlMain.ActivePage = TbsPrincipal) and DbgTabela.Visible and DbgTabela.Enabled ) then
+          DbgTabela.SetFocus;
+      end;
 
     VK_F3:
-      if ( EdtPesquisa.Visible and EdtPesquisa.Enabled ) then
+      if ( (PgCtrlMain.ActivePage = TbsPrincipal) and EdtPesquisa.Visible and EdtPesquisa.Enabled ) then
         EdtPesquisa.SetFocus;
 
     VK_F4:
@@ -130,7 +138,7 @@ begin
         CdsMaster.Open;
       end
       else
-      if ( BtnPesquisar.Visible and BtnPesquisar.Enabled ) then
+      if ( (PgCtrlMain.ActivePage = TbsPrincipal) and BtnPesquisar.Visible and BtnPesquisar.Enabled ) then
         BtnPesquisar.Click;
 
     VK_ESCAPE:
@@ -141,8 +149,8 @@ begin
             CdsMaster.Cancel;
         end
         else
-        if (PgCtrlMain.ActivePageIndex > 0) then
-          PgCtrlMain.ActivePageIndex := 0;
+        if (PgCtrlMain.ActivePage <> TbsPrincipal) then
+          PgCtrlMain.ActivePage := TbsPrincipal;
       end;
   end;
 
@@ -213,6 +221,19 @@ begin
   if ( Key = #13 ) then
     if ( BtnPesquisar.Visible and BtnPesquisar.Enabled ) then
       BtnPesquisar.Click;
+end;
+
+procedure TFrmPadraoTabela.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  if CdsMaster.State in [dsEdit, dsInsert] then
+    CanClose := ShowMessageConfirm('Deseja cancelar a edição do registtro?', 'Edição');
+end;
+
+procedure TFrmPadraoTabela.DtsMasterStateChange(Sender: TObject);
+begin
+  btnFechar.Enabled     := ( not (CdsMaster.State in [dsEdit, dsInset]) );
+  BtnSelecionar.Enabled := ( not (CdsMaster.State in [dsEdit, dsInset]) and (not CdsMaster.IsEmpty) );
 end;
 
 end.

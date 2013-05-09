@@ -4,6 +4,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
   ActiveControl = EdtPesquisa
   BorderIcons = [biSystemMenu]
   Caption = 'Padr'#227'o Tabela Pesquisa'
+  OnCloseQuery = FormCloseQuery
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
@@ -292,7 +293,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
       Top = 4
       Width = 776
       Height = 477
-      ActivePage = TbShtPrincipal
+      ActivePage = TbsPrincipal
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -306,10 +307,10 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
       ClientRectLeft = 4
       ClientRectRight = 772
       ClientRectTop = 25
-      object TbShtPrincipal: TcxTabSheet
+      object TbsPrincipal: TcxTabSheet
         BorderWidth = 4
         Caption = 'Principal'
-        ImageIndex = 28
+        ImageIndex = 34
         object GrpBxPesquisa: TcxGroupBox
           Left = 0
           Top = 0
@@ -494,6 +495,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
   object DtsMaster: TDataSource
     AutoEdit = False
     DataSet = CdsMaster
+    OnStateChange = DtsMasterStateChange
     Left = 400
     Top = 296
   end
