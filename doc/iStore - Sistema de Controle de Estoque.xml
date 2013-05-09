@@ -258,7 +258,7 @@
 </SETTINGS>
 <METADATA>
 <REGIONS>
-<REGION ID="1937" RegionName="Cadastro de Servi\231os/Produtos" XPos="10" YPos="14" Width="1323" Height="741" RegionColor="0" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" />
+<REGION ID="1937" RegionName="Cadastro de Produtos, Servi\231os eou Insumos" XPos="10" YPos="14" Width="1323" Height="741" RegionColor="0" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" />
 </REGIONS>
 <TABLES>
 <TABLE ID="1915" Tablename="str_apresentacao" PrevTableName="Table_01" XPos="62" YPos="126" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="2" >
@@ -537,9 +537,8 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="2241" ColName="mat_fracionador" PrevColName="" Pos="12" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="1" Comments="">
+<COLUMN ID="2241" ColName="mat_fracionador" PrevColName="" Pos="12" idDatatype="13" DatatypeParams="(18,4)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="1" Comments="">
 <OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
@@ -612,6 +611,10 @@
 <COLUMN ID="2334" ColName="mat_valor_venda_frc" PrevColName="" Pos="26" idDatatype="13" DatatypeParams="(18,4)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2345" ColName="mat_data_cadastro" PrevColName="mat_cadastro_data" Pos="27" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="2329" ColName="mat_ultcompra_data" PrevColName="" Pos="25" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
@@ -816,6 +819,7 @@
 </RELATIONS>
 <NOTES>
 <NOTE ID="2254" NoteName="Note_01" XPos="1335" YPos="14" NoteText="Status Descri\231\227o/Apresenta\231\227o:\n0 - Inativa (N\227o)\n1 - Ativa (Sim)\n\nStatus Material:\n0 - Inativo\n1 - Ativo\n2 - Emprestado\n\nTipo Al\237quota:\n0 - ICMS\n1 - ISS\n\nOrigem Material:\n0 - Nacional\n1 - Estrangeira - Importa\231\227o direta\n2 - Estrangeira - Adquirida no mercado interno\n\nCRT (C\243digo de Regime Tribut\225rio):\n0 - Normal\n1 - Simples Nacional\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="21" />
+<NOTE ID="2348" NoteName="Note_02" XPos="1032" YPos="682" NoteText="Observa\231\245es:\n\n1. O Facionador do material ser\225 um n\250mero fluttuante,\nmas que o padr\227o \233 1. Este peculiaridade \233 de extrema \nimport\226ncia porque muitos materiais ter\227o coeficientes\nnesse n\237vel de detalhamento.\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="26" />
 </NOTES>
 <IMAGES>
 </IMAGES>
