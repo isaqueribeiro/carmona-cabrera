@@ -1,5 +1,5 @@
 tkce
 grokka
 cd carmona
-send iStote.rar
+send iStore.rar
 quit

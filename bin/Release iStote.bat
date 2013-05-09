@@ -1,6 +1,6 @@
 pause
-del iStote.rar
-rar a -r iStote.rar iStote.exe
-ftp -s:update_iStote.txt tkce.com.br
-del iStote.rar
+del iStore.rar
+rar a -r iStore.rar iStore.exe
+ftp -s:update_iStore.txt tkce.com.br
+del iStore.rar
 pause
