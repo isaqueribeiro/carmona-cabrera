@@ -238,11 +238,11 @@ begin
   iNivel := FrmLogin.GR_Acesso(USR_Codigo, 'FrmObjeto');
   if (iNivel = 9) And (USR_Nivel <> 2) then Abort;
 
-  FrmObjeto := TFrmObjeto.Create(Application);
-  with FrmObjeto do
-  begin
-    ShowModal;
-    Free;
+  FrmObjeto := TFrmObjeto.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmObjeto.ShowModal;
+  finally
+    FrmObjeto.Free;
   end;
 end;
 

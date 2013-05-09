@@ -6,7 +6,7 @@ inherited FrmMaterialTipo: TFrmMaterialTipo
     inherited PgCtrlMain: TcxPageControl
       inherited TbShtPrincipal: TcxTabSheet
         inherited GrpBxPesquisa: TcxGroupBox
-          Caption = 'Pesquisar Tipo'
+          Caption = 'Pesquise o Tipo de Material'
         end
         inherited DbgTabela: TcxGrid
           inherited DbgTabelaDB: TcxGridDBTableView
@@ -26,8 +26,8 @@ inherited FrmMaterialTipo: TFrmMaterialTipo
         end
         inherited Pnl: TPanel
           inherited LblDados: TLabel
-            Width = 79
-            Caption = 'Dados do Tipo'
+            Width = 146
+            Caption = 'Dados do Tipo de Material'
           end
         end
       end

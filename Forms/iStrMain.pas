@@ -78,6 +78,7 @@ type
     N1: TMenuItem;
     ActnMaterialTipo: TAction;
     mmMaterialTipo: TMenuItem;
+    LblVersao: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -87,6 +88,7 @@ type
     procedure ActnUsuarioExecute(Sender: TObject);
     procedure ActnPermissaoExecute(Sender: TObject);
     procedure ActnMaterialTipoExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -103,11 +105,10 @@ implementation
 
 uses
     IniFiles
+  , KeyFuncoes
+  , KeyVersion
   , KeyResource
   , KeyObjeto
-//  KeyUsuarioPesq,
-//  KeyUsuario,
-//  KeyPermissao,
   , iStrLogin
   , iStrMaterialTipo;
 
@@ -117,15 +118,13 @@ uses
 
 procedure TFrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  if Application.MessageBox('Deseja Realmente Finalizar Sistema ?',
-    'Confirmação', MB_OKCANCEL+MB_ICONQUESTION) = ID_CANCEL then
+  if not ShowMessageConfirm('Deseja Realmente Finalizar o Sistema?', 'Confirmação', tbOkCancel) then
     Abort;
 end;
 
 procedure TFrmMain.bbFinalizarClick(Sender: TObject);
 begin
-  if Application.MessageBox('Deseja Realmente Finalizar Sistema ?',
-    'Confirmação', MB_OKCANCEL+MB_ICONQUESTION) = ID_CANCEL then
+  if not ShowMessageConfirm('Deseja Realmente Finalizar o Sistema?', 'Confirmação', tbOkCancel) then
     Abort;
 
   Application.Terminate;
@@ -178,12 +177,12 @@ begin
   iNivel := FrmLogin.GR_Acesso(USR_Codigo, 'FrmObjeto');
   if (iNivel = 9) And (USR_Nivel <> 2) then Abort;
 
-  FrmObjeto := TFrmObjeto.Create(Application);
-  with FrmObjeto do
-  begin
-    ShowModal;
-    Free;
-  end;  
+  FrmObjeto := TFrmObjeto.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmObjeto.ShowModal;
+  finally
+    FrmObjeto.Free;
+  end;
 end;
 
 procedure TFrmMain.ActnUsuarioExecute(Sender: TObject);
@@ -220,12 +219,22 @@ end;
 
 procedure TFrmMain.ActnMaterialTipoExecute(Sender: TObject);
 begin
-  FrmMaterialTipo := TFrmMaterialTipo.Create(Self, FrmLogin, FrmLogin.conWebMaster);
+  FrmMaterialTipo := TFrmMaterialTipo.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
   try
     FrmMaterialTipo.ShowModal;
   finally
     FrmMaterialTipo.Free;
   end;
+end;
+
+procedure TFrmMain.FormCreate(Sender: TObject);
+var
+  ver : TInfoVersao;
+const
+  VERSAO = 'Versão %s (Build %s)';
+begin
+  ver := TInfoVersao.GetInstance;
+  LblVersao.Caption := Format(VERSAO, [ver.getPropertyValue(ivPRODUCT_VERSION), ver.getPropertyValue(ivFILE_VERSION)]);
 end;
 
 end.

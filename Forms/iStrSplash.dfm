@@ -4437,4 +4437,8 @@ inherited FrmStrSplash: TFrmStrSplash
     Left = 128
     Top = 296
   end
+  inherited LblVersao: TLabel
+    Left = 192
+    Top = 248
+  end
 end

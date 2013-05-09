@@ -4,74 +4,34 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, DB, FIBDataSet, pFIBDataSet, cxLookAndFeelPainters, dxSkinsCore,
-  dxSkinBlack, dxSkinBlue, dxSkinCaramel, dxSkinCoffee, dxSkinDarkSide,
-  dxSkinGlassOceans, dxSkiniMaginary, dxSkinLilian, dxSkinLiquidSky,
-  dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMoneyTwins,
-  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
-  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin,
-  dxSkinSilver, dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters,
-  dxSkinValentine, dxSkinXmas2008Blue, cxTextEdit, cxControls, cxContainer,
-  cxEdit, cxGroupBox, Menus, StdCtrls, cxButtons, cxStyles,
-  dxSkinscxPCPainter, cxCustomData, cxGraphics, cxFilter, cxData,
-  cxDataStorage, cxDBData, cxGridLevel, cxGridCustomTableView,
-  cxGridTableView, cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
-  cxDBEdit, cxImageComboBox, ExtCtrls, cxPC, ActnList, cxDBLookupComboBox,
-  FMTBcd, SqlExpr, DBClient, Provider, cxLookAndFeels;
+  Dialogs, KeyPadraoTabela, cxGraphics, cxLookAndFeels,
+  cxLookAndFeelPainters, Menus, cxControls, dxSkinsCore,
+  dxSkinscxPCPainter, cxContainer, cxEdit, cxStyles, cxCustomData,
+  cxFilter, cxData, cxDataStorage, DB, cxDBData, FMTBcd, cxImageComboBox,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, Provider,
+  DBClient, SqlExpr, StdCtrls, ExtCtrls, cxGridLevel, cxClasses,
+  cxGridCustomView, cxGrid, cxMaskEdit, cxDropDownEdit, cxTextEdit,
+  cxGroupBox, cxPC, cxButtons;
 
 type
-  TFrmObjeto = class(TForm)
-    DtSMaster: TDataSource;
-    PgCtrlMain: TcxPageControl;
-    TbShtPrincipal: TcxTabSheet;
-    Shape2: TShape;
-    LblDados: TLabel;
-    GrpBxPesquisa: TcxGroupBox;
-    EdtPesquisar: TcxTextEdit;
-    btnPesquisar: TcxButton;
-    DbGrd: TcxGrid;
-    DbGridDBTblVw: TcxGridDBTableView;
-    DbGridLvl: TcxGridLevel;
-    ActnMain: TActionList;
-    ActnInc: TAction;
-    ActnAlt: TAction;
-    ActnBlock: TAction;
-    PnlMain: TPanel;
-    btnFechar: TcxButton;
-    QryMaster: TSQLQuery;
-    QryMasterobj_codigo: TSmallintField;
-    QryMasterobj_nome: TStringField;
-    QryMasterobj_tipo: TSmallintField;
-    QryMasterobj_inc: TStringField;
-    QryMasterobj_alt: TStringField;
-    DbGridDBTblVwobj_codigo: TcxGridDBColumn;
-    DbGridDBTblVwobj_nome: TcxGridDBColumn;
-    DbGridDBTblVwobj_tipo: TcxGridDBColumn;
-    DtStPvdMaster: TDataSetProvider;
-    ClntDtStMaster: TClientDataSet;
-    ClntDtStMasterobj_codigo: TSmallintField;
-    ClntDtStMasterobj_nome: TStringField;
-    ClntDtStMasterobj_tipo: TSmallintField;
-    ClntDtStMasterobj_inc: TStringField;
-    ClntDtStMasterobj_alt: TStringField;
-    QryMax: TSQLQuery;
-    QryMaxseq: TBCDField;
-    QryUpdate: TSQLQuery;
-    QryInsert: TSQLQuery;
-    QryDelete: TSQLQuery;
-    procedure FormShow(Sender: TObject);
-    procedure ActnIncExecute(Sender: TObject);
-    procedure ActnAltExecute(Sender: TObject);
-    procedure btnFecharClick(Sender: TObject);
-    procedure ClntDtStMasterNewRecord(DataSet: TDataSet);
-    procedure ClntDtStMasterBeforePost(DataSet: TDataSet);
-    procedure btnPesquisarClick(Sender: TObject);
-    procedure ClntDtStMasterBeforeDelete(DataSet: TDataSet);
+  TFrmObjeto = class(TFrmPadraoTabela)
+    CdsMasterobj_codigo: TSmallintField;
+    CdsMasterobj_nome: TStringField;
+    CdsMasterobj_tipo: TSmallintField;
+    CdsMasterobj_inc: TStringField;
+    CdsMasterobj_alt: TStringField;
+    DbgTabelaDBobj_codigo: TcxGridDBColumn;
+    DbgTabelaDBobj_nome: TcxGridDBColumn;
+    DbgTabelaDBobj_tipo: TcxGridDBColumn;
+    procedure CdsMasterNewRecord(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
+    procedure CdsMasterAfterEdit(DataSet: TDataSet);
+    procedure CdsMasterAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
-
   public
     { Public declarations }
+    function ExecutarPesquisa : Boolean; override;
   end;
 
 var
@@ -80,139 +40,80 @@ var
 implementation
 
 uses
+  KeyFuncoes
   {$IFDEF IMONEY}
-    KeyMain
+  , KeyMain
   , KeyLogin
   {$ENDIF}
   {$IFDEF ISTORE}
-    iStrMain
+  , iStrMain
   , iStrLogin
   {$ENDIF}
-  , KeyResource;
+  , KeyResource
+  , KeyPadrao;
 
 {$R *.dfm}
 
-procedure TFrmObjeto.FormShow(Sender: TObject);
+procedure TFrmObjeto.CdsMasterNewRecord(DataSet: TDataSet);
 begin
-  ClntDtStMaster.Close;
-  QryMaster.Close;
-  QryMaster.Params.ParamByName('nome').AsString := '%';
-  QryMaster.Open;
-  ClntDtStMaster.Open;
-  EdtPesquisar.SetFocus;
+  CdsMasterobj_codigo.AsInteger := MaxCod(NomeTabela, CampoChave, EmptyStr);
+  CdsMasterobj_inc.AsString     := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
 end;
 
-procedure TFrmObjeto.ActnIncExecute(Sender: TObject);
+function TFrmObjeto.ExecutarPesquisa: Boolean;
 begin
-  Application.MessageBox(pchar(FrmLogin.GR_Registro(ClntDtStMasterobj_inc.Value)),
-    'Informação', MB_OK+MB_ICONINFORMATION);
+  RefreshDB;
+
+  CdsMaster.Close;
+  QryMaster.SQL.Clear;
+  QryMaster.SQL.AddStrings( SQL_Master );
+  QryMaster.SQL.Add('where (1 = 1)');
+
+  if Trim(EdtPesquisa.Text) <> EmptyStr then
+    if StrIsInteger( Trim(EdtPesquisa.Text) ) then
+      QryMaster.SQL.Add('  and o.obj_codigo = ' + Trim(EdtPesquisa.Text))
+    else
+      QryMaster.SQL.Add('  and upper(o.obj_nome) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
+
+  QryMaster.SQL.Add('order by o.obj_nome');
+
+  CdsMaster.Open;
+
+  Result := not CdsMaster.IsEmpty;
 end;
 
-procedure TFrmObjeto.ActnAltExecute(Sender: TObject);
+procedure TFrmObjeto.FormCreate(Sender: TObject);
 begin
-  Application.MessageBox(pchar(FrmLogin.GR_Registro(ClntDtStMasterobj_alt.Value)),
-    'Informação', MB_OK+MB_ICONINFORMATION);
+  inherited;
+  ComponenteLogin := FrmLogin;
+  ConexaoDB       := FrmLogin.conWebMaster;
+
+  NomeTabela     := 'sys_objeto';
+  CampoChave     := 'obj_codigo';
+  CampoDescricao := 'obj_nome';
+  CampoOrdenacao := 'obj_nome';
+
+  AbrirTabela := True;
 end;
 
-procedure TFrmObjeto.btnFecharClick(Sender: TObject);
+procedure TFrmObjeto.CdsMasterAfterEdit(DataSet: TDataSet);
 begin
-  Close;
+  CdsMasterobj_alt.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
 end;
 
-procedure TFrmObjeto.ClntDtStMasterNewRecord(DataSet: TDataSet);
-begin
-  FrmLogin.GR_Refresh;
-  with QryMax do
-  begin
-    Close;
-    Open;
-    ClntDtStMasterobj_codigo.Value := StrToInt(CurrToStr(QryMaxseq.Value)) + 1;
-    ClntDtStMasterobj_inc.Value    := FormatDateTime('dd/mm/yyyy', Date) +
-                                      FormatDateTime('hh:mm:ss', Time) +
-                                      FrmMain.USR_Nome;
-  end;  
-end;
-
-procedure TFrmObjeto.ClntDtStMasterBeforePost(DataSet: TDataSet);
+procedure TFrmObjeto.CdsMasterAfterPost(DataSet: TDataSet);
 var
-  sSql: String;
+  sis ,
+  obj : Integer;
+const
+  sWHR = 'sis_codigo = %d and obj_codigo = %d';
 begin
-  FrmLogin.GR_Refresh;
-  
-  // Update
-  if ClntDtStMaster.State in[dsEdit] then
-    begin
-      ClntDtStMasterobj_alt.Value := FormatDateTime('dd/mm/yyyy', Date) +
-                                     FormatDateTime('hh:mm:ss', Time) +
-                                     FrmMain.USR_Nome;
-      with QryUpdate do
-      begin
-        sSql := SQL.Text;
-        SQL.Clear;
-        SQL.Add('update sys_objeto a set');
-        SQL.Add('   a.obj_nome = ' + QuotedStr(ClntDtStMasterobj_nome.Value));
-        SQL.Add('  ,a.obj_tipo = ' + QuotedStr(IntToStr(ClntDtStMasterobj_tipo.Value)));
-        SQL.Add('  ,a.obj_alt  = ' + QuotedStr(ClntDtStMasterobj_alt.Value));
-        SQL.Add('   where a.obj_codigo = ' + FormatFloat('000000', ClntDtStMasterobj_codigo.Value));
-        if Not Application.MessageBox('Deseja Realmente Alterar os Dados?', 'Confirmação', MB_OKCANCEL+MB_ICONQUESTION) = ID_OK then Exit;
-        ExecSQL(True);
-        SQL.Text := sSql;
-      end;
-    end;
+  sis := ComponenteLogin.Tag;
+  obj := CdsMasterobj_codigo.AsInteger;
 
-  // Insert
-  if ClntDtStMaster.State in[dsInsert] then
-    begin
-      ClntDtStMasterobj_inc.Value := FormatDateTime('dd/mm/yyyy', Date) +
-                                     FormatDateTime('hh:mm:ss', Time) +
-                                     FrmMain.USR_Nome;
-      with QryInsert do
-      begin
-        sSql := SQL.Text;
-        SQL.Clear;
-        SQL.Add('insert into sys_objeto');
-        SQL.Add(' (obj_codigo, obj_nome, obj_tipo, obj_inc, obj_alt) ');
-        SQL.Add(' values ( ' );
-        SQL.Add(FormatFloat('000000', ClntDtStMasterobj_codigo.Value) + ', ');
-        SQL.Add(QuotedStr(ClntDtStMasterobj_nome.Value) + ', ');
-        SQL.Add(FormatFloat('0', ClntDtStMasterobj_tipo.Value) + ', ');
-        SQL.Add(QuotedStr(ClntDtStMasterobj_inc.Value) + ', ');
-        SQL.Add(QuotedStr(ClntDtStMasterobj_alt.Value));
-        SQL.Add(')');
-        ExecSQL(True);
-        SQL.Text := sSql;
-        Application.MessageBox('Dados Incluídos Com Sucesso !!!', 'Confirmação', MB_OK+MB_ICONINFORMATION);
-      end;
-    end;
-end;
-
-procedure TFrmObjeto.btnPesquisarClick(Sender: TObject);
-begin
-  FrmLogin.GR_Refresh;
-  With QryMaster Do
-    Begin
-      Close;
-      Params.ParamByName('nome').AsString := '%' + EdtPesquisar.Text + '%';
-      Open;
-      ClntDtStMaster.Close;
-      ClntDtStMaster.Open;
-    End;
-end;
-
-procedure TFrmObjeto.ClntDtStMasterBeforeDelete(DataSet: TDataSet);
-var
-  sSQL :String;
-begin
-  FrmLogin.GR_Refresh;
-  with QryDelete do
-    begin
-      sSql := SQL.Text;
-      SQL.Clear;
-      SQL.Add('delete from sys_objeto ');
-      SQL.Add(' where obj_codigo = ' + FormatFloat('000000', ClntDtStMasterobj_codigo.Value));
-      ExecSQL(True);
-      SQL.Text := sSql;
-    end;
+  if VarIsNull(GetValorDB('sys_sistema_objeto', 'obj_codigo', Format(sWHR, [sis, obj]))) then
+    ConexaoDB.ExecuteDirect('Insert Into sys_sistema_objeto (sis_codigo, obj_codigo) values (' + IntToStr(sis) + ', ' + IntToStr(obj) + ')');
 end;
 
 end.
+ 

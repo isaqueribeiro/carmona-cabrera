@@ -79,6 +79,8 @@ begin
   if ( Assigned(ConexaoDB) and (QryMaster.SQLConnection = nil) ) then
     QryMaster.SQLConnection := ConexaoDB;
 
+  BtnSelecionar.Visible := SelecionarRegistro;
+    
   if AbrirTabela then
     ExecutarPesquisa;  
 end;

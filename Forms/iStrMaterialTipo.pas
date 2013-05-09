@@ -3,7 +3,6 @@ unit iStrMaterialTipo;
 interface
 
 uses
-
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, KeyPadraoTabela, cxGraphics, cxLookAndFeels,
   cxLookAndFeelPainters, Menus, cxControls, dxSkinsCore,
@@ -12,18 +11,7 @@ uses
   DBClient, SqlExpr, StdCtrls, ExtCtrls, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxMaskEdit, cxDropDownEdit, cxImageComboBox,
-  cxTextEdit, cxGroupBox, cxPC, cxButtons
-
-  {$IFDEF IMONEY}
-  , KeyMain
-  , KeyLogin
-  {$ENDIF}
-  {$IFDEF ISTORE}
-  , iStrMain
-  , iStrLogin
-  {$ENDIF}
-  , KeyResource
-  , KeyPadrao;
+  cxTextEdit, cxGroupBox, cxPC, cxButtons;
 
 type
   TFrmMaterialTipo = class(TFrmPadraoTabela)
@@ -46,7 +34,17 @@ var
 implementation
 
 uses
-  KeyFuncoes;
+  KeyFuncoes
+  {$IFDEF IMONEY}
+  , KeyMain
+  , KeyLogin
+  {$ENDIF}
+  {$IFDEF ISTORE}
+  , iStrMain
+  , iStrLogin
+  {$ENDIF}
+  , KeyResource
+  , KeyPadrao;
 
 {$R *.dfm}
 

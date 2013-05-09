@@ -314,7 +314,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
           Left = 0
           Top = 0
           Align = alTop
-          Caption = 'Pesquisar'
+          Caption = 'Pesquise o . . .'
           Style.LookAndFeel.Kind = lfStandard
           StyleDisabled.LookAndFeel.Kind = lfStandard
           StyleFocused.LookAndFeel.Kind = lfStandard
@@ -351,6 +351,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
             Left = 16
             Top = 18
             EditValue = 0
+            Enabled = False
             Properties.Images = DtmResource.ImgNavigator
             Properties.Items = <
               item
@@ -453,9 +454,9 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
           object LblDados: TLabel
             Left = 6
             Top = 3
-            Width = 105
+            Width = 70
             Height = 13
-            Caption = 'Dados da Pesquisa'
+            Caption = 'Dados do . . .'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindow
             Font.Height = -11
