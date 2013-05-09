@@ -17,7 +17,7 @@ uses
   dxSkinSummer2008, dxSkinsDefaultPainters, dxSkinValentine,
   dxSkinXmas2008Blue, dxSkinscxPCPainter, cxPC, dxGDIPlusClasses,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox;
+  cxDBLookupComboBox, DBClient, Provider;
 
 type
   TFrmLogin = class(TForm)
@@ -72,6 +72,7 @@ type
     sString1, sString2 :String;
     Ini :TIniFile;
     sUserNet, sPassNet :String;
+    function GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;
   public
     { Public declarations }
     procedure GR_Refresh();
@@ -86,7 +87,10 @@ var
 implementation
 
 uses
-  iStrMain, KeyFuncoes, KeyVersion, KeyResource;
+  KeyFuncoes,
+  KeyVersion,
+  KeyResource,
+  iStrMain;
 
 {$R *.dfm}
 
@@ -144,7 +148,7 @@ begin
 
       Params.Clear;
       Params.Add('DriverName=MySQL50');
-      Params.Add('HostName=' + EdtServidor.Text);
+      Params.Add('HostName='  + EdtServidor.Text);
       Params.Add('Database='  + EdtBanco.Text);
       Params.Add('User_Name=' + EdtUserNET.Text);
       Params.Add('Password='  + EdtPassNET.Text);
@@ -195,6 +199,15 @@ begin
           Application.MessageBox('Sistema Contectando a Base de Dados', 'Confirmação', MB_ICONINFORMATION);
           QryEmpresa.Close;
           QryEmpresa.Open;
+
+          // Gravar registros de sistema
+          
+          if VarIsNull(GetValorDB('sys_sistema', 'sis_codigo', 'sis_codigo = ' + IntToStr(SYS_ISTORE_ID))) then
+            conWebMaster.ExecuteDirect('Insert Into sys_sistema (sis_codigo, sis_descricao) values (' +
+              IntToStr(SYS_ISTORE_ID) + ', ' + QuotedStr(Application.Title) + ')')
+          else
+            conWebMaster.ExecuteDirect('Update sys_sistema Set sis_descricao = ' + QuotedStr(Application.Title) +
+              ' where sis_codigo = ' + IntToStr(SYS_ISTORE_ID));
         End
       Else
         Begin
@@ -237,6 +250,43 @@ procedure TFrmLogin.GR_Refresh;
 begin
   conWebMaster.Connected := False;
   conWebMaster.Connected := True;
+end;
+
+function TFrmLogin.GetValorDB(sTabela, sCampo, sWhereSQL: String): Variant;
+var
+  qry : TSQLQuery;
+  dsp : TDataSetProvider;
+  cds : TClientDataSet;
+begin
+
+  sTabela   := Trim( AnsiLowerCase(sTabela) );
+  sCampo    := Trim( AnsiLowerCase(sCampo) );
+  sWhereSQL := Trim( AnsiLowerCase(sWhereSQL) );
+
+  if sWhereSQL <> EmptyStr then
+    sWhereSQL := Trim('where ' + sWhereSQL);
+
+  qry := TSQLQuery.Create(nil);
+  dsp := TDataSetProvider.Create(nil);
+  cds := TClientDataSet.Create(nil);
+
+  Screen.Cursor := crSQLWait;
+  try
+    qry.SQLConnection := conWebMaster;
+    qry.SQL.Text := 'Select ' + sCampo + ' from ' + sTabela + ' ' + sWhereSQL;
+
+    dsp.DataSet := qry;
+    cds.SetProvider(dsp);
+
+    cds.Open;
+
+    Result := cds.Fields[0].Value;
+  finally
+    Screen.Cursor := crDefault;
+    qry.Free;
+    dsp.Free;
+    cds.Free;
+  end;
 end;
 
 end.

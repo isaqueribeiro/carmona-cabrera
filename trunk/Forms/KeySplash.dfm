@@ -1189,11 +1189,26 @@ object FrmSplash: TFrmSplash
     Transparent = True
   end
   object LblDesc: TLabel
-    Left = 160
+    Left = 159
     Top = 120
     Width = 182
     Height = 13
     Caption = 'Sistema de Gest'#227'o Financeira - i7.com'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Transparent = True
+  end
+  object LblVersao: TLabel
+    Left = 159
+    Top = 136
+    Width = 144
+    Height = 13
+    Caption = 'Vers'#227'o 0.0.0.0 (Build 0.0.0.0)'
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11

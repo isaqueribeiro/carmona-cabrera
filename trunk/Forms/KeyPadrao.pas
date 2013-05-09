@@ -14,6 +14,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    FSelecionarRegistro : Boolean;
     FErroLoop : Integer;
     FComponenteLogin : TComponent;
     FConexaoDB : TSQLConnection;
@@ -26,6 +27,7 @@ type
     function GetNomeObjetoAcesso : String;
   public
     { Public declarations }
+    property SelecionarRegistro : Boolean read FSelecionarRegistro write FSelecionarRegistro;
     property ComponenteLogin : TComponent read FComponenteLogin write FComponenteLogin;
     property ConexaoDB : TSQLConnection read FConexaoDB write FConexaoDB;
     property TipoObjetoAcesso : TTipoObjeto read FTipoObjetoAcesso write FTipoObjetoAcesso;
@@ -35,14 +37,17 @@ type
     property CampoDescricao : String read FCampoDescricao write FCampoDescricao;
     property CampoOrdenacao : String read FCampoOrdenacao write FCampoOrdenacao;
 
-    constructor Create(const AOnwer : TComponent; const Login : TComponent = nil; const Conexao : TSQLConnection = nil); overload;
+    constructor CreateTable(const AOnwer : TComponent; const Login : TComponent = nil; const Conexao : TSQLConnection = nil); 
+    constructor CreateSelection(const AOnwer : TComponent; const Login : TComponent = nil; const Conexao : TSQLConnection = nil; const Selecao : Boolean = FALSE);
     procedure RefreshDB;
 
+    function RegistroSelecionado : Boolean;
     function InTransaction : Boolean;
     function StartTransaction : Boolean;
     function CommitTransaction : Boolean;
     function RollbackTransaction : Boolean;
     function MaxCod(sTabela, sCampo, sWhereSQL : String) : Integer;
+    function GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;
     function ExecutarInsertTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarUpdateTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarDeleteTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
@@ -56,7 +61,7 @@ implementation
 {$R *.dfm}
 
 const
-  ERRO_LOOP = 3;
+  ERRO_LOOP = 2;
 
 { TFrmPadrao }
 
@@ -67,6 +72,8 @@ end;
 
 procedure TFrmPadrao.FormCreate(Sender: TObject);
 begin
+  SelecionarRegistro := False;
+  
   ComponenteLogin  := nil;
   ConexaoDB        := nil;
   TipoObjetoAcesso := toFormulario;
@@ -88,12 +95,28 @@ begin
   end;
 end;
 
-constructor TFrmPadrao.Create(const AOnwer, Login: TComponent; const Conexao : TSQLConnection);
+constructor TFrmPadrao.CreateTable(const AOnwer, Login: TComponent; const Conexao : TSQLConnection);
 begin
   inherited Create(AOnwer);
   Self.ComponenteLogin := Login;
   Self.ConexaoDB       := Conexao;
   Self.RefreshDB;
+end;
+
+constructor TFrmPadrao.CreateSelection(const AOnwer : TComponent; const Login : TComponent; const Conexao : TSQLConnection;
+  const Selecao : Boolean);
+begin
+  inherited Create(AOnwer);
+  Self.ComponenteLogin := Login;
+  Self.ConexaoDB       := Conexao;
+  Self.RefreshDB;
+  
+  Self.SelecionarRegistro := Selecao;
+end;
+
+function TFrmPadrao.RegistroSelecionado: Boolean;
+begin
+  Result := SelecionarRegistro and (ModalResult = mrOk);
 end;
 
 function TFrmPadrao.InTransaction : Boolean;
@@ -181,8 +204,45 @@ begin
     cds.SetProvider(dsp);
 
     cds.Open;
-
+              
     Result := cds.Fields[0].AsInteger + 1;
+  finally
+    Screen.Cursor := crDefault;
+    qry.Free;
+    dsp.Free;
+    cds.Free;
+  end;
+end;
+
+function TFrmPadrao.GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;
+var
+  qry : TSQLQuery;
+  dsp : TDataSetProvider;
+  cds : TClientDataSet;
+begin
+
+  sTabela   := Trim( AnsiLowerCase(sTabela) );
+  sCampo    := Trim( AnsiLowerCase(sCampo) );
+  sWhereSQL := Trim( AnsiLowerCase(sWhereSQL) );
+
+  if sWhereSQL <> EmptyStr then
+    sWhereSQL := Trim('where ' + sWhereSQL);
+
+  qry := TSQLQuery.Create(nil);
+  dsp := TDataSetProvider.Create(nil);
+  cds := TClientDataSet.Create(nil);
+
+  Screen.Cursor := crSQLWait;
+  try
+    qry.SQLConnection := ConexaoDB;
+    qry.SQL.Text := 'Select ' + sCampo + ' from ' + sTabela + ' ' + sWhereSQL;
+
+    dsp.DataSet := qry;
+    cds.SetProvider(dsp);
+
+    cds.Open;
+
+    Result := cds.Fields[0].Value;
   finally
     Screen.Cursor := crDefault;
     qry.Free;
@@ -208,6 +268,9 @@ begin
   sUpdate := EmptyStr;
 
   Result := False;
+
+  if ( FErroLoop > ERRO_LOOP ) then
+    FErroLoop := 0;
 
   Screen.Cursor := crSQLWait;
 
@@ -275,9 +338,13 @@ begin
         CommitTransaction;
 
       Result := True;
+
+      FErroLoop := 0;
     except
       On E : Exception do
       begin
+        Inc(FErroLoop);
+
         if AutoStartTransaction then
           RollbackTransaction;
 
@@ -289,6 +356,12 @@ begin
   finally
     Screen.Cursor := crDefault;
     SQL.Free;
+
+    if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
+    begin
+      RefreshDB;
+      ExecutarInsertTable(DataSet, sTabela, AutoStartTransaction);
+    end;
   end;
 end;
 
@@ -311,6 +384,9 @@ begin
   sWhereSQL := EmptyStr;
 
   Result := False;
+
+  if ( FErroLoop > ERRO_LOOP ) then
+    FErroLoop := 0;
 
   Screen.Cursor := crSQLWait;
 
@@ -404,9 +480,13 @@ begin
         CommitTransaction;
 
       Result := True;
+
+      FErroLoop := 0;
     except
       On E : Exception do
       begin
+        Inc(FErroLoop);
+
         if AutoStartTransaction then
           RollbackTransaction;
 
@@ -418,6 +498,12 @@ begin
   finally
     Screen.Cursor := crDefault;
     SQL.Free;
+
+    if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
+    begin
+      RefreshDB;
+      ExecutarUpdateTable(DataSet, sTabela, AutoStartTransaction);
+    end;
   end;
 end;
 
@@ -437,6 +523,9 @@ begin
   sWhereSQL  := EmptyStr;
 
   Result := False;
+
+  if ( FErroLoop > ERRO_LOOP ) then
+    FErroLoop := 0;
 
   Screen.Cursor := crSQLWait;
 
@@ -492,9 +581,13 @@ begin
         CommitTransaction;
 
       Result := True;
+
+      FErroLoop := 0;
     except
       On E : Exception do
       begin
+        Inc(FErroLoop);
+
         if AutoStartTransaction then
           RollbackTransaction;
 
@@ -506,6 +599,12 @@ begin
   finally
     Screen.Cursor := crDefault;
     SQL.Free;
+
+    if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
+    begin
+      RefreshDB;
+      ExecutarDeleteTable(DataSet, sTabela, AutoStartTransaction);
+    end;  
   end;
 end;
 

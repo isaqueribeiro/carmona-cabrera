@@ -90,7 +90,7 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=
+OutputDir=..\bin\
 UnitOutputDir=
 PackageDLLOutputDir=
 PackageDCPOutputDir=
@@ -111,11 +111,11 @@ ProjectLang=
 RootDir=C:\Temp\
 [Version Info]
 IncludeVerInfo=1
-AutoIncBuild=0
+AutoIncBuild=1
 MajorVer=1
 MinorVer=0
 Release=0
-Build=0
+Build=1
 Debug=0
 PreRelease=0
 Special=0
@@ -126,7 +126,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=Carmona Cabrera Engenharia e Consultoria
 FileDescription=Sistema de Controle de Estoque
-FileVersion=1.0.0.0
+FileVersion=1.0.0.1
 InternalName=
 LegalCopyright=Copyright (c) 2013, Carmona Cabrera Engenharia e Consultoria.
 LegalTrademarks=
@@ -142,3 +142,6 @@ Item0=ISTORE
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
+[HistoryLists\hlOutputDirectorry]
+Count=1
+Item0=..\bin\

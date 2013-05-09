@@ -10,7 +10,6 @@ uses
   KeySplash in 'Forms\KeySplash.pas' {FrmSplash},
   iStrLogin in 'Forms\iStrLogin.pas' {FrmLogin},
   KeyPermissao in 'Forms\KeyPermissao.pas' {FrmPermissao},
-  KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto},
   KeyUsuario in 'Forms\KeyUsuario.pas' {FrmUsuario},
   KeyUsuarioPesq in 'Forms\KeyUsuarioPesq.pas' {FrmUsuarioPesq},
   KeyFuncoes in 'Units\KeyFuncoes.pas',
@@ -19,7 +18,8 @@ uses
   KeyObservable in 'Units\KeyObservable.pas',
   KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
   KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
-  iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo};
+  iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo},
+  KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto};
 
 {$R *.res}
 

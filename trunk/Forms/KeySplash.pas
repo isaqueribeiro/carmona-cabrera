@@ -23,6 +23,7 @@ type
     LblTitulo: TLabel;
     LblTituloSombra: TLabel;
     LblDesc: TLabel;
+    LblVersao: TLabel;
     procedure TmrSplashTimer(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -76,12 +77,15 @@ end;
 procedure TFrmSplash.FormCreate(Sender: TObject);
 var
   ver : TInfoVersao;
+const
+  VERSAO = 'Versão %s (Build %s)';
 begin
   ver := TInfoVersao.GetInstance();
 
   LblTitulo.Caption       := ver.getPropertyValue(ivPRODUCT_NAME);
   LblTituloSombra.Caption := ver.getPropertyValue(ivPRODUCT_NAME);
   LblDesc.Caption         := ver.getPropertyValue(ivFILE_DESCRIPTION);
+  LblVersao.Caption       := Format(VERSAO, [ver.getPropertyValue(ivPRODUCT_VERSION), ver.getPropertyValue(ivFILE_VERSION)]);
 end;
 
 end.

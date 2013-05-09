@@ -24,7 +24,7 @@ type
 
 const
   SYS_IMONEY_ID = 1;
-  SYS_ISTORE_ID = 1;
+  SYS_ISTORE_ID = 2;
 
 implementation
 
@@ -51,6 +51,7 @@ end;
 function ShowMessageConfirm(const sMensagem : String; const sTitulo : String = 'Confirmação';
   const TypeButtonConfirm : TTypeButtonConfirm = tbYesNo) : Boolean;
 var
+  iReturn,
   iBotao : Integer;
 begin
   Case TypeButtonConfirm of
@@ -64,7 +65,8 @@ begin
       iBotao := MB_YESNO;
   end;
 
-  Result := (Application.MessageBox(PChar(sMensagem), PChar(sTitulo), iBotao + MB_ICONQUESTION + MB_DEFBUTTON2) = ID_YES);
+  iReturn := Application.MessageBox(PChar(sMensagem), PChar(sTitulo), iBotao + MB_ICONQUESTION + MB_DEFBUTTON2);
+  Result  := ( (iReturn = ID_YES) or (iReturn = ID_OK));
 end;
 
 function GetFileNameINI : String;
