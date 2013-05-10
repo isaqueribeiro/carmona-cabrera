@@ -1,11 +1,21 @@
 inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
-  ActiveControl = TbsFormulario
+  Left = 587
+  Top = 195
+  ActiveControl = GrpDadosNominais
   Caption = 'Padr'#227'o Tabela/Cadastro Pesquisa '
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlMain: TPanel
-    inherited btnFechar: TcxButton
+    object BvlFechar: TBevel [0]
       Left = 494
+      Top = 9
+      Width = 4
+      Height = 55
+      Align = alLeft
+      Shape = bsRightLine
+    end
+    inherited btnFechar: TcxButton
+      Left = 498
       TabOrder = 5
     end
     inherited BtnSelecionar: TcxButton
@@ -26,7 +36,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      Visible = False
+      OnClick = BtnNovoClick
       Align = alLeft
       Glyph.Data = {
         860F0000424D860F000000000000360000002800000025000000230000000100
@@ -171,7 +181,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
-      Visible = False
+      OnClick = BtnEditarClick
       Align = alLeft
       Glyph.Data = {
         96120000424D96120000000000003600000028000000250000002A0000000100
@@ -340,7 +350,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       ParentShowHint = False
       ShowHint = True
       TabOrder = 2
-      Visible = False
+      OnClick = BtnExcluirClick
       Align = alLeft
       Glyph.Data = {
         7E080000424D7E080000000000004200000028000000220000001F0000000100
@@ -429,7 +439,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       ParentShowHint = False
       ShowHint = True
       TabOrder = 3
-      Visible = False
+      OnClick = BtnCancelarClick
       Align = alLeft
       Glyph.Data = {
         FE0B0000424DFE0B0000000000003600000028000000220000001D0000000100
@@ -546,7 +556,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       ParentShowHint = False
       ShowHint = True
       TabOrder = 4
-      Visible = False
+      OnClick = BtnSalvarClick
       Align = alLeft
       Glyph.Data = {
         B6110000424DB611000000000000360000002800000025000000280000000100
@@ -697,9 +707,34 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
       ActivePage = TbsFormulario
+      inherited TbsPrincipal: TcxTabSheet
+        inherited DbgTabela: TcxGrid
+          inherited DbgTabelaDB: TcxGridDBTableView
+            NavigatorButtons.Insert.Visible = False
+            NavigatorButtons.Delete.Visible = False
+            NavigatorButtons.Edit.Visible = False
+            NavigatorButtons.Post.Visible = False
+            NavigatorButtons.Cancel.Visible = False
+          end
+        end
+      end
       object TbsFormulario: TcxTabSheet
+        BorderWidth = 4
         Caption = 'Formul'#225'rio'
         ImageIndex = 38
+        object GrpDadosNominais: TcxGroupBox
+          Left = 0
+          Top = 0
+          Align = alTop
+          Caption = 'Dados Nominais'
+          Style.LookAndFeel.Kind = lfStandard
+          StyleDisabled.LookAndFeel.Kind = lfStandard
+          StyleFocused.LookAndFeel.Kind = lfStandard
+          StyleHot.LookAndFeel.Kind = lfStandard
+          TabOrder = 0
+          Height = 105
+          Width = 760
+        end
       end
     end
   end

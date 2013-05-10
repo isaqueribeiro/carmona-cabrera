@@ -2412,6 +2412,11 @@ object FrmMain: TFrmMain
       Caption = 'Tipos de Materiais'
       OnExecute = ActnMaterialTipoExecute
     end
+    object ActnMaterialGrupo: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Grupos/Subgrupos de Materiais'
+      OnExecute = ActnMaterialGrupoExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2453,6 +2458,9 @@ object FrmMain: TFrmMain
       end
       object mmMaterialTipo: TMenuItem
         Action = ActnMaterialTipo
+      end
+      object mmMaterialGrupo: TMenuItem
+        Action = ActnMaterialGrupo
       end
       object bbUnidade: TMenuItem
         Action = ActnUnidade
