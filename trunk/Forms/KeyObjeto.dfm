@@ -1,10 +1,12 @@
 inherited FrmObjeto: TFrmObjeto
+  Left = 549
+  Top = 196
   Caption = 'Objetos'
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
-      inherited TbShtPrincipal: TcxTabSheet
+      inherited TbsPrincipal: TcxTabSheet
         inherited GrpBxPesquisa: TcxGroupBox
           Caption = 'Pesquise o Objeto'
         end
@@ -61,11 +63,13 @@ inherited FrmObjeto: TFrmObjeto
       '  o.obj_inc,'
       '  o.obj_alt'
       'from sys_objeto o')
+    Top = 208
   end
   inherited CdsMaster: TClientDataSet
     AfterEdit = CdsMasterAfterEdit
     AfterPost = CdsMasterAfterPost
     OnNewRecord = CdsMasterNewRecord
+    Top = 208
     object CdsMasterobj_codigo: TSmallintField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'obj_codigo'
@@ -94,5 +98,11 @@ inherited FrmObjeto: TFrmObjeto
       ProviderFlags = [pfInUpdate]
       Size = 60
     end
+  end
+  inherited DspMaster: TDataSetProvider
+    Top = 208
+  end
+  inherited DtsMaster: TDataSource
+    Top = 208
   end
 end

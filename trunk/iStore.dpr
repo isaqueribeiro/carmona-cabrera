@@ -19,8 +19,9 @@ uses
   KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
   KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
   KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro},
+  KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto},
   iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo},
-  KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto};
+  iStrMaterialGrupo in 'Forms\iStrMaterialGrupo.pas' {FrmMaterialGrupo};
 
 {$R *.res}
 

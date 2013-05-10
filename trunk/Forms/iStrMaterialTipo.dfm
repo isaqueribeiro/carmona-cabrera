@@ -1,10 +1,12 @@
 inherited FrmMaterialTipo: TFrmMaterialTipo
+  Left = 572
+  Top = 193
   Caption = 'Tipos de Materiais'
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
-      inherited TbShtPrincipal: TcxTabSheet
+      inherited TbsPrincipal: TcxTabSheet
         inherited GrpBxPesquisa: TcxGroupBox
           Caption = 'Pesquise o Tipo de Material'
         end

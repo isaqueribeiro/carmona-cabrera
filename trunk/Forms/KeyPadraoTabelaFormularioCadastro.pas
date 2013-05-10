@@ -25,8 +25,16 @@ type
     BtnExcluir: TcxButton;
     BtnCancelar: TcxButton;
     BtnSalvar: TcxButton;
+    GrpDadosNominais: TcxGroupBox;
+    BvlFechar: TBevel;
     procedure DtsMasterStateChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure BtnNovoClick(Sender: TObject);
+    procedure BtnEditarClick(Sender: TObject);
+    procedure BtnExcluirClick(Sender: TObject);
+    procedure BtnCancelarClick(Sender: TObject);
+    procedure BtnSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -44,17 +52,57 @@ procedure TFrmPadraoTabelaFormularioCadastro.DtsMasterStateChange(
   Sender: TObject);
 begin
   inherited;
-  BtnNovo.Enabled     := ( not (CdsMaster.State in [dsEdit, dsInset]) and CdsMaster.Active );
-  BtnEditar.Enabled   := ( not (CdsMaster.State in [dsEdit, dsInset]) and (not CdsMaster.IsEmpty) );
-  BtnExcluir.Enabled  := ( not (CdsMaster.State in [dsEdit, dsInset]) and (not CdsMaster.IsEmpty) );
-  BtnCancelar.Enabled := ( CdsMaster.State in [dsEdit, dsInset] );
-  BtnSalvar.Enabled   := ( CdsMaster.State in [dsEdit, dsInset] );
+  BtnNovo.Enabled     := ( not (CdsMaster.State in [dsEdit, dsInsert]) and CdsMaster.Active );
+  BtnEditar.Enabled   := ( not (CdsMaster.State in [dsEdit, dsInsert]) and (not CdsMaster.IsEmpty) );
+  BtnExcluir.Enabled  := ( not (CdsMaster.State in [dsEdit, dsInsert]) and (not CdsMaster.IsEmpty) );
+  BtnCancelar.Enabled := ( CdsMaster.State in [dsEdit, dsInsert] );
+  BtnSalvar.Enabled   := ( CdsMaster.State in [dsEdit, dsInsert] );
+
+  TbsPrincipal.TabVisible  := ( not (CdsMaster.State in [dsEdit, dsInsert]) );
+  TbsFormulario.TabVisible := ( CdsMaster.State in [dsEdit, dsInsert] );
 end;
 
 procedure TFrmPadraoTabelaFormularioCadastro.FormCreate(Sender: TObject);
 begin
   inherited;
   TbsFormulario.TabVisible := False;
+end;
+
+procedure TFrmPadraoTabelaFormularioCadastro.FormShow(Sender: TObject);
+begin
+  inherited;
+  DtsMasterStateChange( DtsMaster );
+end;
+
+procedure TFrmPadraoTabelaFormularioCadastro.BtnNovoClick(Sender: TObject);
+begin
+  CdsMaster.Append;
+end;
+
+procedure TFrmPadraoTabelaFormularioCadastro.BtnEditarClick(
+  Sender: TObject);
+begin
+  CdsMaster.Edit;
+end;
+
+procedure TFrmPadraoTabelaFormularioCadastro.BtnExcluirClick(
+  Sender: TObject);
+begin
+  CdsMaster.Delete;
+end;
+
+procedure TFrmPadraoTabelaFormularioCadastro.BtnCancelarClick(
+  Sender: TObject);
+begin
+  if ShowMessageConfirm('Deseja cancelar a edição do registtro?', 'Edição') then
+    CdsMaster.Cancel;
+end;
+
+procedure TFrmPadraoTabelaFormularioCadastro.BtnSalvarClick(
+  Sender: TObject);
+begin
+  if ShowMessageConfirm('Deseja salvar a edição do registtro?', 'Salvar') then
+    CdsMaster.Post;
 end;
 
 end.

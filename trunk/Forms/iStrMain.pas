@@ -79,6 +79,8 @@ type
     ActnMaterialTipo: TAction;
     mmMaterialTipo: TMenuItem;
     LblVersao: TLabel;
+    ActnMaterialGrupo: TAction;
+    mmMaterialGrupo: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -89,6 +91,7 @@ type
     procedure ActnPermissaoExecute(Sender: TObject);
     procedure ActnMaterialTipoExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ActnMaterialGrupoExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -110,7 +113,8 @@ uses
   , KeyResource
   , KeyObjeto
   , iStrLogin
-  , iStrMaterialTipo;
+  , iStrMaterialTipo
+  , iStrMaterialGrupo;
 
 {$R *.dfm}
 
@@ -235,6 +239,16 @@ const
 begin
   ver := TInfoVersao.GetInstance;
   LblVersao.Caption := Format(VERSAO, [ver.getPropertyValue(ivPRODUCT_VERSION), ver.getPropertyValue(ivFILE_VERSION)]);
+end;
+
+procedure TFrmMain.ActnMaterialGrupoExecute(Sender: TObject);
+begin
+  FrmMaterialGrupo := TFrmMaterialGrupo.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmMaterialGrupo.ShowModal;
+  finally
+    FrmMaterialGrupo.Free;
+  end;
 end;
 
 end.

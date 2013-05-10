@@ -1,6 +1,6 @@
 inherited FrmPadraoTabela: TFrmPadraoTabela
-  Left = 673
-  Top = 239
+  Left = 545
+  Top = 198
   ActiveControl = EdtPesquisa
   BorderIcons = [biSystemMenu]
   Caption = 'Padr'#227'o Tabela Pesquisa'
@@ -9,7 +9,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Bevel1: TBevel
+  object BvlMain: TBevel
     Left = 0
     Top = 73
     Width = 784
@@ -474,8 +474,8 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
     MaxBlobSize = -1
     Params = <>
     SQLConnection = FrmLogin.conWebMaster
-    Left = 304
-    Top = 296
+    Left = 24
+    Top = 496
   end
   object CdsMaster: TClientDataSet
     Aggregates = <>
@@ -484,19 +484,19 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
     ProviderName = 'DspMaster'
     BeforePost = CdsMasterBeforePost
     BeforeDelete = CdsMasterBeforeDelete
-    Left = 368
-    Top = 296
+    Left = 88
+    Top = 496
   end
   object DspMaster: TDataSetProvider
     DataSet = QryMaster
-    Left = 336
-    Top = 296
+    Left = 56
+    Top = 496
   end
   object DtsMaster: TDataSource
     AutoEdit = False
     DataSet = CdsMaster
     OnStateChange = DtsMasterStateChange
-    Left = 400
-    Top = 296
+    Left = 120
+    Top = 496
   end
 end

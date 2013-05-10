@@ -20,7 +20,7 @@ type
   TFrmPadraoTabela = class(TFrmPadrao)
     PnlMain: TPanel;
     btnFechar: TcxButton;
-    Bevel1: TBevel;
+    BvlMain: TBevel;
     PnlTabela: TPanel;
     PgCtrlMain: TcxPageControl;
     TbsPrincipal: TcxTabSheet;
@@ -232,8 +232,8 @@ end;
 
 procedure TFrmPadraoTabela.DtsMasterStateChange(Sender: TObject);
 begin
-  btnFechar.Enabled     := ( not (CdsMaster.State in [dsEdit, dsInset]) );
-  BtnSelecionar.Enabled := ( not (CdsMaster.State in [dsEdit, dsInset]) and (not CdsMaster.IsEmpty) );
+  btnFechar.Enabled     := ( not (CdsMaster.State in [dsEdit, dsInsert]) );
+  BtnSelecionar.Enabled := ( not (CdsMaster.State in [dsEdit, dsInsert]) and (not CdsMaster.IsEmpty) );
 end;
 
 end.
