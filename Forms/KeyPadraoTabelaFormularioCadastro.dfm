@@ -1,7 +1,6 @@
 inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
   Left = 587
   Top = 195
-  ActiveControl = GrpDadosNominais
   Caption = 'Padr'#227'o Tabela/Cadastro Pesquisa '
   PixelsPerInch = 96
   TextHeight = 13
@@ -19,6 +18,9 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       TabOrder = 5
     end
     inherited BtnSelecionar: TcxButton
+      Hint = 'Selecionar registro para uso'
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 6
     end
     object BtnNovo: TcxButton
@@ -26,6 +28,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       Top = 9
       Width = 97
       Height = 55
+      Hint = 'Novo registro'
       Caption = 'Novo'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -171,6 +174,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       Top = 9
       Width = 97
       Height = 55
+      Hint = 'Editar registrro selecionado'
       Caption = 'Editar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -340,6 +344,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       Top = 9
       Width = 97
       Height = 55
+      Hint = 'Excluir registro selecionado'
       Caption = 'Excluir'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -429,6 +434,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       Top = 9
       Width = 97
       Height = 55
+      Hint = 'Cancelar edi'#231#227'o'
       Caption = 'Cancelar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -546,6 +552,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       Top = 9
       Width = 97
       Height = 55
+      Hint = 'Salvar edi'#231#227'o'
       Caption = 'Salvar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -706,7 +713,6 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
   end
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
-      ActivePage = TbsFormulario
       inherited TbsPrincipal: TcxTabSheet
         inherited DbgTabela: TcxGrid
           inherited DbgTabelaDB: TcxGridDBTableView
@@ -715,6 +721,12 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
             NavigatorButtons.Edit.Visible = False
             NavigatorButtons.Post.Visible = False
             NavigatorButtons.Cancel.Visible = False
+            OptionsData.Appending = False
+            OptionsData.CancelOnExit = False
+            OptionsData.Deleting = False
+            OptionsData.Editing = False
+            OptionsData.Inserting = False
+            OptionsSelection.CellSelect = False
           end
         end
       end

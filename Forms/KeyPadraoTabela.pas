@@ -114,6 +114,17 @@ begin
   inherited;
 
   Case Key of
+    // Inserir
+    VK_INSERT:
+      begin
+        if CdsMaster.Active and (not (CdsMaster.State in [dsEdit, dsInsert])) then
+          CdsMaster.Append;
+
+        if ( (PgCtrlMain.ActivePage = TbsPrincipal) and DbgTabela.Visible and DbgTabela.Enabled ) then
+          DbgTabela.SetFocus;
+      end;
+
+    // Editar
     VK_F2:
       begin
         if not CdsMaster.IsEmpty then
@@ -123,14 +134,17 @@ begin
           DbgTabela.SetFocus;
       end;
 
+    // Posicionar para pesquisa
     VK_F3:
       if ( (PgCtrlMain.ActivePage = TbsPrincipal) and EdtPesquisa.Visible and EdtPesquisa.Enabled ) then
         EdtPesquisa.SetFocus;
 
+    // Fechar formulário
     VK_F4:
       if ( Shift = [ssCtrl] ) then
         btnFechar.Click;
-        
+
+    // Atualizar pesquisa
     VK_F5:
       if CdsMaster.Active then
       begin
@@ -141,6 +155,7 @@ begin
       if ( (PgCtrlMain.ActivePage = TbsPrincipal) and BtnPesquisar.Visible and BtnPesquisar.Enabled ) then
         BtnPesquisar.Click;
 
+    // Cancelar edição
     VK_ESCAPE:
       begin
         if CdsMaster.State in [dsEdit, dsInsert] then
