@@ -60,6 +60,12 @@ begin
 
   TbsPrincipal.TabVisible  := ( not (CdsMaster.State in [dsEdit, dsInsert]) );
   TbsFormulario.TabVisible := ( CdsMaster.State in [dsEdit, dsInsert] );
+
+  if TbsPrincipal.TabVisible then
+    PgCtrlMain.ActivePage := TbsPrincipal
+  else
+  if TbsFormulario.TabVisible then
+    PgCtrlMain.ActivePage := TbsFormulario;
 end;
 
 procedure TFrmPadraoTabelaFormularioCadastro.FormCreate(Sender: TObject);
@@ -82,13 +88,15 @@ end;
 procedure TFrmPadraoTabelaFormularioCadastro.BtnEditarClick(
   Sender: TObject);
 begin
-  CdsMaster.Edit;
+  if not CdsMaster.FieldByName(CampoChave).IsNull then
+    CdsMaster.Edit;
 end;
 
 procedure TFrmPadraoTabelaFormularioCadastro.BtnExcluirClick(
   Sender: TObject);
 begin
-  CdsMaster.Delete;
+  if not CdsMaster.FieldByName(CampoChave).IsNull then
+    CdsMaster.Delete;
 end;
 
 procedure TFrmPadraoTabelaFormularioCadastro.BtnCancelarClick(
