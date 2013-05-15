@@ -35,6 +35,7 @@ type
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
     procedure BtnSalvarClick(Sender: TObject);
+    procedure DbgTabelaDBDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,6 +112,18 @@ procedure TFrmPadraoTabelaFormularioCadastro.BtnSalvarClick(
 begin
   if ShowMessageConfirm('Deseja salvar a edição do registtro?', 'Salvar') then
     CdsMaster.Post;
+end;
+
+procedure TFrmPadraoTabelaFormularioCadastro.DbgTabelaDBDblClick(
+  Sender: TObject);
+begin
+  if not BtnSelecionar.Visible then
+  begin
+    if BtnEditar.Visible and BtnEditar.Enabled then
+      BtnEditar.Click; 
+  end
+  else
+    inherited;
 end;
 
 end.

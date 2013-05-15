@@ -47,10 +47,12 @@ type
     function CommitTransaction : Boolean;
     function RollbackTransaction : Boolean;
     function MaxCod(sTabela, sCampo, sWhereSQL : String) : Integer;
+    function MaxCodDetail(const DataSet : TClientDataSet; sCampo : String; const bLoop : Boolean = FALSE) : Integer;
     function GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;
     function ExecutarInsertTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarUpdateTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarDeleteTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
+    function ExecutarInsertUpdateTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
   end;
 
 var
@@ -204,7 +206,7 @@ begin
     cds.SetProvider(dsp);
 
     cds.Open;
-              
+
     Result := cds.Fields[0].AsInteger + 1;
   finally
     Screen.Cursor := crDefault;
@@ -212,6 +214,18 @@ begin
     dsp.Free;
     cds.Free;
   end;
+end;
+
+function TFrmPadrao.MaxCodDetail(const DataSet : TClientDataSet; sCampo : String;
+  const bLoop : Boolean = FALSE) : Integer;
+var
+  iReturn : Integer;
+begin
+  iReturn := DataSet.RecordCount + 1;
+  if bLoop then
+    while DataSet.Locate(scampo, iReturn, []) do
+      Inc(iReturn);
+  Result := iReturn;
 end;
 
 function TFrmPadrao.GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;
@@ -303,7 +317,7 @@ begin
       if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
         sValues := sValues + StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
       else
-      if tpField.DataType in [ftString, ftGuid] then
+      if tpField.DataType in [ftString, ftGuid, ftMemo] then
         sValues := sValues + QuotedStr(tpField.AsString)
       else
       if tpField.DataType in [ftDate] then
@@ -439,7 +453,7 @@ begin
         if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
           s := StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
         else
-        if tpField.DataType in [ftString, ftGuid] then
+        if tpField.DataType in [ftString, ftGuid, ftMemo] then
           s := QuotedStr(tpField.AsString)
         else
         if tpField.DataType in [ftDate] then
@@ -604,6 +618,99 @@ begin
     begin
       RefreshDB;
       ExecutarDeleteTable(DataSet, sTabela, AutoStartTransaction);
+    end;  
+  end;
+end;
+
+function TFrmPadrao.ExecutarInsertUpdateTable(DataSet: TDataSet;
+  const sTabela: String; const AutoStartTransaction: Boolean): Boolean;
+var
+  I : Integer;
+  s,
+  sFieldName,
+  sWhereSQL : String;
+
+  pFlags  : TProviderFlags;
+  SQL     : TStringList;
+  tpField : TField;
+  bExiste : Boolean;
+begin
+  sFieldName := EmptyStr;
+  sWhereSQL  := EmptyStr;
+
+  Result := False;
+
+  if ( FErroLoop > ERRO_LOOP ) then
+    FErroLoop := 0;
+
+  Screen.Cursor := crSQLWait;
+
+  for I := 0 to (DataSet.FieldCount - 1) do
+  begin
+
+    tpField    := DataSet.Fields[I];
+    sFieldName := DataSet.Fields[I].FieldName;
+    pFlags     := DataSet.Fields[I].ProviderFlags;
+
+    if (pfInKey in pFlags) and (tpField.FieldKind = fkData) then
+    begin
+      if tpField.DataType in [ftSmallint, ftWord, ftInteger, ftLargeint] then
+        s := tpField.AsString
+      else
+      if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
+        s := StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
+      else
+      if tpField.DataType in [ftString, ftGuid, ftMemo] then
+        s := QuotedStr(tpField.AsString)
+      else
+      if tpField.DataType in [ftDate] then
+        s := QuotedStr(GetDateToSGDB(tpField.Value))
+      else
+      if tpField.DataType in [ftDateTime] then
+        s := QuotedStr(GetDateTimeToSGDB(tpField.Value))
+      else
+        s := ':' + sFieldName;
+
+      if (Length(sWhereSQL) > 0) then
+        sWhereSQL := sWhereSQL + ' and ';
+
+      sWhereSQL := sWhereSQL + sFieldName + ' = ' + s;
+    end;  // if
+
+  end;  // for I
+
+  SQL := TStringList.Create;
+  try
+    try
+      bExiste := (not VarIsNull(GetValorDB(sTabela, '*', sWhereSQL)));
+
+      if not bExiste then
+        Result := ExecutarInsertTable(DataSet, sTabela, AutoStartTransaction)
+      else
+        Result := ExecutarUpdateTable(DataSet, sTabela, AutoStartTransaction);
+
+      FErroLoop := 0;
+    except
+      On E : Exception do
+      begin
+        Inc(FErroLoop);
+
+        if AutoStartTransaction then
+          RollbackTransaction;
+
+        ShowMessageError(E.Message + #13#13 +
+          'Erro na função "ExecutarInsertUpdateTable()" ao tentar executar o seguinte script:' + #13#13 +
+          SQL.Text, 'Erro de Inclusão/Exclusão');
+      end;
+    end;
+  finally
+    Screen.Cursor := crDefault;
+    SQL.Free;
+
+    if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
+    begin
+      RefreshDB;
+      ExecutarInsertUpdateTable(DataSet, sTabela, AutoStartTransaction);
     end;  
   end;
 end;

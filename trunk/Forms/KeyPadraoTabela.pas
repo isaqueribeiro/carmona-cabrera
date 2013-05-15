@@ -48,15 +48,13 @@ type
     procedure CdsMasterBeforeDelete(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
     procedure BtnSelecionarClick(Sender: TObject);
-    procedure DbgTabelaDBCellDblClick(Sender: TcxCustomGridTableView;
-      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
-      AShift: TShiftState; var AHandled: Boolean);
     procedure DbgTabelaDBKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure CmbTipoPesquisaKeyPress(Sender: TObject; var Key: Char);
     procedure EdtPesquisaKeyPress(Sender: TObject; var Key: Char);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure DtsMasterStateChange(Sender: TObject);
+    procedure DbgTabelaDBDblClick(Sender: TObject);
   private
     { Private declarations }
     FAbrirTabela : Boolean;
@@ -160,8 +158,13 @@ begin
       begin
         if CdsMaster.State in [dsEdit, dsInsert] then
         begin
-          if ShowMessageConfirm('Deseja cancelar a edição do registtro?', 'Edição') then
-            CdsMaster.Cancel;
+          if CdsMaster.Modified then
+          begin
+            if ShowMessageConfirm('Deseja cancelar a edição do registtro?', 'Edição') then
+              CdsMaster.Cancel;
+          end
+          else
+            CdsMaster.Cancel;    
         end
         else
         if (PgCtrlMain.ActivePage <> TbsPrincipal) then
@@ -205,15 +208,6 @@ begin
       ModalResult := mrOk;
 end;
 
-procedure TFrmPadraoTabela.DbgTabelaDBCellDblClick(
-  Sender: TcxCustomGridTableView;
-  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
-  AShift: TShiftState; var AHandled: Boolean);
-begin
-  if ( BtnSelecionar.Visible and BtnSelecionar.Enabled ) then
-    BtnSelecionar.Click;
-end;
-
 procedure TFrmPadraoTabela.DbgTabelaDBKeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);
 begin
@@ -242,13 +236,22 @@ procedure TFrmPadraoTabela.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
   if CdsMaster.State in [dsEdit, dsInsert] then
-    CanClose := ShowMessageConfirm('Deseja cancelar a edição do registtro?', 'Edição');
+    if CdsMaster.Modified then
+      CanClose := ShowMessageConfirm('Deseja cancelar a edição do registtro?', 'Edição')
+    else
+      CanClose := True;  
 end;
 
 procedure TFrmPadraoTabela.DtsMasterStateChange(Sender: TObject);
 begin
   btnFechar.Enabled     := ( not (CdsMaster.State in [dsEdit, dsInsert]) );
   BtnSelecionar.Enabled := ( not (CdsMaster.State in [dsEdit, dsInsert]) and (not CdsMaster.IsEmpty) );
+end;
+
+procedure TFrmPadraoTabela.DbgTabelaDBDblClick(Sender: TObject);
+begin
+  if ( BtnSelecionar.Visible and BtnSelecionar.Enabled ) then
+    BtnSelecionar.Click;
 end;
 
 end.

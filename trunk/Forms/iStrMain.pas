@@ -62,18 +62,14 @@ type
     ActnEmpresa: TAction;
     bbSituacao: TMenuItem;
     ActnCompetencia: TAction;
-    bbCompetencia: TMenuItem;
+    mmCompetencia: TMenuItem;
     ActnSetor: TAction;
     bbSeparador2: TMenuItem;
-    bbSetor: TMenuItem;
-    bbUnidade: TMenuItem;
-    ActnUnidade: TAction;
+    mmSetor: TMenuItem;
+    ActnUnidadeMedida: TAction;
     ActnTipoCusto: TAction;
     ActnCentroCusto: TAction;
-    bbCentroCusto: TMenuItem;
     ActnNegocio: TAction;
-    bbNegocio: TMenuItem;
-    bbCorrente: TMenuItem;
     bbPermissao: TMenuItem;
     N1: TMenuItem;
     ActnMaterialTipo: TAction;
@@ -81,6 +77,7 @@ type
     LblVersao: TLabel;
     ActnMaterialGrupo: TAction;
     mmMaterialGrupo: TMenuItem;
+    mmUnidadeMedida: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -92,6 +89,8 @@ type
     procedure ActnMaterialTipoExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ActnMaterialGrupoExecute(Sender: TObject);
+    procedure ActnUnidadeMedidaExecute(Sender: TObject);
+    procedure ActnSetorExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -112,9 +111,11 @@ uses
   , KeyVersion
   , KeyResource
   , KeyObjeto
+  , KeySetor
   , iStrLogin
   , iStrMaterialTipo
-  , iStrMaterialGrupo;
+  , iStrMaterialGrupo
+  , iStrUnidadeMedida;
 
 {$R *.dfm}
 
@@ -248,6 +249,26 @@ begin
     FrmMaterialGrupo.ShowModal;
   finally
     FrmMaterialGrupo.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnUnidadeMedidaExecute(Sender: TObject);
+begin
+  FrmUnidadeMedida := TFrmUnidadeMedida.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmUnidadeMedida.ShowModal;
+  finally
+    FrmUnidadeMedida.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnSetorExecute(Sender: TObject);
+begin
+  FrmSetor := TFrmSetor.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmSetor.ShowModal;
+  finally
+    FrmSetor.Free;
   end;
 end;
 

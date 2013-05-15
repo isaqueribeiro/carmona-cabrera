@@ -379,6 +379,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
           ParentFont = False
           TabOrder = 2
           object DbgTabelaDB: TcxGridDBTableView
+            OnDblClick = DbgTabelaDBDblClick
             OnKeyDown = DbgTabelaDBKeyDown
             NavigatorButtons.ConfirmDelete = False
             NavigatorButtons.Images = DtmResource.ImgNavigator
@@ -406,7 +407,6 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
             NavigatorButtons.SaveBookmark.Visible = False
             NavigatorButtons.GotoBookmark.Visible = False
             NavigatorButtons.Filter.Visible = False
-            OnCellDblClick = DbgTabelaDBCellDblClick
             DataController.DataSource = DtsMaster
             DataController.Summary.DefaultGroupSummaryItems = <>
             DataController.Summary.FooterSummaryItems = <>
@@ -448,8 +448,8 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
             Width = 758
             Height = 17
             Align = alTop
-            Brush.Color = 14860446
-            Pen.Color = 14860446
+            Brush.Color = 12615680
+            Pen.Color = 12615680
             Pen.Style = psClear
           end
           object LblDados: TLabel

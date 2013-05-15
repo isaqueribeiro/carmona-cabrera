@@ -42,8 +42,8 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
           Width = 760
           Height = 17
           Align = alTop
-          Brush.Color = 14860446
-          Pen.Color = 14860446
+          Brush.Color = 12615680
+          Pen.Color = 12615680
           Pen.Style = psClear
         end
         object Label1: TLabel [1]
@@ -139,7 +139,6 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
             NavigatorButtons.SaveBookmark.Visible = False
             NavigatorButtons.GotoBookmark.Visible = False
             NavigatorButtons.Filter.Visible = False
-            OnCellDblClick = DbgTabelaDBCellDblClick
             DataController.DataSource = DtsDetail
             DataController.Summary.DefaultGroupSummaryItems = <>
             DataController.Summary.FooterSummaryItems = <>
@@ -162,6 +161,21 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
             OptionsView.GroupByBox = False
             Styles.ContentEven = DtmResource.cxStlLinhaImpar
             Styles.ContentOdd = DtmResource.cxStlLinhaPar
+            object DbgDetailTblsgp_codigo: TcxGridDBColumn
+              DataBinding.FieldName = 'sgp_codigo'
+              MinWidth = 60
+              Options.Editing = False
+              Options.Filtering = False
+              Options.Focusing = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Width = 60
+            end
+            object DbgDetailTblsgp_descricao: TcxGridDBColumn
+              DataBinding.FieldName = 'sgp_descricao'
+              PropertiesClassName = 'TcxTextEditProperties'
+              Properties.CharCase = ecUpperCase
+            end
           end
           object DbgDetailLvl: TcxGridLevel
             GridView = DbgDetailTbl
@@ -179,6 +193,7 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
     Top = 464
   end
   inherited CdsMaster: TClientDataSet
+    AfterPost = CdsMasterAfterPost
     OnNewRecord = CdsMasterNewRecord
     Top = 464
     object CdsMastergrp_codigo: TSmallintField
@@ -238,6 +253,7 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
         Value = 0
       end>
     ProviderName = 'DspDetail'
+    BeforeDelete = CdsDetailBeforeDelete
     OnNewRecord = CdsDetailNewRecord
     Left = 88
     Top = 496

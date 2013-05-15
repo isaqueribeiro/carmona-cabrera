@@ -35,13 +35,20 @@ type
     DbgDetail: TcxGrid;
     DbgDetailTbl: TcxGridDBTableView;
     DbgDetailLvl: TcxGridLevel;
+    DbgDetailTblsgp_codigo: TcxGridDBColumn;
+    DbgDetailTblsgp_descricao: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure DtsMasterStateChange(Sender: TObject);
     procedure CdsDetailNewRecord(DataSet: TDataSet);
+    procedure CdsMasterAfterPost(DataSet: TDataSet);
+    procedure CdsDetailBeforeDelete(DataSet: TDataSet);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure CarregarSubgrupos;
+    procedure GravarSubgrupos;
   public
     { Public declarations }
     function ExecutarPesquisa : Boolean; override;
@@ -85,8 +92,6 @@ begin
   QryMaster.SQL.Add('order by g.grp_descricao');
   CdsMaster.Open;
 
-  CdsMasterAfterScroll( CdsMaster );
-
   Result := not CdsMaster.IsEmpty;
 end;
 
@@ -116,14 +121,13 @@ begin
   begin
     dbDescricao.SetFocus;
     CarregarSubgrupos;  
-  end
-  else
-    CdsDetail.Close;
+  end;
 end;
 
 procedure TFrmMaterialGrupo.CdsDetailNewRecord(DataSet: TDataSet);
 begin
-  CdsDetailsgp_codigo.AsInteger := MaxCod('str_material_subgrupo', 'sgp_codigo', EmptyStr);
+  CdsDetailsgp_grupo.Assign( CdsMastergrp_codigo );
+  CdsDetailsgp_codigo.AsInteger := StrToInt(CdsMastergrp_codigo.AsString + FormatFloat('000', MaxCodDetail(CdsDetail, 'sgp_codigo')));
 end;
 
 procedure TFrmMaterialGrupo.CarregarSubgrupos;
@@ -133,6 +137,54 @@ begin
     Close;
     ParamByName('sgp_grupo').AsInteger := CdsMastergrp_codigo.AsInteger;
     Open;
+  end;
+end;
+
+procedure TFrmMaterialGrupo.GravarSubgrupos;
+begin
+  if CdsDetail.IsEmpty then
+    Exit
+  else
+  begin
+    CdsDetail.First;
+    while not CdsDetail.Eof do
+    begin
+      ExecutarInsertUpdateTable(CdsDetail, 'str_material_subgrupo');
+      CdsDetail.Next;
+    end;
+  end;
+end;
+
+procedure TFrmMaterialGrupo.CdsMasterAfterPost(DataSet: TDataSet);
+begin
+  GravarSubgrupos;
+end;
+
+procedure TFrmMaterialGrupo.CdsDetailBeforeDelete(DataSet: TDataSet);
+begin
+  if ShowMessageConfirm('Confirma a exclusão do subgrupo selecionado?', 'Excluir') then
+    ExecutarDeleteTable(DataSet, 'str_material_subgrupo')
+  else
+    Abort;
+end;
+
+procedure TFrmMaterialGrupo.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  
+  Case Key of
+    VK_INSERT:
+      begin
+        if (CdsMaster.State = dsInsert) then
+          Exit;
+
+        if CdsDetail.Active and (not (CdsDetail.State in [dsEdit, dsInsert])) then
+          CdsDetail.Append;
+
+        if ( (PgCtrlMain.ActivePage = TbsFormulario) and DbgDetail.Visible and DbgDetail.Enabled ) then
+          DbgDetail.SetFocus;
+      end;
   end;
 end;
 
