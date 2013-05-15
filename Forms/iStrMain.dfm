@@ -2393,10 +2393,9 @@ object FrmMain: TFrmMain
       Caption = 'Com%pet'#234'ncia'
     end
     object ActnSetor: TAction
+      Category = 'Tabelas Auxiliares'
       Caption = '&Setor'
-    end
-    object ActnUnidade: TAction
-      Caption = '&Unidades de Neg'#243'cios'
+      OnExecute = ActnSetorExecute
     end
     object ActnTipoCusto: TAction
       Caption = '&Tipos de Custo'
@@ -2416,6 +2415,11 @@ object FrmMain: TFrmMain
       Category = 'Tabelas Auxiliares'
       Caption = 'Grupos/Subgrupos de Materiais'
       OnExecute = ActnMaterialGrupoExecute
+    end
+    object ActnUnidadeMedida: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Unidades de Medidas'
+      OnExecute = ActnUnidadeMedidaExecute
     end
   end
   object TmrDateTime: TTimer
@@ -2453,7 +2457,7 @@ object FrmMain: TFrmMain
       object bbSeparador2: TMenuItem
         Caption = '_________________________'
       end
-      object bbSetor: TMenuItem
+      object mmSetor: TMenuItem
         Action = ActnSetor
       end
       object mmMaterialTipo: TMenuItem
@@ -2462,22 +2466,13 @@ object FrmMain: TFrmMain
       object mmMaterialGrupo: TMenuItem
         Action = ActnMaterialGrupo
       end
-      object bbUnidade: TMenuItem
-        Action = ActnUnidade
-      end
-      object bbCentroCusto: TMenuItem
-        Action = ActnCentroCusto
-      end
-      object bbNegocio: TMenuItem
-        Action = ActnNegocio
-      end
-      object bbCorrente: TMenuItem
-        Caption = '&Contas Corrente'
+      object mmUnidadeMedida: TMenuItem
+        Action = ActnUnidadeMedida
       end
       object N1: TMenuItem
         Caption = '_________________________'
       end
-      object bbCompetencia: TMenuItem
+      object mmCompetencia: TMenuItem
         Action = ActnCompetencia
         Caption = 'Com&pet'#234'ncia'
       end

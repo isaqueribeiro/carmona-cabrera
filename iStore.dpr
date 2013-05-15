@@ -20,8 +20,10 @@ uses
   KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
   KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro},
   KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto},
+  KeySetor in 'Forms\KeySetor.pas' {FrmSetor},
   iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo},
-  iStrMaterialGrupo in 'Forms\iStrMaterialGrupo.pas' {FrmMaterialGrupo};
+  iStrMaterialGrupo in 'Forms\iStrMaterialGrupo.pas' {FrmMaterialGrupo},
+  iStrUnidadeMedida in 'Forms\iStrUnidadeMedida.pas' {FrmUnidadeMedida};
 
 {$R *.res}
 
