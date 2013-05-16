@@ -11,7 +11,7 @@ uses
   DBClient, SqlExpr, StdCtrls, ExtCtrls, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxMaskEdit, cxDropDownEdit, cxImageComboBox,
-  cxTextEdit, cxGroupBox, cxPC, cxButtons;
+  cxTextEdit, cxGroupBox, cxPC, cxButtons, cxCheckBox, cxDBEdit, cxLabel;
 
 type
   TFrmMaterialPesquisa = class(TFrmPadraoTabelaCadastro)
@@ -33,7 +33,32 @@ type
     CdsMastertip_descricao: TStringField;
     CdsMastergrp_descricao: TStringField;
     CdsMastersgp_descricao: TStringField;
+    DbgTabelaDBmat_codigo: TcxGridDBColumn;
+    DbgTabelaDBmat_descricao_resumo: TcxGridDBColumn;
+    DbgTabelaDBmat_referencia: TcxGridDBColumn;
+    DbgTabelaDBmat_status: TcxGridDBColumn;
+    DbgTabelaDBtip_descricao: TcxGridDBColumn;
+    DbgTabelaDBgrp_descricao: TcxGridDBColumn;
+    DbgTabelaDBsgp_descricao: TcxGridDBColumn;
+    pnlDadosTabela: TPanel;
+    GrpBxTipoCusto: TcxGroupBox;
+    cxDBCheckBox1: TcxDBCheckBox;
+    cxDBCheckBox2: TcxDBCheckBox;
+    Bevel1: TBevel;
+    GrpBxCustoMedio: TcxGroupBox;
+    lblCustoCP: TcxLabel;
+    dbCustoCP: TcxDBTextEdit;
+    lblCustoCS: TcxLabel;
+    dbCustoCS: TcxDBTextEdit;
+    Bevel2: TBevel;
+    GrpBxHistorico: TcxGroupBox;
+    lblDataCadastro: TcxLabel;
+    dbDataCadastro: TcxDBTextEdit;
+    lblDataUltimaCompra: TcxLabel;
+    dbDataUltimaCompra: TcxDBTextEdit;
     procedure FormCreate(Sender: TObject);
+    procedure BtnNovoClick(Sender: TObject);
+    procedure BtnEditarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,7 +83,8 @@ uses
   {$ENDIF}
   , KeyResource
   , KeyPadrao
-  , iStrMaterialCadastro, KeyPadraoTabela;
+  , KeyPadraoTabela
+  , iStrMaterialCadastro;
 
 {$R *.dfm}
 
@@ -105,6 +131,37 @@ begin
   CampoOrdenacao := 'mat_descricao_resumo';
 
   AbrirTabela := True;
+end;
+
+procedure TFrmMaterialPesquisa.BtnNovoClick(Sender: TObject);
+var
+  AForm : TFrmMaterialCadastro;
+begin
+  AForm := TFrmMaterialCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    AForm.SetParametrosPesquisa([0]);
+    
+    if ( AForm.ExecutarInsercao ) then
+      CdsMaster.Refresh;
+  finally
+    AForm.Free;
+  end;
+end;
+
+procedure TFrmMaterialPesquisa.BtnEditarClick(Sender: TObject);
+var
+  AForm : TFrmMaterialCadastro;
+begin
+  AForm := TFrmMaterialCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    AForm.SetParametrosPesquisa([CdsMastermat_codigo.AsCurrency]);
+    AForm.ExecutarPesquisa;
+
+    if ( AForm.ExecutarAlteracao ) then
+      CdsMaster.Refresh;
+  finally
+    AForm.Free;
+  end;
 end;
 
 end.
