@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes" ?>
 <DBMODEL Version="4.0">
 <SETTINGS>
-<GLOBALSETTINGS ModelName="iStore - Sistema de Controle de Estoque" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="0" YPos="216" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<GLOBALSETTINGS ModelName="iStore - Sistema de Controle de Estoque" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="0" YPos="0" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
 <DATATYPEGROUPS>
 <DATATYPEGROUP Name="Numeric Types" Icon="1" />
 <DATATYPEGROUP Name="Date and Time Types" Icon="2" />
@@ -496,7 +496,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="2193" Tablename="str_material" PrevTableName="Table_08" XPos="771" YPos="126" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" >
+<TABLE ID="2193" Tablename="str_material" PrevTableName="Table_08" XPos="770" YPos="112" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" >
 <COLUMNS>
 <COLUMN ID="2195" ColName="mat_codigo" PrevColName="" Pos="0" idDatatype="6" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -592,6 +592,12 @@
 </COLUMN>
 <COLUMN ID="2268" ColName="mat_aliquota" PrevColName="mat_aliquota_percent" Pos="14" idDatatype="13" DatatypeParams="(15,2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2578" ColName="mat_aliquota_origem" PrevColName="" Pos="17" idDatatype="2" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="0">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
@@ -1074,7 +1080,7 @@
 <RELATION ID="2557" RelationName="Pessoa Fornecedor x Materiais" Kind="2" SrcTable="2548" DestTable="2193" FKFields="pes_codigo=mat_ultcompra_forn\n" FKFieldsComments="\n" relDirection="1" MidOffset="15" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="1" CaptionOffsetY="4" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="2559" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="32" />
 </RELATIONS>
 <NOTES>
-<NOTE ID="2254" NoteName="Note_01" XPos="1338" YPos="14" NoteText="Status Descri\231\227o/Apresenta\231\227o:\n0 - Inativa (N\227o)\n1 - Ativa (Sim)\n\nStatus Material:\n0 - Inativo\n1 - Ativo\n2 - Emprestado\n\nCusto Direto:\n0 - N\227o\n1 - Sim\n\nCusto Indireto: \n0 - N\227o \n1 - Sim \n \nTipo Al\237quota:\n0 - ICMS\n1 - ISS\n\nOrigem Material:\n0 - Nacional\n1 - Estrangeira - Importa\231\227o direta\n2 - Estrangeira - Adquirida no mercado interno\n\nCRT (C\243digo de Regime Tribut\225rio):\n0 - Normal\n1 - Simples Nacional\n\nMaterial requisitado \npelo(s) o(s) Setor(res):\n0 - N\227o\n1 - Sim\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="21" />
+<NOTE ID="2254" NoteName="Note_01" XPos="1365" YPos="14" NoteText="Status Descri\231\227o/Apresenta\231\227o:\n0 - Inativa (N\227o)\n1 - Ativa (Sim)\n\nStatus Material:\n0 - Inativo\n1 - Ativo\n2 - Emprestado\n\nCusto Direto:\n0 - N\227o\n1 - Sim\n\nCusto Indireto: \n0 - N\227o \n1 - Sim \n \nTipo Al\237quota:\n0 - ICMS\n1 - ISS\n\nOrigem Material:\n0 - Nacional\n1 - Estrangeira - Importa\231\227o direta\n2 - Estrangeira - Adquirida no mercado interno\n\nCRT (C\243digo de Regime Tribut\225rio):\n0 - Normal\n1 - Simples Nacional\n\nCST (C\243diigo de Situa\231\227o Tibut\225ria), onde:\n- CST \233 para a tributa\231\227o normal\n- CSON \233 para a tributa\231\227o no Simples Nacional\n\nMaterial requisitado \npelo(s) o(s) Setor(res):\n0 - N\227o\n1 - Sim\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="21" />
 <NOTE ID="2348" NoteName="Note_02" XPos="1032" YPos="682" NoteText="Observa\231\245es:\n\n1. O Fracionador do material ser\225 um n\250mero flutuante,\nmas que o padr\227o \233 1. Esta peculiaridade \233 de extrema \nimport\226ncia pelo fato de muitos materiais possuirem\ncoeficientes nesse n\237vel de detalhamento.\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="26" />
 <NOTE ID="2576" NoteName="Note_03" XPos="1268" YPos="882" NoteText="Status Pessoa:\n0 - Inativo\n1 - Ativo\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="33" />
 </NOTES>

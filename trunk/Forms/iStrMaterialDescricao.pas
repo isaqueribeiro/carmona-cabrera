@@ -89,6 +89,8 @@ begin
   CampoChave     := 'des_codigo';
   CampoDescricao := 'des_descricao';
   CampoOrdenacao := 'des_descricao';
+
+  AbrirTabela := True;
 end;
 
 procedure TFrmMaterialDescricao.CdsMasterNewRecord(DataSet: TDataSet);
