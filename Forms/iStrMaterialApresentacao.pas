@@ -27,6 +27,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
+    procedure BtnSelecionarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -108,6 +109,16 @@ begin
   if ( CdsMasterapr_ativa.AsInteger = 0 ) then
     CdsMasterapr_log_inactive.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
   inherited;
+end;
+
+procedure TFrmMaterialApresentacao.BtnSelecionarClick(Sender: TObject);
+begin
+  if CdsMaster.Active then
+    if not CdsMaster.IsEmpty then
+      if ( CdsMasterapr_ativa.AsInteger <> 1 ) then
+        ShowMessageInformation('A apresentação selecionada não está disponível para uso!')
+      else
+        inherited;
 end;
 
 end.
