@@ -46,7 +46,8 @@ type
     function StartTransaction : Boolean;
     function CommitTransaction : Boolean;
     function RollbackTransaction : Boolean;
-    function MaxCod(sTabela, sCampo, sWhereSQL : String) : Integer;
+    function MaxCod(sTabela, sCampo, sWhereSQL : String) : Integer; 
+    function MaxCod_Currency(sTabela, sCampo, sWhereSQL : String) : Currency;
     function MaxCodDetail(const DataSet : TClientDataSet; sCampo : String; const bLoop : Boolean = FALSE) : Integer;
     function GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;
     function ExecutarInsertTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
@@ -185,7 +186,6 @@ var
   dsp : TDataSetProvider;
   cds : TClientDataSet;
 begin
-
   sTabela   := Trim( AnsiLowerCase(sTabela) );
   sCampo    := Trim( AnsiLowerCase(sCampo) );
   sWhereSQL := Trim( AnsiLowerCase(sWhereSQL) );
@@ -208,6 +208,42 @@ begin
     cds.Open;
 
     Result := cds.Fields[0].AsInteger + 1;
+  finally
+    Screen.Cursor := crDefault;
+    qry.Free;
+    dsp.Free;
+    cds.Free;
+  end;
+end;
+
+function TFrmPadrao.MaxCod_Currency(sTabela, sCampo, sWhereSQL: String): Currency;
+var
+  qry : TSQLQuery;
+  dsp : TDataSetProvider;
+  cds : TClientDataSet;
+begin
+  sTabela   := Trim( AnsiLowerCase(sTabela) );
+  sCampo    := Trim( AnsiLowerCase(sCampo) );
+  sWhereSQL := Trim( AnsiLowerCase(sWhereSQL) );
+
+  if sWhereSQL <> EmptyStr then
+    sWhereSQL := Trim('where ' + sWhereSQL);
+
+  qry := TSQLQuery.Create(nil);
+  dsp := TDataSetProvider.Create(nil);
+  cds := TClientDataSet.Create(nil);
+
+  Screen.Cursor := crSQLWait;
+  try
+    qry.SQLConnection := ConexaoDB;
+    qry.SQL.Text := 'Select max(' + sCampo + ') as ID from ' + sTabela + ' ' + sWhereSQL;
+
+    dsp.DataSet := qry;
+    cds.SetProvider(dsp);
+
+    cds.Open;
+
+    Result := cds.Fields[0].AsCurrency + 1;
   finally
     Screen.Cursor := crDefault;
     qry.Free;

@@ -7,7 +7,6 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
   TextHeight = 13
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
-      ActivePage = TbsFormulario
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpBxPesquisa: TcxGroupBox
           Caption = 'Pesquise o Grupo de Material'

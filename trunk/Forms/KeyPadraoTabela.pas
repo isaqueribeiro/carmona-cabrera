@@ -172,7 +172,6 @@ begin
       end;
   end;
 
-
 end;
 
 procedure TFrmPadraoTabela.CdsMasterBeforeDelete(DataSet: TDataSet);

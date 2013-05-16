@@ -19,11 +19,17 @@ uses
   KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
   KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
   KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro},
+  KeyPadraoTabelaCadastro in 'Forms\KeyPadraoTabelaCadastro.pas' {FrmPadraoTabelaCadastro},
+  KeyPadraoCadastro in 'Forms\KeyPadraoCadastro.pas' {FrmPadraoCadastro},
   KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto},
   KeySetor in 'Forms\KeySetor.pas' {FrmSetor},
   iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo},
   iStrMaterialGrupo in 'Forms\iStrMaterialGrupo.pas' {FrmMaterialGrupo},
-  iStrUnidadeMedida in 'Forms\iStrUnidadeMedida.pas' {FrmUnidadeMedida};
+  iStrUnidadeMedida in 'Forms\iStrUnidadeMedida.pas' {FrmUnidadeMedida},
+  iStrMaterialDescricao in 'Forms\iStrMaterialDescricao.pas' {FrmMaterialDescricao},
+  iStrMaterialApresentacao in 'Forms\iStrMaterialApresentacao.pas' {FrmMaterialApresentacao},
+  iStrMaterialPesquisa in 'Forms\iStrMaterialPesquisa.pas' {FrmMaterialPesquisa},
+  iStrMaterialCadastro in 'Forms\iStrMaterialCadastro.pas' {FrmMaterialCadastro};
 
 {$R *.res}
 

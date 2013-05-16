@@ -1891,7 +1891,7 @@ object FrmMain: TFrmMain
   object NavBar: TdxNavBar
     Left = 0
     Top = 28
-    Width = 150
+    Width = 121
     Height = 577
     Align = alLeft
     ActiveGroupIndex = 0
@@ -1910,7 +1910,15 @@ object FrmMain: TFrmMain
       SelectedLinkIndex = -1
       SmallImageIndex = 5
       TopVisibleLinkIndex = 0
-      Links = <>
+      Links = <
+        item
+          Item = NvBrMaterial
+        end>
+    end
+    object NvBrMaterial: TdxNavBarItem
+      Action = ActnMaterial
+      LargeImageIndex = 6
+      SmallImageIndex = 6
     end
   end
   object BrMngr: TdxBarManager
@@ -2421,6 +2429,26 @@ object FrmMain: TFrmMain
       Caption = 'Unidades de Medidas'
       OnExecute = ActnUnidadeMedidaExecute
     end
+    object ActnMaterialDescricao: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Descri'#231#245'es de Materiais'
+      OnExecute = ActnMaterialDescricaoExecute
+    end
+    object ActnMaterialApresentacao: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Apresenta'#231#245'es de Materiais'
+      OnExecute = ActnMaterialApresentacaoExecute
+    end
+    object ActnMaterialFabricante: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Fabricantes'
+    end
+    object ActnMaterial: TAction
+      Category = 'Cadastros Principais'
+      Caption = 'Materiais'
+      Hint = 'Cadastro e pesquisa de Materiais'
+      OnExecute = ActnMaterialExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2455,7 +2483,7 @@ object FrmMain: TFrmMain
         Action = ActnUsuario
       end
       object bbSeparador2: TMenuItem
-        Caption = '_________________________'
+        Caption = '-'
       end
       object mmSetor: TMenuItem
         Action = ActnSetor
@@ -2469,8 +2497,20 @@ object FrmMain: TFrmMain
       object mmUnidadeMedida: TMenuItem
         Action = ActnUnidadeMedida
       end
+      object mmMaterialDescricao: TMenuItem
+        Action = ActnMaterialDescricao
+      end
+      object mmMaterialApresentacao: TMenuItem
+        Action = ActnMaterialApresentacao
+      end
+      object mmMaterialFabricante: TMenuItem
+        Action = ActnMaterialFabricante
+      end
+      object mmMaterial: TMenuItem
+        Action = ActnMaterial
+      end
       object N1: TMenuItem
-        Caption = '_________________________'
+        Caption = '-'
       end
       object mmCompetencia: TMenuItem
         Action = ActnCompetencia
