@@ -113,7 +113,8 @@ uses
   , iStrLogin
   {$ENDIF}
   , KeyResource
-  , KeyPadrao, iStrMaterialDescricao;
+  , KeyPadrao
+  , iStrMaterialDescricao;
 
 {$R *.dfm}
 

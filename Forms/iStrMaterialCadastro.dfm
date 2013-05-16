@@ -170,6 +170,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
             Hint = 'Pesquisar descri'#231#245'es'#13#10'(Ctrl + Enter)'#13#10#13#10'Limpar'#13#10'(Ctrl + Delete)'
             DataBinding.DataField = 'des_descricao'
             DataBinding.DataSource = DtsMaster
+            ParentShowHint = False
             Properties.Buttons = <
               item
                 Default = True
@@ -177,6 +178,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
               end>
             Properties.ReadOnly = True
             Properties.OnButtonClick = dbDescricaoPropertiesButtonClick
+            ShowHint = True
             TabOrder = 7
             Width = 449
           end
@@ -188,12 +190,14 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
               'e)'
             DataBinding.DataField = 'apr_descricao'
             DataBinding.DataSource = DtsMaster
+            ParentShowHint = False
             Properties.Buttons = <
               item
                 Default = True
                 Kind = bkEllipsis
               end>
             Properties.ReadOnly = True
+            ShowHint = True
             TabOrder = 9
             Width = 449
           end

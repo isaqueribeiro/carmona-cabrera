@@ -27,6 +27,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
+    procedure BtnSelecionarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -105,6 +106,16 @@ begin
   if ( CdsMasterdes_ativa.AsInteger = 0 ) then
     CdsMasterdes_log_inactive.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
   inherited;
+end;
+
+procedure TFrmMaterialDescricao.BtnSelecionarClick(Sender: TObject);
+begin
+  if CdsMaster.Active then
+    if not CdsMaster.IsEmpty then
+      if ( CdsMasterdes_ativa.AsInteger <> 1 ) then
+        ShowMessageInformation('A descrição selecionada não está disponível para uso!')
+      else
+        inherited;
 end;
 
 end.
