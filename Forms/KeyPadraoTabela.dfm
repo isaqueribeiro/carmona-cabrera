@@ -329,6 +329,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
           object EdtPesquisa: TcxTextEdit
             Left = 248
             Top = 18
+            Anchors = [akLeft, akTop, akRight]
             Properties.CharCase = ecUpperCase
             TabOrder = 1
             OnKeyPress = EdtPesquisaKeyPress

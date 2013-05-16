@@ -115,7 +115,7 @@ AutoIncBuild=1
 MajorVer=1
 MinorVer=0
 Release=0
-Build=2
+Build=3
 Debug=0
 PreRelease=0
 Special=0
@@ -126,7 +126,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=Carmona Cabrera Engenharia e Consultoria
 FileDescription=Sistema de Controle de Estoque
-FileVersion=1.0.0.2
+FileVersion=1.0.0.3
 InternalName=
 LegalCopyright=Copyright (c) 2013, Carmona Cabrera Engenharia e Consultoria.
 LegalTrademarks=

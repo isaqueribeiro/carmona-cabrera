@@ -70,7 +70,8 @@ uses
   , iStrLogin
   {$ENDIF}
   , KeyResource
-  , KeyPadrao, KeyPadraoTabela;
+  , KeyPadrao
+  , KeyPadraoTabela;
 
 {$R *.dfm}
 

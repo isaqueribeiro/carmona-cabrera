@@ -78,6 +78,15 @@ type
     ActnMaterialGrupo: TAction;
     mmMaterialGrupo: TMenuItem;
     mmUnidadeMedida: TMenuItem;
+    ActnMaterialDescricao: TAction;
+    mmMaterialDescricao: TMenuItem;
+    ActnMaterialApresentacao: TAction;
+    mmMaterialApresentacao: TMenuItem;
+    ActnMaterialFabricante: TAction;
+    mmMaterialFabricante: TMenuItem;
+    ActnMaterial: TAction;
+    mmMaterial: TMenuItem;
+    NvBrMaterial: TdxNavBarItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -91,6 +100,9 @@ type
     procedure ActnMaterialGrupoExecute(Sender: TObject);
     procedure ActnUnidadeMedidaExecute(Sender: TObject);
     procedure ActnSetorExecute(Sender: TObject);
+    procedure ActnMaterialDescricaoExecute(Sender: TObject);
+    procedure ActnMaterialApresentacaoExecute(Sender: TObject);
+    procedure ActnMaterialExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -113,9 +125,12 @@ uses
   , KeyObjeto
   , KeySetor
   , iStrLogin
+  , iStrUnidadeMedida
   , iStrMaterialTipo
   , iStrMaterialGrupo
-  , iStrUnidadeMedida;
+  , iStrMaterialDescricao
+  , iStrMaterialApresentacao
+  , iStrMaterialPesquisa;
 
 {$R *.dfm}
 
@@ -270,6 +285,37 @@ begin
   finally
     FrmSetor.Free;
   end;
+end;
+
+procedure TFrmMain.ActnMaterialDescricaoExecute(Sender: TObject);
+begin
+  FrmMaterialDescricao := TFrmMaterialDescricao.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmMaterialDescricao.ShowModal;
+  finally
+    FrmMaterialDescricao.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnMaterialApresentacaoExecute(Sender: TObject);
+begin
+  FrmMaterialApresentacao := TFrmMaterialApresentacao.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmMaterialApresentacao.ShowModal;
+  finally
+    FrmMaterialApresentacao.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnMaterialExecute(Sender: TObject);
+begin
+  FrmMaterialPesquisa := TFrmMaterialPesquisa.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmMaterialPesquisa.ShowModal;
+  finally
+    FrmMaterialPesquisa.Free;
+  end;
+
 end;
 
 end.

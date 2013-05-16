@@ -25,7 +25,7 @@ type
     DbgTabelaDBset_gerente: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
-    procedure CdsMasterAfterEdit(DataSet: TDataSet);
+    procedure CdsMasterBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -95,9 +95,11 @@ begin
   Result := not CdsMaster.IsEmpty;
 end;
 
-procedure TFrmSetor.CdsMasterAfterEdit(DataSet: TDataSet);
+procedure TFrmSetor.CdsMasterBeforePost(DataSet: TDataSet);
 begin
-  CdsMasterset_alt.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+  if ( CdsMaster.Modified and (CdsMaster.State = dsEdit) ) then
+    CdsMasterset_alt.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+  inherited;
 end;
 
 end.
