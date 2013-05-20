@@ -6,6 +6,7 @@ uses
   KeyFuncoes,
   KeyResource,
   KeyPadrao,
+  KeyRequiredFields,
 
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus,
@@ -187,6 +188,9 @@ end;
 
 procedure TFrmPadraoTabela.CdsMasterBeforePost(DataSet: TDataSet);
 begin
+  if ExistRequiredFields(Self, CdsMaster, Self.Caption) then
+    Abort;
+    
   if CdsMaster.State = dsInsert then
     if ExecutarInsertTable(DataSet, NomeTabela) then
       Exit
@@ -245,6 +249,10 @@ procedure TFrmPadraoTabela.DtsMasterStateChange(Sender: TObject);
 begin
   btnFechar.Enabled     := ( not (CdsMaster.State in [dsEdit, dsInsert]) );
   BtnSelecionar.Enabled := ( not (CdsMaster.State in [dsEdit, dsInsert]) and (not CdsMaster.IsEmpty) );
+
+  DbgTabelaDB.OptionsBehavior.FocusCellOnCycle    := not (BtnSelecionar.Visible and BtnSelecionar.Enabled);
+  DbgTabelaDB.OptionsBehavior.FocusCellOnTab      := not (BtnSelecionar.Visible and BtnSelecionar.Enabled);
+  DbgTabelaDB.OptionsBehavior.GoToNextCellOnEnter := not (BtnSelecionar.Visible and BtnSelecionar.Enabled);
 end;
 
 procedure TFrmPadraoTabela.DbgTabelaDBDblClick(Sender: TObject);

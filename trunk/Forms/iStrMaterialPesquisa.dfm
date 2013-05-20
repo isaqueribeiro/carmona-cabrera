@@ -163,7 +163,7 @@ inherited FrmMaterialPesquisa: TFrmMaterialPesquisa
               Top = 24
               TabStop = False
               Caption = 'Indireto'
-              DataBinding.DataField = 'mat_custo_direto'
+              DataBinding.DataField = 'mat_custo_indireto'
               DataBinding.DataSource = DtsMaster
               Properties.ReadOnly = True
               Properties.ValueChecked = '1'

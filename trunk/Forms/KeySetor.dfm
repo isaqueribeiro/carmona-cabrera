@@ -48,6 +48,7 @@ inherited FrmSetor: TFrmSetor
       'from mny_setor s')
   end
   inherited CdsMaster: TClientDataSet
+    AfterPost = CdsMasterAfterPost
     OnNewRecord = CdsMasterNewRecord
     object CdsMasterset_codigo: TSmallintField
       DisplayLabel = 'C'#243'digo'
