@@ -10,7 +10,9 @@ uses
   SqlExpr, cxGroupBox, cxPC, StdCtrls, cxButtons, ExtCtrls, cxTextEdit,
   cxDBEdit, cxLabel, cxMaskEdit, cxDropDownEdit, cxLookupEdit,
   cxDBLookupEdit, cxDBLookupComboBox, cxMemo, cxImageComboBox, cxButtonEdit,
-  cxCheckBox, cxRadioGroup;
+  cxCheckBox, cxRadioGroup, cxStyles, cxCustomData, cxFilter, cxData,
+  cxDataStorage, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
 
 type
   TFrmMaterialCadastro = class(TFrmPadraoCadastro)
@@ -131,6 +133,50 @@ type
     lblValorCustoFrac: TcxLabel;
     dbValorCustoFrac: TcxDBTextEdit;
     TbsSetor: TcxTabSheet;
+    QryTributacaoICMS: TSQLQuery;
+    DspTributacaoICMS: TDataSetProvider;
+    CdsTributacaoICMS: TClientDataSet;
+    DtsTributacaoICMS: TDataSource;
+    CdsTributacaoICMStrb_codigo: TStringField;
+    CdsTributacaoICMStrb_descricao: TStringField;
+    CdsTributacaoICMStrb_crt: TSmallintField;
+    CdsTributacaoICMStrb_descricao_full: TStringField;
+    lblTributacaoPIS: TcxLabel;
+    dbTributacaoPIS: TcxDBLookupComboBox;
+    lblTributacaoPIS_Percent: TcxLabel;
+    dbTributacaoPIS_Percent: TcxDBTextEdit;
+    lblTributacaoCOFINS: TcxLabel;
+    dbTributacaoCOFINS: TcxDBLookupComboBox;
+    lblTributacaoCOFINS_Percent: TcxLabel;
+    dbTributacaoCOFINS_Percent: TcxDBTextEdit;
+    QryTributacaoPIS: TSQLQuery;
+    DspTributacaoPIS: TDataSetProvider;
+    CdsTributacaoPIS: TClientDataSet;
+    DtsTributacaoPIS: TDataSource;
+    QryTributacaoCOFINS: TSQLQuery;
+    DspTributacaoCOFINS: TDataSetProvider;
+    CdsTributacaoCOFINS: TClientDataSet;
+    DtsTributacaoCOFINS: TDataSource;
+    CdsTributacaoPIStrb_codigo: TStringField;
+    CdsTributacaoPIStrb_descricao: TStringField;
+    CdsTributacaoPIStrb_descricao_full: TStringField;
+    CdsTributacaoCOFINStrb_codigo: TStringField;
+    CdsTributacaoCOFINStrb_descricao: TStringField;
+    CdsTributacaoCOFINStrb_descricao_full: TStringField;
+    DbgSetor: TcxGrid;
+    DbgSetorDB: TcxGridDBTableView;
+    DbgSetorLvl: TcxGridLevel;
+    QrySetor: TSQLQuery;
+    DspSetor: TDataSetProvider;
+    CdsSetor: TClientDataSet;
+    DtsSetor: TDataSource;
+    CdsSetormat_codigo: TFMTBCDField;
+    CdsSetormat_setor: TSmallintField;
+    CdsSetorset_nome: TStringField;
+    CdsSetormat_setor_requisita: TBCDField;
+    DbgSetorDBmat_setor: TcxGridDBColumn;
+    DbgSetorDBset_nome: TcxGridDBColumn;
+    DbgSetorDBmat_setor_requisita: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
@@ -142,10 +188,25 @@ type
       AButtonIndex: Integer);
     procedure dbGrupoPropertiesButtonClick(Sender: TObject;
       AButtonIndex: Integer);
+    procedure CdsTributacaoICMSCalcFields(DataSet: TDataSet);
+    procedure CdsTributacaoPISCalcFields(DataSet: TDataSet);
+    procedure CdsTributacaoCOFINSCalcFields(DataSet: TDataSet);
+    procedure CdsMasterAfterPost(DataSet: TDataSet);
+    procedure CdsMasterAfterOpen(DataSet: TDataSet);
+    procedure CdsMasterAfterCancel(DataSet: TDataSet);
+    procedure CdsMasterAfterDelete(DataSet: TDataSet);
+    procedure dbDescricaoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure dbApresentacaoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure dbGrupoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
-    function MontarNomeResumido : String;
     procedure FiltrarSubgrupos;
+    procedure CarregarSetores;
+    procedure GravarSetores;
+    function MontarNomeResumido : String;
   public
     { Public declarations }
     function ExecutarPesquisa : Boolean; override;
@@ -237,10 +298,19 @@ begin
   CdsMastermat_status.AsInteger    := 1;
   CdsMastermat_custo_direto.AsInteger   := 0;
   CdsMastermat_custo_indireto.AsInteger := 0;
-  CdsMastermat_fracionador.AsInteger    := 1;
+  CdsMastermat_fracionador.AsCurrency   := 1;
 
-  CdsMastermat_aliquota_tipo.AsInteger  := 0;
-  CdsMastermat_aliquota_origem.AsInteger:= 0;
+  CdsMastermat_aliquota_tipo.AsInteger    := 0;
+  CdsMastermat_aliquota_origem.AsInteger  := 0;
+  CdsMastermat_tributacao_icms.AsString   := '41';  // Não tributada
+  CdsMastermat_tributacao_pis.AsString    := '99';  // Outras operações
+  CdsMastermat_tributacao_cofins.AsString := '99';  // Outras operações
+  CdsMastermat_cst.AsString               := CdsMastermat_aliquota_origem.AsString + CdsMastermat_tributacao_icms.AsString;
+  CdsMastermat_csosn.AsString             := '102'; // Tributada pelo Simples Nacional sem permissão de Crédito
+
+  CdsMastermat_aliquota.AsCurrency        := 0.0;
+  CdsMastermat_aliquota_pis.AsCurrency    := 0.0;
+  CdsMastermat_aliquota_cofins.AsCurrency := 0.0;
 
   CdsMastermat_valor_custo_int.AsCurrency := 0.0;
   CdsMastermat_valor_custo_frc.AsCurrency := 0.0;
@@ -253,6 +323,14 @@ end;
 
 procedure TFrmMaterialCadastro.CdsMasterBeforePost(DataSet: TDataSet);
 begin
+  CdsMastermat_cst.AsString := CdsMastermat_aliquota_origem.AsString + CdsMastermat_tributacao_icms.AsString;
+
+  if ( Trim(CdsMastermat_descricao_resumo.AsString) = EmptyStr ) then
+    CdsMastermat_descricao_resumo.Clear;
+
+  if ( CdsMastermat_fracionador.AsCurrency = 0.0 ) then
+    CdsMastermat_fracionador.AsCurrency := 1;
+    
   if ( CdsMaster.Modified and (CdsMaster.State = dsEdit) ) then
     CdsMastermat_log_update.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
 
@@ -270,6 +348,10 @@ begin
 
   dbDescricao.Properties.Buttons[0].Enabled    := (CdsMaster.State in [dsEdit, dsInsert]);
   dbApresentacao.Properties.Buttons[0].Enabled := (CdsMaster.State in [dsEdit, dsInsert]);
+  dbGrupo.Properties.Buttons[0].Enabled := (CdsMaster.State in [dsEdit, dsInsert]);
+  dbCFOP.Properties.Buttons[0].Enabled  := (CdsMaster.State in [dsEdit, dsInsert]);
+
+  DtsSetor.AutoEdit := (CdsMaster.State in [dsEdit, dsInsert]);
 end;
 
 procedure TFrmMaterialCadastro.FormActivate(Sender: TObject);
@@ -287,6 +369,18 @@ begin
   // Carregar tabela de Unidades de Medidas
   CdsUnidade.Close;
   CdsUnidade.Open;
+
+  // Carregar tabela de Tributação ICMS
+  CdsTributacaoICMS.Close;
+  CdsTributacaoICMS.Open;
+
+  // Carregar tabela de Tributação PIS
+  CdsTributacaoPIS.Close;
+  CdsTributacaoPIS.Open;
+
+  // Carregar tabela de Tributação COFINS
+  CdsTributacaoCOFINS.Close;
+  CdsTributacaoCOFINS.Open;
 end;
 
 procedure TFrmMaterialCadastro.dbDescricaoPropertiesButtonClick(
@@ -373,6 +467,110 @@ procedure TFrmMaterialCadastro.FiltrarSubgrupos;
 begin
   CdsMaterialSubgrupo.Filter   := 'sgp_grupo = ' + CdsMastermat_grupo.AsString;
   CdsMaterialSubgrupo.Filtered := ( CdsMastermat_grupo.AsInteger > 0 );
+end;
+
+procedure TFrmMaterialCadastro.CdsTributacaoICMSCalcFields(
+  DataSet: TDataSet);
+begin
+  CdsTributacaoICMStrb_descricao_full.AsString := CdsTributacaoICMStrb_codigo.AsString + ' - ' +
+    CdsTributacaoICMStrb_descricao.AsString; 
+end;
+
+procedure TFrmMaterialCadastro.CdsTributacaoPISCalcFields(
+  DataSet: TDataSet);
+begin
+  CdsTributacaoPIStrb_descricao_full.AsString := CdsTributacaoPIStrb_codigo.AsString + ' - ' +
+    CdsTributacaoPIStrb_descricao.AsString;
+end;
+
+procedure TFrmMaterialCadastro.CdsTributacaoCOFINSCalcFields(
+  DataSet: TDataSet);
+begin
+  CdsTributacaoCOFINStrb_descricao_full.AsString := CdsTributacaoCOFINStrb_codigo.AsString + ' - ' +
+    CdsTributacaoCOFINStrb_descricao.AsString;
+end;
+
+procedure TFrmMaterialCadastro.CarregarSetores;
+begin
+  with CdsSetor, Params do
+  begin
+    Close;
+    ParamByName('mat_codigo').AsCurrency := CdsMastermat_codigo.AsCurrency;
+    Open;
+  end;
+end;
+
+procedure TFrmMaterialCadastro.GravarSetores;
+begin
+  if CdsSetor.IsEmpty then
+    Exit
+  else
+  begin
+    CdsSetor.First;
+    while not CdsSetor.Eof do
+    begin
+      CdsSetor.Edit;
+      CdsSetormat_codigo.Assign( CdsMastermat_codigo );
+      CdsSetor.Post;
+
+      ExecutarInsertUpdateTable(CdsSetor, 'str_material_setor');
+      CdsSetor.Next;
+    end;
+  end;
+end;
+
+procedure TFrmMaterialCadastro.CdsMasterAfterPost(DataSet: TDataSet);
+begin
+  GravarSetores;
+end;
+
+procedure TFrmMaterialCadastro.CdsMasterAfterOpen(DataSet: TDataSet);
+begin
+  CarregarSetores;
+end;
+
+procedure TFrmMaterialCadastro.CdsMasterAfterCancel(DataSet: TDataSet);
+begin
+  CarregarSetores;
+end;
+
+procedure TFrmMaterialCadastro.CdsMasterAfterDelete(DataSet: TDataSet);
+begin
+  CarregarSetores;
+end;
+
+procedure TFrmMaterialCadastro.dbDescricaoKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_DELETE) and (Shift = [ssCtrl]) then
+    if ( CdsMaster.State in [dsEdit, dsInsert] ) then
+    begin
+      CdsMastermat_descricao.Clear;
+      CdsMasterdes_descricao.Clear;
+    end;
+end;
+
+procedure TFrmMaterialCadastro.dbApresentacaoKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_DELETE) and (Shift = [ssCtrl]) then
+    if ( CdsMaster.State in [dsEdit, dsInsert] ) then
+    begin
+      CdsMastermat_apresentacao.Clear;
+      CdsMasterapr_descricao.Clear;
+    end;
+end;
+
+procedure TFrmMaterialCadastro.dbGrupoKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_DELETE) and (Shift = [ssCtrl]) then
+    if ( CdsMaster.State in [dsEdit, dsInsert] ) then
+    begin
+      CdsMastermat_grupo.Clear;
+      CdsMastergrp_descricao.Clear;
+      CdsMastermat_subgrupo.Clear;
+    end;
 end;
 
 end.

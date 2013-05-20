@@ -29,7 +29,8 @@ uses
   iStrMaterialDescricao in 'Forms\iStrMaterialDescricao.pas' {FrmMaterialDescricao},
   iStrMaterialApresentacao in 'Forms\iStrMaterialApresentacao.pas' {FrmMaterialApresentacao},
   iStrMaterialPesquisa in 'Forms\iStrMaterialPesquisa.pas' {FrmMaterialPesquisa},
-  iStrMaterialCadastro in 'Forms\iStrMaterialCadastro.pas' {FrmMaterialCadastro};
+  iStrMaterialCadastro in 'Forms\iStrMaterialCadastro.pas' {FrmMaterialCadastro},
+  KeyRequiredFields in 'Forms\KeyRequiredFields.pas' {FrmRequiredFields};
 
 {$R *.res}
 

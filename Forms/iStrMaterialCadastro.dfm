@@ -179,6 +179,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
             Properties.OnButtonClick = dbDescricaoPropertiesButtonClick
             ShowHint = True
             TabOrder = 7
+            OnKeyDown = dbDescricaoKeyDown
             Width = 449
           end
           object dbApresentacao: TcxDBButtonEdit
@@ -199,6 +200,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
             Properties.OnButtonClick = dbApresentacaoPropertiesButtonClick
             ShowHint = True
             TabOrder = 9
+            OnKeyDown = dbApresentacaoKeyDown
             Width = 449
           end
         end
@@ -289,6 +291,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 Properties.OnButtonClick = dbGrupoPropertiesButtonClick
                 ShowHint = True
                 TabOrder = 2
+                OnKeyDown = dbGrupoKeyDown
                 Width = 449
               end
               object lblSubgrupo: TcxLabel
@@ -449,13 +452,13 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 DataBinding.DataField = 'mat_tributacao_icms'
                 DataBinding.DataSource = DtsMaster
                 Properties.DropDownListStyle = lsFixedList
-                Properties.KeyFieldNames = 'sgp_codigo'
+                Properties.KeyFieldNames = 'trb_codigo'
                 Properties.ListColumns = <
                   item
-                    FieldName = 'sgp_descricao'
+                    FieldName = 'trb_descricao_full'
                   end>
                 Properties.ListOptions.ShowHeader = False
-                Properties.ListSource = DtsMaterialSubgrupo
+                Properties.ListSource = DtsTributacaoICMS
                 TabOrder = 9
                 Width = 489
               end
@@ -487,7 +490,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                     Description = 'Estrangeira - Adquirida no mercado interno'
                     Value = 2
                   end>
-                TabOrder = 7
+                TabOrder = 5
                 Width = 233
               end
               object lblAliquotaPercentual: TcxLabel
@@ -509,17 +512,17 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 Width = 49
               end
               object lblCFOP: TcxLabel
-                Left = 618
+                Left = 634
                 Top = 34
                 Caption = 'CFOP'
                 Enabled = False
                 FocusControl = dbCFOP
                 Properties.Alignment.Horz = taRightJustify
                 Transparent = True
-                AnchorX = 649
+                AnchorX = 665
               end
               object dbCFOP: TcxDBButtonEdit
-                Left = 656
+                Left = 672
                 Top = 32
                 DataBinding.DataSource = DtsMaster
                 Enabled = False
@@ -529,7 +532,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                     Kind = bkEllipsis
                   end>
                 TabOrder = 11
-                Width = 97
+                Width = 81
               end
               object lblAliquotaPercentualSN: TcxLabel
                 Left = 328
@@ -547,13 +550,204 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 DataBinding.DataSource = DtsMaster
                 Enabled = False
                 Properties.CharCase = ecUpperCase
-                TabOrder = 5
+                TabOrder = 4
                 Width = 49
+              end
+              object lblTributacaoPIS: TcxLabel
+                Left = 31
+                Top = 58
+                Caption = 'Tributa'#231#227'o PIS'
+                FocusControl = dbTributacaoPIS
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 105
+              end
+              object dbTributacaoPIS: TcxDBLookupComboBox
+                Left = 112
+                Top = 56
+                DataBinding.DataField = 'mat_tributacao_pis'
+                DataBinding.DataSource = DtsMaster
+                Properties.DropDownListStyle = lsFixedList
+                Properties.KeyFieldNames = 'trb_codigo'
+                Properties.ListColumns = <
+                  item
+                    FieldName = 'trb_descricao_full'
+                  end>
+                Properties.ListOptions.ShowHeader = False
+                Properties.ListSource = DtsTributacaoPIS
+                TabOrder = 13
+                Width = 489
+              end
+              object lblTributacaoPIS_Percent: TcxLabel
+                Left = 608
+                Top = 58
+                Caption = '% Al'#237'quota'
+                FocusControl = dbTributacaoPIS_Percent
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 665
+              end
+              object dbTributacaoPIS_Percent: TcxDBTextEdit
+                Left = 672
+                Top = 56
+                DataBinding.DataField = 'mat_aliquota_pis'
+                DataBinding.DataSource = DtsMaster
+                Properties.CharCase = ecUpperCase
+                TabOrder = 15
+                Width = 81
+              end
+              object lblTributacaoCOFINS: TcxLabel
+                Left = 9
+                Top = 82
+                Caption = 'Tributa'#231#227'o COFINS'
+                FocusControl = dbTributacaoCOFINS
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 105
+              end
+              object dbTributacaoCOFINS: TcxDBLookupComboBox
+                Left = 112
+                Top = 80
+                DataBinding.DataField = 'mat_tributacao_cofins'
+                DataBinding.DataSource = DtsMaster
+                Properties.DropDownListStyle = lsFixedList
+                Properties.KeyFieldNames = 'trb_codigo'
+                Properties.ListColumns = <
+                  item
+                    FieldName = 'trb_descricao_full'
+                  end>
+                Properties.ListOptions.ShowHeader = False
+                Properties.ListSource = DtsTributacaoCOFINS
+                TabOrder = 17
+                Width = 489
+              end
+              object lblTributacaoCOFINS_Percent: TcxLabel
+                Left = 608
+                Top = 82
+                Caption = '% Al'#237'quota'
+                FocusControl = dbTributacaoCOFINS_Percent
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 665
+              end
+              object dbTributacaoCOFINS_Percent: TcxDBTextEdit
+                Left = 672
+                Top = 80
+                DataBinding.DataField = 'mat_aliquota_cofins'
+                DataBinding.DataSource = DtsMaster
+                Properties.CharCase = ecUpperCase
+                TabOrder = 19
+                Width = 81
               end
             end
             object TbsSetor: TcxTabSheet
               Caption = 'Setores'
               ImageIndex = 3
+              object DbgSetor: TcxGrid
+                Left = 0
+                Top = 0
+                Width = 804
+                Height = 171
+                Align = alClient
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+                TabOrder = 0
+                object DbgSetorDB: TcxGridDBTableView
+                  NavigatorButtons.ConfirmDelete = False
+                  NavigatorButtons.Images = DtmResource.ImgNavigator
+                  NavigatorButtons.First.Hint = 'Primeiro registro'
+                  NavigatorButtons.PriorPage.Visible = False
+                  NavigatorButtons.Prior.Hint = 'Registro anterior'
+                  NavigatorButtons.Next.Hint = 'Pr'#243'ximo registro'
+                  NavigatorButtons.NextPage.Visible = False
+                  NavigatorButtons.Last.Hint = #218'ltimo registro'
+                  NavigatorButtons.Insert.Hint = 'Inserir registro'
+                  NavigatorButtons.Insert.ImageIndex = 0
+                  NavigatorButtons.Insert.Visible = False
+                  NavigatorButtons.Append.ImageIndex = 0
+                  NavigatorButtons.Append.Visible = False
+                  NavigatorButtons.Delete.Hint = 'Excluir registro'
+                  NavigatorButtons.Delete.ImageIndex = 6
+                  NavigatorButtons.Delete.Visible = False
+                  NavigatorButtons.Edit.Hint = 'Editar registro'
+                  NavigatorButtons.Edit.ImageIndex = 10
+                  NavigatorButtons.Edit.Visible = False
+                  NavigatorButtons.Post.Hint = 'Salvar edi'#231#227'o'
+                  NavigatorButtons.Post.ImageIndex = 2
+                  NavigatorButtons.Post.Visible = False
+                  NavigatorButtons.Cancel.Hint = 'Cancelar edi'#231#227'o'
+                  NavigatorButtons.Cancel.ImageIndex = 4
+                  NavigatorButtons.Cancel.Visible = False
+                  NavigatorButtons.Refresh.Hint = 'Atualizar'
+                  NavigatorButtons.Refresh.ImageIndex = 19
+                  NavigatorButtons.Refresh.Visible = True
+                  NavigatorButtons.SaveBookmark.Visible = False
+                  NavigatorButtons.GotoBookmark.Visible = False
+                  NavigatorButtons.Filter.Visible = False
+                  DataController.DataSource = DtsSetor
+                  DataController.Summary.DefaultGroupSummaryItems = <>
+                  DataController.Summary.FooterSummaryItems = <>
+                  DataController.Summary.SummaryGroups = <>
+                  OptionsBehavior.CellHints = True
+                  OptionsBehavior.FocusCellOnTab = True
+                  OptionsBehavior.FocusFirstCellOnNewRecord = True
+                  OptionsBehavior.GoToNextCellOnEnter = True
+                  OptionsBehavior.ImmediateEditor = False
+                  OptionsBehavior.NavigatorHints = True
+                  OptionsBehavior.FocusCellOnCycle = True
+                  OptionsData.CancelOnExit = False
+                  OptionsData.Deleting = False
+                  OptionsData.DeletingConfirmation = False
+                  OptionsData.Inserting = False
+                  OptionsSelection.InvertSelect = False
+                  OptionsView.CellEndEllipsis = True
+                  OptionsView.Navigator = True
+                  OptionsView.NoDataToDisplayInfoText = '<Sem dados para exibi'#231#227'o>'
+                  OptionsView.ColumnAutoWidth = True
+                  OptionsView.GridLines = glNone
+                  OptionsView.GroupByBox = False
+                  Styles.ContentEven = DtmResource.cxStlLinhaImpar
+                  Styles.ContentOdd = DtmResource.cxStlLinhaPar
+                  object DbgSetorDBmat_setor: TcxGridDBColumn
+                    Caption = 'C'#243'digo'
+                    DataBinding.FieldName = 'mat_setor'
+                    MinWidth = 50
+                    Options.Editing = False
+                    Options.Filtering = False
+                    Options.Focusing = False
+                    Options.HorzSizing = False
+                    Options.Moving = False
+                    Width = 50
+                  end
+                  object DbgSetorDBset_nome: TcxGridDBColumn
+                    Caption = 'Nome do Setor'
+                    DataBinding.FieldName = 'set_nome'
+                    Options.Editing = False
+                    Options.Focusing = False
+                  end
+                  object DbgSetorDBmat_setor_requisita: TcxGridDBColumn
+                    Caption = 'Requisita?'
+                    DataBinding.FieldName = 'mat_setor_requisita'
+                    PropertiesClassName = 'TcxCheckBoxProperties'
+                    Properties.ValueChecked = '1'
+                    Properties.ValueUnchecked = '0'
+                    HeaderAlignmentHorz = taCenter
+                    MinWidth = 60
+                    Options.Filtering = False
+                    Options.HorzSizing = False
+                    Options.Moving = False
+                    Options.Sorting = False
+                    Width = 60
+                  end
+                end
+                object DbgSetorLvl: TcxGridLevel
+                  GridView = DbgSetorDB
+                end
+              end
             end
             object TbsHistorico: TcxTabSheet
               BorderWidth = 4
@@ -756,6 +950,10 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
         ParamType = ptInput
         Value = 0c
       end>
+    AfterOpen = CdsMasterAfterOpen
+    AfterPost = CdsMasterAfterPost
+    AfterCancel = CdsMasterAfterCancel
+    AfterDelete = CdsMasterAfterDelete
     OnNewRecord = CdsMasterNewRecord
     object CdsMastermat_codigo: TFMTBCDField
       FieldName = 'mat_codigo'
@@ -766,21 +964,28 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
     end
     object CdsMastermat_tipo: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Tipo'
       FieldName = 'mat_tipo'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CdsMastermat_descricao: TIntegerField
+      DisplayLabel = 'Descri'#231#227'o'
       FieldName = 'mat_descricao'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsMastermat_apresentacao: TIntegerField
+      DisplayLabel = 'Apresenta'#231#227'o'
       FieldName = 'mat_apresentacao'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsMastermat_descricao_resumo: TStringField
+      DisplayLabel = 'Nome Resumido'
       FieldName = 'mat_descricao_resumo'
       ProviderFlags = [pfInUpdate]
+      Required = True
       Size = 100
     end
     object CdsMastermat_especificacao: TStringField
@@ -800,8 +1005,10 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
     end
     object CdsMastermat_grupo: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Grupo'
       FieldName = 'mat_grupo'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsMastermat_subgrupo: TIntegerField
       Alignment = taLeftJustify
@@ -810,17 +1017,23 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
     end
     object CdsMastermat_unidade_compra: TIntegerField
       Alignment = taLeftJustify
+      DisplayLabel = 'Unidade de Compra'
       FieldName = 'mat_unidade_compra'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsMastermat_unidade_consumo: TIntegerField
       Alignment = taLeftJustify
+      DisplayLabel = 'Unidade de Consumo'
       FieldName = 'mat_unidade_consumo'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsMastermat_fracionador: TFMTBCDField
+      DisplayLabel = 'Fracionador/Coeficiente'
       FieldName = 'mat_fracionador'
       ProviderFlags = [pfInUpdate]
+      Required = True
       DisplayFormat = ',0.0000'
       Precision = 20
       Size = 4
@@ -843,6 +1056,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
     object CdsMastermat_aliquota: TFMTBCDField
       FieldName = 'mat_aliquota'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 17
       Size = 2
     end
@@ -883,36 +1097,42 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
     object CdsMastermat_aliquota_pis: TFMTBCDField
       FieldName = 'mat_aliquota_pis'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 17
       Size = 2
     end
     object CdsMastermat_aliquota_cofins: TFMTBCDField
       FieldName = 'mat_aliquota_cofins'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 17
       Size = 2
     end
     object CdsMastermat_valor_custo_int: TFMTBCDField
       FieldName = 'mat_valor_custo_int'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.0000'
       Precision = 20
       Size = 4
     end
     object CdsMastermat_valor_custo_frc: TFMTBCDField
       FieldName = 'mat_valor_custo_frc'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.0000'
       Precision = 20
       Size = 4
     end
     object CdsMastermat_valor_venda_int: TFMTBCDField
       FieldName = 'mat_valor_venda_int'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.0000'
       Precision = 20
       Size = 4
     end
     object CdsMastermat_valor_venda_frc: TFMTBCDField
       FieldName = 'mat_valor_venda_frc'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.0000'
       Precision = 20
       Size = 4
     end
@@ -1072,5 +1292,214 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
     DataSet = CdsUnidade
     Left = 448
     Top = 240
+  end
+  object QryTributacaoICMS: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'Select'
+      '    t.trb_codigo'
+      '  , t.trb_descricao'
+      '  , t.trb_crt'
+      'from sys_tributacao_icms t'
+      'where t.trb_crt = 0')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 352
+    Top = 272
+  end
+  object DspTributacaoICMS: TDataSetProvider
+    DataSet = QryTributacaoICMS
+    Left = 384
+    Top = 272
+  end
+  object CdsTributacaoICMS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspTributacaoICMS'
+    OnCalcFields = CdsTributacaoICMSCalcFields
+    Left = 416
+    Top = 272
+    object CdsTributacaoICMStrb_codigo: TStringField
+      FieldName = 'trb_codigo'
+      Required = True
+      Size = 3
+    end
+    object CdsTributacaoICMStrb_descricao: TStringField
+      FieldName = 'trb_descricao'
+      Size = 150
+    end
+    object CdsTributacaoICMStrb_crt: TSmallintField
+      FieldName = 'trb_crt'
+      Required = True
+    end
+    object CdsTributacaoICMStrb_descricao_full: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'trb_descricao_full'
+      Size = 150
+    end
+  end
+  object DtsTributacaoICMS: TDataSource
+    DataSet = CdsTributacaoICMS
+    Left = 448
+    Top = 272
+  end
+  object QryTributacaoPIS: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'Select'
+      '    t.trb_codigo'
+      '  , t.trb_descricao'
+      'from sys_tributacao_pis t')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 480
+    Top = 240
+  end
+  object DspTributacaoPIS: TDataSetProvider
+    DataSet = QryTributacaoPIS
+    Left = 512
+    Top = 240
+  end
+  object CdsTributacaoPIS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspTributacaoPIS'
+    OnCalcFields = CdsTributacaoPISCalcFields
+    Left = 544
+    Top = 240
+    object CdsTributacaoPIStrb_codigo: TStringField
+      FieldName = 'trb_codigo'
+      Required = True
+      Size = 3
+    end
+    object CdsTributacaoPIStrb_descricao: TStringField
+      FieldName = 'trb_descricao'
+      Size = 150
+    end
+    object CdsTributacaoPIStrb_descricao_full: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'trb_descricao_full'
+      Size = 150
+    end
+  end
+  object DtsTributacaoPIS: TDataSource
+    DataSet = CdsTributacaoPIS
+    Left = 576
+    Top = 240
+  end
+  object QryTributacaoCOFINS: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'Select'
+      '    t.trb_codigo'
+      '  , t.trb_descricao'
+      'from sys_tributacao_cofins t')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 480
+    Top = 272
+  end
+  object DspTributacaoCOFINS: TDataSetProvider
+    DataSet = QryTributacaoCOFINS
+    Left = 512
+    Top = 272
+  end
+  object CdsTributacaoCOFINS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspTributacaoCOFINS'
+    OnCalcFields = CdsTributacaoCOFINSCalcFields
+    Left = 544
+    Top = 272
+    object CdsTributacaoCOFINStrb_codigo: TStringField
+      FieldName = 'trb_codigo'
+      Required = True
+      Size = 3
+    end
+    object CdsTributacaoCOFINStrb_descricao: TStringField
+      FieldName = 'trb_descricao'
+      Size = 150
+    end
+    object CdsTributacaoCOFINStrb_descricao_full: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'trb_descricao_full'
+      Size = 150
+    end
+  end
+  object DtsTributacaoCOFINS: TDataSource
+    DataSet = CdsTributacaoCOFINS
+    Left = 576
+    Top = 272
+  end
+  object QrySetor: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftBCD
+        Name = 'mat_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
+    SQL.Strings = (
+      'Select'
+      '    m.mat_codigo'
+      '  , s.set_codigo as mat_setor '
+      '  , s.set_nome'
+      '  , coalesce(m.mat_setor_requisita, 1) as mat_setor_requisita'
+      'from mny_setor s'
+      
+        '  left join str_material_setor m on (m.mat_setor = s.set_codigo ' +
+        'and m.mat_codigo = :mat_codigo)'
+      'order by'
+      '    s.set_nome')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 600
+    Top = 48
+  end
+  object DspSetor: TDataSetProvider
+    DataSet = QrySetor
+    Left = 632
+    Top = 48
+  end
+  object CdsSetor: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftBCD
+        Name = 'mat_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
+    ProviderName = 'DspSetor'
+    Left = 664
+    Top = 48
+    object CdsSetormat_codigo: TFMTBCDField
+      FieldName = 'mat_codigo'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Precision = 20
+      Size = 0
+    end
+    object CdsSetormat_setor: TSmallintField
+      FieldName = 'mat_setor'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsSetorset_nome: TStringField
+      FieldName = 'set_nome'
+      ProviderFlags = []
+      Size = 60
+    end
+    object CdsSetormat_setor_requisita: TBCDField
+      Alignment = taCenter
+      FieldName = 'mat_setor_requisita'
+      ProviderFlags = [pfInUpdate]
+      Precision = 6
+      Size = 0
+    end
+  end
+  object DtsSetor: TDataSource
+    DataSet = CdsSetor
+    Left = 696
+    Top = 48
   end
 end

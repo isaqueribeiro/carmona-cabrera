@@ -54,6 +54,7 @@ type
     function ExecutarUpdateTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarDeleteTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarInsertUpdateTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
+    function ExecutarScriptSQL(const ScriptSQL : TStringList; const AutoStartTransaction : Boolean = TRUE) : Boolean;
   end;
 
 var
@@ -350,7 +351,7 @@ begin
       if tpField.DataType in [ftSmallint, ftWord, ftInteger, ftLargeint] then
         sValues := sValues + tpField.AsString
       else
-      if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
+      if tpField.DataType in [ftFloat, ftCurrency, ftBCD, ftFMTBcd] then
         sValues := sValues + StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
       else
       if tpField.DataType in [ftString, ftGuid, ftMemo] then
@@ -456,7 +457,7 @@ begin
         if tpField.DataType in [ftSmallint, ftWord, ftInteger, ftLargeint] then
           s := tpField.AsString
         else
-        if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
+        if tpField.DataType in [ftFloat, ftCurrency, ftBCD, ftFMTBcd] then
           s := StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
         else
         if tpField.DataType in [ftString, ftGuid] then
@@ -486,7 +487,7 @@ begin
         if tpField.DataType in [ftSmallint, ftWord, ftInteger, ftLargeint] then
           s := tpField.AsString
         else
-        if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
+        if tpField.DataType in [ftFloat, ftCurrency, ftBCD, ftFMTBcd] then
           s := StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
         else
         if tpField.DataType in [ftString, ftGuid, ftMemo] then
@@ -591,7 +592,7 @@ begin
       if tpField.DataType in [ftSmallint, ftWord, ftInteger, ftLargeint] then
         s := tpField.AsString
       else
-      if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
+      if tpField.DataType in [ftFloat, ftCurrency, ftBCD, ftFMTBcd] then
         s := StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
       else
       if tpField.DataType in [ftString, ftGuid] then
@@ -693,7 +694,7 @@ begin
       if tpField.DataType in [ftSmallint, ftWord, ftInteger, ftLargeint] then
         s := tpField.AsString
       else
-      if tpField.DataType in [ftFloat, ftCurrency, ftBCD] then
+      if tpField.DataType in [ftFloat, ftCurrency, ftBCD, ftFMTBcd] then
         s := StringReplace(FormatFloat('################0.######', tpField.AsCurrency), ',', '.', [rfReplaceAll])
       else
       if tpField.DataType in [ftString, ftGuid, ftMemo] then
@@ -747,7 +748,47 @@ begin
     begin
       RefreshDB;
       ExecutarInsertUpdateTable(DataSet, sTabela, AutoStartTransaction);
-    end;  
+    end;
+  end;
+end;
+
+function TFrmPadrao.ExecutarScriptSQL(const ScriptSQL: TStringList;
+  const AutoStartTransaction: Boolean): Boolean;
+begin
+  try
+    try
+      if AutoStartTransaction then
+        StartTransaction;
+
+      ConexaoDB.ExecuteDirect( ScriptSQL.Text );
+
+      if AutoStartTransaction then
+        CommitTransaction;
+
+      Result := True;
+
+      FErroLoop := 0;
+    except
+      On E : Exception do
+      begin
+        Inc(FErroLoop);
+
+        if AutoStartTransaction then
+          RollbackTransaction;
+
+        ShowMessageError(E.Message + #13#13 +
+          'Erro na função "ExecutarScriptSQL()" ao tentar executar o seguinte script:' + #13#13 +
+          ScriptSQL.Text, 'Erro de Inserção');
+      end;
+    end;
+  finally
+    Screen.Cursor := crDefault;
+
+    if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
+    begin
+      RefreshDB;
+      ExecutarScriptSQL(ScriptSQL, AutoStartTransaction);
+    end;
   end;
 end;
 

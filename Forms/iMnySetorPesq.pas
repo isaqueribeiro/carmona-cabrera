@@ -17,7 +17,7 @@ uses
   cxDataStorage, cxDBData, cxGridLevel, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid,
   cxDBEdit, cxImageComboBox, ExtCtrls, cxPC, ActnList, cxDBLookupComboBox,
-  FMTBcd, SqlExpr, DBClient, Provider;
+  FMTBcd, SqlExpr, DBClient, Provider, cxLookAndFeels;
 
 type
   TFrmSetorPesq = class(TForm)
@@ -69,6 +69,7 @@ type
     procedure ClntDtStMasterBeforeDelete(DataSet: TDataSet);
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
+    procedure ClntDtStMasterAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
 
@@ -219,6 +220,30 @@ end;
 procedure TFrmSetorPesq.btnEditarClick(Sender: TObject);
 begin
   ClntDtStMaster.Post;
+end;
+
+procedure TFrmSetorPesq.ClntDtStMasterAfterPost(DataSet: TDataSet);
+var
+  SQL : TStringList;
+begin
+  SQL := TStringList.Create;
+  try
+    SQL.BeginUpdate;
+    SQL.Add('Insert Into str_material_setor (mat_codigo, mat_setor, mat_setor_requisita)');
+    SQL.Add('Select');
+    SQL.Add('    m.mat_codigo');
+    SQL.Add('  , ' + ClntDtStMasterset_codigo.AsString + ' as mat_setor ');
+    SQL.Add('  , 1 as mat_setor_requisita');
+    SQL.Add('from str_material m');
+    SQL.Add('  left join str_material_setor ms on (ms.mat_codigo = m.mat_codigo and ms.mat_setor = ' + ClntDtStMasterset_codigo.AsString + ')');
+    SQL.Add('where ms.mat_codigo is null');
+    SQL.Add('  and ms.mat_setor  is null');
+    SQL.EndUpdate;
+
+    FrmLogin.conWebMaster.ExecuteDirect( SQL.Text );
+  finally
+    SQL.Free;
+  end;
 end;
 
 end.

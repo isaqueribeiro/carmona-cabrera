@@ -26,8 +26,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
+    procedure CdsMasterAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
+    procedure GravarMaterialSetor;
   public
     { Public declarations }
     function ExecutarPesquisa : Boolean; override;
@@ -100,6 +102,36 @@ begin
   if ( CdsMaster.Modified and (CdsMaster.State = dsEdit) ) then
     CdsMasterset_alt.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
   inherited;
+end;
+
+procedure TFrmSetor.GravarMaterialSetor;
+var
+  SQL : TStringList;
+begin
+  SQL := TStringList.Create;
+  try
+    SQL.BeginUpdate;
+    SQL.Add('Insert Into str_material_setor (mat_codigo, mat_setor, mat_setor_requisita)');
+    SQL.Add('Select');
+    SQL.Add('    m.mat_codigo');
+    SQL.Add('  , ' + CdsMasterset_codigo.AsString + ' as mat_setor ');
+    SQL.Add('  , 1 as mat_setor_requisita');
+    SQL.Add('from str_material m');
+    SQL.Add('  left join str_material_setor ms on (ms.mat_codigo = m.mat_codigo and ms.mat_setor = ' + CdsMasterset_codigo.AsString + ')');
+    SQL.Add('where ms.mat_codigo is null');
+    SQL.Add('  and ms.mat_setor  is null');
+    SQL.EndUpdate;
+
+    ExecutarScriptSQL( SQL );
+  finally
+    SQL.Free;
+  end;
+end;
+
+procedure TFrmSetor.CdsMasterAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+  GravarMaterialSetor;
 end;
 
 end.
