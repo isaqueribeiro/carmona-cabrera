@@ -221,7 +221,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
             Top = 18
             Width = 812
             Height = 199
-            ActivePage = TbsClassificar
+            ActivePage = TbsSetor
             Align = alClient
             LookAndFeel.Kind = lfStandard
             LookAndFeel.NativeStyle = True
@@ -715,6 +715,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                   object DbgSetorDBmat_setor: TcxGridDBColumn
                     Caption = 'C'#243'digo'
                     DataBinding.FieldName = 'mat_setor'
+                    HeaderAlignmentHorz = taCenter
                     MinWidth = 50
                     Options.Editing = False
                     Options.Filtering = False
@@ -1480,9 +1481,11 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
       Size = 0
     end
     object CdsSetormat_setor: TSmallintField
+      Alignment = taCenter
       FieldName = 'mat_setor'
       ProviderFlags = [pfInUpdate, pfInKey]
       Required = True
+      DisplayFormat = '00'
     end
     object CdsSetorset_nome: TStringField
       FieldName = 'set_nome'
