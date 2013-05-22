@@ -2400,6 +2400,10 @@ object FrmMain: TFrmMain
     object ActnCompetencia: TAction
       Caption = 'Com%pet'#234'ncia'
     end
+    object ActnUnidadeNegocio: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Unidade de Neg'#243'cio'
+    end
     object ActnSetor: TAction
       Category = 'Tabelas Auxiliares'
       Caption = '&Setor'
@@ -2485,8 +2489,14 @@ object FrmMain: TFrmMain
       object bbSeparador2: TMenuItem
         Caption = '-'
       end
+      object nmUnidadeNegocio: TMenuItem
+        Action = ActnUnidadeNegocio
+      end
       object mmSetor: TMenuItem
         Action = ActnSetor
+      end
+      object N2: TMenuItem
+        Caption = '-'
       end
       object mmMaterialTipo: TMenuItem
         Action = ActnMaterialTipo

@@ -87,6 +87,9 @@ type
     ActnMaterial: TAction;
     mmMaterial: TMenuItem;
     NvBrMaterial: TdxNavBarItem;
+    ActnUnidadeNegocio: TAction;
+    nmUnidadeNegocio: TMenuItem;
+    N2: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
