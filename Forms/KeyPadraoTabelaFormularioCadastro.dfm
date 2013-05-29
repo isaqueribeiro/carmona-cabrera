@@ -446,6 +446,7 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
       ParentShowHint = False
       ShowHint = True
       TabOrder = 3
+      TabStop = False
       OnClick = BtnCancelarClick
       Align = alLeft
       Glyph.Data = {

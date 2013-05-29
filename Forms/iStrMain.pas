@@ -90,6 +90,8 @@ type
     ActnUnidadeNegocio: TAction;
     nmUnidadeNegocio: TMenuItem;
     N2: TMenuItem;
+    ActnRelMaterial: TAction;
+    mmRelMaterial: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -106,6 +108,7 @@ type
     procedure ActnMaterialDescricaoExecute(Sender: TObject);
     procedure ActnMaterialApresentacaoExecute(Sender: TObject);
     procedure ActnMaterialExecute(Sender: TObject);
+    procedure ActnRelMaterialExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -133,7 +136,8 @@ uses
   , iStrMaterialGrupo
   , iStrMaterialDescricao
   , iStrMaterialApresentacao
-  , iStrMaterialPesquisa;
+  , iStrMaterialPesquisa
+  , iStrMaterialImprimir;
 
 {$R *.dfm}
 
@@ -318,7 +322,16 @@ begin
   finally
     FrmMaterialPesquisa.Free;
   end;
+end;
 
+procedure TFrmMain.ActnRelMaterialExecute(Sender: TObject);
+begin
+  FrmMaterialImprimir := TFrmMaterialImprimir.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmMaterialImprimir.ShowModal;
+  finally
+    FrmMaterialImprimir.Free;
+  end;
 end;
 
 end.

@@ -2453,6 +2453,11 @@ object FrmMain: TFrmMain
       Hint = 'Cadastro e pesquisa de Materiais'
       OnExecute = ActnMaterialExecute
     end
+    object ActnRelMaterial: TAction
+      Category = 'Relat'#243'rios'
+      Caption = 'Tabela de Materiais'
+      OnExecute = ActnRelMaterialExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2532,6 +2537,9 @@ object FrmMain: TFrmMain
     end
     object MnRelatorios: TMenuItem
       Caption = '&Relat'#243'rios'
+      object mmRelMaterial: TMenuItem
+        Action = ActnRelMaterial
+      end
     end
     object MnSair: TMenuItem
       Caption = '&Sair'
