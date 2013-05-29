@@ -64,6 +64,7 @@ type
     property RegistroEditado : Boolean read FRegistroEditado;
 
     procedure SetParametrosPesquisa(const vParams : Array of Variant);
+    procedure VisualizarConsulta; virtual; abstract;
 
     function ExecutarPesquisa : Boolean; virtual; abstract;
     function ExecutarInsercao : Boolean; virtual; abstract;

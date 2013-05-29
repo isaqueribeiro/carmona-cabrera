@@ -70,6 +70,9 @@ begin
     CdsMaterialLista.Open;
 
     bReturn := not CdsMaterialLista.IsEmpty;
+
+    if not bReturn then
+      ShowMessageInformation('Sem dados para visualizar/imprimir o relatório selecionado!', RdbMaterialLista.Caption);
   end;
 
   Result := bReturn;
