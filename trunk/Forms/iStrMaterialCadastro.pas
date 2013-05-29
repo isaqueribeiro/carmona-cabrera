@@ -213,6 +213,8 @@ type
     function MontarNomeResumido : String;
   public
     { Public declarations }
+    procedure VisualizarConsulta; override;
+
     function ExecutarPesquisa : Boolean; override;
     function ExecutarInsercao : Boolean; override;
     function ExecutarAlteracao : Boolean; override;
@@ -575,6 +577,19 @@ begin
       CdsMastergrp_descricao.Clear;
       CdsMastermat_subgrupo.Clear;
     end;
+end;
+
+procedure TFrmMaterialCadastro.VisualizarConsulta;
+begin
+  RefreshDB;
+
+  if ( not CdsMaster.Active ) then
+    CdsMaster.Open;
+
+  AutoEdit := False;
+
+  if not Showing then
+    ShowModal;
 end;
 
 end.
