@@ -1,9 +1,13 @@
 inherited FrmMaterialCadastro: TFrmMaterialCadastro
+  Height = 615
   Caption = 'Cadastro do Material'
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlTabela: TPanel
+    Height = 500
     inherited PgCtrlMain: TcxPageControl
+      Height = 492
+      ClientRectBottom = 488
       inherited TbsPrincipal: TcxTabSheet
         object Bevel1: TBevel [0]
           Left = 0
@@ -214,19 +218,19 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
           StyleFocused.LookAndFeel.Kind = lfStandard
           StyleHot.LookAndFeel.Kind = lfStandard
           TabOrder = 1
-          Height = 219
+          Height = 234
           Width = 816
           object PgCtrlDadosAdcionais: TcxPageControl
             Left = 2
             Top = 18
             Width = 812
-            Height = 199
-            ActivePage = TbsSetor
+            Height = 214
+            ActivePage = TbsClassificar
             Align = alClient
             LookAndFeel.Kind = lfStandard
             LookAndFeel.NativeStyle = True
             TabOrder = 0
-            ClientRectBottom = 195
+            ClientRectBottom = 210
             ClientRectLeft = 4
             ClientRectRight = 808
             ClientRectTop = 24
@@ -647,7 +651,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 Left = 0
                 Top = 0
                 Width = 804
-                Height = 171
+                Height = 186
                 Align = alClient
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
@@ -826,11 +830,11 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 Top = 80
                 Caption = 'Custo M'#233'dio (R$)'
                 TabOrder = 7
-                Height = 73
+                Height = 97
                 Width = 297
                 object lblValorCustoInteiro: TcxLabel
                   Left = 53
-                  Top = 18
+                  Top = 42
                   Caption = 'Inteiro (Compra)'
                   FocusControl = dbValorCustoInteiro
                   Properties.Alignment.Horz = taRightJustify
@@ -839,17 +843,17 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 end
                 object dbValorCustoInteiro: TcxDBTextEdit
                   Left = 144
-                  Top = 16
+                  Top = 40
                   DataBinding.DataField = 'mat_valor_custo_int'
                   DataBinding.DataSource = DtsMaster
                   Properties.ReadOnly = True
                   Style.Color = 8454143
-                  TabOrder = 1
+                  TabOrder = 3
                   Width = 145
                 end
                 object lblValorCustoFrac: TcxLabel
                   Left = 25
-                  Top = 42
+                  Top = 66
                   Caption = 'Fracionado (Consumo)'
                   FocusControl = dbValorCustoFrac
                   Properties.Alignment.Horz = taRightJustify
@@ -858,12 +862,31 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 end
                 object dbValorCustoFrac: TcxDBTextEdit
                   Left = 144
-                  Top = 40
+                  Top = 64
                   DataBinding.DataField = 'mat_valor_custo_frc'
                   DataBinding.DataSource = DtsMaster
                   Properties.ReadOnly = True
                   Style.Color = 8454143
-                  TabOrder = 3
+                  TabOrder = 5
+                  Width = 145
+                end
+                object lblValorUltimaCompra: TcxLabel
+                  Left = 40
+                  Top = 18
+                  Caption = 'Valor '#250'ltima compra'
+                  FocusControl = dbValorUltimaCompra
+                  Properties.Alignment.Horz = taRightJustify
+                  Transparent = True
+                  AnchorX = 137
+                end
+                object dbValorUltimaCompra: TcxDBTextEdit
+                  Left = 144
+                  Top = 16
+                  DataBinding.DataField = 'mat_valor_custo_int'
+                  DataBinding.DataSource = DtsMaster
+                  Properties.ReadOnly = True
+                  Style.Color = 8454143
+                  TabOrder = 1
                   Width = 145
                 end
               end
@@ -890,6 +913,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
       '  , m.mat_descricao_resumo'
       '  , m.mat_especificacao'
       '  , m.mat_referencia'
+      '  , m.mat_imagem'
       '  , m.mat_status'
       '  , m.mat_grupo'
       '  , m.mat_subgrupo'
@@ -916,6 +940,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
       '  , m.mat_data_cadastro'
       '  , m.mat_ultcompra_data'
       '  , m.mat_ultcompra_forn'
+      '  , m.mat_ultcompra_valor'
       '  , m.mat_log_insert'
       '  , m.mat_log_update'
       '  , m.mat_log_inactive'
@@ -998,6 +1023,11 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
       FieldName = 'mat_referencia'
       ProviderFlags = [pfInUpdate]
       Size = 30
+    end
+    object CdsMastermat_imagem: TBlobField
+      FieldName = 'mat_imagem'
+      ProviderFlags = []
+      Size = 1
     end
     object CdsMastermat_status: TSmallintField
       Alignment = taLeftJustify
@@ -1143,11 +1173,18 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
     end
     object CdsMastermat_ultcompra_data: TDateField
       FieldName = 'mat_ultcompra_data'
-      ProviderFlags = [pfInUpdate]
+      ProviderFlags = []
     end
     object CdsMastermat_ultcompra_forn: TIntegerField
       FieldName = 'mat_ultcompra_forn'
-      ProviderFlags = [pfInUpdate]
+      ProviderFlags = []
+    end
+    object CdsMastermat_ultcompra_valor: TFMTBCDField
+      FieldName = 'mat_ultcompra_valor'
+      ProviderFlags = []
+      DisplayFormat = ',0.0000'
+      Precision = 20
+      Size = 4
     end
     object CdsMastermat_log_insert: TStringField
       FieldName = 'mat_log_insert'

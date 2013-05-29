@@ -177,6 +177,10 @@ type
     DbgSetorDBmat_setor: TcxGridDBColumn;
     DbgSetorDBset_nome: TcxGridDBColumn;
     DbgSetorDBmat_setor_requisita: TcxGridDBColumn;
+    CdsMastermat_imagem: TBlobField;
+    CdsMastermat_ultcompra_valor: TFMTBCDField;
+    lblValorUltimaCompra: TcxLabel;
+    dbValorUltimaCompra: TcxDBTextEdit;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
