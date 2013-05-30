@@ -24,6 +24,7 @@ uses
   KeyPadraoImprimir in 'Forms\KeyPadraoImprimir.pas' {FrmPadraoImprimir},
   KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto},
   KeySetor in 'Forms\KeySetor.pas' {FrmSetor},
+  KeyRequiredFields in 'Forms\KeyRequiredFields.pas' {FrmRequiredFields},
   iStrMaterialTipo in 'Forms\iStrMaterialTipo.pas' {FrmMaterialTipo},
   iStrMaterialGrupo in 'Forms\iStrMaterialGrupo.pas' {FrmMaterialGrupo},
   iStrUnidadeMedida in 'Forms\iStrUnidadeMedida.pas' {FrmUnidadeMedida},
@@ -31,8 +32,7 @@ uses
   iStrMaterialApresentacao in 'Forms\iStrMaterialApresentacao.pas' {FrmMaterialApresentacao},
   iStrMaterialPesquisa in 'Forms\iStrMaterialPesquisa.pas' {FrmMaterialPesquisa},
   iStrMaterialCadastro in 'Forms\iStrMaterialCadastro.pas' {FrmMaterialCadastro},
-  KeyRequiredFields in 'Forms\KeyRequiredFields.pas' {FrmRequiredFields},
-  iStrMaterialImprimir in 'Forms\iStrMaterialImprimir.pas' {FrmMaterialImprimir};
+  iStrMaterialImprimir in 'Reports\iStrMaterialImprimir.pas' {FrmMaterialImprimir};
 
 {$R *.res}
 
