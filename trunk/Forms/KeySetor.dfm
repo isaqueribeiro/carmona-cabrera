@@ -45,7 +45,8 @@ inherited FrmSetor: TFrmSetor
       '  , s.set_gerente'
       '  , s.set_inc'
       '  , s.set_alt'
-      'from mny_setor s')
+      'from mny_setor s'
+      'where (s.set_codigo > 0)')
   end
   inherited CdsMaster: TClientDataSet
     AfterPost = CdsMasterAfterPost
