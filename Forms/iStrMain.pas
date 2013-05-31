@@ -92,6 +92,8 @@ type
     N2: TMenuItem;
     ActnRelMaterial: TAction;
     mmRelMaterial: TMenuItem;
+    ActnAjusteEstoque: TAction;
+    mmAjusteEstoque: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -109,6 +111,7 @@ type
     procedure ActnMaterialApresentacaoExecute(Sender: TObject);
     procedure ActnMaterialExecute(Sender: TObject);
     procedure ActnRelMaterialExecute(Sender: TObject);
+    procedure ActnUnidadeNegocioExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -129,6 +132,7 @@ uses
   , KeyVersion
   , KeyResource
   , KeyObjeto
+  , KeyUnidadeNegocio
   , KeySetor
   , iStrLogin
   , iStrUnidadeMedida
@@ -199,7 +203,7 @@ end;
 procedure TFrmMain.ActnObjetoExecute(Sender: TObject);
 Var
   iNivel :Integer;
-begin
+begin  {
   FrmLogin.GR_Refresh;
   iNivel := FrmLogin.GR_Acesso(USR_Codigo, 'FrmObjeto');
   if (iNivel = 9) And (USR_Nivel <> 2) then Abort;
@@ -209,7 +213,7 @@ begin
     FrmObjeto.ShowModal;
   finally
     FrmObjeto.Free;
-  end;
+  end; }
 end;
 
 procedure TFrmMain.ActnUsuarioExecute(Sender: TObject);
@@ -331,6 +335,16 @@ begin
     FrmMaterialImprimir.ShowModal;
   finally
     FrmMaterialImprimir.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnUnidadeNegocioExecute(Sender: TObject);
+begin
+  FrmUnidadeNegocio := TFrmUnidadeNegocio.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmUnidadeNegocio.ShowModal;
+  finally
+    FrmUnidadeNegocio.Free;
   end;
 end;
 

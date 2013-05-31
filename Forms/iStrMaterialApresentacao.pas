@@ -70,7 +70,7 @@ begin
     if StrIsInteger( Trim(EdtPesquisa.Text) ) then
       QryMaster.SQL.Add('  and a.apr_codigo = ' + Trim(EdtPesquisa.Text))
     else
-      QryMaster.SQL.Add('  and upper(d.apr_descricao) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
+      QryMaster.SQL.Add('  and upper(a.apr_descricao) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
 
   QryMaster.SQL.Add('order by a.apr_descricao');
 

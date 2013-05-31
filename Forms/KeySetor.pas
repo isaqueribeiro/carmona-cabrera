@@ -82,7 +82,6 @@ begin
   CdsMaster.Close;
   QryMaster.SQL.Clear;
   QryMaster.SQL.AddStrings( SQL_Master );
-  QryMaster.SQL.Add('where (1 = 1)');
 
   if Trim(EdtPesquisa.Text) <> EmptyStr then
     if StrIsInteger( Trim(EdtPesquisa.Text) ) then

@@ -2403,6 +2403,7 @@ object FrmMain: TFrmMain
     object ActnUnidadeNegocio: TAction
       Category = 'Tabelas Auxiliares'
       Caption = 'Unidade de Neg'#243'cio'
+      OnExecute = ActnUnidadeNegocioExecute
     end
     object ActnSetor: TAction
       Category = 'Tabelas Auxiliares'
@@ -2457,6 +2458,10 @@ object FrmMain: TFrmMain
       Category = 'Relat'#243'rios'
       Caption = 'Tabela de Materiais'
       OnExecute = ActnRelMaterialExecute
+    end
+    object ActnAjusteEstoque: TAction
+      Category = 'Processos'
+      Caption = 'Ajustes de Estoque'
     end
   end
   object TmrDateTime: TTimer
@@ -2534,6 +2539,9 @@ object FrmMain: TFrmMain
     end
     object MnProcessos: TMenuItem
       Caption = '&Processos'
+      object mmAjusteEstoque: TMenuItem
+        Action = ActnAjusteEstoque
+      end
     end
     object MnRelatorios: TMenuItem
       Caption = '&Relat'#243'rios'
