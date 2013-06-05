@@ -17,15 +17,17 @@ type
   TFrmUnidadeNegocio = class(TFrmPadraoTabela)
     CdsMasteruni_codigo: TSmallintField;
     CdsMasteruni_nome: TStringField;
-    CdsMasteruni_centro_distribuicao: TSmallintField;
     CdsMasteruni_inc: TStringField;
     CdsMasteruni_alt: TStringField;
     DbgTabelaDBuni_codigo: TcxGridDBColumn;
     DbgTabelaDBuni_nome: TcxGridDBColumn;
-    DbgTabelaDBuni_centro_distribuicao: TcxGridDBColumn;
+    DbgTabelaDBuni_possui_almox: TcxGridDBColumn;
+    CdsMasteruni_possui_almox: TSmallintField;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
+    procedure DbgTabelaDBKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -71,7 +73,7 @@ procedure TFrmUnidadeNegocio.CdsMasterNewRecord(DataSet: TDataSet);
 begin
   CdsMasteruni_codigo.AsInteger := MaxCod(NomeTabela, CampoChave, EmptyStr);
   CdsMasteruni_inc.AsString     := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
-  CdsMasteruni_centro_distribuicao.AsInteger := 0;
+  CdsMasteruni_possui_almox.AsInteger := 0;
 end;
 
 procedure TFrmUnidadeNegocio.CdsMasterBeforePost(DataSet: TDataSet);
@@ -100,6 +102,23 @@ begin
   CdsMaster.Open;
 
   Result := not CdsMaster.IsEmpty;
+end;
+
+procedure TFrmUnidadeNegocio.DbgTabelaDBKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if ( Key = VK_SPACE ) then
+    if ( DbgTabelaDBuni_possui_almox.Focused ) then
+    begin
+      if ( not (CdsMaster.State in [dsEdit, dsInsert]) ) then
+        Exit;
+
+      if CdsMasteruni_possui_almox.AsInteger = 0 then
+        CdsMasteruni_possui_almox.AsInteger := 1
+      else
+        CdsMasteruni_possui_almox.AsInteger := 0;
+    end;
 end;
 
 end.

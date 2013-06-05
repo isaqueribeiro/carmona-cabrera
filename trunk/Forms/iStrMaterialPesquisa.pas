@@ -59,6 +59,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnEditarClick(Sender: TObject);
+    procedure DbgTabelaDBKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -162,6 +164,32 @@ begin
   finally
     AForm.Free;
   end;
+end;
+
+procedure TFrmMaterialPesquisa.DbgTabelaDBKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+var
+  AForm : TFrmMaterialCadastro;
+begin
+(*
+  if ( Key = VK_RETURN ) then
+    if ( (not BtnSelecionar.Visible) and (not CdsMaster.IsEmpty) ) then
+    begin
+      AForm := TFrmMaterialCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+      try
+        AForm.SetParametrosPesquisa([CdsMastermat_codigo.AsCurrency]);
+        AForm.ExecutarPesquisa;
+
+        AForm.VisualizarConsulta;
+
+        CdsMaster.Prior;
+        CdsMaster.Refresh;
+      finally
+        AForm.Free;
+      end;
+    end;
+*)
+  inherited;
 end;
 
 end.

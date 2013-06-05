@@ -205,6 +205,8 @@ type
       Shift: TShiftState);
     procedure dbGrupoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure DbgSetorDBKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure FiltrarSubgrupos;
@@ -590,6 +592,26 @@ begin
 
   if not Showing then
     ShowModal;
+end;
+
+procedure TFrmMaterialCadastro.DbgSetorDBKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if ( Key = VK_SPACE ) then
+    if ( DbgSetorDBmat_setor_requisita.Focused ) then
+    begin
+      if ( not (CdsMaster.State in [dsEdit, dsInsert]) ) then
+        Exit;
+
+      CdsSetor.Edit;
+
+      if CdsSetormat_setor_requisita.AsInteger = 0 then
+        CdsSetormat_setor_requisita.AsInteger := 1
+      else
+        CdsSetormat_setor_requisita.AsInteger := 0;
+
+      CdsSetor.Post;  
+    end;
 end;
 
 end.

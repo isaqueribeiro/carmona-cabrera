@@ -426,11 +426,6 @@ inherited FrmPadraoTabelaCadastro: TFrmPadraoTabelaCadastro
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
       inherited TbsPrincipal: TcxTabSheet
-        inherited GrpBxPesquisa: TcxGroupBox
-          inherited EdtPesquisa: TcxTextEdit
-            Anchors = [akLeft, akTop, akRight]
-          end
-        end
         inherited DbgTabela: TcxGrid
           inherited DbgTabelaDB: TcxGridDBTableView
             NavigatorButtons.Insert.Visible = False
