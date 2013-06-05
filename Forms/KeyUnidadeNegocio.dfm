@@ -23,9 +23,9 @@ inherited FrmUnidadeNegocio: TFrmUnidadeNegocio
               Caption = 'Nome'
               DataBinding.FieldName = 'uni_nome'
             end
-            object DbgTabelaDBuni_centro_distribuicao: TcxGridDBColumn
-              Caption = 'Possui CDI'
-              DataBinding.FieldName = 'uni_centro_distribuicao'
+            object DbgTabelaDBuni_possui_almox: TcxGridDBColumn
+              Caption = 'Almox.'
+              DataBinding.FieldName = 'uni_possui_almox'
               PropertiesClassName = 'TcxCheckBoxProperties'
               Properties.ValueChecked = '1'
               Properties.ValueUnchecked = '0'
@@ -53,7 +53,7 @@ inherited FrmUnidadeNegocio: TFrmUnidadeNegocio
       'Select'
       '    u.uni_codigo'
       '  , u.uni_nome'
-      '  , u.uni_centro_distribuicao'
+      '  , u.uni_possui_almox'
       '  , u.uni_inc'
       '  , u.uni_alt'
       'from mny_unidade u'
@@ -71,9 +71,9 @@ inherited FrmUnidadeNegocio: TFrmUnidadeNegocio
       ProviderFlags = [pfInUpdate]
       Size = 60
     end
-    object CdsMasteruni_centro_distribuicao: TSmallintField
+    object CdsMasteruni_possui_almox: TSmallintField
       Alignment = taCenter
-      FieldName = 'uni_centro_distribuicao'
+      FieldName = 'uni_possui_almox'
       ProviderFlags = [pfInUpdate]
       Required = True
     end

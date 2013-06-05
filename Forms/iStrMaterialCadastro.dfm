@@ -661,6 +661,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 ParentFont = False
                 TabOrder = 0
                 object DbgSetorDB: TcxGridDBTableView
+                  OnKeyDown = DbgSetorDBKeyDown
                   NavigatorButtons.ConfirmDelete = False
                   NavigatorButtons.Images = DtmResource.ImgNavigator
                   NavigatorButtons.First.Hint = 'Primeiro registro'

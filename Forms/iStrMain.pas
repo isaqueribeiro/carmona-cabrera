@@ -94,6 +94,8 @@ type
     mmRelMaterial: TMenuItem;
     ActnAjusteEstoque: TAction;
     mmAjusteEstoque: TMenuItem;
+    ActnTipoMovimento: TAction;
+    mmTipoMovimento: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -112,6 +114,7 @@ type
     procedure ActnMaterialExecute(Sender: TObject);
     procedure ActnRelMaterialExecute(Sender: TObject);
     procedure ActnUnidadeNegocioExecute(Sender: TObject);
+    procedure ActnTipoMovimentoExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -141,7 +144,8 @@ uses
   , iStrMaterialDescricao
   , iStrMaterialApresentacao
   , iStrMaterialPesquisa
-  , iStrMaterialImprimir;
+  , iStrMaterialImprimir
+  , iStrTipoMovimento;
 
 {$R *.dfm}
 
@@ -345,6 +349,16 @@ begin
     FrmUnidadeNegocio.ShowModal;
   finally
     FrmUnidadeNegocio.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnTipoMovimentoExecute(Sender: TObject);
+begin
+  FrmTipoMovimento := TFrmTipoMovimento.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmTipoMovimento.ShowModal;
+  finally
+    FrmTipoMovimento.Free;
   end;
 end;
 

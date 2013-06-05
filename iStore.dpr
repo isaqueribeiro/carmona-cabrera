@@ -33,7 +33,8 @@ uses
   iStrMaterialPesquisa in 'Forms\iStrMaterialPesquisa.pas' {FrmMaterialPesquisa},
   iStrMaterialCadastro in 'Forms\iStrMaterialCadastro.pas' {FrmMaterialCadastro},
   iStrMaterialImprimir in 'Reports\iStrMaterialImprimir.pas' {FrmMaterialImprimir},
-  KeyUnidadeNegocio in 'Forms\KeyUnidadeNegocio.pas' {FrmUnidadeNegocio};
+  KeyUnidadeNegocio in 'Forms\KeyUnidadeNegocio.pas' {FrmUnidadeNegocio},
+  iStrTipoMovimento in 'Forms\iStrTipoMovimento.pas' {FrmTipoMovimento};
 
 {$R *.res}
 

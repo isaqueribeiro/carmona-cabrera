@@ -20,7 +20,7 @@ object FrmMain: TFrmMain
   PixelsPerInch = 96
   TextHeight = 13
   object LblSombra: TLabel
-    Left = 360
+    Left = 336
     Top = 48
     Width = 245
     Height = 115
@@ -34,7 +34,7 @@ object FrmMain: TFrmMain
     Transparent = True
   end
   object LblTitulo: TLabel
-    Left = 358
+    Left = 334
     Top = 46
     Width = 245
     Height = 115
@@ -48,7 +48,7 @@ object FrmMain: TFrmMain
     Transparent = True
   end
   object ImgMain: TImage
-    Left = 160
+    Left = 136
     Top = 40
     Width = 186
     Height = 179
@@ -1806,7 +1806,7 @@ object FrmMain: TFrmMain
     Stretch = True
   end
   object LblDesc: TLabel
-    Left = 358
+    Left = 334
     Top = 152
     Width = 339
     Height = 29
@@ -1820,7 +1820,7 @@ object FrmMain: TFrmMain
     Transparent = True
   end
   object LblVersao: TLabel
-    Left = 358
+    Left = 334
     Top = 184
     Width = 144
     Height = 13
@@ -2463,6 +2463,11 @@ object FrmMain: TFrmMain
       Category = 'Processos'
       Caption = 'Ajustes de Estoque'
     end
+    object ActnTipoMovimento: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Tipos de Movimentos'
+      OnExecute = ActnTipoMovimentoExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2535,6 +2540,9 @@ object FrmMain: TFrmMain
       object mmCompetencia: TMenuItem
         Action = ActnCompetencia
         Caption = 'Com&pet'#234'ncia'
+      end
+      object mmTipoMovimento: TMenuItem
+        Action = ActnTipoMovimento
       end
     end
     object MnProcessos: TMenuItem
