@@ -66,6 +66,7 @@ type
   public
     { Public declarations }
     function ExecutarPesquisa : Boolean; override;
+    function PermitirExcluirRegistro : Boolean; override;
   end;
 
 var
@@ -190,6 +191,14 @@ begin
     end;
 *)
   inherited;
+end;
+
+function TFrmMaterialPesquisa.PermitirExcluirRegistro: Boolean;
+begin
+  Result := CdsMastermat_ultcompra_data.IsNull;
+
+  if not Result then
+    ShowMessageWarning('Registro não pode ser excluído por possuir histórico de movimentação!', 'Exclusão');
 end;
 
 end.

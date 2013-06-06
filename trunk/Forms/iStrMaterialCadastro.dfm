@@ -828,14 +828,14 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
               end
               object GrpBxCustoMedio: TcxGroupBox
                 Left = 152
-                Top = 80
+                Top = 104
                 Caption = 'Custo M'#233'dio (R$)'
-                TabOrder = 7
-                Height = 97
+                TabOrder = 9
+                Height = 73
                 Width = 297
                 object lblValorCustoInteiro: TcxLabel
                   Left = 53
-                  Top = 42
+                  Top = 18
                   Caption = 'Inteiro (Compra)'
                   FocusControl = dbValorCustoInteiro
                   Properties.Alignment.Horz = taRightJustify
@@ -844,17 +844,17 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 end
                 object dbValorCustoInteiro: TcxDBTextEdit
                   Left = 144
-                  Top = 40
+                  Top = 16
                   DataBinding.DataField = 'mat_valor_custo_int'
                   DataBinding.DataSource = DtsMaster
                   Properties.ReadOnly = True
                   Style.Color = 8454143
-                  TabOrder = 3
+                  TabOrder = 2
                   Width = 145
                 end
                 object lblValorCustoFrac: TcxLabel
                   Left = 25
-                  Top = 66
+                  Top = 42
                   Caption = 'Fracionado (Consumo)'
                   FocusControl = dbValorCustoFrac
                   Properties.Alignment.Horz = taRightJustify
@@ -863,33 +863,33 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 end
                 object dbValorCustoFrac: TcxDBTextEdit
                   Left = 144
-                  Top = 64
+                  Top = 40
                   DataBinding.DataField = 'mat_valor_custo_frc'
                   DataBinding.DataSource = DtsMaster
                   Properties.ReadOnly = True
                   Style.Color = 8454143
-                  TabOrder = 5
+                  TabOrder = 3
                   Width = 145
                 end
-                object lblValorUltimaCompra: TcxLabel
-                  Left = 40
-                  Top = 18
-                  Caption = 'Valor '#250'ltima compra'
-                  FocusControl = dbValorUltimaCompra
-                  Properties.Alignment.Horz = taRightJustify
-                  Transparent = True
-                  AnchorX = 137
-                end
-                object dbValorUltimaCompra: TcxDBTextEdit
-                  Left = 144
-                  Top = 16
-                  DataBinding.DataField = 'mat_valor_custo_int'
-                  DataBinding.DataSource = DtsMaster
-                  Properties.ReadOnly = True
-                  Style.Color = 8454143
-                  TabOrder = 1
-                  Width = 145
-                end
+              end
+              object lblValorUltimaCompra: TcxLabel
+                Left = 33
+                Top = 82
+                Caption = 'Valor da '#250'ltima compra'
+                FocusControl = dbValorUltimaCompra
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 145
+              end
+              object dbValorUltimaCompra: TcxDBTextEdit
+                Left = 152
+                Top = 80
+                DataBinding.DataField = 'mat_valor_custo_int'
+                DataBinding.DataSource = DtsMaster
+                Properties.ReadOnly = True
+                Style.Color = 8454143
+                TabOrder = 8
+                Width = 145
               end
             end
           end
