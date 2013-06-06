@@ -29,6 +29,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    function PermitirExcluirRegistro : Boolean; virtual; abstract;
   end;
 
 var
@@ -55,7 +56,8 @@ end;
 procedure TFrmPadraoTabelaCadastro.BtnExcluirClick(Sender: TObject);
 begin
   if not CdsMaster.FieldByName(CampoChave).IsNull then
-    CdsMaster.Delete;
+    if PermitirExcluirRegistro then
+      CdsMaster.Delete;
 end;
 
 procedure TFrmPadraoTabelaCadastro.DbgTabelaDBDblClick(Sender: TObject);
