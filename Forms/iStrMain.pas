@@ -354,7 +354,7 @@ end;
 
 procedure TFrmMain.ActnTipoMovimentoExecute(Sender: TObject);
 begin
-  FrmTipoMovimento := TFrmTipoMovimento+.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  FrmTipoMovimento := TFrmTipoMovimento.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
   try
     FrmTipoMovimento.ShowModal;
   finally
