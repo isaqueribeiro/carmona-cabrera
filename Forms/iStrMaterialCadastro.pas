@@ -240,7 +240,8 @@ uses
   , KeyResource
   , KeyPadrao
   , iStrMaterialDescricao
-  , iStrMaterialApresentacao, iStrMaterialGrupo;
+  , iStrMaterialApresentacao
+  , iStrMaterialGrupo;
 
 {$R *.dfm}
 

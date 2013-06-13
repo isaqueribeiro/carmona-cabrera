@@ -35,7 +35,8 @@ uses
   iStrMaterialImprimir in 'Reports\iStrMaterialImprimir.pas' {FrmMaterialImprimir},
   KeyUnidadeNegocio in 'Forms\KeyUnidadeNegocio.pas' {FrmUnidadeNegocio},
   iStrTipoMovimento in 'Forms\iStrTipoMovimento.pas' {FrmTipoMovimento},
-  iStrAjusteEstoquePesquisa in 'Forms\iStrAjusteEstoquePesquisa.pas' {FrmAjusteEstoquePesquisa};
+  iStrAjusteEstoquePesquisa in 'Forms\iStrAjusteEstoquePesquisa.pas' {FrmAjusteEstoquePesquisa},
+  iStrAjusteEstoqueCadastro in 'Forms\iStrAjusteEstoqueCadastro.pas' {FrmAjusteEstoqueCadastro};
 
 {$R *.res}
 

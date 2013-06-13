@@ -2462,6 +2462,7 @@ object FrmMain: TFrmMain
     object ActnAjusteEstoque: TAction
       Category = 'Processos'
       Caption = 'Ajustes de Estoque'
+      OnExecute = ActnAjusteEstoqueExecute
     end
     object ActnTipoMovimento: TAction
       Category = 'Tabelas Auxiliares'

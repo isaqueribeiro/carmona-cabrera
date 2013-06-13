@@ -41,10 +41,18 @@ type
 var
   DtmResource: TDtmResource;
   gUsuario   : TUsuario;
-   
+
+  function DelphiIsRunning : Boolean;
+  
 implementation
 
 //uses KeyData;
+
+function DelphiIsRunning : Boolean;
+begin
+  // Verifica se o programa rodou a partir do IDE do Delphi7:
+  Result := DebugHook <> 0;
+end;
 
 {$R *.dfm}
 
