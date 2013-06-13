@@ -115,6 +115,7 @@ type
     procedure ActnRelMaterialExecute(Sender: TObject);
     procedure ActnUnidadeNegocioExecute(Sender: TObject);
     procedure ActnTipoMovimentoExecute(Sender: TObject);
+    procedure ActnAjusteEstoqueExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -145,7 +146,8 @@ uses
   , iStrMaterialApresentacao
   , iStrMaterialPesquisa
   , iStrMaterialImprimir
-  , iStrTipoMovimento;
+  , iStrTipoMovimento
+  , iStrAjusteEstoquePesquisa;
 
 {$R *.dfm}
 
@@ -359,6 +361,16 @@ begin
     FrmTipoMovimento.ShowModal;
   finally
     FrmTipoMovimento.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnAjusteEstoqueExecute(Sender: TObject);
+begin
+  FrmAjusteEstoquePesquisa := TFrmAjusteEstoquePesquisa.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmAjusteEstoquePesquisa.ShowModal;
+  finally
+    FrmAjusteEstoquePesquisa.Free;
   end;
 end;
 

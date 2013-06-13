@@ -115,7 +115,13 @@ begin
 
   EdtServidor.Text := sString1;
   EdtBanco.Text    := sString2;
-end;  
+
+  if DelphiIsRunning then
+  begin
+    EdtUsuario.Text := 'ISAQUE_RIBEIRO';
+    EdtSenha.Text   := 'nemesis';
+  end;
+end;
 
 procedure TFrmLogin.FormCreate(Sender: TObject);
 var

@@ -11,18 +11,42 @@ uses
   DBClient, SqlExpr, StdCtrls, ExtCtrls, cxGridLevel, cxClasses,
   cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridDBTableView, cxGrid, cxMaskEdit, cxDropDownEdit, cxImageComboBox,
-  cxTextEdit, cxGroupBox, cxPC, cxButtons, cxCalendar;
+  cxTextEdit, cxGroupBox, cxPC, cxButtons, cxCalendar, ImgList;
 
 type
   TFrmAjusteEstoquePesquisa = class(TFrmPadraoTabelaCadastro)
     edDataInicio: TcxDateEdit;
     edDataFinal: TcxDateEdit;
+    CdsMastereaj_ano: TSmallintField;
+    CdsMastereaj_codigo: TIntegerField;
+    CdsMastereaj_data: TDateField;
+    CdsMastereaj_hora: TTimeField;
+    CdsMastereaj_unidade_neg: TSmallintField;
+    CdsMastereaj_obs: TStringField;
+    CdsMastereaj_status: TSmallintField;
+    CdsMastereaj_usuario_abertura: TStringField;
+    CdsMastereaj_usuario_fechamento: TStringField;
+    CdsMastereaj_log_insert: TStringField;
+    CdsMastereaj_log_update: TStringField;
+    CdsMastereaj_log_inactive: TStringField;
+    CdsMasteruni_nome: TStringField;
+    CdsMasterCodigo: TStringField;
+    ImgStatus: TImageList;
+    DbgTabelaDBeaj_data: TcxGridDBColumn;
+    DbgTabelaDBeaj_status: TcxGridDBColumn;
+    DbgTabelaDBeaj_usuario_abertura: TcxGridDBColumn;
+    DbgTabelaDBeaj_usuario_fechamento: TcxGridDBColumn;
+    DbgTabelaDBuni_nome: TcxGridDBColumn;
+    DbgTabelaDBCodigo: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
+    procedure CdsMasterCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
     procedure InciarDatas;
   public
     { Public declarations }
+    function ExecutarPesquisa : Boolean; override;
+    function PermitirExcluirRegistro : Boolean; override;
   end;
 
 var
@@ -46,6 +70,35 @@ uses
 
 {$R *.dfm}
 
+function TFrmAjusteEstoquePesquisa.ExecutarPesquisa: Boolean;
+begin
+  RefreshDB;
+(*
+  CdsMaster.Close;
+  QryMaster.SQL.Clear;
+  QryMaster.SQL.AddStrings( SQL_Master );
+  QryMaster.SQL.Add('where (1 = 1)');
+
+  Case CmbTipoPesquisa.ItemIndex of
+    0:
+      begin
+        if Trim(EdtPesquisa.Text) <> EmptyStr then
+          if StrIsInteger( Trim(EdtPesquisa.Text) ) then
+            QryMaster.SQL.Add('  and m.mat_codigo = ' + Trim(EdtPesquisa.Text))
+          else
+            QryMaster.SQL.Add('  and upper(m.mat_descricao_resumo) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
+      end;
+
+    1:
+      ;
+  end;
+
+  QryMaster.SQL.Add('order by m.mat_descricao_resumo');
+  CdsMaster.Open;
+*)
+  Result := not CdsMaster.IsEmpty;
+end;
+
 procedure TFrmAjusteEstoquePesquisa.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -64,11 +117,24 @@ end;
 
 procedure TFrmAjusteEstoquePesquisa.InciarDatas;
 begin
-  if (Trim(edDataInicio.Text) = EmptyStr) or VarIsNullDate(edDataInicio.EditValue) then
+  if (Trim(edDataInicio.Text) = EmptyStr) or (Trim(edDataInicio.Text) = '30/12/1899') or VarIsNullDate(edDataInicio.EditValue) then
     edDataInicio.Date := StrToDate('01/' + FormatDateTime('mm/yyyy', Date));
 
-  if (Trim(edDataFinal.Text) = EmptyStr) or VarIsNullDate(edDataFinal.EditValue) then
+  if (Trim(edDataFinal.Text) = EmptyStr) or (Trim(edDataFinal.Text) = '30/12/1899') or VarIsNullDate(edDataFinal.EditValue) then
     edDataFinal.Date  := Date;
+end;
+
+function TFrmAjusteEstoquePesquisa.PermitirExcluirRegistro: Boolean;
+begin
+  Result := (CdsMastereaj_status.AsInteger = 0);
+
+  if not Result then
+    ShowMessageWarning('Registro de Ajuste de Estoque não pode ser excluído por está encerrado ou cancelado!', 'Exclusão');
+end;
+
+procedure TFrmAjusteEstoquePesquisa.CdsMasterCalcFields(DataSet: TDataSet);
+begin
+  CdsMasterCodigo.AsString := CdsMastereaj_ano.AsString + '/' + FormatFloat('#######000', CdsMastereaj_codigo.AsInteger);
 end;
 
 end.

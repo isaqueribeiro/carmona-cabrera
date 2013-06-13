@@ -168,7 +168,7 @@ inherited FrmPadraoTabelaCadastro: TFrmPadraoTabelaCadastro
       Top = 9
       Width = 97
       Height = 55
-      Hint = 'Editar registrro selecionado'
+      Hint = 'Editar registro selecionado'
       Caption = 'Editar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

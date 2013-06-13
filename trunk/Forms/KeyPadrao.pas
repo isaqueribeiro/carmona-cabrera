@@ -14,6 +14,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    FErrorDBNumbers : Integer;
     FSelecionarRegistro : Boolean;
     FErroLoop : Integer;
     FComponenteLogin : TComponent;
@@ -27,6 +28,7 @@ type
     function GetNomeObjetoAcesso : String;
   public
     { Public declarations }
+    property ErrorDBNumbers : Integer read FErrorDBNumbers;
     property SelecionarRegistro : Boolean read FSelecionarRegistro write FSelecionarRegistro;
     property ComponenteLogin : TComponent read FComponenteLogin write FComponenteLogin;
     property ConexaoDB : TSQLConnection read FConexaoDB write FConexaoDB;
@@ -77,6 +79,7 @@ end;
 procedure TFrmPadrao.FormCreate(Sender: TObject);
 begin
   SelecionarRegistro := False;
+  FErrorDBNumbers    := 0;
   
   ComponenteLogin  := nil;
   ConexaoDB        := nil;
@@ -94,8 +97,14 @@ procedure TFrmPadrao.RefreshDB;
 begin
   if Assigned(ConexaoDB) then
   begin
-    ConexaoDB.Connected := False;
-    ConexaoDB.Connected := True;
+    if ( FErrorDBNumbers > 0 ) then
+      ConexaoDB.Connected := False;
+
+    if not ConexaoDB.Connected then
+    begin
+      ConexaoDB.Connected := True;
+      FErrorDBNumbers     := 0;
+    end;
   end;
 end;
 
@@ -155,6 +164,7 @@ begin
 
     Result := True;
   except
+    FErrorDBNumbers := FErrorDBNumbers + 1;
     Result := False;
   end;
 end;
@@ -166,6 +176,7 @@ begin
       ConexaoDB.Commit(FTransacaoDB);
     Result := True;
   except
+    FErrorDBNumbers := FErrorDBNumbers + 1;
     Result := False;
   end;
 end;
@@ -177,6 +188,7 @@ begin
       ConexaoDB.Rollback(FTransacaoDB);
     Result := True;  
   except
+    FErrorDBNumbers := FErrorDBNumbers + 1;
     Result := False;
   end;
 end;
@@ -410,6 +422,7 @@ begin
 
     if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
     begin
+      FErrorDBNumbers := FErrorDBNumbers + 1;
       RefreshDB;
       ExecutarInsertTable(DataSet, sTabela, AutoStartTransaction);
     end;
@@ -552,6 +565,7 @@ begin
 
     if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
     begin
+      FErrorDBNumbers := FErrorDBNumbers + 1;
       RefreshDB;
       ExecutarUpdateTable(DataSet, sTabela, AutoStartTransaction);
     end;
@@ -653,6 +667,7 @@ begin
 
     if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
     begin
+      FErrorDBNumbers := FErrorDBNumbers + 1;
       RefreshDB;
       ExecutarDeleteTable(DataSet, sTabela, AutoStartTransaction);
     end;  
@@ -746,6 +761,7 @@ begin
 
     if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
     begin
+      FErrorDBNumbers := FErrorDBNumbers + 1;
       RefreshDB;
       ExecutarInsertUpdateTable(DataSet, sTabela, AutoStartTransaction);
     end;
@@ -786,6 +802,7 @@ begin
 
     if ( (FErroLoop > 0) and (FErroLoop < ERRO_LOOP) ) then
     begin
+      FErrorDBNumbers := FErrorDBNumbers + 1;
       RefreshDB;
       ExecutarScriptSQL(ScriptSQL, AutoStartTransaction);
     end;
