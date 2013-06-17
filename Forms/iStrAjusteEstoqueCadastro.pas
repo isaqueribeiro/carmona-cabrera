@@ -7,10 +7,41 @@ uses
   Dialogs, KeyPadraoCadastro, cxGraphics, cxLookAndFeels,
   cxLookAndFeelPainters, Menus, cxControls, dxSkinsCore,
   dxSkinscxPCPainter, cxContainer, cxEdit, FMTBcd, DB, DBClient, Provider,
-  SqlExpr, cxGroupBox, cxPC, StdCtrls, cxButtons, ExtCtrls;
+  SqlExpr, cxGroupBox, cxPC, StdCtrls, cxButtons, ExtCtrls,
+  cxImageComboBox, cxDBEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit,
+  cxDBLookupEdit, cxDBLookupComboBox, cxTextEdit, cxLabel, cxCalendar;
 
 type
   TFrmAjusteEstoqueCadastro = class(TFrmPadraoCadastro)
+    CdsMastereaj_ano: TSmallintField;
+    CdsMastereaj_codigo: TIntegerField;
+    CdsMastereaj_data: TDateField;
+    CdsMastereaj_hora: TTimeField;
+    CdsMastereaj_unidade_neg: TSmallintField;
+    CdsMastereaj_obs: TStringField;
+    CdsMastereaj_status: TSmallintField;
+    CdsMastereaj_usuario_abertura: TStringField;
+    CdsMastereaj_usuario_fechamento: TStringField;
+    CdsMastereaj_log_insert: TStringField;
+    CdsMastereaj_log_update: TStringField;
+    CdsMastereaj_log_inactive: TStringField;
+    CdsMasteruni_nome: TStringField;
+    lblCodigo: TcxLabel;
+    dbCodigo: TcxDBTextEdit;
+    lblUnidadeNegocio: TcxLabel;
+    dbUnidadeNegocio: TcxDBLookupComboBox;
+    lblData: TcxLabel;
+    dbAno: TcxDBTextEdit;
+    lblCompetencia: TcxLabel;
+    dbCompetencia: TcxDBLookupComboBox;
+    CdsMastereaj_competencia: TSmallintField;
+    dbData: TcxDBDateEdit;
+    lblHora: TcxLabel;
+    dbHora: TcxDBTextEdit;
+    lblUsuarioAbertura: TcxLabel;
+    dbUsuarioAbertura: TcxDBTextEdit;
+    lblSituacao: TcxLabel;
+    dbSituacao: TcxDBTextEdit;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

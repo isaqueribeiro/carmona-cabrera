@@ -73,29 +73,44 @@ uses
 function TFrmAjusteEstoquePesquisa.ExecutarPesquisa: Boolean;
 begin
   RefreshDB;
-(*
+
   CdsMaster.Close;
   QryMaster.SQL.Clear;
   QryMaster.SQL.AddStrings( SQL_Master );
   QryMaster.SQL.Add('where (1 = 1)');
+
+  if not VarIsNullDate(edDataInicio.EditValue) then
+    QryMaster.SQL.Add('  and ae.eaj_data >= ' + QuotedStr(FormatDateTime('yyyy-mm-dd', edDataInicio.Date)));
+
+  if not VarIsNullDate(edDataFinal.EditValue) then
+    QryMaster.SQL.Add('  and ae.eaj_data <= ' + QuotedStr(FormatDateTime('yyyy-mm-dd', edDataFinal.Date)));
 
   Case CmbTipoPesquisa.ItemIndex of
     0:
       begin
         if Trim(EdtPesquisa.Text) <> EmptyStr then
           if StrIsInteger( Trim(EdtPesquisa.Text) ) then
-            QryMaster.SQL.Add('  and m.mat_codigo = ' + Trim(EdtPesquisa.Text))
+            QryMaster.SQL.Add('  and ae.eaj_codigo = ' + Trim(EdtPesquisa.Text))
           else
-            QryMaster.SQL.Add('  and upper(m.mat_descricao_resumo) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
+            QryMaster.SQL.Add('  and upper(ae.uni_nome) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
       end;
 
     1:
-      ;
+      begin
+        if Trim(EdtPesquisa.Text) <> EmptyStr then
+          if StrIsInteger( Trim(EdtPesquisa.Text) ) then
+            QryMaster.SQL.Add('  and ae.eaj_unidade_neg = ' + Trim(EdtPesquisa.Text))
+          else
+            QryMaster.SQL.Add('  and upper(ae.uni_nome) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
+      end;
+
+    2:
+      QryMaster.SQL.Add('  and ae.eaj_status = ' + IntToStr(StrToIntDef(Trim(EdtPesquisa.Text), 0)))
   end;
 
-  QryMaster.SQL.Add('order by m.mat_descricao_resumo');
+  QryMaster.SQL.Add('order by ae.eaj_data, ae.eaj_hora');
   CdsMaster.Open;
-*)
+
   Result := not CdsMaster.IsEmpty;
 end;
 
