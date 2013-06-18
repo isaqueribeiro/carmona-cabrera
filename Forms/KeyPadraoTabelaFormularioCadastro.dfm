@@ -1,7 +1,6 @@
 inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
   Left = 587
   Top = 195
-  ActiveControl = GrpDadosNominais
   Caption = 'Padr'#227'o Tabela/Cadastro Pesquisa '
   PixelsPerInch = 96
   TextHeight = 13
@@ -715,7 +714,6 @@ inherited FrmPadraoTabelaFormularioCadastro: TFrmPadraoTabelaFormularioCadastro
   end
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
-      ActivePage = TbsFormulario
       inherited TbsPrincipal: TcxTabSheet
         inherited DbgTabela: TcxGrid
           inherited DbgTabelaDB: TcxGridDBTableView

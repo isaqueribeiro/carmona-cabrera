@@ -1,12 +1,13 @@
 inherited FrmMaterialGrupo: TFrmMaterialGrupo
   Left = 594
   Top = 190
-  ActiveControl = dbCodigo
+  ActiveControl = EdtPesquisa
   Caption = 'Grupos/Subgrupos de Materiais'
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
+      ActivePage = TbsPrincipal
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpBxPesquisa: TcxGroupBox
           Caption = 'Pesquise o Grupo de Material'
@@ -14,6 +15,7 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
         inherited DbgTabela: TcxGrid
           inherited DbgTabelaDB: TcxGridDBTableView
             object DbgTabelaDBgrp_codigo: TcxGridDBColumn
+              Caption = 'C'#243'digo'
               DataBinding.FieldName = 'grp_codigo'
               MinWidth = 60
               Options.Filtering = False
@@ -22,6 +24,7 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
               Width = 60
             end
             object DbgTabelaDBgrp_descricao: TcxGridDBColumn
+              Caption = 'Descri'#231#227'o'
               DataBinding.FieldName = 'grp_descricao'
               Options.Moving = False
             end
@@ -205,6 +208,7 @@ inherited FrmMaterialGrupo: TFrmMaterialGrupo
       DisplayLabel = 'Descri'#231#227'o'
       FieldName = 'grp_descricao'
       ProviderFlags = [pfInUpdate]
+      Required = True
       Size = 100
     end
   end

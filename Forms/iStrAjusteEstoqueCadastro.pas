@@ -9,7 +9,8 @@ uses
   dxSkinscxPCPainter, cxContainer, cxEdit, FMTBcd, DB, DBClient, Provider,
   SqlExpr, cxGroupBox, cxPC, StdCtrls, cxButtons, ExtCtrls,
   cxImageComboBox, cxDBEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox, cxTextEdit, cxLabel, cxCalendar;
+  cxDBLookupEdit, cxDBLookupComboBox, cxTextEdit, cxLabel, cxCalendar,
+  cxMemo;
 
 type
   TFrmAjusteEstoqueCadastro = class(TFrmPadraoCadastro)
@@ -42,9 +43,29 @@ type
     dbUsuarioAbertura: TcxDBTextEdit;
     lblSituacao: TcxLabel;
     dbSituacao: TcxDBTextEdit;
+    lblTipoAjuste: TcxLabel;
+    dbTipoAjuste: TcxDBLookupComboBox;
+    QryUnidadeNeg: TSQLQuery;
+    DspUnidadeNeg: TDataSetProvider;
+    CdsUnidadeNeg: TClientDataSet;
+    DtsUnidadeNeg: TDataSource;
+    QryCompetencia: TSQLQuery;
+    DspCompetencia: TDataSetProvider;
+    CdsCompetencia: TClientDataSet;
+    DtsCompetencia: TDataSource;
+    QryTipoAjuste: TSQLQuery;
+    DspTipoAjuste: TDataSetProvider;
+    CdsTipoAjuste: TClientDataSet;
+    DtsTipoAjuste: TDataSource;
+    CdsMastereaj_tipo: TStringField;
+    lblObservacao: TcxLabel;
+    dbObservacao: TcxDBMemo;
+    TbsItem: TcxTabSheet;
     procedure FormCreate(Sender: TObject);
+    procedure CdsMasterNewRecord(DataSet: TDataSet);
   private
     { Private declarations }
+    function GetCompetenciaID(inData : TDateTime) : Integer;
   public
     { Public declarations }
     procedure VisualizarConsulta; override;
@@ -70,7 +91,7 @@ uses
   , iStrLogin
   {$ENDIF}
   , KeyResource
-  , KeyPadrao;
+  , KeyPadrao, DateUtils;
 
 {$R *.dfm}
 
@@ -139,8 +160,33 @@ begin
   CampoChave     := 'eaj_ano;eaj_codigo';
   CampoDescricao := 'uni_nome';
 
+  CdsUnidadeNeg.Open;
+  CdsCompetencia.Open;
+  CdsTipoAjuste.Open;
+  
   AbrirTabela := True;
 //  PgCtrlDadosAdcionais.ActivePage := TbsClassificar;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.CdsMasterNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  CdsMastereaj_ano.AsInteger   := YearOf(Date);
+  CdsMastereaj_data.AsDateTime := Date;
+  CdsMastereaj_hora.AsDateTime := Time;
+  CdsMastereaj_competencia.AsInteger     := GetCompetenciaID(CdsMastereaj_data.AsDateTime);
+  CdsMastereaj_usuario_abertura.AsString := gUsuario.Login;
+
+  CdsMastereaj_unidade_neg.Clear;
+  CdsMastereaj_usuario_fechamento.Clear;
+end;
+
+function TFrmAjusteEstoqueCadastro.GetCompetenciaID(inData : TDateTime): Integer;
+begin
+  if not CdsCompetencia.Active then
+    CdsCompetencia.Open;
+
+  CdsCompetencia.Locate('com_ano_mes', FormatDateTime('yyyymm', inData), []);
 end;
 
 end.

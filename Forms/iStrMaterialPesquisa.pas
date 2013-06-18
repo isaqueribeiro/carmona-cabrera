@@ -155,11 +155,16 @@ procedure TFrmMaterialPesquisa.BtnEditarClick(Sender: TObject);
 var
   AForm : TFrmMaterialCadastro;
 begin
+  PermitirEditar := True;
+
   AForm := TFrmMaterialCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
   try
     AForm.SetParametrosPesquisa([CdsMastermat_codigo.AsCurrency]);
     AForm.ExecutarPesquisa;
 
+    if not PermitirEditar then
+      AForm.VisualizarConsulta
+    else
     if ( AForm.ExecutarAlteracao ) then
       CdsMaster.Refresh;
   finally

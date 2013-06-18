@@ -25,6 +25,8 @@ type
     FCampoChave     ,
     FCampoDescricao ,
     FCampoOrdenacao : String;
+    FPermitirEditar ,
+    FPermitirExcluir: Boolean;
     function GetNomeObjetoAcesso : String;
   public
     { Public declarations }
@@ -38,6 +40,8 @@ type
     property CampoChave : String read FCampoChave write FCampoChave;
     property CampoDescricao : String read FCampoDescricao write FCampoDescricao;
     property CampoOrdenacao : String read FCampoOrdenacao write FCampoOrdenacao;
+    property PermitirEditar  : Boolean read FPermitirEditar write FPermitirEditar;
+    property PermitirExcluir : Boolean read FPermitirExcluir write FPermitirExcluir;
 
     constructor CreateTable(const AOnwer : TComponent; const Login : TComponent = nil; const Conexao : TSQLConnection = nil); 
     constructor CreateSelection(const AOnwer : TComponent; const Login : TComponent = nil; const Conexao : TSQLConnection = nil; const Selecao : Boolean = FALSE);
@@ -80,7 +84,7 @@ procedure TFrmPadrao.FormCreate(Sender: TObject);
 begin
   SelecionarRegistro := False;
   FErrorDBNumbers    := 0;
-  
+
   ComponenteLogin  := nil;
   ConexaoDB        := nil;
   TipoObjetoAcesso := toFormulario;
@@ -91,6 +95,9 @@ begin
   CampoOrdenacao := EmptyStr;
 
   FErroLoop := 0;
+
+  FPermitirEditar  := True;
+  FPermitirExcluir := True;
 end;
 
 procedure TFrmPadrao.RefreshDB;

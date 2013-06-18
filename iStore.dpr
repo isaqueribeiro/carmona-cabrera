@@ -36,7 +36,8 @@ uses
   KeyUnidadeNegocio in 'Forms\KeyUnidadeNegocio.pas' {FrmUnidadeNegocio},
   iStrTipoMovimento in 'Forms\iStrTipoMovimento.pas' {FrmTipoMovimento},
   iStrAjusteEstoquePesquisa in 'Forms\iStrAjusteEstoquePesquisa.pas' {FrmAjusteEstoquePesquisa},
-  iStrAjusteEstoqueCadastro in 'Forms\iStrAjusteEstoqueCadastro.pas' {FrmAjusteEstoqueCadastro};
+  iStrAjusteEstoqueCadastro in 'Forms\iStrAjusteEstoqueCadastro.pas' {FrmAjusteEstoqueCadastro},
+  KeyCompetencia in 'Forms\KeyCompetencia.pas' {FrmCompetencia};
 
 {$R *.res}
 

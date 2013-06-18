@@ -93,6 +93,7 @@ begin
   FSQL_Master.AddStrings( QryMaster.SQL );
 
   PgCtrlMain.ActivePage := TbsPrincipal;
+
   AbrirTabela := False;
 end;
 
