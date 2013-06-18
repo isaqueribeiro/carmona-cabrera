@@ -19,8 +19,6 @@ type
     dbCodigo: TcxDBTextEdit;
     lblDescricao: TcxLabel;
     dbDescricao: TcxDBTextEdit;
-    CdsMastergrp_codigo: TSmallintField;
-    CdsMastergrp_descricao: TStringField;
     DbgTabelaDBgrp_codigo: TcxGridDBColumn;
     DbgTabelaDBgrp_descricao: TcxGridDBColumn;
     QryDetail: TSQLQuery;
@@ -37,6 +35,8 @@ type
     DbgDetailLvl: TcxGridLevel;
     DbgDetailTblsgp_codigo: TcxGridDBColumn;
     DbgDetailTblsgp_descricao: TcxGridDBColumn;
+    CdsMastergrp_codigo: TSmallintField;
+    CdsMastergrp_descricao: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure DtsMasterStateChange(Sender: TObject);

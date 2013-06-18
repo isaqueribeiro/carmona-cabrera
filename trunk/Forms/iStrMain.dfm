@@ -2398,7 +2398,9 @@ object FrmMain: TFrmMain
       Caption = '&Empresas'
     end
     object ActnCompetencia: TAction
+      Category = 'Tabelas Auxiliares'
       Caption = 'Com%pet'#234'ncia'
+      OnExecute = ActnCompetenciaExecute
     end
     object ActnUnidadeNegocio: TAction
       Category = 'Tabelas Auxiliares'

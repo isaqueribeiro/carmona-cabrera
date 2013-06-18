@@ -116,6 +116,7 @@ type
     procedure ActnUnidadeNegocioExecute(Sender: TObject);
     procedure ActnTipoMovimentoExecute(Sender: TObject);
     procedure ActnAjusteEstoqueExecute(Sender: TObject);
+    procedure ActnCompetenciaExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -138,6 +139,7 @@ uses
   , KeyObjeto
   , KeyUnidadeNegocio
   , KeySetor
+  , KeyCompetencia
   , iStrLogin
   , iStrUnidadeMedida
   , iStrMaterialTipo
@@ -371,6 +373,16 @@ begin
     FrmAjusteEstoquePesquisa.ShowModal;
   finally
     FrmAjusteEstoquePesquisa.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnCompetenciaExecute(Sender: TObject);
+begin
+  FrmCompetencia := TFrmCompetencia.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmCompetencia.ShowModal;
+  finally
+    FrmCompetencia.Free;
   end;
 end;
 

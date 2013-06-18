@@ -120,7 +120,7 @@ begin
   if not BtnSelecionar.Visible then
   begin
     if BtnEditar.Visible and BtnEditar.Enabled then
-      BtnEditar.Click; 
+      BtnEditar.Click;
   end
   else
     inherited;

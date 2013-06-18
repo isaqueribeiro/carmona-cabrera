@@ -8,7 +8,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
     inherited PgCtrlMain: TcxPageControl
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpDadosNominais: TcxGroupBox
-          Height = 113
+          Height = 193
           object lblCodigo: TcxLabel
             Left = 39
             Top = 26
@@ -80,22 +80,24 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           object dbCompetencia: TcxDBLookupComboBox
             Left = 112
             Top = 48
+            DataBinding.DataField = 'eaj_competencia'
             DataBinding.DataSource = DtsMaster
             Properties.DropDownListStyle = lsFixedList
-            Properties.KeyFieldNames = 'tip_codigo'
+            Properties.KeyFieldNames = 'com_codigo'
             Properties.ListColumns = <
               item
-                FieldName = 'tip_descricao'
+                FieldName = 'com_nome'
               end>
             Properties.ListOptions.ShowHeader = False
-            TabOrder = 8
+            Properties.ListSource = DtsCompetencia
+            TabOrder = 6
             Width = 129
           end
           object dbData: TcxDBDateEdit
             Left = 360
             Top = 48
             DataBinding.DataSource = DtsMaster
-            TabOrder = 6
+            TabOrder = 8
             Width = 121
           end
           object lblHora: TcxLabel
@@ -149,10 +151,58 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
             DataBinding.DataSource = DtsMaster
             Properties.ReadOnly = True
             Style.Color = 8454143
-            TabOrder = 14
+            TabOrder = 16
             Width = 153
           end
+          object lblTipoAjuste: TcxLabel
+            Left = 81
+            Top = 74
+            Caption = 'Tipo'
+            FocusControl = dbTipoAjuste
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbTipoAjuste: TcxDBLookupComboBox
+            Left = 112
+            Top = 72
+            DataBinding.DataField = 'eaj_tipo'
+            DataBinding.DataSource = DtsMaster
+            Properties.DropDownListStyle = lsFixedList
+            Properties.KeyFieldNames = 'tmv_codigo'
+            Properties.ListColumns = <
+              item
+                FieldName = 'tmv_descricao'
+              end>
+            Properties.ListOptions.ShowHeader = False
+            Properties.ListSource = DtsTipoAjuste
+            TabOrder = 14
+            Width = 465
+          end
+          object lblObservacao: TcxLabel
+            Left = 38
+            Top = 98
+            Caption = 'Observa'#231#245'es'
+            FocusControl = dbObservacao
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbObservacao: TcxDBMemo
+            Left = 112
+            Top = 96
+            DataBinding.DataField = 'eaj_obs'
+            DataBinding.DataSource = DtsMaster
+            Properties.MaxLength = 250
+            TabOrder = 18
+            Height = 81
+            Width = 673
+          end
         end
+      end
+      object TbsItem: TcxTabSheet
+        Caption = 'Items'
+        ImageIndex = 30
       end
     end
   end
@@ -178,6 +228,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       '  , ae.eaj_hora'
       '  , ae.eaj_competencia'
       '  , ae.eaj_unidade_neg'
+      '  , ae.eaj_tipo'
       '  , ae.eaj_obs'
       '  , ae.eaj_status'
       '  , ae.eaj_usuario_abertura'
@@ -192,6 +243,12 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
         'eg)'
       'where ae.eaj_ano = :eaj_ano'
       '  and ae.eaj_codigo = :eaj_codigo')
+    Left = 568
+    Top = 8
+  end
+  inherited DspMaster: TDataSetProvider
+    Left = 600
+    Top = 8
   end
   inherited CdsMaster: TClientDataSet
     Params = <
@@ -207,6 +264,9 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
         ParamType = ptInput
         Value = 0
       end>
+    OnNewRecord = CdsMasterNewRecord
+    Left = 632
+    Top = 8
     object CdsMastereaj_ano: TSmallintField
       FieldName = 'eaj_ano'
       ProviderFlags = [pfInUpdate, pfInKey]
@@ -226,13 +286,21 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       ProviderFlags = [pfInUpdate]
     end
     object CdsMastereaj_competencia: TSmallintField
+      Alignment = taLeftJustify
       FieldName = 'eaj_competencia'
       ProviderFlags = [pfInUpdate]
     end
     object CdsMastereaj_unidade_neg: TSmallintField
+      Alignment = taLeftJustify
       FieldName = 'eaj_unidade_neg'
       ProviderFlags = [pfInUpdate]
       Required = True
+    end
+    object CdsMastereaj_tipo: TStringField
+      FieldName = 'eaj_tipo'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Size = 3
     end
     object CdsMastereaj_obs: TStringField
       FieldName = 'eaj_obs'
@@ -240,6 +308,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       Size = 250
     end
     object CdsMastereaj_status: TSmallintField
+      Alignment = taLeftJustify
       FieldName = 'eaj_status'
       ProviderFlags = [pfInUpdate]
     end
@@ -273,5 +342,105 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       ProviderFlags = []
       Size = 60
     end
+  end
+  inherited DtsMaster: TDataSource
+    Left = 664
+    Top = 8
+  end
+  object QryUnidadeNeg: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'Select'
+      '    s.sit_codigo'
+      '  , s.sit_nome'
+      'from sys_situacao s'
+      'where s.sit_codigo in (0, 1, 2, 4)'
+      'order by'
+      '    s.sit_codigo')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 704
+    Top = 8
+  end
+  object DspUnidadeNeg: TDataSetProvider
+    DataSet = QryUnidadeNeg
+    Left = 736
+    Top = 8
+  end
+  object CdsUnidadeNeg: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspUnidadeNeg'
+    Left = 768
+    Top = 8
+  end
+  object DtsUnidadeNeg: TDataSource
+    DataSet = CdsUnidadeNeg
+    Left = 800
+    Top = 8
+  end
+  object QryCompetencia: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'Select'
+      '    c.com_codigo'
+      '  , c.com_ano_mes'
+      '  , c.com_nome'
+      'from sys_competencia c'
+      'order by'
+      '    c.com_ano_mes')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 704
+    Top = 40
+  end
+  object DspCompetencia: TDataSetProvider
+    DataSet = QryCompetencia
+    Left = 736
+    Top = 40
+  end
+  object CdsCompetencia: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspCompetencia'
+    Left = 768
+    Top = 40
+  end
+  object DtsCompetencia: TDataSource
+    DataSet = CdsCompetencia
+    Left = 800
+    Top = 40
+  end
+  object QryTipoAjuste: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'Select'
+      '    t.tmv_codigo'
+      '  , t.tmv_descricao'
+      'from str_tipo_movimento t'
+      'where t.tmv_grupo = 1'
+      'order by'
+      '    t.tmv_codigo')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 704
+    Top = 72
+  end
+  object DspTipoAjuste: TDataSetProvider
+    DataSet = QryTipoAjuste
+    Left = 736
+    Top = 72
+  end
+  object CdsTipoAjuste: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspTipoAjuste'
+    Left = 768
+    Top = 72
+  end
+  object DtsTipoAjuste: TDataSource
+    DataSet = CdsTipoAjuste
+    Left = 800
+    Top = 72
   end
 end
