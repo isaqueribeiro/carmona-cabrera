@@ -141,7 +141,7 @@ begin
 
     // Atualizar pesquisa
     VK_F5:
-      if CdsMaster.Active then
+      if CdsMaster.Active and (not (CdsMaster.State in [dsEdit, dsInsert])) then
       begin
         CdsMaster.Close;
         CdsMaster.Open;

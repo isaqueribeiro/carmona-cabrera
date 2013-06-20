@@ -328,6 +328,8 @@ begin
 
   CdsMastermat_data_cadastro.AsDateTime := Now;
   CdsMastermat_log_insert.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+
+  CarregarSetores;
 end;
 
 procedure TFrmMaterialCadastro.CdsMasterBeforePost(DataSet: TDataSet);
