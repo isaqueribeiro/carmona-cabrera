@@ -40,6 +40,8 @@ type
     DbgTabelaDBCodigo: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterCalcFields(DataSet: TDataSet);
+    procedure BtnNovoClick(Sender: TObject);
+    procedure BtnEditarClick(Sender: TObject);
   private
     { Private declarations }
     procedure InciarDatas;
@@ -66,7 +68,8 @@ uses
   {$ENDIF}
   , KeyResource
   , KeyPadrao
-  , KeyPadraoTabela;
+  , KeyPadraoTabela
+  , iStrAjusteEstoqueCadastro;
 
 {$R *.dfm}
 
@@ -150,6 +153,42 @@ end;
 procedure TFrmAjusteEstoquePesquisa.CdsMasterCalcFields(DataSet: TDataSet);
 begin
   CdsMasterCodigo.AsString := CdsMastereaj_ano.AsString + '/' + FormatFloat('#######000', CdsMastereaj_codigo.AsInteger);
+end;
+
+procedure TFrmAjusteEstoquePesquisa.BtnNovoClick(Sender: TObject);
+var
+  AForm : TFrmAjusteEstoqueCadastro;
+begin
+  AForm := TFrmAjusteEstoqueCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    AForm.SetParametrosPesquisa([0, 0]);
+    
+    if ( AForm.ExecutarInsercao ) then
+      CdsMaster.Refresh;
+  finally
+    AForm.Free;
+  end;
+end;
+
+procedure TFrmAjusteEstoquePesquisa.BtnEditarClick(Sender: TObject);
+var
+  AForm : TFrmAjusteEstoqueCadastro;
+begin
+  PermitirEditar := True;
+
+  AForm := TFrmAjusteEstoqueCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    AForm.SetParametrosPesquisa([CdsMastereaj_ano.AsInteger, CdsMastereaj_codigo.AsInteger]);
+    AForm.ExecutarPesquisa;
+
+    if not PermitirEditar then
+      AForm.VisualizarConsulta
+    else
+    if ( AForm.ExecutarAlteracao ) then
+      CdsMaster.Refresh;
+  finally
+    AForm.Free;
+  end;
 end;
 
 end.

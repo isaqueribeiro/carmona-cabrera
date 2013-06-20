@@ -14,6 +14,12 @@ inherited FrmAjusteEstoquePesquisa: TFrmAjusteEstoquePesquisa
     inherited BtnSelecionar: TcxButton
       Left = 913
     end
+    inherited BtnNovo: TcxButton
+      OnClick = BtnNovoClick
+    end
+    inherited BtnEditar: TcxButton
+      OnClick = BtnEditarClick
+    end
   end
   inherited PnlTabela: TPanel
     Width = 1041

@@ -276,12 +276,20 @@ function TFrmPadrao.MaxCodDetail(const DataSet : TClientDataSet; sCampo : String
   const bLoop : Boolean = FALSE) : Integer;
 var
   iReturn : Integer;
+  cds : TClientDataSet;
 begin
-  iReturn := DataSet.RecordCount + 1;
-  if bLoop then
-    while DataSet.Locate(scampo, iReturn, []) do
-      Inc(iReturn);
-  Result := iReturn;
+  cds := TClientDataSet.Create(nil);
+  try
+    cds.CloneCursor( DataSet, False );
+
+    iReturn := cds.RecordCount + 1;
+    if bLoop then
+      while cds.Locate(scampo, iReturn, []) do
+        Inc(iReturn);
+  finally
+    cds.Free;
+    Result := iReturn;
+  end;
 end;
 
 function TFrmPadrao.GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;

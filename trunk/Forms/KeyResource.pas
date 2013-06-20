@@ -42,6 +42,11 @@ var
   DtmResource: TDtmResource;
   gUsuario   : TUsuario;
 
+const
+  STATUS_AJUSTE_ESTOQUE_ABERTO    = 0;
+  STATUS_AJUSTE_ESTOQUE_ENCERRADO = 1;
+  STATUS_AJUSTE_ESTOQUE_CANCELADO = 2;
+
   function DelphiIsRunning : Boolean;
   
 implementation

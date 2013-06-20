@@ -888,7 +888,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 DataBinding.DataSource = DtsMaster
                 Properties.ReadOnly = True
                 Style.Color = 8454143
-                TabOrder = 8
+                TabOrder = 7
                 Width = 145
               end
             end
