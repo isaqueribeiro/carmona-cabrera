@@ -13,7 +13,7 @@ uses
   cxMemo, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
-  cxButtonEdit;
+  cxButtonEdit, DateUtils;
 
 type
   TFrmAjusteEstoqueCadastro = class(TFrmPadraoCadastro)
@@ -121,6 +121,7 @@ type
     DbgItemDBitm_qtde_nova: TcxGridDBColumn;
     DbgItemDBmat_descricao_resumo: TcxGridDBColumn;
     DbgItemDBund_descricao: TcxGridDBColumn;
+    CdsMasterItens: TBCDField;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMastereaj_statusGetText(Sender: TField; var Text: String;
@@ -138,10 +139,18 @@ type
     procedure BtnSalvarItemClick(Sender: TObject);
     procedure BtnCancelarItemClick(Sender: TObject);
     procedure PgCtrlMainChange(Sender: TObject);
+    procedure dbItemCodigoKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure dbItemCodigoPropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure DtsDetailDataChange(Sender: TObject; Field: TField);
+    procedure BtnExcluirClick(Sender: TObject);
+    procedure BtnEditarClick(Sender: TObject);
   private
     { Private declarations }
     procedure CarregarItens;
     procedure GravarItens;
+    procedure CarregarDadosMaterial;
 
     function GetCompetenciaID(inData : TDateTime) : Smallint;
   public
@@ -171,7 +180,7 @@ uses
   , KeyResource
   , KeyPadrao
   , KeyRequiredFields
-  , DateUtils;
+  , iStrMaterialPesquisa;
 
 {$R *.dfm}
 
@@ -263,6 +272,7 @@ begin
 
   CdsMastereaj_unidade_neg.Clear;
   CdsMastereaj_usuario_fechamento.Clear;
+  CdsMasterItens.Clear;
 
   CarregarItens;
 end;
@@ -298,14 +308,20 @@ end;
 
 procedure TFrmAjusteEstoqueCadastro.CdsMasterBeforePost(DataSet: TDataSet);
 begin
-  if (CdsMaster.State = dsInsert) then
-    CdsMastereaj_codigo.AsInteger := MaxCod(NomeTabela, CampoChave, 'eaj_ano = ' + CdsMastereaj_ano.AsString);
+  if CdsDetail.IsEmpty then
+    CdsMasterItens.Clear
+  else
+    CdsMasterItens.AsInteger := CdsDetail.RecordCount;
 
+  if (CdsMaster.State = dsInsert) then
+    CdsMastereaj_codigo.AsInteger := MaxCod(NomeTabela, CampoChave, 'eaj_ano = ' + CdsMastereaj_ano.AsString)
+  else
   if ( CdsMaster.Modified and (CdsMaster.State = dsEdit) ) then
     CdsMastereaj_log_update.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
 
   if ( CdsMastereaj_status.AsInteger = STATUS_AJUSTE_ESTOQUE_CANCELADO ) then
     CdsMastereaj_log_inactive.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+
   inherited;
 end;
 
@@ -467,6 +483,111 @@ begin
     1: // Itens
       DbgItem.SetFocus;
   end;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.dbItemCodigoKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_DELETE) and (Shift = [ssCtrl]) then
+    if ( CdsDetail.State in [dsEdit, dsInsert] ) then
+    begin
+      CdsDetailitm_fracionador.AsInteger := 1;
+      
+      CdsDetailitm_material.Clear;
+      CdsDetailmat_descricao_resumo.Clear;
+      CdsDetailitm_unidade_consumo.Clear;
+    end;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.dbItemCodigoPropertiesButtonClick(
+  Sender: TObject; AButtonIndex: Integer);
+var
+  AForm : TFrmMaterialPesquisa;
+begin
+  AForm := TFrmMaterialPesquisa.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    if ( CdsDetail.State in [dsEdit, dsInsert] ) then
+    begin
+      AForm.SelecionarRegistro := True;
+      if ( AForm.ShowModal = mrOk ) then
+      begin
+        CdsDetailitm_material.Assign( AForm.CdsMastermat_codigo );
+        CdsDetailmat_descricao_resumo.Assign( AForm.CdsMastermat_descricao_resumo );
+        CdsDetailitm_unidade_consumo.Assign( AForm.CdsMastermat_unidade_consumo );
+        CdsDetailitm_fracionador.Assign( AForm.CdsMastermat_fracionador );
+      end;
+    end;
+  finally
+    AForm.Free;
+  end;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.CarregarDadosMaterial;
+var
+  cds : TClientDataSet;
+begin
+  if ( CdsDetail.State in [dsEdit, dsInsert] ) then
+  begin
+    cds := TClientDataSet.Create(nil);
+    try
+      if GetDataSetDB(cds, 'str_material', 'mat_codigo = ' + CdsDetailitm_material.AsString) then
+      begin
+        CdsDetailmat_descricao_resumo.Assign( cds.FieldByName('mat_descricao_resumo') );
+        CdsDetailitm_unidade_consumo.Assign( cds.FieldByName('mat_unidade_consumo') );
+        CdsDetailitm_fracionador.Assign( cds.FieldByName('mat_fracionador') );
+      end
+      else
+      begin
+        CdsDetailmat_descricao_resumo.Clear;
+        CdsDetailitm_unidade_consumo.Clear;
+        CdsDetailitm_fracionador.Clear;
+      end;
+    finally
+      cds.Free;
+    end;
+  end;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.DtsDetailDataChange(Sender: TObject;
+  Field: TField);
+begin
+  if ( Field = CdsDetailitm_material ) then
+    if ( not CdsDetailitm_material.IsNull ) then
+      CarregarDadosMaterial;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.BtnExcluirClick(Sender: TObject);
+var
+  sMsg : String;
+begin
+  Case CdsMastereaj_status.AsInteger of
+    STATUS_AJUSTE_ESTOQUE_ENCERRADO:
+      sMsg := 'Ajuste de estoque encerrado!';
+    STATUS_AJUSTE_ESTOQUE_CANCELADO:
+      sMsg := 'Ajuste de estoque cancelado!';
+  end;
+
+  if ( CdsMastereaj_status.AsInteger > 0 ) then
+    ShowMessageStop('Este movimento não poderá ser excluído.' + #13 + sMsg)
+  else
+    inherited;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.BtnEditarClick(Sender: TObject);
+var
+  sMsg : String;
+begin
+  Case CdsMastereaj_status.AsInteger of
+    STATUS_AJUSTE_ESTOQUE_ENCERRADO:
+      sMsg := 'Ajuste de estoque encerrado!';
+    STATUS_AJUSTE_ESTOQUE_CANCELADO:
+      sMsg := 'Ajuste de estoque cancelado!';
+  end;
+
+  if ( CdsMastereaj_status.AsInteger > 0 ) then
+    ShowMessageStop('Este movimento não poderá ser alterado.' + #13 + sMsg)
+  else
+    inherited;
 end;
 
 end.

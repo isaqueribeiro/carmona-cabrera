@@ -126,7 +126,7 @@ begin
   ConexaoDB       := FrmLogin.conWebMaster;
 
   NomeTabela     := 'str_estoque_ajuste';
-  CampoChave     := 'eaj_ano;eaj_codigo';
+  CampoChave     := 'eaj_codigo';
   CampoDescricao := 'uni_nome';
   CampoOrdenacao := 'eaj_data, eaj_hora';
 
@@ -143,11 +143,20 @@ begin
 end;
 
 function TFrmAjusteEstoquePesquisa.PermitirExcluirRegistro: Boolean;
+var
+  sMsg : String;
 begin
+  Case CdsMastereaj_status.AsInteger of
+    STATUS_AJUSTE_ESTOQUE_ENCERRADO:
+      sMsg := 'Ajuste de estoque encerrado!';
+    STATUS_AJUSTE_ESTOQUE_CANCELADO:
+      sMsg := 'Ajuste de estoque cancelado!';
+  end;
+
   Result := (CdsMastereaj_status.AsInteger = 0);
 
   if not Result then
-    ShowMessageWarning('Registro de Ajuste de Estoque não pode ser excluído por está encerrado ou cancelado!', 'Exclusão');
+    ShowMessageStop('Registro de Ajuste de Estoque não pode ser excluído.' + #13 + sMsg, 'Exclusão');
 end;
 
 procedure TFrmAjusteEstoquePesquisa.CdsMasterCalcFields(DataSet: TDataSet);
@@ -174,7 +183,7 @@ procedure TFrmAjusteEstoquePesquisa.BtnEditarClick(Sender: TObject);
 var
   AForm : TFrmAjusteEstoqueCadastro;
 begin
-  PermitirEditar := True;
+  PermitirEditar := (CdsMastereaj_status.AsInteger = 0);
 
   AForm := TFrmAjusteEstoqueCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
   try

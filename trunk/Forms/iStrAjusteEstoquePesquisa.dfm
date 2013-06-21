@@ -212,6 +212,7 @@ inherited FrmAjusteEstoquePesquisa: TFrmAjusteEstoquePesquisa
       Size = 250
     end
     object CdsMastereaj_status: TSmallintField
+      Alignment = taLeftJustify
       FieldName = 'eaj_status'
       ProviderFlags = [pfInUpdate]
     end
