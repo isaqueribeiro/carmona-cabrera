@@ -56,6 +56,7 @@ type
     function MaxCod_Currency(sTabela, sCampo, sWhereSQL : String) : Currency;
     function MaxCodDetail(const DataSet : TClientDataSet; sCampo : String; const bLoop : Boolean = FALSE) : Integer;
     function GetValorDB(sTabela, sCampo, sWhereSQL : String) : Variant;
+    function GetDataSetDB(var DataSet : TClientDataSet; sTabela, sWhereSQL : String) : Boolean;
     function ExecutarInsertTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarUpdateTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
     function ExecutarDeleteTable(DataSet: TDataSet; const sTabela : String; const AutoStartTransaction : Boolean = TRUE) : Boolean;
@@ -387,8 +388,11 @@ begin
       if tpField.DataType in [ftDate] then
         sValues := sValues + QuotedStr(GetDateToSGDB(tpField.Value))
       else
-      if tpField.DataType in [ftDateTime] then
+      if tpField.DataType in [ftDate, ftDateTime] then
         sValues := sValues + QuotedStr(GetDateTimeToSGDB(tpField.Value))
+      else
+      if tpField.DataType in [ftTime] then
+        sValues := sValues + QuotedStr(GetTimeToSGDB(tpField.Value))
       else
         sValues := sValues + ':' + AnsiLowerCase(tpField.FieldName);
 
@@ -494,8 +498,11 @@ begin
         if tpField.DataType in [ftDate] then
           s := QuotedStr(GetDateToSGDB(tpField.Value))
         else
-        if tpField.DataType in [ftDateTime] then
+        if tpField.DataType in [ftDate, ftDateTime] then
           s := QuotedStr(GetDateTimeToSGDB(tpField.Value))
+        else
+        if tpField.DataType in [ftTime] then
+          s := QuotedStr(GetTimeToSGDB(tpField.Value))
         else
           s := ':' + sField;
 
@@ -524,8 +531,11 @@ begin
         if tpField.DataType in [ftDate] then
           s := QuotedStr(GetDateToSGDB(tpField.Value))
         else
-        if tpField.DataType in [ftDateTime] then
+        if tpField.DataType in [ftDate, ftDateTime] then
           s := QuotedStr(GetDateTimeToSGDB(tpField.Value))
+        else
+        if tpField.DataType in [ftTime] then
+          s := QuotedStr(GetTimeToSGDB(tpField.Value))
         else
           s := ':' + sField;
 
@@ -630,8 +640,11 @@ begin
       if tpField.DataType in [ftDate] then
         s := QuotedStr(GetDateToSGDB(tpField.Value))
       else
-      if tpField.DataType in [ftDateTime] then
+      if tpField.DataType in [ftDate, ftDateTime] then
         s := QuotedStr(GetDateTimeToSGDB(tpField.Value))
+      else
+      if tpField.DataType in [ftTime] then
+        s := QuotedStr(GetTimeToSGDB(tpField.Value))
       else
         s := ':' + sFieldName;
 
@@ -733,8 +746,11 @@ begin
       if tpField.DataType in [ftDate] then
         s := QuotedStr(GetDateToSGDB(tpField.Value))
       else
-      if tpField.DataType in [ftDateTime] then
+      if tpField.DataType in [ftDate, ftDateTime] then
         s := QuotedStr(GetDateTimeToSGDB(tpField.Value))
+      else
+      if tpField.DataType in [ftTime] then
+        s := QuotedStr(GetTimeToSGDB(tpField.Value))
       else
         s := ':' + sFieldName;
 
@@ -821,6 +837,44 @@ begin
       RefreshDB;
       ExecutarScriptSQL(ScriptSQL, AutoStartTransaction);
     end;
+  end;
+end;
+
+function TFrmPadrao.GetDataSetDB(var DataSet: TClientDataSet; sTabela,
+  sWhereSQL: String): Boolean;
+var
+  qry : TSQLQuery;
+  dsp : TDataSetProvider;
+  cds : TClientDataSet;
+begin
+
+  sTabela   := Trim( AnsiLowerCase(sTabela) );
+  sWhereSQL := Trim( AnsiLowerCase(sWhereSQL) );
+
+  if sWhereSQL <> EmptyStr then
+    sWhereSQL := Trim('where ' + sWhereSQL);
+
+  qry := TSQLQuery.Create(nil);
+  dsp := TDataSetProvider.Create(nil);
+  cds := TClientDataSet.Create(nil);
+
+  Screen.Cursor := crSQLWait;
+  try
+    qry.SQLConnection := ConexaoDB;
+    qry.SQL.Text := 'Select * from ' + sTabela + ' ' + sWhereSQL;
+
+    dsp.DataSet := qry;
+    cds.SetProvider(dsp);
+
+    cds.Open;
+    DataSet.CloneCursor( cds, False );
+
+    Result := not DataSet.IsEmpty;
+  finally
+    Screen.Cursor := crDefault;
+    qry.Free;
+    dsp.Free;
+    cds.Free;
   end;
 end;
 

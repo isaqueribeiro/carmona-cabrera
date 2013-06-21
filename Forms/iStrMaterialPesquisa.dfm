@@ -277,6 +277,9 @@ inherited FrmMaterialPesquisa: TFrmMaterialPesquisa
       '  , m.mat_valor_venda_frc'
       '  , m.mat_data_cadastro'
       '  , m.mat_ultcompra_data'
+      '  , m.mat_unidade_compra'
+      '  , m.mat_unidade_consumo'
+      '  , m.mat_fracionador'
       '  , t.tip_descricao'
       '  , g.grp_descricao'
       '  , s.sgp_descricao'
@@ -386,6 +389,21 @@ inherited FrmMaterialPesquisa: TFrmMaterialPesquisa
       FieldName = 'mat_ultcompra_data'
       ProviderFlags = [pfInUpdate]
       DisplayFormat = 'dd/mm/yyyy'
+    end
+    object CdsMastermat_unidade_compra: TIntegerField
+      FieldName = 'mat_unidade_compra'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMastermat_unidade_consumo: TIntegerField
+      FieldName = 'mat_unidade_consumo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMastermat_fracionador: TFMTBCDField
+      FieldName = 'mat_fracionador'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Precision = 20
+      Size = 4
     end
     object CdsMastertip_descricao: TStringField
       DisplayLabel = 'Tipo'

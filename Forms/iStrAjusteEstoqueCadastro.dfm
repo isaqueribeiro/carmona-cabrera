@@ -580,7 +580,9 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
                   Default = True
                   Kind = bkEllipsis
                 end>
+              Properties.OnButtonClick = dbItemCodigoPropertiesButtonClick
               TabOrder = 3
+              OnKeyDown = dbItemCodigoKeyDown
               Width = 81
             end
             object dbItemDescricao: TcxDBTextEdit
@@ -811,6 +813,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       '  , ae.eaj_log_update'
       '  , ae.eaj_log_inactive'
       '  , un.uni_nome'
+      '  , 0 as Itens'
       'from str_estoque_ajuste ae'
       
         '  inner join mny_unidade un on (un.uni_codigo = ae.eaj_unidade_n' +
@@ -927,6 +930,13 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       FieldName = 'uni_nome'
       ProviderFlags = []
       Size = 60
+    end
+    object CdsMasterItens: TBCDField
+      FieldName = 'Itens'
+      ProviderFlags = []
+      Required = True
+      Precision = 1
+      Size = 0
     end
   end
   inherited DtsMaster: TDataSource
@@ -1110,14 +1120,16 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
     object CdsDetailitm_sequencia: TSmallintField
       Alignment = taCenter
       FieldName = 'itm_sequencia'
-      ProviderFlags = [pfInUpdate]
+      ProviderFlags = [pfInUpdate, pfInKey]
       Required = True
     end
     object CdsDetailitm_material: TFMTBCDField
+      Alignment = taCenter
       DisplayLabel = 'Material/Produto'
       FieldName = 'itm_material'
       ProviderFlags = [pfInUpdate]
       Required = True
+      DisplayFormat = '00000'
       Precision = 20
       Size = 0
     end
@@ -1169,6 +1181,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
     AutoEdit = False
     DataSet = CdsDetail
     OnStateChange = DtsDetailStateChange
+    OnDataChange = DtsDetailDataChange
     Left = 112
     Top = 392
   end

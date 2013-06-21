@@ -19,6 +19,7 @@ type
   function GetFileNameINI : String;
   function GetDateToSGDB(const Data : Variant; const Quoted: Boolean = FALSE): string;
   function GetDateTimeToSGDB(const Data : Variant; const Quoted: Boolean = FALSE): string;
+  function GetTimeToSGDB(const Data : Variant; const Quoted: Boolean = FALSE): string;
 
   function StrIsInteger(const S : String) : Boolean;
 
@@ -114,6 +115,24 @@ begin
   end;
 
   sFormat := 'yyyy-mm-dd hh:mm:ss'; // Formato MySQL
+  Result  := FormatDateTime(sFormat, VarToDateTime(Data));
+
+  if Quoted then
+    Result := QuotedStr(Result);
+end;
+
+function GetTimeToSGDB(const Data : Variant; const Quoted: Boolean = FALSE) : String;
+var
+  sFormat : String;
+begin
+
+  if VarIsNull(Data) or (Data = EncodeDate(1899, 12, 30)) then
+  begin
+    Result := 'NULL';
+    Exit;
+  end;
+
+  sFormat := 'hh:mm:ss'; // Formato MySQL
   Result  := FormatDateTime(sFormat, VarToDateTime(Data));
 
   if Quoted then
