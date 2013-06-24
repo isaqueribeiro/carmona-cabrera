@@ -156,7 +156,7 @@ begin
   Result := (CdsMastereaj_status.AsInteger = 0);
 
   if not Result then
-    ShowMessageStop('Registro de Ajuste de Estoque não pode ser excluído.' + #13 + sMsg, 'Exclusão');
+    ShowMessageStop('Este movimento não poderá ser excluído.' + #13 + sMsg);
 end;
 
 procedure TFrmAjusteEstoquePesquisa.CdsMasterCalcFields(DataSet: TDataSet);
@@ -182,7 +182,15 @@ end;
 procedure TFrmAjusteEstoquePesquisa.BtnEditarClick(Sender: TObject);
 var
   AForm : TFrmAjusteEstoqueCadastro;
+  sMsg : String;
 begin
+  Case CdsMastereaj_status.AsInteger of
+    STATUS_AJUSTE_ESTOQUE_ENCERRADO:
+      sMsg := 'Ajuste de estoque encerrado!';
+    STATUS_AJUSTE_ESTOQUE_CANCELADO:
+      sMsg := 'Ajuste de estoque cancelado!';
+  end;
+
   PermitirEditar := (CdsMastereaj_status.AsInteger = 0);
 
   AForm := TFrmAjusteEstoqueCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);

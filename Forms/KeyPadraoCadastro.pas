@@ -32,6 +32,7 @@ type
     DtsMaster: TDataSource;
     BtnEditar: TcxButton;
     BtnExcluir: TcxButton;
+    BtnImprimir: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
@@ -164,6 +165,13 @@ begin
         if (PgCtrlMain.ActivePage <> TbsPrincipal) then
           PgCtrlMain.ActivePage := TbsPrincipal;
       end;
+
+    // Imprimir
+    80:
+      if ( Shift = [ssCtrl] ) then
+        if ( BtnImprimir.Visible and BtnImprimir.Enabled ) then
+          BtnImprimir.Click;
+
   end;
 
 end;
@@ -211,6 +219,7 @@ begin
   BtnCancelar.Enabled := ( CdsMaster.State in [dsEdit, dsInsert] );
   BtnSalvar.Enabled   := ( CdsMaster.State in [dsEdit, dsInsert] );
   btnFechar.Enabled   := ( not (CdsMaster.State in [dsEdit, dsInsert]) );
+  BtnImprimir.Enabled := ( not (CdsMaster.State in [dsEdit, dsInsert]) and (not CdsMaster.IsEmpty) );
 end;
 
 procedure TFrmPadraoCadastro.BtnNovoClick(Sender: TObject);
