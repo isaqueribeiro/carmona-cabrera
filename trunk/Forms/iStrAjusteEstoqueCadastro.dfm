@@ -4,6 +4,131 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
   Caption = 'Cadastro de Ajuste de Estoque'
   PixelsPerInch = 96
   TextHeight = 13
+  inherited PnlMain: TPanel
+    inherited BtnImprimir: TcxButton
+      TabOrder = 7
+      Visible = True
+      OnClick = BtnImprimirClick
+    end
+    object BtnProcesso: TcxButton
+      Left = 721
+      Top = 9
+      Width = 55
+      Height = 55
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 6
+      TabStop = False
+      OnClick = BtnProcessoClick
+      Align = alRight
+      Glyph.Data = {
+        360C0000424D360C000000000000360000002800000020000000200000000100
+        180000000000000C0000120B0000120B00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFF73B96FBAE8BFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFF1F1F1CECECEA9A9A9C7C7C7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5EB85E
+        6CE27EAAEFB5E8F8EAFFFFFF5DB0594ACF5DEEF8EFF5F5F5D0D0D0ADADAD8E8E
+        8E7D7D7D8686868080805757577A7A7ADADADAFFFFFFFFFFFFFFFFFFFFFFFFBD
+        D6FC97B4EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF39A538
+        65DF7955E66E57EA717DEB8F4FBE5546D95E58B3657373737A7A7A7F7F7F8484
+        848989898C8C8C8585855B5B5B5656565050508C8C8CEDEDEDFFFFFFC0D4F94C
+        92FA7298E9FFFFFFFFFFFFF8FAFED1DDF8A3B8F1BFCDF4FFFFFFFFFFFF36A134
+        60D57266E17A57E77057EB7157EB7151E56A44D75B688F6C8282828787878B8B
+        8B8F8F8F9191918989895D5D5D5959595353534D4D4D4F4F4F8F9DC14079EC45
+        88F65E91ED99C1FC6FA7FA4684F13870E93163E22F5DDAFFFFFFFFFFFF359F33
+        57CC6761D77369E37D5BE97457EB7157EB7150E36949CA5D858B858E8E8E9191
+        919595959797978E8E8E6060605C5C5C5757575050504B55703E6ADE3A70E840
+        7FF14990FA4D98FE4D97FE478BF83D79EE3569E62F5EDAFFFFFFFFFFFFA9E2AE
+        65D17354D16763D9756DE48164EB7B58EC7256EA704EE26762B46D9595959999
+        999B9B9B9C9C9C9292926262625F5F5F5A5A5A525B73567ADE587EE65B84E95D
+        8DEF5F98F761A2FD60A3FE5B9DFC538EF44C7EEC3C69DDFFFFFFFFFFFFFFFFFF
+        FFFFFFE5F6E6B0EBB886E29362DA736FED855DEC7656EA7062C2709C9C9C9F9F
+        9FA0A0A0A1A1A19797976464646161615D5D5D5477D6587EE6587EE65980E75E
+        8AEC6597F36DA5FB70ACFE6EAAFE64A0FA659AF488ACF2FFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFF64B25F72E88677EE8C78C3839E9F9EA2A2A2A4A4
+        A4A4A4A4A5A5A59A9A9A676767646464606060585E705573C8587EE6587EE65B
+        84E95E8DED93BBFAAFCEFCCADEFCEAF1FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFF63B05E68DB7987B68DA2A2A2A5A5A5A7A7A7A8A8
+        A8A9A9A9AAAAAA9F9F9F6969696666666262625E5E5E57585A6E82B75A7FE559
+        7FE77593E5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFF9BCF9991AD93A5A5A5A8A8A8AAAAAAABABABACAC
+        ACADADADAEAEAEA4A4A46A6A6A6969696464646060605B5B5BABABABDAE2F970
+        90E97492E4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAEAEAEABABABAEAEAEAFAFAFB0B0B0B0B0
+        B0B1B1B1B2B2B2AAAAAA6B6B6B6A6A6A6767676262625E5E5EADADADFFFFFFF9
+        FAFECFDAF6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB4B4B4B1B1B1B4B4B4BBBBBBC2C2C2C9C9
+        C9CECECED0D0D0CACACAAAAAAA8B8B8B717171646464606060AEAEAEFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFDCDCDCDADADADADADADADADAD9D9
+        D9D6D6D6C8BEB1C8C8C8BEBEBEB7B7B7ABABAB929292767676B3B3B3FFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDF2F2F2E6E6E6D8D8
+        D8C5AF8FB86B08B49D81D7D7D7DCDCDCE3E3E3EBEBEBF5F5F5FEFEFEFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBF8
+        F2D6942EC5770CB16A10E9DFD3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDCA
+        86DE961BCD8011BF7009B1762BF9F6F3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7EAD4F1BC
+        50E6A223D68C16C6780DBC6C07BC905AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFCFAECBE68F3BE
+        53EEB036DF981CCC8011C27B18C0812CE4D7C6FFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFBF8F0DDBBECD4
+        A9F2BA4BE8A322C88213DCCDBBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6EB
+        D8F2BD52EEB034CF8C19DDCEBBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5EA
+        D8F0BB51F2BB4DD6951EDDCEBBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4E9
+        D7EBB44DF2BD52DBA236DDCEBBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3E7
+        D6E4AA48F0BA50DDA844DDCEBBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F3
+        EBDCA959E0AB4DD6A64DEBE2D7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      LookAndFeel.Kind = lfOffice11
+    end
+  end
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
       ActivePage = TbsItem
@@ -1215,5 +1340,985 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
     DataSet = CdsUnidade
     Left = 592
     Top = 448
+  end
+  object FrDBAjusteEstoque: TfrxDBDataset
+    UserName = 'FrDBAjusteEstoque'
+    CloseDataSource = True
+    FieldAliases.Strings = (
+      'eaj_ano=eaj_ano'
+      'eaj_codigo=eaj_codigo'
+      'eaj_data=eaj_data'
+      'eaj_hora=eaj_hora'
+      'eaj_competencia=eaj_competencia'
+      'com_nome=com_nome'
+      'eaj_unidade_neg=eaj_unidade_neg'
+      'uni_nome=uni_nome'
+      'eaj_tipo=eaj_tipo'
+      'tmv_descricao=tmv_descricao'
+      'eaj_obs=eaj_obs'
+      'eaj_status=eaj_status'
+      'eaj_status_desc=eaj_status_desc'
+      'eaj_usuario_abertura=eaj_usuario_abertura'
+      'eaj_usuario_fechamento=eaj_usuario_fechamento'
+      'eaj_log_insert=eaj_log_insert'
+      'eaj_log_update=eaj_log_update'
+      'eaj_log_inactive=eaj_log_inactive'
+      'itm_sequencia=itm_sequencia'
+      'itm_material=itm_material'
+      'mat_descricao_resumo=mat_descricao_resumo'
+      'itm_qtde_antiga=itm_qtde_antiga'
+      'itm_qtde_nova=itm_qtde_nova'
+      'itm_unidade_consumo=itm_unidade_consumo'
+      'und_descricao=und_descricao'
+      'und_sigla=und_sigla')
+    DataSet = CdsAjusteEstoque
+    BCDToCurrency = True
+    Left = 744
+    Top = 384
+  end
+  object frrAjusteEstoque: TfrxReport
+    Version = '4.9.72'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Padr'#227'o'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 41449.774702835650000000
+    ReportOptions.LastChange = 41449.774702835650000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    OnGetValue = frrAjusteEstoqueGetValue
+    Left = 776
+    Top = 386
+    Datasets = <
+      item
+        DataSet = FrDBAjusteEstoque
+        DataSetName = 'FrDBAjusteEstoque'
+      end
+      item
+        DataSet = FrDBEmpresa
+        DataSetName = 'FrDBEmpresa'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object bndPgHeaderTitulo: TfrxPageHeader
+        Height = 45.354360000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object ImgLogo: TfrxPictureView
+          Width = 188.976500000000000000
+          Height = 41.574830000000000000
+          ShowHint = False
+          DataField = 'emp_imagem'
+          DataSet = FrDBEmpresa
+          DataSetName = 'FrDBEmpresa'
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HightQuality = False
+          Transparent = True
+          TransparentColor = clWhite
+        end
+        object memoTitulo: TfrxMemoView
+          Left = 188.976500000000000000
+          Width = 340.157700000000000000
+          Height = 41.574830000000000000
+          ShowHint = False
+          CharSpacing = 2.000000000000000000
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            'AJUSTE DE ESTOQUE')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo2: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 18.897650000000000000
+          Width = 188.976500000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          Frame.Typ = [ftRight, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            
+              '[FormatFloat('#39'###00000'#39',<FrDBAjusteEstoque."eaj_codigo">)]/[FrDB' +
+              'AjusteEstoque."eaj_ano"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo11: TfrxMemoView
+          Left = 529.134200000000000000
+          Width = 188.976500000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftTop]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            'N'#195#186'mero')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+      end
+      object bndPgFooterTitulo: TfrxPageFooter
+        Height = 45.354360000000000000
+        Top = 415.748300000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Left = 555.590910000000000000
+          Width = 162.519790000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 0.100000000000000000
+          HAlign = haRight
+          Memo.UTF8 = (
+            'P'#195#161'gina [Page#] / [TotalPages#] ')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo23: TfrxMemoView
+          Width = 555.590910000000000000
+          Height = 18.897650000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Impresso em [Date] '#195#160's [Time] por [gUsuario]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo24: TfrxMemoView
+          Top = 18.897650000000000000
+          Width = 718.110700000000000000
+          Height = 26.456710000000000000
+          ShowHint = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [gSistema]'
+            ' [gVersao]')
+          ParentFont = False
+        end
+      end
+      object BndMasterData: TfrxMasterData
+        Height = 22.677180000000000000
+        Top = 287.244280000000000000
+        Width = 718.110700000000000000
+        DataSet = FrDBAjusteEstoque
+        DataSetName = 'FrDBAjusteEstoque'
+        RowCount = 0
+        object Memo25: TfrxMemoView
+          Width = 30.236240000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[FrDBAjusteEstoque."itm_sequencia"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo26: TfrxMemoView
+          Left = 30.236240000000000000
+          Width = 45.354360000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            '[FormatFloat('#39'###00000'#39',<FrDBAjusteEstoque."itm_material">)]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo27: TfrxMemoView
+          Left = 75.590600000000000000
+          Width = 453.543600000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FrDBAjusteEstoque."mat_descricao_resumo"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo29: TfrxMemoView
+          Left = 529.134200000000000000
+          Width = 75.590600000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haRight
+          Memo.UTF8 = (
+            '[FormatFloat('#39',0.###'#39',<FrDBAjusteEstoque."itm_qtde_nova">)] ')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo31: TfrxMemoView
+          Left = 604.724800000000000000
+          Width = 113.385900000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            
+              ' [IIF(Trim(<FrDBAjusteEstoque."und_sigla">)='#39#39',<FrDBAjusteEstoqu' +
+              'e."und_descricao">,<FrDBAjusteEstoque."und_sigla">)]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+      end
+      object BndGrpHeaderAjuste: TfrxGroupHeader
+        Height = 139.842610000000000000
+        Top = 124.724490000000000000
+        Width = 718.110700000000000000
+        Condition = 'FrDBAjusteEstoque."eaj_codigo"'
+        OutlineText = 'FrDBAjusteEstoque."eaj_codigo"'
+        StartNewPage = True
+        object Memo3: TfrxMemoView
+          Width = 113.385900000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftTop]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Unidade de Neg'#195#179'cio:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo4: TfrxMemoView
+          Left = 113.385900000000000000
+          Width = 415.748300000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            '[FrDBAjusteEstoque."uni_nome"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo5: TfrxMemoView
+          Left = 529.134200000000000000
+          Width = 79.370130000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Data Abertura:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo6: TfrxMemoView
+          Left = 608.504330000000000000
+          Width = 109.606370000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          Color = clBtnFace
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftTop]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FormatDateTime('#39'dd/mm/yyyy'#39',<FrDBAjusteEstoque."eaj_data">)]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo7: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 22.677180000000000000
+          Width = 79.370130000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Hora Abertura:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo8: TfrxMemoView
+          Left = 608.504330000000000000
+          Top = 22.677180000000000000
+          Width = 109.606370000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftRight]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FormatDateTime('#39'hh:mm'#39',<FrDBAjusteEstoque."eaj_hora">)]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo9: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 68.031540000000000000
+          Width = 79.370130000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Compet'#195#170'ncia:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo10: TfrxMemoView
+          Left = 608.504330000000000000
+          Top = 68.031540000000000000
+          Width = 109.606370000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          Color = clBtnFace
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftRight]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FrDBAjusteEstoque."com_nome"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo12: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 90.708720000000000000
+          Width = 79.370130000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftBottom]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Situa'#195#167#195#163'o:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo13: TfrxMemoView
+          Left = 608.504330000000000000
+          Top = 90.708720000000000000
+          Width = 109.606370000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftRight, ftBottom]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FrDBAjusteEstoque."eaj_status_desc"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo14: TfrxMemoView
+          Top = 22.677180000000000000
+          Width = 113.385900000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Tipo Ajuste:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo15: TfrxMemoView
+          Left = 113.385900000000000000
+          Top = 22.677180000000000000
+          Width = 415.748300000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            '[FrDBAjusteEstoque."tmv_descricao"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo16: TfrxMemoView
+          Top = 45.354360000000000000
+          Width = 113.385900000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Observa'#195#167#195#181'es:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo17: TfrxMemoView
+          Top = 68.031540000000000000
+          Width = 113.385900000000000000
+          Height = 45.354360000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftBottom]
+          Frame.Width = 0.100000000000000000
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Rich1: TfrxRichView
+          Left = 113.385900000000000000
+          Top = 45.354360000000000000
+          Width = 415.748300000000000000
+          Height = 68.031540000000000000
+          ShowHint = False
+          Frame.Typ = [ftBottom]
+          Frame.Width = 0.100000000000000000
+          GapX = 2.000000000000000000
+          GapY = 1.000000000000000000
+          RichEdit = {
+            7B5C727466315C616E73695C616E7369637067313235325C64656666305C6465
+            666C616E67313034367B5C666F6E7474626C7B5C66305C666E696C205461686F
+            6D613B7D7B5C66315C666E696C204D532053616E732053657269663B7D7D0D0A
+            7B5C2A5C67656E657261746F72204D7366746564697420352E34312E32312E32
+            3531303B7D5C766965776B696E64345C7563315C706172645C716A5C66305C66
+            733136205B46724442416A757374654573746F7175652E2265616A5F6F627322
+            5D5C66315C7061720D0A7D0D0A00}
+        end
+        object Memo18: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 45.354360000000000000
+          Width = 79.370130000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' Respons'#195#161'vel:')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo19: TfrxMemoView
+          Left = 608.504330000000000000
+          Top = 45.354360000000000000
+          Width = 109.606370000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftRight]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FrDBAjusteEstoque."eaj_usuario_fechamento"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo20: TfrxMemoView
+          Top = 117.165430000000000000
+          Width = 30.236240000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          Color = clBtnFace
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            'ITEM')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo21: TfrxMemoView
+          Left = 30.236240000000000000
+          Top = 117.165430000000000000
+          Width = 45.354360000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          Color = clBtnFace
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            'C'#195#8220'DIGO')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo22: TfrxMemoView
+          Left = 75.590600000000000000
+          Top = 117.165430000000000000
+          Width = 453.543600000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          Color = clBtnFace
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haCenter
+          Memo.UTF8 = (
+            'DESCRI'#195#8225#195#402'O')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo28: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 117.165430000000000000
+          Width = 75.590600000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          Color = clBtnFace
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          HAlign = haRight
+          Memo.UTF8 = (
+            'QUANT. ')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo30: TfrxMemoView
+          Left = 604.724800000000000000
+          Top = 117.165430000000000000
+          Width = 113.385900000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          Color = clBtnFace
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' UND.')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+      end
+      object BndGrpFooterAjuste: TfrxGroupFooter
+        Height = 22.677180000000000000
+        Top = 332.598640000000000000
+        Width = 718.110700000000000000
+      end
+    end
+  end
+  object QryEmpresa: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'emp_codigo'
+        ParamType = ptInput
+        Value = 0
+      end>
+    SQL.Strings = (
+      'Select'
+      '    ep.emp_razao_social'
+      '  , ep.emp_cnpj'
+      '  , ep.emp_end_logra'
+      '  , ep.emp_end_bairro'
+      '  , ep.emp_end_cidade'
+      '  , ep.emp_end_uf'
+      '  , ep.emp_end_fone'
+      '  , ep.emp_email'
+      '  , ep.emp_imagem'
+      'from sys_empresa ep'
+      'where ep.emp_codigo > :emp_codigo')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 648
+    Top = 352
+  end
+  object DspEmpresa: TDataSetProvider
+    DataSet = QryEmpresa
+    Left = 680
+    Top = 352
+  end
+  object CdsEmpresa: TClientDataSet
+    Aggregates = <>
+    PacketRecords = 100
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'emp_codigo'
+        ParamType = ptInput
+        Value = 0
+      end>
+    ProviderName = 'DspEmpresa'
+    BeforeOpen = CdsEmpresaBeforeOpen
+    Left = 712
+    Top = 352
+  end
+  object FrDBEmpresa: TfrxDBDataset
+    UserName = 'FrDBEmpresa'
+    CloseDataSource = True
+    FieldAliases.Strings = (
+      'emp_razao_social=emp_razao_social'
+      'emp_cnpj=emp_cnpj'
+      'emp_end_logra=emp_end_logra'
+      'emp_end_bairro=emp_end_bairro'
+      'emp_end_cidade=emp_end_cidade'
+      'emp_end_uf=emp_end_uf'
+      'emp_end_fone=emp_end_fone'
+      'emp_email=emp_email'
+      'emp_imagem=emp_imagem')
+    DataSet = CdsEmpresa
+    BCDToCurrency = True
+    Left = 744
+    Top = 352
+  end
+  object QryAjusteEstoque: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'eaj_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftInteger
+        Name = 'eaj_codigo'
+        ParamType = ptInput
+        Value = 0
+      end>
+    SQL.Strings = (
+      'Select'
+      '    ae.eaj_ano'
+      '  , ae.eaj_codigo'
+      '  , ae.eaj_data'
+      '  , ae.eaj_hora'
+      '  , ae.eaj_competencia'
+      '  , cm.com_nome'
+      '  , ae.eaj_unidade_neg'
+      '  , un.uni_nome'
+      '  , ae.eaj_tipo'
+      '  , tm.tmv_descricao'
+      '  , ae.eaj_obs'
+      '  , ae.eaj_status'
+      '  , Case ae.eaj_status'
+      '      when 0 then '#39'Aberto'#39
+      '      when 1 then '#39'Encerrado'#39
+      '      when 2 then '#39'Cancelado'#39
+      '    end as eaj_status_desc'
+      '  , ae.eaj_usuario_abertura'
+      '  , ae.eaj_usuario_fechamento'
+      '  , ae.eaj_log_insert'
+      '  , ae.eaj_log_update'
+      '  , ae.eaj_log_inactive'
+      '  '
+      '  , it.itm_sequencia'
+      '  , it.itm_material'
+      '  , mt.mat_descricao_resumo'
+      '  , it.itm_qtde_antiga'
+      '  , it.itm_qtde_nova'
+      '  , it.itm_unidade_consumo'
+      '  , us.und_descricao'
+      '  , us.und_sigla'
+      'from str_estoque_ajuste ae'
+      
+        '  left join mny_unidade un on (un.uni_codigo = ae.eaj_unidade_ne' +
+        'g)'
+      
+        '  left join str_tipo_movimento tm on (tm.tmv_codigo = ae.eaj_tip' +
+        'o)'
+      
+        '  left join sys_competencia cm on (cm.com_codigo = ae.eaj_compet' +
+        'encia)'
+      '  '
+      
+        '  inner join str_estoque_ajuste_item it on (it.eaj_ano = ae.eaj_' +
+        'ano and it.eaj_codigo = ae.eaj_codigo)'
+      '  left join str_material mt on (mt.mat_codigo = it.itm_material)'
+      
+        '  left join str_unidade us on (us.und_codigo = it.itm_unidade_co' +
+        'nsumo)'
+      '  '
+      'where ae.eaj_ano = :eaj_ano '
+      '  and ae.eaj_codigo = :eaj_codigo '
+      '  '
+      'order by'
+      '    ae.eaj_ano'
+      '  , ae.eaj_codigo'
+      '  , it.itm_sequencia  ')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 648
+    Top = 384
+  end
+  object DspAjusteEstoque: TDataSetProvider
+    DataSet = QryAjusteEstoque
+    Left = 680
+    Top = 384
+  end
+  object CdsAjusteEstoque: TClientDataSet
+    Aggregates = <>
+    PacketRecords = 100
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'eaj_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftInteger
+        Name = 'eaj_codigo'
+        ParamType = ptInput
+        Value = 0
+      end>
+    ProviderName = 'DspAjusteEstoque'
+    BeforeOpen = CdsAjusteEstoqueBeforeOpen
+    Left = 712
+    Top = 384
+  end
+  object popupProcesso: TPopupMenu
+    Images = DtmResource.ImgLstSml
+    Left = 688
+    Top = 13
+    object pmEncerrar: TMenuItem
+      Caption = 'Encerrar / Finalizar'
+      ImageIndex = 6
+      OnClick = pmEncerrarClick
+    end
+    object pmCancelar: TMenuItem
+      Caption = 'Cancelar'
+      OnClick = pmCancelarClick
+    end
   end
 end

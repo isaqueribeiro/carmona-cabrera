@@ -13,7 +13,7 @@ uses
   cxMemo, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
-  cxButtonEdit, DateUtils;
+  cxButtonEdit, DateUtils, frxClass, frxDBSet;
 
 type
   TFrmAjusteEstoqueCadastro = class(TFrmPadraoCadastro)
@@ -122,6 +122,19 @@ type
     DbgItemDBmat_descricao_resumo: TcxGridDBColumn;
     DbgItemDBund_descricao: TcxGridDBColumn;
     CdsMasterItens: TBCDField;
+    FrDBAjusteEstoque: TfrxDBDataset;
+    frrAjusteEstoque: TfrxReport;
+    QryEmpresa: TSQLQuery;
+    DspEmpresa: TDataSetProvider;
+    CdsEmpresa: TClientDataSet;
+    FrDBEmpresa: TfrxDBDataset;
+    QryAjusteEstoque: TSQLQuery;
+    DspAjusteEstoque: TDataSetProvider;
+    CdsAjusteEstoque: TClientDataSet;
+    BtnProcesso: TcxButton;
+    popupProcesso: TPopupMenu;
+    pmEncerrar: TMenuItem;
+    pmCancelar: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMastereaj_statusGetText(Sender: TField; var Text: String;
@@ -146,6 +159,14 @@ type
     procedure DtsDetailDataChange(Sender: TObject; Field: TField);
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnEditarClick(Sender: TObject);
+    procedure BtnImprimirClick(Sender: TObject);
+    procedure frrAjusteEstoqueGetValue(const VarName: String;
+      var Value: Variant);
+    procedure CdsEmpresaBeforeOpen(DataSet: TDataSet);
+    procedure CdsAjusteEstoqueBeforeOpen(DataSet: TDataSet);
+    procedure BtnProcessoClick(Sender: TObject);
+    procedure pmEncerrarClick(Sender: TObject);
+    procedure pmCancelarClick(Sender: TObject);
   private
     { Private declarations }
     procedure CarregarItens;
@@ -396,6 +417,9 @@ begin
 
   dbUnidadeNegocio.Properties.ReadOnly := (CdsMaster.State = dsEdit);
   dbCompetencia.Properties.ReadOnly    := (CdsMaster.State = dsEdit);
+
+  BtnProcesso.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
+    and (not CdsMaster.IsEmpty) and (not CdsDetail.IsEmpty) and (CdsMastereaj_status.AsInteger = STATUS_AJUSTE_ESTOQUE_ABERTO);
 end;
 
 procedure TFrmAjusteEstoqueCadastro.DtsDetailStateChange(Sender: TObject);
@@ -588,6 +612,82 @@ begin
     ShowMessageStop('Este movimento não poderá ser alterado.' + #13 + sMsg)
   else
     inherited;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.BtnImprimirClick(Sender: TObject);
+begin
+  if ( not CdsMaster.IsEmpty ) then
+    frrAjusteEstoque.ShowReport;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.frrAjusteEstoqueGetValue(
+  const VarName: String; var Value: Variant);
+begin
+  if ( VarName = 'gUsuario' ) then
+    Value := gUsuario.Nome;
+
+  if ( VarName = 'gSistema' ) then
+    Value := SystemName;
+
+  if ( VarName = 'gVersao' ) then
+    Value := SystemVersion;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.CdsEmpresaBeforeOpen(
+  DataSet: TDataSet);
+begin
+  CdsEmpresa.Params.ParamByName('emp_codigo').AsInteger := 0;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.CdsAjusteEstoqueBeforeOpen(
+  DataSet: TDataSet);
+begin
+  with CdsAjusteEstoque, Params do
+  begin
+    ParamByName('eaj_ano').AsInteger    := CdsMastereaj_ano.AsInteger;
+    ParamByName('eaj_codigo').AsInteger := CdsMastereaj_codigo.AsInteger;
+  end;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.BtnProcessoClick(Sender: TObject);
+begin
+  if ( not CdsMaster.IsEmpty ) then
+    popupProcesso.Popup(BtnProcesso.ClientOrigin.X, BtnProcesso.ClientOrigin.Y + BtnProcesso.Height);
+end;
+
+procedure TFrmAjusteEstoqueCadastro.pmEncerrarClick(Sender: TObject);
+var
+  sMsg : String;
+begin
+  sMsg := 'Ao finalizar este ajuste de estoque, as quantidades informadas nos ítens para ' +
+   'a Unidade de Negócio selecionada serão tomadas como reais para o estoque.' + #13#13 +
+   'Deseja realmente finalizar o ajuste?';
+
+  if ( CdsDetail.RecordCount > 0 ) then
+    if ShowMessageConfirm(sMsg, 'Encerrar Ajuste') then
+    begin
+      CdsMaster.Edit;
+      CdsMastereaj_usuario_fechamento.AsString := gUsuario.Login;
+      CdsMastereaj_status.AsInteger            := STATUS_AJUSTE_ESTOQUE_ENCERRADO;
+      CdsMaster.Post;
+    end;
+end;
+
+procedure TFrmAjusteEstoqueCadastro.pmCancelarClick(Sender: TObject);
+var
+  sMsg : String;
+begin
+  sMsg := 'Ao cancelar este ajuste de estoque, as quantidades informadas nos ítens para ' +
+   'a Unidade de Negócio selecionada serão desconsideradas, mas o registro continuará a existir.' + #13#13 +
+   'Deseja realmente cancelar o ajuste?';
+
+  if ( CdsDetail.RecordCount > 0 ) then
+    if ShowMessageConfirm(sMsg, 'Cancelar Ajuste') then
+    begin
+      CdsMaster.Edit;
+      CdsMastereaj_status.AsInteger := STATUS_AJUSTE_ESTOQUE_CANCELADO;
+      CdsMaster.Post;
+    end;
 end;
 
 end.

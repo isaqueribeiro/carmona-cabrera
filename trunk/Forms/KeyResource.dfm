@@ -1,7 +1,7 @@
 object DtmResource: TDtmResource
   OldCreateOrder = False
-  Left = 544
-  Top = 283
+  Left = 575
+  Top = 331
   Height = 557
   Width = 500
   object ImgLstSml: TImageList

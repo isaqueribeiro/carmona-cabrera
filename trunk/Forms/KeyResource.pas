@@ -11,7 +11,8 @@ uses
   dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinPumpkin,
   dxSkinSilver, dxSkinStardust, dxSkinSummer2008, dxSkinsDefaultPainters,
   dxSkinValentine, dxSkinXmas2008Blue, cxLookAndFeels, DB, FIBDataSet,
-  pFIBDataSet;
+  pFIBDataSet, frxRich, frxCross, frxChBox, frxGradient, frxClass,
+  frxExportPDF;
 
 type
   TUsuario = record

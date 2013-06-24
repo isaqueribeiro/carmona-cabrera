@@ -8,7 +8,7 @@ inherited FrmMaterialImprimir: TFrmMaterialImprimir
         Picture.Data = {
           0B546478504E47496D61676589504E470D0A1A0A0000000D4948445200000040
           000000400806000000AA6971DE0000000467414D410000AFC837058AE9000000
-          097048597300000EBE00000EBE01EA42B1C00000001A74455874536F66747761
+          097048597300000EBC00000EBC0195BC72490000001A74455874536F66747761
           7265005061696E742E4E45542076332E352E313030F472A10000126849444154
           785EED5B7B7C4D67BA2E13CC18653AB4E7D0569C364AB4B442714ADB3173266E
           C5A8AA9E4311E457C49D488E4B9BDBDEB9C98E885C1149885CE42271094510C4
@@ -388,7 +388,7 @@ inherited FrmMaterialImprimir: TFrmMaterialImprimir
       BottomMargin = 10.000000000000000000
       object bndMasterDataLista: TfrxMasterData
         Height = 18.897650000000000000
-        Top = 234.330860000000000000
+        Top = 230.551330000000000000
         Width = 718.110700000000000000
         DataSet = FrDBMaterialLista
         DataSetName = 'FrDBMaterialLista'
@@ -587,7 +587,7 @@ inherited FrmMaterialImprimir: TFrmMaterialImprimir
       end
       object bndPgFooterTitulo: TfrxPageFooter
         Height = 45.354360000000000000
-        Top = 340.157700000000000000
+        Top = 336.378170000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           Left = 555.590910000000000000
@@ -694,7 +694,7 @@ inherited FrmMaterialImprimir: TFrmMaterialImprimir
         end
       end
       object bndGrpHeaderGrupo: TfrxGroupHeader
-        Height = 45.354360000000000000
+        Height = 41.574830000000000000
         Top = 166.299320000000000000
         Width = 718.110700000000000000
         Condition = 'FrDBMaterialLista."mat_grupo"'
@@ -996,7 +996,7 @@ inherited FrmMaterialImprimir: TFrmMaterialImprimir
       end
       object bndGrpFooterGrupo: TfrxGroupFooter
         Height = 3.779530000000000000
-        Top = 275.905690000000000000
+        Top = 272.126160000000000000
         Width = 718.110700000000000000
       end
     end

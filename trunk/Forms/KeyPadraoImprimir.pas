@@ -4,7 +4,6 @@ interface
 
 uses
   KeyFuncoes,
-  KeyVersion,
   KeyResource,
 
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
@@ -57,17 +56,12 @@ implementation
 {$R *.dfm}
 
 procedure TFrmPadraoImprimir.FormCreate(Sender: TObject);
-var
-  ver : TInfoVersao;
-const
-  VERSAO = 'Versão %s (Build %s)';
 begin
-  ver := TInfoVersao.GetInstance;
   inherited;
   FReport := TfrxReport.Create(Self);
 
-  lblNomeSistema.Caption   := Application.Title;
-  lblVersaoSistema.Caption := Format(VERSAO, [ver.getPropertyValue(ivPRODUCT_VERSION), ver.getPropertyValue(ivFILE_VERSION)]);
+  lblNomeSistema.Caption   := SystemName;
+  lblVersaoSistema.Caption := SystemVersion;
 end;
 
 procedure TFrmPadraoImprimir.btnFecharClick(Sender: TObject);

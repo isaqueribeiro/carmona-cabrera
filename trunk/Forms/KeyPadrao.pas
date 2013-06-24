@@ -4,6 +4,7 @@ interface
 
 uses
   KeyResource,
+  KeyVersion,
   KeyFuncoes,
 
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
@@ -14,6 +15,8 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    FSystemVersion ,
+    FSystemName    : String;
     FErrorDBNumbers : Integer;
     FSelecionarRegistro : Boolean;
     FErroLoop : Integer;
@@ -30,6 +33,8 @@ type
     function GetNomeObjetoAcesso : String;
   public
     { Public declarations }
+    property SystemVersion : String read FSystemVersion;
+    property SystemName : String read FSystemName;
     property ErrorDBNumbers : Integer read FErrorDBNumbers;
     property SelecionarRegistro : Boolean read FSelecionarRegistro write FSelecionarRegistro;
     property ComponenteLogin : TComponent read FComponenteLogin write FComponenteLogin;
@@ -82,7 +87,16 @@ begin
 end;
 
 procedure TFrmPadrao.FormCreate(Sender: TObject);
+var
+  ver : TInfoVersao;
+const
+  VERSAO = 'Versão %s (Build %s)';
 begin
+  ver := TInfoVersao.GetInstance;
+
+  FSystemName    := Application.Title;
+  FSystemVersion := Format(VERSAO, [ver.getPropertyValue(ivPRODUCT_VERSION), ver.getPropertyValue(ivFILE_VERSION)]);
+
   SelecionarRegistro := False;
   FErrorDBNumbers    := 0;
 
