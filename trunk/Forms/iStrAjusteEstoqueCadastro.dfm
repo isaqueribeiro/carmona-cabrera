@@ -131,7 +131,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
   end
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
-      ActivePage = TbsItem
       OnChange = PgCtrlMainChange
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpDadosNominais: TcxGroupBox

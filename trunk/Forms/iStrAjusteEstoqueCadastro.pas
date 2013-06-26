@@ -343,6 +343,22 @@ begin
   if ( CdsMastereaj_status.AsInteger = STATUS_AJUSTE_ESTOQUE_CANCELADO ) then
     CdsMastereaj_log_inactive.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
 
+  // Verificar se a Unidade de Negócio possui Almoxarifado
+  CdsUnidadeNeg.Locate('uni_codigo', CdsMastereaj_unidade_neg.AsInteger, []);
+  if ( CdsUnidadeNeg.FieldByName('uni_possui_almox').AsInteger = 0 ) then
+  begin
+    ShowMessageStop('A Unidade de Negócio ' + QuotedStr(dbUnidadeNegocio.Text) + ' não possui almoxarifado!');
+    Abort;
+  end;
+
+  // Verificar se a Competência está ativa
+  CdsCompetencia.Locate('com_codigo', CdsMastereaj_competencia.AsInteger, []);
+  if ( CdsCompetencia.FieldByName('sit_codigo').AsInteger <> 1 ) then
+  begin
+    ShowMessageStop('A Competência ' + QuotedStr(dbCompetencia.Text) + ' não está ativa!');
+    Abort;
+  end;
+
   inherited;
 end;
 

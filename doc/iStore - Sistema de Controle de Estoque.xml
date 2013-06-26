@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes" ?>
 <DBMODEL Version="4.0">
 <SETTINGS>
-<GLOBALSETTINGS ModelName="iStore - Sistema de Controle de Estoque" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="0" YPos="752" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<GLOBALSETTINGS ModelName="iStore - Sistema de Controle de Estoque" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="0" YPos="785" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
 <DATATYPEGROUPS>
 <DATATYPEGROUP Name="Numeric Types" Icon="1" />
 <DATATYPEGROUP Name="Date and Time Types" Icon="2" />
@@ -1071,6 +1071,7 @@
 </COLUMNS>
 <RELATIONS_START>
 <RELATION_START ID="2557" />
+<RELATION_START ID="3493" />
 </RELATIONS_START>
 <INDICES>
 <INDEX ID="2551" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -1333,6 +1334,7 @@
 <RELATION_START ID="2850" />
 <RELATION_START ID="3032" />
 <RELATION_START ID="3081" />
+<RELATION_START ID="3487" />
 </RELATIONS_START>
 <INDICES>
 <INDEX ID="2818" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -1686,11 +1688,78 @@
 </COLUMNS>
 <RELATIONS_START>
 <RELATION_START ID="3168" />
+<RELATION_START ID="3483" />
 </RELATIONS_START>
 <INDICES>
 <INDEX ID="3161" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="3160" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="3477" Tablename="str_entrada" PrevTableName="Table_24" XPos="355" YPos="1319" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="63" >
+<COLUMNS>
+<COLUMN ID="3479" ColName="ent_ano" PrevColName="mov_ano" Pos="0" idDatatype="2" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="3481" ColName="ent_codigo" PrevColName="mov_codigo" Pos="1" idDatatype="6" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="3496" ColName="ent_pessoa" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="3490" ColName="ent_unidade_neg" PrevColName="" Pos="1" idDatatype="2" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="3486" ColName="ent_competencia" PrevColName="" Pos="1" idDatatype="2" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="3498" ColName="ent_data_emissao" PrevColName="" Pos="5" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<RELATIONS_END>
+<RELATION_END ID="3483" />
+<RELATION_END ID="3487" />
+<RELATION_END ID="3493" />
+</RELATIONS_END>
+<INDICES>
+<INDEX ID="3480" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="3479" LengthParam="0" />
+<INDEXCOLUMN idColumn="3481" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="3485" IndexName="str_entrada_FKIndex1" IndexKind="1" FKRefDef_Obj_id="3483">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="3486" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="3489" IndexName="str_entrada_FKIndex2" IndexKind="1" FKRefDef_Obj_id="3487">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="3490" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="3495" IndexName="str_entrada_FKIndex3" IndexKind="1" FKRefDef_Obj_id="3493">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="3496" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
@@ -1725,6 +1794,9 @@
 <RELATION ID="3127" RelationName="Unidade Consumo x Ajustes de Estoques" Kind="2" SrcTable="1931" DestTable="3048" FKFields="und_codigo=itm_unidade_consumo\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="3129" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="57" />
 <RELATION ID="3144" RelationName="Movito x Ajustes de Estoques" Kind="2" SrcTable="3135" DestTable="2810" FKFields="tmv_codigo=eaj_tipo\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=1\n" Comments="" FKRefDefIndex_Obj_id="3167" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="60" />
 <RELATION ID="3168" RelationName="Compet\234ncia x Ajustes de Estoques" Kind="2" SrcTable="3158" DestTable="2810" FKFields="com_codigo=eaj_competencia\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="3170" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="62" />
+<RELATION ID="3483" RelationName="Compet\234ncia x Entradas" Kind="2" SrcTable="3158" DestTable="3477" FKFields="com_codigo=ent_competencia\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="3485" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="64" />
+<RELATION ID="3487" RelationName="Unidade de Neg\243cio x Entradas" Kind="2" SrcTable="2815" DestTable="3477" FKFields="uni_codigo=ent_unidade_neg\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="3489" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="65" />
+<RELATION ID="3493" RelationName="Pessoa x Movimentos de Entrada" Kind="2" SrcTable="2548" DestTable="3477" FKFields="pes_codigo=ent_pessoa\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="3495" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="66" />
 </RELATIONS>
 <NOTES>
 <NOTE ID="2254" NoteName="Note_01" XPos="1365" YPos="14" NoteText="Status Descri\231\227o/Apresenta\231\227o:\n0 - Inativa (N\227o)\n1 - Ativa (Sim)\n\nStatus Material:\n0 - Inativo\n1 - Ativo\n2 - Emprestado\n\nCusto Direto:\n0 - N\227o\n1 - Sim\n\nCusto Indireto: \n0 - N\227o \n1 - Sim \n \nTipo Al\237quota:\n0 - ICMS\n1 - ISS\n\nOrigem Material:\n0 - Nacional\n1 - Estrangeira - Importa\231\227o direta\n2 - Estrangeira - Adquirida no mercado interno\n\nCRT (C\243digo de Regime Tribut\225rio):\n0 - Normal\n1 - Simples Nacional\n\nCST (C\243diigo de Situa\231\227o Tibut\225ria), onde:\n- CST \233 para a tributa\231\227o normal\n- CSON \233 para a tributa\231\227o no Simples Nacional\n\nMaterial requisitado \npelo(s) o(s) Setor(res):\n0 - N\227o\n1 - Sim\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="21" />
