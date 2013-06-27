@@ -1,6 +1,6 @@
 inherited FrmMaterialCadastro: TFrmMaterialCadastro
-  Height = 615
   Caption = 'Cadastro do Material'
+  ClientHeight = 577
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlTabela: TPanel
@@ -294,7 +294,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 Properties.ReadOnly = True
                 Properties.OnButtonClick = dbGrupoPropertiesButtonClick
                 ShowHint = True
-                TabOrder = 2
+                TabOrder = 3
                 OnKeyDown = dbGrupoKeyDown
                 Width = 449
               end
@@ -320,7 +320,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                   end>
                 Properties.ListOptions.ShowHeader = False
                 Properties.ListSource = DtsMaterialSubgrupo
-                TabOrder = 4
+                TabOrder = 5
                 Width = 449
               end
               object lblUnidadeCompra: TcxLabel
@@ -345,7 +345,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                   end>
                 Properties.ListOptions.ShowHeader = False
                 Properties.ListSource = DtsUnidade
-                TabOrder = 6
+                TabOrder = 7
                 Width = 449
               end
               object lblFracionador: TcxLabel
@@ -363,7 +363,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 DataBinding.DataField = 'mat_fracionador'
                 DataBinding.DataSource = DtsMaster
                 Properties.CharCase = ecUpperCase
-                TabOrder = 8
+                TabOrder = 9
                 Width = 121
               end
               object lblUnidadeConsumo: TcxLabel
@@ -388,7 +388,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                   end>
                 Properties.ListOptions.ShowHeader = False
                 Properties.ListSource = DtsUnidade
-                TabOrder = 10
+                TabOrder = 11
                 Width = 449
               end
               object lblNCM_SH: TcxLabel
@@ -406,8 +406,28 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
                 DataBinding.DataField = 'mat_ncm_sh'
                 DataBinding.DataSource = DtsMaster
                 Properties.CharCase = ecUpperCase
-                TabOrder = 12
+                TabOrder = 13
                 Width = 121
+              end
+              object dbLista: TcxDBRadioGroup
+                Left = 304
+                Top = 0
+                Caption = 'Lista'
+                DataBinding.DataField = 'mat_lista'
+                DataBinding.DataSource = DtsMaster
+                Properties.Columns = 2
+                Properties.Items = <
+                  item
+                    Caption = 'Material/Produto'
+                    Value = 0
+                  end
+                  item
+                    Caption = 'Servi'#231'o'
+                    Value = 1
+                  end>
+                TabOrder = 1
+                Height = 57
+                Width = 257
               end
             end
             object TbsTributacao: TcxTabSheet
@@ -916,6 +936,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
       '  , m.mat_referencia'
       '  , m.mat_imagem'
       '  , m.mat_status'
+      '  , m.mat_lista'
       '  , m.mat_grupo'
       '  , m.mat_subgrupo'
       '  , m.mat_unidade_compra'
@@ -1034,6 +1055,12 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
       Alignment = taLeftJustify
       FieldName = 'mat_status'
       ProviderFlags = [pfInUpdate]
+    end
+    object CdsMastermat_lista: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'mat_lista'
+      ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsMastermat_grupo: TSmallintField
       Alignment = taLeftJustify

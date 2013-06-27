@@ -95,7 +95,7 @@ begin
           if StrIsInteger( Trim(EdtPesquisa.Text) ) then
             QryMaster.SQL.Add('  and ae.eaj_codigo = ' + Trim(EdtPesquisa.Text))
           else
-            QryMaster.SQL.Add('  and upper(ae.uni_nome) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
+            QryMaster.SQL.Add('  and upper(un.uni_nome) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
       end;
 
     1:
@@ -104,7 +104,7 @@ begin
           if StrIsInteger( Trim(EdtPesquisa.Text) ) then
             QryMaster.SQL.Add('  and ae.eaj_unidade_neg = ' + Trim(EdtPesquisa.Text))
           else
-            QryMaster.SQL.Add('  and upper(ae.uni_nome) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
+            QryMaster.SQL.Add('  and upper(un.uni_nome) like ' + QuotedStr(Trim(EdtPesquisa.Text) + '%'));
       end;
 
     2:

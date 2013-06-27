@@ -96,6 +96,8 @@ type
     mmAjusteEstoque: TMenuItem;
     ActnTipoMovimento: TAction;
     mmTipoMovimento: TMenuItem;
+    ActnTipoDocumento: TAction;
+    mmTipoDocumento: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -117,6 +119,7 @@ type
     procedure ActnTipoMovimentoExecute(Sender: TObject);
     procedure ActnAjusteEstoqueExecute(Sender: TObject);
     procedure ActnCompetenciaExecute(Sender: TObject);
+    procedure ActnTipoDocumentoExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -140,6 +143,7 @@ uses
   , KeyUnidadeNegocio
   , KeySetor
   , KeyCompetencia
+  , KeyTipoDocumento
   , iStrLogin
   , iStrUnidadeMedida
   , iStrMaterialTipo
@@ -383,6 +387,16 @@ begin
     FrmCompetencia.ShowModal;
   finally
     FrmCompetencia.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnTipoDocumentoExecute(Sender: TObject);
+begin
+  FrmTipoDocumento := TFrmTipoDocumento.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmTipoDocumento.ShowModal;
+  finally
+    FrmTipoDocumento.Free;
   end;
 end;
 

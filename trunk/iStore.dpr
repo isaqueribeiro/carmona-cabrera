@@ -37,7 +37,9 @@ uses
   iStrTipoMovimento in 'Forms\iStrTipoMovimento.pas' {FrmTipoMovimento},
   iStrAjusteEstoquePesquisa in 'Forms\iStrAjusteEstoquePesquisa.pas' {FrmAjusteEstoquePesquisa},
   iStrAjusteEstoqueCadastro in 'Forms\iStrAjusteEstoqueCadastro.pas' {FrmAjusteEstoqueCadastro},
-  KeyCompetencia in 'Forms\KeyCompetencia.pas' {FrmCompetencia};
+  KeyCompetencia in 'Forms\KeyCompetencia.pas' {FrmCompetencia},
+  KeyTipoDocumento in 'Forms\KeyTipoDocumento.pas' {FrmTipoDocumento},
+  iStrMovimentoEntradaPesquisa in 'Forms\iStrMovimentoEntradaPesquisa.pas' {FrmMovimentoEntradaPesquisa};
 
 {$R *.res}
 
