@@ -1502,7 +1502,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       end
       object bndPgFooterTitulo: TfrxPageFooter
         Height = 45.354360000000000000
-        Top = 415.748300000000000000
+        Top = 506.457020000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           Left = 555.590910000000000000
@@ -2132,9 +2132,72 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
         end
       end
       object BndGrpFooterAjuste: TfrxGroupFooter
-        Height = 22.677180000000000000
+        Height = 113.385900000000000000
         Top = 332.598640000000000000
         Width = 718.110700000000000000
+        object Memo32: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 90.708720000000000000
+          Width = 188.976500000000000000
+          Height = 22.677180000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FrDBAjusteEstoque."eaj_usuario_fechamento"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo33: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 60.472480000000000000
+          Width = 188.976500000000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftTop]
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            ' [FrDBEmpresa."emp_razao_social"]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
+        object Memo34: TfrxMemoView
+          Left = 529.134200000000000000
+          Top = 75.590600000000000000
+          Width = 188.976500000000000000
+          Height = 15.118120000000000000
+          ShowHint = False
+          DataSet = FrmMaterialImprimir.FrDBMaterialLista
+          DataSetName = 'FrDBMaterialLista'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -8
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Width = 0.100000000000000000
+          Memo.UTF8 = (
+            
+              ' CNPJ: [FormatMaskText('#39'##.###.###/####-##;0'#39',<FrDBEmpresa."emp_' +
+              'cnpj">)]')
+          ParentFont = False
+          WordWrap = False
+          VAlign = vaCenter
+        end
       end
     end
   end

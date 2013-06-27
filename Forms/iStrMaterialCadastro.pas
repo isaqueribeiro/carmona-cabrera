@@ -181,6 +181,8 @@ type
     CdsMastermat_ultcompra_valor: TFMTBCDField;
     lblValorUltimaCompra: TcxLabel;
     dbValorUltimaCompra: TcxDBTextEdit;
+    dbLista: TcxDBRadioGroup;
+    CdsMastermat_lista: TSmallintField;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
@@ -303,8 +305,9 @@ end;
 
 procedure TFrmMaterialCadastro.CdsMasterNewRecord(DataSet: TDataSet);
 begin
-  CdsMastermat_codigo.AsInteger    := MaxCod(NomeTabela, CampoChave, EmptyStr);
-  CdsMastermat_status.AsInteger    := 1;
+  CdsMastermat_codigo.AsInteger := MaxCod(NomeTabela, CampoChave, EmptyStr);
+  CdsMastermat_status.AsInteger := 1;
+  CdsMastermat_lista.AsInteger  := LISTA_MATERIAL;
   CdsMastermat_custo_direto.AsInteger   := 0;
   CdsMastermat_custo_indireto.AsInteger := 0;
   CdsMastermat_fracionador.AsCurrency   := 1;

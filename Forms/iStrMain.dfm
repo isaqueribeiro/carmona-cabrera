@@ -2471,6 +2471,11 @@ object FrmMain: TFrmMain
       Caption = 'Tipos de Movimentos'
       OnExecute = ActnTipoMovimentoExecute
     end
+    object ActnTipoDocumento: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'Tipos de Documentos'
+      OnExecute = ActnTipoDocumentoExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2546,6 +2551,9 @@ object FrmMain: TFrmMain
       end
       object mmTipoMovimento: TMenuItem
         Action = ActnTipoMovimento
+      end
+      object mmTipoDocumento: TMenuItem
+        Action = ActnTipoDocumento
       end
     end
     object MnProcessos: TMenuItem
