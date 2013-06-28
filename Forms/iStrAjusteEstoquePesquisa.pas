@@ -135,10 +135,10 @@ end;
 
 procedure TFrmAjusteEstoquePesquisa.InciarDatas;
 begin
-  if (Trim(edDataInicio.Text) = EmptyStr) or (Trim(edDataInicio.Text) = '30/12/1899') or VarIsNullDate(edDataInicio.EditValue) then
+  if (Trim(edDataInicio.Text) = EmptyStr) or (Trim(edDataInicio.Text) = STRING_DATA_NULA) or VarIsNullDate(edDataInicio.EditValue) then
     edDataInicio.Date := StrToDate('01/' + FormatDateTime('mm/yyyy', Date));
 
-  if (Trim(edDataFinal.Text) = EmptyStr) or (Trim(edDataFinal.Text) = '30/12/1899') or VarIsNullDate(edDataFinal.EditValue) then
+  if (Trim(edDataFinal.Text) = EmptyStr) or (Trim(edDataFinal.Text) = STRING_DATA_NULA) or VarIsNullDate(edDataFinal.EditValue) then
     edDataFinal.Date  := Date;
 end;
 
@@ -191,7 +191,7 @@ begin
       sMsg := 'Ajuste de estoque cancelado!';
   end;
 
-  PermitirEditar := (CdsMastereaj_status.AsInteger = 0);
+  PermitirEditar := (CdsMastereaj_status.AsInteger = STATUS_AJUSTE_ESTOQUE_ABERTO);
 
   AForm := TFrmAjusteEstoqueCadastro.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
   try

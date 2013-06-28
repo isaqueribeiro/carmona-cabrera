@@ -2371,8 +2371,8 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
   end
   object popupProcesso: TPopupMenu
     Images = DtmResource.ImgLstSml
-    Left = 688
-    Top = 13
+    Left = 728
+    Top = 16
     object pmEncerrar: TMenuItem
       Caption = 'Encerrar / Finalizar'
       ImageIndex = 6

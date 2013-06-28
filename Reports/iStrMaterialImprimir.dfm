@@ -186,6 +186,15 @@ inherited FrmMaterialImprimir: TFrmMaterialImprimir
         TabOrder = 0
         TabStop = True
       end
+      object RdbMaterialEstoque: TcxRadioButton
+        Left = 16
+        Top = 48
+        Width = 169
+        Height = 17
+        Caption = 'Lista de materiais em estoque'
+        Enabled = False
+        TabOrder = 1
+      end
     end
   end
   object QryMaterialLista: TSQLQuery
