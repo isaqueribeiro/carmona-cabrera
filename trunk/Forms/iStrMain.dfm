@@ -1913,12 +1913,20 @@ object FrmMain: TFrmMain
       Links = <
         item
           Item = NvBrMaterial
+        end
+        item
+          Item = NvBrFornecedor
         end>
     end
     object NvBrMaterial: TdxNavBarItem
       Action = ActnMaterial
       LargeImageIndex = 6
       SmallImageIndex = 6
+    end
+    object NvBrFornecedor: TdxNavBarItem
+      Action = ActnFornecedor
+      LargeImageIndex = 1
+      SmallImageIndex = 1
     end
   end
   object BrMngr: TdxBarManager
@@ -2476,6 +2484,16 @@ object FrmMain: TFrmMain
       Caption = 'Tipos de Documentos'
       OnExecute = ActnTipoDocumentoExecute
     end
+    object ActnMovimentoEntrada: TAction
+      Category = 'Processos'
+      Caption = 'Movimentos de Entrada'
+      OnExecute = ActnMovimentoEntradaExecute
+    end
+    object ActnFornecedor: TAction
+      Category = 'Cadastros Principais'
+      Caption = 'Fornecedores'
+      Hint = 'Cadastro e pesquisa de Fornecedores (Pessoas)'
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2555,11 +2573,20 @@ object FrmMain: TFrmMain
       object mmTipoDocumento: TMenuItem
         Action = ActnTipoDocumento
       end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object mmFornecedor: TMenuItem
+        Action = ActnFornecedor
+      end
     end
     object MnProcessos: TMenuItem
       Caption = '&Processos'
       object mmAjusteEstoque: TMenuItem
         Action = ActnAjusteEstoque
+      end
+      object mmMovimentoEntrada: TMenuItem
+        Action = ActnMovimentoEntrada
       end
     end
     object MnRelatorios: TMenuItem

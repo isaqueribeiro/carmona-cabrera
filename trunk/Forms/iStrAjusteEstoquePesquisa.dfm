@@ -82,11 +82,11 @@ inherited FrmAjusteEstoquePesquisa: TFrmAjusteEstoquePesquisa
           inherited DbgTabelaDB: TcxGridDBTableView
             object DbgTabelaDBCodigo: TcxGridDBColumn
               DataBinding.FieldName = 'Codigo'
-              MinWidth = 100
+              MinWidth = 80
               Options.Filtering = False
               Options.HorzSizing = False
               Options.Moving = False
-              Width = 100
+              Width = 80
             end
             object DbgTabelaDBeaj_data: TcxGridDBColumn
               Caption = 'Data'

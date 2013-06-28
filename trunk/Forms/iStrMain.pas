@@ -98,6 +98,12 @@ type
     mmTipoMovimento: TMenuItem;
     ActnTipoDocumento: TAction;
     mmTipoDocumento: TMenuItem;
+    ActnMovimentoEntrada: TAction;
+    mmMovimentoEntrada: TMenuItem;
+    ActnFornecedor: TAction;
+    N3: TMenuItem;
+    mmFornecedor: TMenuItem;
+    NvBrFornecedor: TdxNavBarItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -120,6 +126,7 @@ type
     procedure ActnAjusteEstoqueExecute(Sender: TObject);
     procedure ActnCompetenciaExecute(Sender: TObject);
     procedure ActnTipoDocumentoExecute(Sender: TObject);
+    procedure ActnMovimentoEntradaExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -153,7 +160,8 @@ uses
   , iStrMaterialPesquisa
   , iStrMaterialImprimir
   , iStrTipoMovimento
-  , iStrAjusteEstoquePesquisa;
+  , iStrAjusteEstoquePesquisa
+  , iStrMovimentoEntradaPesquisa;
 
 {$R *.dfm}
 
@@ -397,6 +405,16 @@ begin
     FrmTipoDocumento.ShowModal;
   finally
     FrmTipoDocumento.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnMovimentoEntradaExecute(Sender: TObject);
+begin
+  FrmMovimentoEntradaPesquisa := TFrmMovimentoEntradaPesquisa.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmMovimentoEntradaPesquisa.ShowModal;
+  finally
+    FrmMovimentoEntradaPesquisa.Free;
   end;
 end;
 

@@ -339,6 +339,12 @@ procedure TFrmMaterialCadastro.CdsMasterBeforePost(DataSet: TDataSet);
 begin
   CdsMastermat_cst.AsString := CdsMastermat_aliquota_origem.AsString + CdsMastermat_tributacao_icms.AsString;
 
+  if ( CdsMastermat_lista.AsInteger = LISTA_MATERIAL ) then
+    CdsMastermat_aliquota_tipo.AsInteger := 0
+  else
+  if ( CdsMastermat_lista.AsInteger = LISTA_SERVICO ) then
+    CdsMastermat_aliquota_tipo.AsInteger := 1;
+
   if ( Trim(CdsMastermat_descricao_resumo.AsString) = EmptyStr ) then
     CdsMastermat_descricao_resumo.Clear;
 

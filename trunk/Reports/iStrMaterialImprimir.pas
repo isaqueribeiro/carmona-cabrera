@@ -18,6 +18,7 @@ type
     CdsMaterialLista: TClientDataSet;
     FrDBMaterialLista: TfrxDBDataset;
     FrMaterialLista: TfrxReport;
+    RdbMaterialEstoque: TcxRadioButton;
     procedure BtnNovoClick(Sender: TObject);
     procedure FrMaterialListaGetValue(const VarName: String;
       var Value: Variant);
