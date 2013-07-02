@@ -3,20 +3,14 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
   Top = 188
   Caption = 'Cadastro de Movimento de Entrada'
   ClientHeight = 622
-  ClientWidth = 963
   PixelsPerInch = 96
   TextHeight = 13
-  inherited BvlMain: TBevel
-    Width = 963
-  end
   inherited PnlMain: TPanel
-    Width = 963
     inherited BtnImprimir: TcxButton
-      Left = 899
       TabOrder = 7
     end
     object BtnProcesso: TcxButton
-      Left = 844
+      Left = 721
       Top = 9
       Width = 55
       Height = 55
@@ -134,17 +128,741 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     end
   end
   inherited PnlTabela: TPanel
-    Width = 963
     Height = 545
     inherited PgCtrlMain: TcxPageControl
-      Width = 955
       Height = 537
       ClientRectBottom = 533
-      ClientRectRight = 951
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpDadosNominais: TcxGroupBox
-          Height = 233
-          Width = 939
+          Height = 185
+          object lblCodigo: TcxLabel
+            Left = 39
+            Top = 26
+            Caption = 'Ano / C'#243'digo'
+            FocusControl = dbCodigo
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbAno: TcxDBTextEdit
+            Left = 112
+            Top = 24
+            DataBinding.DataField = 'ent_ano'
+            DataBinding.DataSource = DtsMaster
+            Properties.ReadOnly = True
+            Style.Color = 8454143
+            TabOrder = 1
+            Width = 49
+          end
+          object dbCodigo: TcxDBTextEdit
+            Left = 168
+            Top = 24
+            DataBinding.DataField = 'ent_codigo'
+            DataBinding.DataSource = DtsMaster
+            Properties.ReadOnly = True
+            Style.Color = 8454143
+            TabOrder = 2
+            Width = 73
+          end
+          object lblUnidadeNegocio: TcxLabel
+            Left = 255
+            Top = 26
+            Caption = 'Unidade de Neg'#243'cio'
+            FocusControl = dbUnidadeNegocio
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 354
+          end
+          object dbUnidadeNegocio: TcxDBLookupComboBox
+            Left = 360
+            Top = 24
+            DataBinding.DataField = 'ent_unidade_neg'
+            DataBinding.DataSource = DtsMaster
+            Properties.DropDownListStyle = lsFixedList
+            Properties.KeyFieldNames = 'uni_codigo'
+            Properties.ListColumns = <
+              item
+                FieldName = 'uni_nome'
+              end>
+            Properties.ListOptions.ShowHeader = False
+            Properties.ListSource = DtsUnidadeNeg
+            TabOrder = 4
+            Width = 425
+          end
+          object lblCompetencia: TcxLabel
+            Left = 39
+            Top = 50
+            Caption = 'Compet'#234'ncia'
+            FocusControl = dbCompetencia
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbCompetencia: TcxDBLookupComboBox
+            Left = 112
+            Top = 48
+            DataBinding.DataField = 'ent_competencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.DropDownListStyle = lsFixedList
+            Properties.KeyFieldNames = 'com_codigo'
+            Properties.ListColumns = <
+              item
+                FieldName = 'com_nome'
+              end>
+            Properties.ListOptions.ShowHeader = False
+            Properties.ListSource = DtsCompetencia
+            TabOrder = 6
+            Width = 129
+          end
+          object lblData: TcxLabel
+            Left = 326
+            Top = 50
+            Caption = 'Data'
+            FocusControl = dbData
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 353
+          end
+          object dbData: TcxDBDateEdit
+            Left = 360
+            Top = 48
+            DataBinding.DataField = 'ent_data'
+            DataBinding.DataSource = DtsMaster
+            TabOrder = 8
+            Width = 121
+          end
+          object lblHora: TcxLabel
+            Left = 494
+            Top = 50
+            Caption = 'Hora'
+            FocusControl = dbHora
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 521
+          end
+          object dbHora: TcxDBTextEdit
+            Left = 528
+            Top = 48
+            DataBinding.DataField = 'ent_hora'
+            DataBinding.DataSource = DtsMaster
+            Properties.ReadOnly = True
+            Style.Color = 8454143
+            TabOrder = 10
+            Width = 49
+          end
+          object lblUsuarioAbertura: TcxLabel
+            Left = 585
+            Top = 50
+            Caption = 'Usu'#225'rio'
+            FocusControl = dbUsuarioAbertura
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 625
+          end
+          object dbUsuarioAbertura: TcxDBTextEdit
+            Left = 632
+            Top = 48
+            DataBinding.DataField = 'ent_usuario_abertura'
+            DataBinding.DataSource = DtsMaster
+            Properties.ReadOnly = True
+            Style.Color = 8454143
+            TabOrder = 12
+            Width = 153
+          end
+          object lblTipoEntrada: TcxLabel
+            Left = 81
+            Top = 74
+            Caption = 'Tipo'
+            FocusControl = dbTipoEntrada
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbTipoEntrada: TcxDBLookupComboBox
+            Left = 112
+            Top = 72
+            DataBinding.DataField = 'ent_tipo'
+            DataBinding.DataSource = DtsMaster
+            Properties.DropDownListStyle = lsFixedList
+            Properties.KeyFieldNames = 'tmv_codigo'
+            Properties.ListColumns = <
+              item
+                FieldName = 'tmv_descricao'
+              end>
+            Properties.ListOptions.ShowHeader = False
+            Properties.ListSource = DtsTipoEntrada
+            TabOrder = 14
+            Width = 465
+          end
+          object lblSituacao: TcxLabel
+            Left = 580
+            Top = 74
+            Caption = 'Situa'#231#227'o'
+            FocusControl = dbSituacao
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 625
+          end
+          object dbSituacao: TcxDBTextEdit
+            Left = 632
+            Top = 72
+            DataBinding.DataField = 'ent_status'
+            DataBinding.DataSource = DtsMaster
+            Properties.ReadOnly = True
+            Style.Color = 8454143
+            TabOrder = 16
+            Width = 153
+          end
+          object lblObservacao: TcxLabel
+            Left = 38
+            Top = 98
+            Caption = 'Observa'#231#245'es'
+            FocusControl = dbObservacao
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbObservacao: TcxDBMemo
+            Left = 112
+            Top = 96
+            DataBinding.DataField = 'ent_obs'
+            DataBinding.DataSource = DtsMaster
+            Properties.MaxLength = 250
+            TabOrder = 18
+            Height = 81
+            Width = 673
+          end
+        end
+        object GrpDadosFornecedor: TcxGroupBox
+          Left = 0
+          Top = 185
+          Align = alTop
+          Caption = 'Fornecedor'
+          TabOrder = 1
+          Height = 136
+          Width = 816
+          object lblFornecedor: TcxLabel
+            Left = 46
+            Top = 50
+            Caption = 'Fornecedor'
+            FocusControl = dbFornecedor
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbFornecedor: TcxDBButtonEdit
+            Left = 112
+            Top = 48
+            Hint = 
+              'Pesquisar fornecedores'#13#10'(Ctrl + Enter)'#13#10#13#10'Limpar'#13#10'(Ctrl + Delete' +
+              ')'
+            DataBinding.DataField = 'pes_razao_social'
+            DataBinding.DataSource = DtsMaster
+            ParentShowHint = False
+            Properties.Buttons = <
+              item
+                Default = True
+                Kind = bkEllipsis
+              end>
+            Properties.ReadOnly = True
+            ShowHint = True
+            TabOrder = 4
+            Width = 449
+          end
+          object lblCfop: TcxLabel
+            Left = 74
+            Top = 26
+            Caption = 'CFOP'
+            FocusControl = dbCfop
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object dbCfop: TcxDBTextEdit
+            Left = 112
+            Top = 24
+            DataBinding.DataField = 'ent_cfop'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 1
+            Width = 73
+          end
+          object dbCfopDescricao: TcxDBTextEdit
+            Left = 192
+            Top = 24
+            DataBinding.DataField = 'cfop_descricao'
+            DataBinding.DataSource = DtsMaster
+            Properties.ReadOnly = True
+            Style.Color = 8454143
+            TabOrder = 2
+            Width = 593
+          end
+          object lblCpfCnpj: TcxLabel
+            Left = 567
+            Top = 50
+            Caption = 'CPF / CNPJ'
+            FocusControl = dbCpfCnpj
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 625
+          end
+          object dbCpfCnpj: TcxDBTextEdit
+            Left = 632
+            Top = 48
+            DataBinding.DataField = 'pes_documento'
+            DataBinding.DataSource = DtsMaster
+            Properties.ReadOnly = True
+            Style.Color = 8454143
+            TabOrder = 6
+            Width = 153
+          end
+          object GrpDadosDocumento: TcxGroupBox
+            Left = 112
+            Top = 72
+            Caption = 'Documento'
+            TabOrder = 7
+            Height = 57
+            Width = 673
+            object lblDocumentoTipo: TcxLabel
+              Left = 26
+              Top = 26
+              Caption = 'Tipo'
+              FocusControl = dbDocumentoTipo
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 50
+            end
+            object dbDocumentoTipo: TcxDBLookupComboBox
+              Left = 56
+              Top = 24
+              DataBinding.DataField = 'ent_doc_tipo'
+              DataBinding.DataSource = DtsMaster
+              Properties.DropDownListStyle = lsFixedList
+              Properties.KeyFieldNames = 'uni_codigo'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'uni_nome'
+                end>
+              Properties.ListOptions.ShowHeader = False
+              Properties.ListSource = DtsUnidadeNeg
+              TabOrder = 1
+              Width = 217
+            end
+            object lblDocumentoEmissao: TcxLabel
+              Left = 279
+              Top = 26
+              Caption = 'Emiss'#227'o'
+              FocusControl = dbDocumentoEmissao
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 321
+            end
+            object dbDocumentoEmissao: TcxDBDateEdit
+              Left = 328
+              Top = 24
+              DataBinding.DataField = 'ent_doc_emissao'
+              DataBinding.DataSource = DtsMaster
+              TabOrder = 3
+              Width = 121
+            end
+            object lblDocumentoNumero: TcxLabel
+              Left = 472
+              Top = 26
+              Caption = 'N'#250'mero'
+              FocusControl = d1DocumentoNumero
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 513
+            end
+            object d1DocumentoNumero: TcxDBTextEdit
+              Left = 520
+              Top = 24
+              DataBinding.DataField = 'ent_doc_numero'
+              DataBinding.DataSource = DtsMaster
+              Properties.CharCase = ecUpperCase
+              TabOrder = 5
+              Width = 89
+            end
+            object d2DocumentoNumero: TcxDBTextEdit
+              Left = 616
+              Top = 24
+              DataBinding.DataField = 'ent_doc_serie'
+              DataBinding.DataSource = DtsMaster
+              Properties.CharCase = ecUpperCase
+              TabOrder = 6
+              Width = 33
+            end
+          end
+        end
+        object cxGroupBox1: TcxGroupBox
+          Left = 0
+          Top = 321
+          Align = alTop
+          Caption = 'Valor Documento'
+          ParentFont = False
+          Style.Font.Charset = ANSI_CHARSET
+          Style.Font.Color = clBlue
+          Style.Font.Height = -11
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = []
+          Style.IsFontAssigned = True
+          TabOrder = 2
+          Height = 176
+          Width = 816
+          object cxLabel1: TcxLabel
+            Left = 50
+            Top = 26
+            Caption = 'Base ICMS'
+            FocusControl = cxDBTextEdit1
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object cxDBTextEdit1: TcxDBTextEdit
+            Left = 112
+            Top = 24
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 1
+            Width = 113
+          end
+          object cxLabel2: TcxLabel
+            Left = 49
+            Top = 50
+            Caption = 'Valor ICMS'
+            FocusControl = cxDBTextEdit2
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object cxDBTextEdit2: TcxDBTextEdit
+            Left = 112
+            Top = 48
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 3
+            Width = 113
+          end
+          object cxLabel3: TcxLabel
+            Left = 16
+            Top = 74
+            Caption = 'Base ICMS Subst.'
+            FocusControl = cxDBTextEdit3
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object cxDBTextEdit3: TcxDBTextEdit
+            Left = 112
+            Top = 72
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 5
+            Width = 113
+          end
+          object cxLabel4: TcxLabel
+            Left = 15
+            Top = 98
+            Caption = 'Valor ICMS Subst.'
+            FocusControl = cxDBTextEdit4
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object cxDBTextEdit4: TcxDBTextEdit
+            Left = 112
+            Top = 96
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 7
+            Width = 113
+          end
+          object cxLabel5: TcxLabel
+            Left = 9
+            Top = 146
+            Caption = 'Valor Total Produto'
+            FocusControl = cxDBTextEdit5
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 105
+          end
+          object cxDBTextEdit5: TcxDBTextEdit
+            Left = 112
+            Top = 144
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 9
+            Width = 113
+          end
+          object cxLabel6: TcxLabel
+            Left = 315
+            Top = 26
+            Caption = 'Frete'
+            FocusControl = cxDBTextEdit6
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 345
+          end
+          object cxDBTextEdit6: TcxDBTextEdit
+            Left = 352
+            Top = 24
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 11
+            Width = 113
+          end
+          object cxLabel7: TcxLabel
+            Left = 307
+            Top = 50
+            Caption = 'Seguro'
+            FocusControl = cxDBTextEdit7
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 345
+          end
+          object cxDBTextEdit7: TcxDBTextEdit
+            Left = 352
+            Top = 48
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 13
+            Width = 113
+          end
+          object cxLabel8: TcxLabel
+            Left = 296
+            Top = 74
+            Caption = 'Desconto'
+            FocusControl = cxDBTextEdit8
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 345
+          end
+          object cxDBTextEdit8: TcxDBTextEdit
+            Left = 352
+            Top = 72
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 15
+            Width = 113
+          end
+          object cxLabel9: TcxLabel
+            Left = 308
+            Top = 98
+            Caption = 'Outros'
+            FocusControl = cxDBTextEdit9
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 345
+          end
+          object cxDBTextEdit9: TcxDBTextEdit
+            Left = 352
+            Top = 96
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 17
+            Width = 113
+          end
+          object cxLabel10: TcxLabel
+            Left = 300
+            Top = 122
+            Caption = 'Total IPI'
+            FocusControl = cxDBTextEdit10
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 345
+          end
+          object cxDBTextEdit10: TcxDBTextEdit
+            Left = 352
+            Top = 120
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 19
+            Width = 113
+          end
+          object cxLabel11: TcxLabel
+            Left = 264
+            Top = 146
+            Caption = 'Valor Total Nota'
+            FocusControl = cxDBTextEdit11
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 345
+          end
+          object cxDBTextEdit11: TcxDBTextEdit
+            Left = 352
+            Top = 144
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 21
+            Width = 113
+          end
+          object cxLabel12: TcxLabel
+            Left = 524
+            Top = 26
+            Caption = 'Valor Total Servi'#231'o'
+            FocusControl = cxDBTextEdit12
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 617
+          end
+          object cxDBTextEdit12: TcxDBTextEdit
+            Left = 624
+            Top = 24
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 23
+            Width = 113
+          end
+          object cxLabel13: TcxLabel
+            Left = 556
+            Top = 50
+            Caption = 'Base ISSQN'
+            FocusControl = cxDBTextEdit13
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 617
+          end
+          object cxDBTextEdit13: TcxDBTextEdit
+            Left = 624
+            Top = 48
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 25
+            Width = 113
+          end
+          object cxLabel14: TcxLabel
+            Left = 555
+            Top = 74
+            Caption = 'Al'#237'quota ISS'
+            FocusControl = cxDBTextEdit14
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 617
+          end
+          object cxDBTextEdit14: TcxDBTextEdit
+            Left = 624
+            Top = 72
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 27
+            Width = 113
+          end
+          object cxLabel15: TcxLabel
+            Left = 555
+            Top = 98
+            Caption = 'Valor ISSQN'
+            FocusControl = cxDBTextEdit15
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 617
+          end
+          object cxDBTextEdit15: TcxDBTextEdit
+            Left = 624
+            Top = 96
+            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecUpperCase
+            TabOrder = 29
+            Width = 113
+          end
         end
       end
       object TbsItem: TcxTabSheet
@@ -154,20 +872,356 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     end
   end
   inherited QryMaster: TSQLQuery
-    Left = 24
-    Top = 376
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'ent_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftBCD
+        Name = 'ent_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
+    SQL.Strings = (
+      'Select'
+      '    me.ent_ano'
+      '  , me.ent_codigo'
+      '  , me.ent_tipo'
+      '  , me.ent_unidade_neg'
+      '  , me.ent_setor'
+      '  , me.ent_pessoa'
+      '  , me.ent_data'
+      '  , me.ent_hora'
+      '  , me.ent_doc_tipo'
+      '  , me.ent_doc_numero'
+      '  , me.ent_doc_serie'
+      '  , me.ent_doc_emissao'
+      '  , me.ent_competencia'
+      '  , me.ent_obs'
+      '  , me.ent_cfop'
+      '  , me.ent_base_icms'
+      '  , me.ent_valor_icms'
+      '  , me.ent_base_icms_st'
+      '  , me.ent_valor_icms_st'
+      '  , me.ent_valor_total_prod'
+      '  , me.ent_valor_frete'
+      '  , me.ent_valor_seguro'
+      '  , me.ent_valor_desconto'
+      '  , me.ent_valor_outros'
+      '  , me.ent_valor_ipi'
+      '  , me.ent_valor_nota'
+      '  , me.ent_valor_total_serv'
+      '  , me.ent_base_issqn'
+      '  , me.ent_percent_issqn'
+      '  , me.ent_valor_issqn'
+      '  , me.ent_status'
+      '  , me.ent_usuario_abertura'
+      '  , me.ent_usuario_fechamento'
+      '  , me.ent_log_insert'
+      '  , me.ent_log_update'
+      '  , me.ent_log_inactive'
+      '  , me.ent_mov_codigo'
+      '  , un.uni_nome'
+      '  , ps.pes_razao_social'
+      '  , ps.pes_nome_fantasia'
+      '  , ps.pes_documento'
+      '  , td.tip_nome'
+      '  , cf.cfop_descricao'
+      '  , Case me.ent_status'
+      '      when 0 then '#39'Aberta'#39
+      '      when 1 then '#39'Encerrada'#39
+      '      when 2 then '#39'Cancelada'#39
+      '    end as ent_status_desc'
+      'from str_entrada me'
+      
+        '  inner join mny_unidade un on (un.uni_codigo = me.ent_unidade_n' +
+        'eg)'
+      '  inner join mny_pessoa ps on (ps.pes_codigo = me.ent_pessoa)'
+      
+        '  inner join mny_tipo_documento td on (td.tip_codigo = me.ent_do' +
+        'c_tipo)'
+      '  inner join sys_cfop cf on (cf.cfop_codigo = me.ent_cfop)'
+      'where me.ent_ano = :ent_ano'
+      '  and me.ent_codigo = :ent_codigo')
+    Left = 592
+    Top = 8
   end
   inherited DspMaster: TDataSetProvider
-    Left = 56
-    Top = 376
+    Left = 624
+    Top = 8
   end
   inherited CdsMaster: TClientDataSet
-    Left = 88
-    Top = 376
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'ent_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftBCD
+        Name = 'ent_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
+    Left = 656
+    Top = 8
+    object CdsMasterent_ano: TSmallintField
+      FieldName = 'ent_ano'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsMasterent_codigo: TFMTBCDField
+      FieldName = 'ent_codigo'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+      Precision = 20
+      Size = 0
+    end
+    object CdsMasterent_tipo: TStringField
+      FieldName = 'ent_tipo'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Size = 3
+    end
+    object CdsMasterent_unidade_neg: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_unidade_neg'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterent_setor: TSmallintField
+      FieldName = 'ent_setor'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_pessoa: TIntegerField
+      FieldName = 'ent_pessoa'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterent_data: TDateField
+      FieldName = 'ent_data'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_hora: TTimeField
+      FieldName = 'ent_hora'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_doc_tipo: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_doc_tipo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_doc_numero: TStringField
+      FieldName = 'ent_doc_numero'
+      ProviderFlags = [pfInUpdate]
+      Size = 10
+    end
+    object CdsMasterent_doc_serie: TStringField
+      FieldName = 'ent_doc_serie'
+      ProviderFlags = [pfInUpdate]
+      Size = 3
+    end
+    object CdsMasterent_doc_emissao: TDateField
+      FieldName = 'ent_doc_emissao'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_competencia: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_competencia'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterent_obs: TMemoField
+      FieldName = 'ent_obs'
+      ProviderFlags = [pfInUpdate]
+      BlobType = ftMemo
+      Size = 1
+    end
+    object CdsMasterent_cfop: TIntegerField
+      FieldName = 'ent_cfop'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_base_icms: TFMTBCDField
+      FieldName = 'ent_base_icms'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_icms: TFMTBCDField
+      FieldName = 'ent_valor_icms'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_base_icms_st: TFMTBCDField
+      FieldName = 'ent_base_icms_st'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_icms_st: TFMTBCDField
+      FieldName = 'ent_valor_icms_st'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_total_prod: TFMTBCDField
+      FieldName = 'ent_valor_total_prod'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_frete: TFMTBCDField
+      FieldName = 'ent_valor_frete'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_seguro: TFMTBCDField
+      FieldName = 'ent_valor_seguro'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_desconto: TFMTBCDField
+      FieldName = 'ent_valor_desconto'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_outros: TFMTBCDField
+      FieldName = 'ent_valor_outros'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_ipi: TFMTBCDField
+      FieldName = 'ent_valor_ipi'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_nota: TFMTBCDField
+      FieldName = 'ent_valor_nota'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_valor_total_serv: TFMTBCDField
+      FieldName = 'ent_valor_total_serv'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_base_issqn: TFMTBCDField
+      FieldName = 'ent_base_issqn'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_percent_issqn: TFMTBCDField
+      FieldName = 'ent_percent_issqn'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 17
+      Size = 2
+    end
+    object CdsMasterent_valor_issqn: TFMTBCDField
+      FieldName = 'ent_valor_issqn'
+      ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
+      Precision = 20
+      Size = 4
+    end
+    object CdsMasterent_status: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_status'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_usuario_abertura: TStringField
+      FieldName = 'ent_usuario_abertura'
+      ProviderFlags = [pfInUpdate]
+      Size = 100
+    end
+    object CdsMasterent_usuario_fechamento: TStringField
+      FieldName = 'ent_usuario_fechamento'
+      ProviderFlags = [pfInUpdate]
+      Size = 100
+    end
+    object CdsMasterent_log_insert: TStringField
+      FieldName = 'ent_log_insert'
+      ProviderFlags = [pfInUpdate]
+      Size = 150
+    end
+    object CdsMasterent_log_update: TStringField
+      FieldName = 'ent_log_update'
+      ProviderFlags = [pfInUpdate]
+      Size = 150
+    end
+    object CdsMasterent_log_inactive: TStringField
+      FieldName = 'ent_log_inactive'
+      ProviderFlags = [pfInUpdate]
+      Size = 150
+    end
+    object CdsMasterent_mov_codigo: TIntegerField
+      FieldName = 'ent_mov_codigo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasteruni_nome: TStringField
+      FieldName = 'uni_nome'
+      ProviderFlags = []
+      Size = 60
+    end
+    object CdsMasterpes_razao_social: TStringField
+      FieldName = 'pes_razao_social'
+      ProviderFlags = []
+      Size = 200
+    end
+    object CdsMasterpes_nome_fantasia: TStringField
+      FieldName = 'pes_nome_fantasia'
+      ProviderFlags = []
+      Size = 100
+    end
+    object CdsMasterpes_documento: TStringField
+      FieldName = 'pes_documento'
+      ProviderFlags = []
+    end
+    object CdsMastertip_nome: TStringField
+      FieldName = 'tip_nome'
+      ProviderFlags = []
+      Size = 60
+    end
+    object CdsMasterent_status_desc: TStringField
+      FieldName = 'ent_status_desc'
+      ProviderFlags = []
+      Size = 9
+    end
+    object CdsMastercfop_descricao: TStringField
+      FieldName = 'cfop_descricao'
+      ProviderFlags = []
+      Size = 250
+    end
   end
   inherited DtsMaster: TDataSource
-    Left = 120
-    Top = 376
+    Left = 688
+    Top = 8
   end
   object popupProcesso: TPopupMenu
     Images = DtmResource.ImgLstSml
@@ -193,25 +1247,25 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    ung.uni_nome')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 496
-    Top = 352
+    Left = 696
+    Top = 432
   end
   object DspUnidadeNeg: TDataSetProvider
     DataSet = QryUnidadeNeg
-    Left = 528
-    Top = 352
+    Left = 728
+    Top = 432
   end
   object CdsUnidadeNeg: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspUnidadeNeg'
-    Left = 560
-    Top = 352
+    Left = 760
+    Top = 432
   end
   object DtsUnidadeNeg: TDataSource
     DataSet = CdsUnidadeNeg
-    Left = 592
-    Top = 352
+    Left = 792
+    Top = 432
   end
   object QryCompetencia: TSQLQuery
     MaxBlobSize = -1
@@ -226,25 +1280,25 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    c.com_ano_mes')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 496
-    Top = 384
+    Left = 696
+    Top = 464
   end
   object DspCompetencia: TDataSetProvider
     DataSet = QryCompetencia
-    Left = 528
-    Top = 384
+    Left = 728
+    Top = 464
   end
   object CdsCompetencia: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspCompetencia'
-    Left = 560
-    Top = 384
+    Left = 760
+    Top = 464
   end
   object DtsCompetencia: TDataSource
     DataSet = CdsCompetencia
-    Left = 592
-    Top = 384
+    Left = 792
+    Top = 464
   end
   object QryTipoEntrada: TSQLQuery
     MaxBlobSize = -1
@@ -258,25 +1312,25 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    t.tmv_codigo')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 496
-    Top = 416
+    Left = 696
+    Top = 496
   end
   object DspTipoEntrada: TDataSetProvider
     DataSet = QryTipoEntrada
-    Left = 528
-    Top = 416
+    Left = 728
+    Top = 496
   end
   object CdsTipoEntrada: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspTipoEntrada'
-    Left = 560
-    Top = 416
+    Left = 760
+    Top = 496
   end
   object DtsTipoEntrada: TDataSource
     DataSet = CdsTipoEntrada
-    Left = 592
-    Top = 416
+    Left = 792
+    Top = 496
   end
   object QryUnidade: TSQLQuery
     MaxBlobSize = -1
@@ -289,77 +1343,77 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by '
       '    u.und_descricao')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 496
-    Top = 480
+    Left = 696
+    Top = 560
   end
   object DspUnidade: TDataSetProvider
     DataSet = QryUnidade
-    Left = 528
-    Top = 480
+    Left = 728
+    Top = 560
   end
   object CdsUnidade: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspUnidade'
-    Left = 560
-    Top = 480
+    Left = 760
+    Top = 560
   end
   object DtsUnidade: TDataSource
     DataSet = CdsUnidade
-    Left = 592
-    Top = 480
+    Left = 792
+    Top = 560
   end
   object QryItem: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQLConnection = FrmLogin.conWebMaster
-    Left = 24
-    Top = 408
+    Left = 592
+    Top = 40
   end
   object DspItem: TDataSetProvider
     DataSet = QryItem
-    Left = 56
-    Top = 408
+    Left = 624
+    Top = 40
   end
   object CdsItem: TClientDataSet
     Aggregates = <>
     PacketRecords = 100
     Params = <>
     ProviderName = 'DspItem'
-    Left = 88
-    Top = 408
+    Left = 656
+    Top = 40
   end
   object DtsItem: TDataSource
     AutoEdit = False
     DataSet = CdsItem
-    Left = 120
-    Top = 408
+    Left = 688
+    Top = 40
   end
   object QryDuplicata: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQLConnection = FrmLogin.conWebMaster
-    Left = 24
-    Top = 440
+    Left = 592
+    Top = 72
   end
   object DspDuplicata: TDataSetProvider
     DataSet = QryDuplicata
-    Left = 56
-    Top = 440
+    Left = 624
+    Top = 72
   end
   object CdsDuplicata: TClientDataSet
     Aggregates = <>
     PacketRecords = 100
     Params = <>
     ProviderName = 'DspDuplicata'
-    Left = 88
-    Top = 440
+    Left = 656
+    Top = 72
   end
   object DtsDuplicata: TDataSource
     AutoEdit = False
     DataSet = CdsDuplicata
-    Left = 120
-    Top = 440
+    Left = 688
+    Top = 72
   end
   object QryTipoDocumento: TSQLQuery
     MaxBlobSize = -1
@@ -373,24 +1427,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    td.tip_nome')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 496
-    Top = 448
+    Left = 696
+    Top = 528
   end
   object DspTipoDocumento: TDataSetProvider
     DataSet = QryTipoDocumento
-    Left = 528
-    Top = 448
+    Left = 728
+    Top = 528
   end
   object CdsTipoDocumento: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspTipoDocumento'
-    Left = 560
-    Top = 448
+    Left = 760
+    Top = 528
   end
   object DtsTipoDocumento: TDataSource
     DataSet = CdsTipoDocumento
-    Left = 592
-    Top = 448
+    Left = 792
+    Top = 528
   end
 end

@@ -134,7 +134,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
       OnChange = PgCtrlMainChange
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpDadosNominais: TcxGroupBox
-          Height = 193
+          Height = 185
           object lblCodigo: TcxLabel
             Left = 39
             Top = 26
@@ -335,9 +335,9 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
         end
         object DbgConsulta: TcxGrid
           Left = 0
-          Top = 212
+          Top = 204
           Width = 816
-          Height = 228
+          Height = 236
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -453,7 +453,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
         end
         object Pnl: TPanel
           Left = 0
-          Top = 193
+          Top = 185
           Width = 816
           Height = 19
           Align = alTop
