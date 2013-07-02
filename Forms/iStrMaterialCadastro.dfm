@@ -225,7 +225,7 @@ inherited FrmMaterialCadastro: TFrmMaterialCadastro
             Top = 18
             Width = 812
             Height = 214
-            ActivePage = TbsTributacao
+            ActivePage = TbsClassificar
             Align = alClient
             LookAndFeel.Kind = lfStandard
             LookAndFeel.NativeStyle = True
