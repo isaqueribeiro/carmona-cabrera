@@ -589,16 +589,16 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel5: TcxLabel
-            Left = 9
+            Left = 24
             Top = 146
-            Caption = 'Valor Total Produto'
+            Caption = 'Total Produto'
             FocusControl = cxDBTextEdit5
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
             Style.Font.Height = -11
             Style.Font.Name = 'Tahoma'
-            Style.Font.Style = []
+            Style.Font.Style = [fsBold]
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
@@ -609,12 +609,19 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Top = 144
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
+            ParentFont = False
             Properties.CharCase = ecUpperCase
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
             TabOrder = 9
             Width = 113
           end
           object cxLabel6: TcxLabel
-            Left = 315
+            Left = 347
             Top = 26
             Caption = 'Frete'
             FocusControl = cxDBTextEdit6
@@ -627,10 +634,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 345
+            AnchorX = 377
           end
           object cxDBTextEdit6: TcxDBTextEdit
-            Left = 352
+            Left = 384
             Top = 24
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
@@ -639,7 +646,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel7: TcxLabel
-            Left = 307
+            Left = 339
             Top = 50
             Caption = 'Seguro'
             FocusControl = cxDBTextEdit7
@@ -652,10 +659,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 345
+            AnchorX = 377
           end
           object cxDBTextEdit7: TcxDBTextEdit
-            Left = 352
+            Left = 384
             Top = 48
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
@@ -664,7 +671,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel8: TcxLabel
-            Left = 296
+            Left = 328
             Top = 74
             Caption = 'Desconto'
             FocusControl = cxDBTextEdit8
@@ -677,10 +684,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 345
+            AnchorX = 377
           end
           object cxDBTextEdit8: TcxDBTextEdit
-            Left = 352
+            Left = 384
             Top = 72
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
@@ -689,7 +696,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel9: TcxLabel
-            Left = 308
+            Left = 340
             Top = 98
             Caption = 'Outros'
             FocusControl = cxDBTextEdit9
@@ -702,10 +709,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 345
+            AnchorX = 377
           end
           object cxDBTextEdit9: TcxDBTextEdit
-            Left = 352
+            Left = 384
             Top = 96
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
@@ -714,7 +721,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel10: TcxLabel
-            Left = 300
+            Left = 332
             Top = 122
             Caption = 'Total IPI'
             FocusControl = cxDBTextEdit10
@@ -727,10 +734,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 345
+            AnchorX = 377
           end
           object cxDBTextEdit10: TcxDBTextEdit
-            Left = 352
+            Left = 384
             Top = 120
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
@@ -739,57 +746,71 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel11: TcxLabel
-            Left = 264
+            Left = 315
             Top = 146
-            Caption = 'Valor Total Nota'
+            Caption = 'Total Nota'
             FocusControl = cxDBTextEdit11
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
             Style.Font.Height = -11
             Style.Font.Name = 'Tahoma'
-            Style.Font.Style = []
+            Style.Font.Style = [fsBold]
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 345
+            AnchorX = 377
           end
           object cxDBTextEdit11: TcxDBTextEdit
-            Left = 352
+            Left = 384
             Top = 144
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
+            ParentFont = False
             Properties.CharCase = ecUpperCase
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
             TabOrder = 21
             Width = 113
           end
           object cxLabel12: TcxLabel
-            Left = 524
+            Left = 587
             Top = 26
-            Caption = 'Valor Total Servi'#231'o'
+            Caption = 'Total Servi'#231'o'
             FocusControl = cxDBTextEdit12
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
             Style.Font.Height = -11
             Style.Font.Name = 'Tahoma'
-            Style.Font.Style = []
+            Style.Font.Style = [fsBold]
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 617
+            AnchorX = 665
           end
           object cxDBTextEdit12: TcxDBTextEdit
-            Left = 624
+            Left = 672
             Top = 24
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
+            ParentFont = False
             Properties.CharCase = ecUpperCase
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = [fsBold]
+            Style.IsFontAssigned = True
             TabOrder = 23
             Width = 113
           end
           object cxLabel13: TcxLabel
-            Left = 556
+            Left = 604
             Top = 50
             Caption = 'Base ISSQN'
             FocusControl = cxDBTextEdit13
@@ -802,10 +823,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 617
+            AnchorX = 665
           end
           object cxDBTextEdit13: TcxDBTextEdit
-            Left = 624
+            Left = 672
             Top = 48
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
@@ -814,7 +835,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel14: TcxLabel
-            Left = 555
+            Left = 603
             Top = 74
             Caption = 'Al'#237'quota ISS'
             FocusControl = cxDBTextEdit14
@@ -827,10 +848,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 617
+            AnchorX = 665
           end
           object cxDBTextEdit14: TcxDBTextEdit
-            Left = 624
+            Left = 672
             Top = 72
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
@@ -839,7 +860,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Width = 113
           end
           object cxLabel15: TcxLabel
-            Left = 555
+            Left = 603
             Top = 98
             Caption = 'Valor ISSQN'
             FocusControl = cxDBTextEdit15
@@ -852,14 +873,21 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.IsFontAssigned = True
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
-            AnchorX = 617
+            AnchorX = 665
           end
           object cxDBTextEdit15: TcxDBTextEdit
-            Left = 624
+            Left = 672
             Top = 96
             DataBinding.DataField = 'mat_referencia'
             DataBinding.DataSource = DtsMaster
+            ParentFont = False
             Properties.CharCase = ecUpperCase
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
             TabOrder = 29
             Width = 113
           end
@@ -924,6 +952,12 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       '  , me.ent_log_update'
       '  , me.ent_log_inactive'
       '  , me.ent_mov_codigo'
+      '  , me.ent_aprop_tipo_custo'
+      '  , me.ent_aprop_centro_negocio'
+      '  , me.ent_aprop_unidade_negocio'
+      '  , me.ent_aprop_centro_custo'
+      '  , me.ent_aprop_setor'
+      '  , me.ent_aprop_conta'
       '  , un.uni_nome'
       '  , ps.pes_razao_social'
       '  , ps.pes_nome_fantasia'
@@ -1184,6 +1218,36 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       FieldName = 'ent_mov_codigo'
       ProviderFlags = [pfInUpdate]
     end
+    object CdsMasterent_aprop_tipo_custo: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_aprop_tipo_custo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_aprop_centro_negocio: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_aprop_centro_negocio'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_aprop_unidade_negocio: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_aprop_unidade_negocio'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_aprop_centro_custo: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_aprop_centro_custo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_aprop_setor: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_aprop_setor'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_aprop_conta: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_aprop_conta'
+      ProviderFlags = [pfInUpdate]
+    end
     object CdsMasteruni_nome: TStringField
       FieldName = 'uni_nome'
       ProviderFlags = []
@@ -1248,24 +1312,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       '    ung.uni_nome')
     SQLConnection = FrmLogin.conWebMaster
     Left = 696
-    Top = 432
+    Top = 384
   end
   object DspUnidadeNeg: TDataSetProvider
     DataSet = QryUnidadeNeg
     Left = 728
-    Top = 432
+    Top = 384
   end
   object CdsUnidadeNeg: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspUnidadeNeg'
     Left = 760
-    Top = 432
+    Top = 384
   end
   object DtsUnidadeNeg: TDataSource
     DataSet = CdsUnidadeNeg
     Left = 792
-    Top = 432
+    Top = 384
   end
   object QryCompetencia: TSQLQuery
     MaxBlobSize = -1

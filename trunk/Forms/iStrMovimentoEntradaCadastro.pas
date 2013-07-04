@@ -156,6 +156,12 @@ type
     cxDBTextEdit14: TcxDBTextEdit;
     cxLabel15: TcxLabel;
     cxDBTextEdit15: TcxDBTextEdit;
+    CdsMasterent_aprop_tipo_custo: TSmallintField;
+    CdsMasterent_aprop_centro_negocio: TSmallintField;
+    CdsMasterent_aprop_unidade_negocio: TSmallintField;
+    CdsMasterent_aprop_centro_custo: TSmallintField;
+    CdsMasterent_aprop_setor: TSmallintField;
+    CdsMasterent_aprop_conta: TSmallintField;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
