@@ -2494,6 +2494,11 @@ object FrmMain: TFrmMain
       Caption = 'Fornecedores'
       Hint = 'Cadastro e pesquisa de Fornecedores (Pessoas)'
     end
+    object ActnCFOP: TAction
+      Category = 'Tabelas Auxiliares'
+      Caption = 'CFOPs'
+      OnExecute = ActnCFOPExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -2572,6 +2577,9 @@ object FrmMain: TFrmMain
       end
       object mmTipoDocumento: TMenuItem
         Action = ActnTipoDocumento
+      end
+      object mmCFOP: TMenuItem
+        Action = ActnCFOP
       end
       object N3: TMenuItem
         Caption = '-'

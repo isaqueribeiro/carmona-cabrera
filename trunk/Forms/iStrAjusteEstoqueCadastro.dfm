@@ -131,6 +131,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
   end
   inherited PnlTabela: TPanel
     inherited PgCtrlMain: TcxPageControl
+      ActivePage = TbsItem
       OnChange = PgCtrlMainChange
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpDadosNominais: TcxGroupBox
@@ -1439,8 +1440,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 41.574830000000000000
           ShowHint = False
           CharSpacing = 2.000000000000000000
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -1460,8 +1459,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 188.976500000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -1483,8 +1480,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 188.976500000000000000
           Height = 18.897650000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1566,8 +1561,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 30.236240000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1587,8 +1580,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 45.354360000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1608,8 +1599,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 453.543600000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1628,8 +1617,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 75.590600000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1649,8 +1636,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 113.385900000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1678,8 +1663,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 113.385900000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1698,8 +1681,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 415.748300000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1718,8 +1699,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 79.370130000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1739,8 +1718,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 22.677180000000000000
           ShowHint = False
           Color = clBtnFace
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1760,8 +1737,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 79.370130000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1780,8 +1755,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 109.606370000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1801,8 +1774,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 79.370130000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1822,8 +1793,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 22.677180000000000000
           ShowHint = False
           Color = clBtnFace
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1843,8 +1812,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 79.370130000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1864,8 +1831,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 109.606370000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1884,8 +1849,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 113.385900000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1905,8 +1868,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 415.748300000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1924,8 +1885,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 113.385900000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1944,8 +1903,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 113.385900000000000000
           Height = 45.354360000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -1982,8 +1939,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 79.370130000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -2002,8 +1957,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 109.606370000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -2023,8 +1976,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 22.677180000000000000
           ShowHint = False
           Color = clBtnFace
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -2046,8 +1997,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 22.677180000000000000
           ShowHint = False
           Color = clBtnFace
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -2069,8 +2018,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 22.677180000000000000
           ShowHint = False
           Color = clBtnFace
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -2092,8 +2039,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 22.677180000000000000
           ShowHint = False
           Color = clBtnFace
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -2115,8 +2060,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Height = 22.677180000000000000
           ShowHint = False
           Color = clBtnFace
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -2141,8 +2084,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 188.976500000000000000
           Height = 22.677180000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -2161,8 +2102,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 188.976500000000000000
           Height = 15.118120000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
@@ -2182,8 +2121,6 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
           Width = 188.976500000000000000
           Height = 15.118120000000000000
           ShowHint = False
-          DataSet = FrmMaterialImprimir.FrDBMaterialLista
-          DataSetName = 'FrDBMaterialLista'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -8
