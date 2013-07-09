@@ -356,6 +356,7 @@ begin
 
   if ( CdsMastermat_status.AsInteger = 0 ) then
     CdsMastermat_log_inactive.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+    
   inherited;
 end;
 

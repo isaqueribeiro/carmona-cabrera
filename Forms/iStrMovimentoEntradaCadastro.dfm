@@ -131,6 +131,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     Height = 545
     inherited PgCtrlMain: TcxPageControl
       Height = 537
+      ActivePage = TbsItem
       ClientRectBottom = 533
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpDadosNominais: TcxGroupBox
@@ -509,47 +510,47 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           TabOrder = 2
           Height = 176
           Width = 816
-          object cxLabel1: TcxLabel
+          object lblBaseICMS: TcxLabel
             Left = 50
             Top = 26
             Caption = 'Base ICMS'
-            FocusControl = cxDBTextEdit1
+            FocusControl = dbBaseICMS
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
             AnchorX = 105
           end
-          object cxDBTextEdit1: TcxDBTextEdit
+          object dbBaseICMS: TcxDBTextEdit
             Left = 112
             Top = 24
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_base_icms'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 1
             Width = 113
           end
-          object cxLabel2: TcxLabel
+          object lblValorICMS: TcxLabel
             Left = 49
             Top = 50
             Caption = 'Valor ICMS'
-            FocusControl = cxDBTextEdit2
+            FocusControl = dbValorICMS
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
             AnchorX = 105
           end
-          object cxDBTextEdit2: TcxDBTextEdit
+          object dbValorICMS: TcxDBTextEdit
             Left = 112
             Top = 48
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_icms'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 3
             Width = 113
           end
-          object cxLabel3: TcxLabel
+          object lblBaseICMSSubst: TcxLabel
             Left = 16
             Top = 74
             Caption = 'Base ICMS Subst.'
-            FocusControl = cxDBTextEdit3
+            FocusControl = dbBaseICMSSubst
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -561,38 +562,38 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 105
           end
-          object cxDBTextEdit3: TcxDBTextEdit
+          object dbBaseICMSSubst: TcxDBTextEdit
             Left = 112
             Top = 72
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_base_icms_st'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 5
             Width = 113
           end
-          object cxLabel4: TcxLabel
+          object lblValorICMSSubst: TcxLabel
             Left = 15
             Top = 98
             Caption = 'Valor ICMS Subst.'
-            FocusControl = cxDBTextEdit4
+            FocusControl = dbValorICMSSubst
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
             AnchorX = 105
           end
-          object cxDBTextEdit4: TcxDBTextEdit
+          object dbValorICMSSubst: TcxDBTextEdit
             Left = 112
             Top = 96
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_icms_st'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 7
             Width = 113
           end
-          object cxLabel5: TcxLabel
+          object lblTotalProduto: TcxLabel
             Left = 24
             Top = 146
             Caption = 'Total Produto'
-            FocusControl = cxDBTextEdit5
+            FocusControl = dbTotalProduto
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -604,10 +605,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 105
           end
-          object cxDBTextEdit5: TcxDBTextEdit
+          object dbTotalProduto: TcxDBTextEdit
             Left = 112
             Top = 144
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_total_prod'
             DataBinding.DataSource = DtsMaster
             ParentFont = False
             Properties.CharCase = ecUpperCase
@@ -620,11 +621,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 9
             Width = 113
           end
-          object cxLabel6: TcxLabel
+          object lblTotalFrete: TcxLabel
             Left = 347
             Top = 26
             Caption = 'Frete'
-            FocusControl = cxDBTextEdit6
+            FocusControl = dbTotalFrete
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -636,7 +637,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 377
           end
-          object cxDBTextEdit6: TcxDBTextEdit
+          object dbTotalFrete: TcxDBTextEdit
             Left = 384
             Top = 24
             DataBinding.DataField = 'mat_referencia'
@@ -645,11 +646,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 11
             Width = 113
           end
-          object cxLabel7: TcxLabel
+          object lblTotalSeguro: TcxLabel
             Left = 339
             Top = 50
             Caption = 'Seguro'
-            FocusControl = cxDBTextEdit7
+            FocusControl = dbTotalSeguro
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -661,7 +662,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 377
           end
-          object cxDBTextEdit7: TcxDBTextEdit
+          object dbTotalSeguro: TcxDBTextEdit
             Left = 384
             Top = 48
             DataBinding.DataField = 'mat_referencia'
@@ -670,11 +671,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 13
             Width = 113
           end
-          object cxLabel8: TcxLabel
+          object lblTotalDesconto: TcxLabel
             Left = 328
             Top = 74
             Caption = 'Desconto'
-            FocusControl = cxDBTextEdit8
+            FocusControl = dbTotalDesconto
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -686,7 +687,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 377
           end
-          object cxDBTextEdit8: TcxDBTextEdit
+          object dbTotalDesconto: TcxDBTextEdit
             Left = 384
             Top = 72
             DataBinding.DataField = 'mat_referencia'
@@ -695,11 +696,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 15
             Width = 113
           end
-          object cxLabel9: TcxLabel
+          object lblTotalOutros: TcxLabel
             Left = 340
             Top = 98
             Caption = 'Outros'
-            FocusControl = cxDBTextEdit9
+            FocusControl = dbTotalOutros
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -711,7 +712,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 377
           end
-          object cxDBTextEdit9: TcxDBTextEdit
+          object dbTotalOutros: TcxDBTextEdit
             Left = 384
             Top = 96
             DataBinding.DataField = 'mat_referencia'
@@ -720,11 +721,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 17
             Width = 113
           end
-          object cxLabel10: TcxLabel
+          object lblTotalIPI: TcxLabel
             Left = 332
             Top = 122
             Caption = 'Total IPI'
-            FocusControl = cxDBTextEdit10
+            FocusControl = dbTotalIPI
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -736,7 +737,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 377
           end
-          object cxDBTextEdit10: TcxDBTextEdit
+          object dbTotalIPI: TcxDBTextEdit
             Left = 384
             Top = 120
             DataBinding.DataField = 'mat_referencia'
@@ -745,11 +746,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 19
             Width = 113
           end
-          object cxLabel11: TcxLabel
+          object lblTotalNota: TcxLabel
             Left = 315
             Top = 146
             Caption = 'Total Nota'
-            FocusControl = cxDBTextEdit11
+            FocusControl = dbTotalNota
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -761,7 +762,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 377
           end
-          object cxDBTextEdit11: TcxDBTextEdit
+          object dbTotalNota: TcxDBTextEdit
             Left = 384
             Top = 144
             DataBinding.DataField = 'mat_referencia'
@@ -777,11 +778,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 21
             Width = 113
           end
-          object cxLabel12: TcxLabel
+          object lblTotalServico: TcxLabel
             Left = 587
             Top = 26
             Caption = 'Total Servi'#231'o'
-            FocusControl = cxDBTextEdit12
+            FocusControl = dbTotalServico
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -793,10 +794,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 665
           end
-          object cxDBTextEdit12: TcxDBTextEdit
+          object dbTotalServico: TcxDBTextEdit
             Left = 672
             Top = 24
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_total_serv'
             DataBinding.DataSource = DtsMaster
             ParentFont = False
             Properties.CharCase = ecUpperCase
@@ -809,11 +810,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             TabOrder = 23
             Width = 113
           end
-          object cxLabel13: TcxLabel
+          object lblBaseISSQN: TcxLabel
             Left = 604
             Top = 50
             Caption = 'Base ISSQN'
-            FocusControl = cxDBTextEdit13
+            FocusControl = dbBaseISSQN
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -825,20 +826,20 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 665
           end
-          object cxDBTextEdit13: TcxDBTextEdit
+          object dbBaseISSQN: TcxDBTextEdit
             Left = 672
             Top = 48
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_base_issqn'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 25
             Width = 113
           end
-          object cxLabel14: TcxLabel
+          object lblPercentualISS: TcxLabel
             Left = 603
             Top = 74
             Caption = 'Al'#237'quota ISS'
-            FocusControl = cxDBTextEdit14
+            FocusControl = dbPercentualISS
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -850,20 +851,20 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 665
           end
-          object cxDBTextEdit14: TcxDBTextEdit
+          object dbPercentualISS: TcxDBTextEdit
             Left = 672
             Top = 72
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_percent_issqn'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 27
             Width = 113
           end
-          object cxLabel15: TcxLabel
+          object lblValorISSQN: TcxLabel
             Left = 603
             Top = 98
             Caption = 'Valor ISSQN'
-            FocusControl = cxDBTextEdit15
+            FocusControl = dbValorISSQN
             ParentFont = False
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -875,10 +876,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Transparent = True
             AnchorX = 665
           end
-          object cxDBTextEdit15: TcxDBTextEdit
+          object dbValorISSQN: TcxDBTextEdit
             Left = 672
             Top = 96
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_issqn'
             DataBinding.DataSource = DtsMaster
             ParentFont = False
             Properties.CharCase = ecUpperCase
@@ -896,6 +897,366 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       object TbsItem: TcxTabSheet
         Caption = 'Controle de Itens'
         ImageIndex = 30
+        object Panel1: TPanel
+          Left = 0
+          Top = 0
+          Width = 824
+          Height = 19
+          Align = alTop
+          AutoSize = True
+          TabOrder = 0
+          object Shape1: TShape
+            Left = 1
+            Top = 1
+            Width = 822
+            Height = 17
+            Align = alTop
+            Brush.Color = 12615680
+            Pen.Color = 12615680
+            Pen.Style = psClear
+          end
+          object Label1: TLabel
+            Left = 6
+            Top = 3
+            Width = 308
+            Height = 13
+            Caption = 'Controle da Edi'#231#227'o de Registros de Materiais/Produtos'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindow
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+        end
+        object pnlItemControle: TPanel
+          Left = 0
+          Top = 19
+          Width = 824
+          Height = 214
+          Align = alTop
+          BevelOuter = bvNone
+          BorderWidth = 4
+          TabOrder = 1
+          DesignSize = (
+            824
+            214)
+          object BtnSalvarItem: TcxButton
+            Left = 671
+            Top = 178
+            Width = 75
+            Height = 33
+            Anchors = [akRight, akBottom]
+            Caption = '&Salvar'
+            TabOrder = 1
+            Glyph.Data = {
+              36060000424D3606000000000000360000002800000020000000100000000100
+              18000000000000060000000000000000000000000000000000000000FF0000FF
+              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000
+              FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF00
+              00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+              C06860B05850A05050A05050A050509048509048409048408040408038408038
+              407038407038300000FF0000FF0000FF6E6E6E5E5E5E58585858585858585851
+              51514C4C4C4C4C4C4646464141414141414040403B3B3B0000FF0000FFD06870
+              F09090E08080B04820403020C0B8B0C0B8B0D0C0C0D0C8C0505050A04030A040
+              30A038307038400000FF0000FF7474749999998989894646462C2C2CB6B6B6B6
+              B6B6C1C1C1C6C6C65050504444444444444040404040400000FF0000FFD07070
+              FF98A0F08880E08080705850404030907870F0E0E0F0E8E0908070A04030A040
+              40A040308038400000FF0000FF797979A4A4A49090908989895858583B3B3B78
+              7878E1E1E1E6E6E67C7C7C4444444949494444444141410000FF0000FFD07870
+              FFA0A0F09090F08880705850000000404030F0D8D0F0E0D0807860B04840B048
+              40A040408040400000FF0000FF7E7E7EA9A9A99999999090905858580000003B
+              3B3BD8D8D8DCDCDC7171715050505050504949494646460000FF0000FFD07880
+              FFA8B0FFA0A0F09090705850705850705850705850706050806860C05850B050
+              50B048408040400000FF0000FF838383B3B3B3A9A9A999999958585858585858
+              58585858585C5C5C6868686060605959595050504646460000FF0000FFE08080
+              FFB0B0FFB0B0FFA0A0F09090F08880E08080E07880D07070D06870C06060C058
+              50B050509048400000FF0000FF898989B7B7B7B7B7B7A9A9A999999990909089
+              89898484847979797474746969696060605959594C4C4C0000FF0000FFE08890
+              FFB8C0FFB8B0D06060C06050C05850C05040B05030B04830A04020A03810C060
+              60C058509048400000FF0000FF939393C1C1C1BCBCBC6B6B6B64646460606056
+              56565050504B4B4B4040403636366969696060604C4C4C0000FF0000FFE09090
+              FFC0C0D06860FFFFFFFFFFFFFFF8F0F0F0F0F0E8E0F0D8D0E0D0C0E0C8C0A038
+              10C060609048500000FF0000FF989898C6C6C6707070FFFFFFFFFFFFF6F6F6F0
+              F0F0E6E6E6D8D8D8CCCCCCC8C8C83636366969695151510000FF0000FFE098A0
+              FFC0C0D07070FFFFFFFFFFFFFFFFFFFFF8F0F0F0F0F0E8E0F0D8D0E0D0C0A040
+              20D06860A050500000FF0000FFA1A1A1C6C6C6797979FFFFFFFFFFFFFFFFFFF6
+              F6F6F0F0F0E6E6E6D8D8D8CCCCCC4040407070705858580000FF0000FFF0A0A0
+              FFC0C0E07870FFFFFFFFFFFFFFFFFFFFFFFFFFF8F0F0F0F0F0E8E0F0D8D0B048
+              30D07070A050500000FF0000FFA8A8A8C6C6C6808080FFFFFFFFFFFFFFFFFFFF
+              FFFFF6F6F6F0F0F0E6E6E6D8D8D84B4B4B7979795858580000FF0000FFF0A8A0
+              FFC0C0E08080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F0F0F0F0F0E8E0B050
+              30E07880A050500000FF0000FFACACACC6C6C6898989FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFF6F6F6F0F0F0E6E6E65050508484845858580000FF0000FFF0B0B0
+              FFC0C0F08890FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F0F0F0F0C050
+              40603030B058500000FF0000FFB6B6B6C6C6C6949494FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFF6F6F6F0F0F05656563434345E5E5E0000FF0000FFF0B0B0
+              FFC0C0FF9090FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F0C058
+              50B05860B058600000FF0000FFB6B6B6C6C6C69B9B9BFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFF6F6F66060606363636363630000FF0000FFF0B8B0
+              F0B8B0F0B0B0F0B0B0F0A8B0F0A0A0E098A0E09090E09090E08890E08080D078
+              80D07870D070700000FF0000FFBBBBBBBBBBBBB6B6B6B6B6B6B1B1B1A8A8A8A1
+              A1A19898989898989393938989898383837E7E7E7979790000FF0000FF0000FF
+              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000
+              FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF00
+              00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF}
+            NumGlyphs = 2
+          end
+          object BtnCancelarItem: TcxButton
+            Left = 746
+            Top = 178
+            Width = 75
+            Height = 33
+            Anchors = [akRight, akBottom]
+            Caption = '&Cancelar'
+            TabOrder = 2
+            Glyph.Data = {
+              36060000424D3606000000000000360000002800000020000000100000000100
+              180000000000000600000000000000000000000000000000000000FF0000FF00
+              00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF
+              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000
+              FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF00
+              00FF0000FF0000FF0000FF00707070505850000000D0C0AE00FF0000FF0000FF
+              0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF0070707054
+              5454000000BCBCBC00FF0000FF0000FF0000FF0000FF0000FF0000FF0000FF00
+              00FF00B0A0907C644DAD957FA0A0A0FFFFFF5090B0101010988A767B61496048
+              3060483000FF0000FF0000FF0000FF0000FF009C9C9C5F5F5F909090A0A0A0FF
+              FFFF9393931010108585855C5C5C43434343434300FF0000FF0000FF0000FF00
+              00FF00D6BAA8FFFFFFF0E8E0A0A0A090B8C070D0E05098B0101010A09890B0A0
+              9060483000FF0000FF0000FF0000FF0000FF00B7B7B7FFFFFFE6E6E6A0A0A0B6
+              B6B6CBCBCB9898981010109696969C9C9C43434300FF0000FF0000FF00B7B3DA
+              0E2BDFB8ABBDFFFFFFFFFFFFE0E0E050A0B060A8E060C0D05098B01010109090
+              907A5F4600FF0000FF0000FF00BFBFBF5E5E5EB1B1B1FFFFFFFFFFFFE0E0E09C
+              9C9CB1B1B1BBBBBB9898981010109090905A5A5A00FF0000FF0000FF000028FF
+              0020F04050D0FFFFFFFFFFFFFFFFFF4050E00010B090E0F060C0D05098B01010
+              108B7D7200FF0000FF0000FF006464645B5B5B747474FFFFFFFFFFFFFFFFFF79
+              79793E3E3EDCDCDCBBBBBB9898981010107B7B7B00FF0000FF0000FF002D51FC
+              1038FF0028FFF0F8FFFFFFFF9098F00018C06078E060A8B090E0F060C0D05098
+              B0101010CBAF9800FF0000FF008080806F6F6F646464F9F9F9FFFFFFB1B1B148
+              4848949494A3A3A3DCDCDCBBBBBB989898101010AAAAAA00FF0000FF00E7D7DB
+              3050FF2040FF90A0F0C0C8F00028F04058F0FFF8F0D0D8E070B0C090E0F070C8
+              E0808880303890B1959500FF00D9D9D9818181767676B6B6B6D3D3D360606083
+              8383F6F6F6D9D9D9AEAEAEDCDCDCC6C6C684848451515197979700FF0000FF00
+              DCD0DC4060FF3050FF2040FF3050FFFFF8FFFFFFFFFFF8F0D0D8E080B0C0D0B8
+              B07088D06070B030389000FF0000FF00D4D4D48C8C8C818181767676818181FA
+              FAFAFFFFFFF6F6F6D9D9D9B0B0B0B8B8B89B9B9B81818151515100FF0000FF00
+              00FF00B8B5D14068FF4060FFD0D8FFFFFFFFFFFFFFFFF8FFF0F0F0D0D8D06070
+              B07090E06078D06070B000FF0000FF0000FF00BDBDBD9191918C8C8CE2E2E2FF
+              FFFFFFFFFFFAFAFAF0F0F0D4D4D4818181A4A4A490909081818100FF0000FF00
+              C6C4E26078FF6078FF6080FF5070FFF0F0FFFFFFFFFFFFFFFFF8F0F0F0F0B0A0
+              A06070B06070B0D1B2A500FF0000FF00CDCDCD9E9E9E9E9E9EA2A2A2979797F4
+              F4F4FFFFFFFFFFFFF6F6F6F0F0F0A1A1A1818181818181B1B1B100FF00B1B6E9
+              5078FF5078FFC0D0FFFFFFFF7088FF6078FFD0E0FFFFFFFFFFFFFFB0A090B0A0
+              9096785E00FF0000FF0000FF00C4C4C49C9C9C9C9C9CDCDCDCFFFFFFA9A9A99E
+              9E9EE7E7E7FFFFFFFFFFFF9C9C9C9C9C9C73737300FF0000FF00859BF35078FF
+              5078FFC8BED1FFFFFFFFFFFFFFFFFFB0C8FF8098FFFFFFFFB0A0908068508060
+              5060483000FF0000FF00B3B3B39C9C9C9C9C9CC4C4C4FFFFFFFFFFFFFFFFFFD6
+              D6D6B4B4B4FFFFFF9C9C9C6363635E5E5E43434300FF0000FF00859BF36585FA
+              DCD2DCD8C7B6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0A890D0C8C08068
+              50DEBAA500FF0000FF00B3B3B3A4A4A4D6D6D6C3C3C3FFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFA3A3A3C6C6C6636363B7B7B700FF0000FF0000FF0000FF00
+              00FF00D0C0B0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0A8A0807060DFBD
+              A700FF0000FF0000FF0000FF0000FF0000FF00BCBCBCFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFA8A8A86C6C6CB9B9B900FF0000FF0000FF0000FF0000FF00
+              00FF00E0C0B0E0C0B0E0C0B0E0C0B0E0C0B0D0C0B0D0B8B0D0B0A0E0BEAA00FF
+              0000FF0000FF0000FF0000FF0000FF0000FF00BEBEBEBEBEBEBEBEBEBEBEBEBE
+              BEBEBCBCBCB8B8B8AEAEAEBBBBBB00FF0000FF0000FF0000FF00}
+            NumGlyphs = 2
+          end
+          object GrpItemEdit: TcxGroupBox
+            Left = 4
+            Top = 4
+            Align = alTop
+            Anchors = [akLeft, akTop, akRight, akBottom]
+            Caption = 'Inserir / Editar item'
+            TabOrder = 0
+            Height = 171
+            Width = 816
+            object lblItemSequencial: TcxLabel
+              Left = 50
+              Top = 26
+              Caption = 'Sequ'#234'ncial'
+              FocusControl = dbItemSequencial
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 105
+            end
+            object dbItemSequencial: TcxDBTextEdit
+              Left = 112
+              Top = 24
+              Properties.ReadOnly = True
+              Style.Color = 8454143
+              TabOrder = 1
+              Width = 81
+            end
+            object lblItemCodigo: TcxLabel
+              Left = 68
+              Top = 50
+              Caption = 'C'#243'digo'
+              FocusControl = dbItemCodigo
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 105
+            end
+            object dbItemCodigo: TcxDBButtonEdit
+              Left = 112
+              Top = 48
+              Properties.Buttons = <
+                item
+                  Default = True
+                  Kind = bkEllipsis
+                end>
+              TabOrder = 3
+              Width = 81
+            end
+            object dbItemDescricao: TcxDBTextEdit
+              Left = 196
+              Top = 48
+              Properties.ReadOnly = True
+              Style.Color = 8454143
+              TabOrder = 4
+              Width = 445
+            end
+            object lblItemQuantidade: TcxLabel
+              Left = 45
+              Top = 138
+              Caption = 'Quantidade'
+              FocusControl = dbItemQuantidade
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 105
+            end
+            object dbItemQuantidade: TcxDBTextEdit
+              Left = 112
+              Top = 136
+              TabOrder = 6
+              Width = 81
+            end
+            object lblItemUnidadeCompra: TcxLabel
+              Left = 214
+              Top = 138
+              Caption = 'Unidade Compra'
+              FocusControl = dbItemUnidadeCompra
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 297
+            end
+            object dbItemUnidadeCompra: TcxDBLookupComboBox
+              Left = 304
+              Top = 136
+              Properties.DropDownListStyle = lsFixedList
+              Properties.KeyFieldNames = 'und_codigo'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'und_descricao'
+                end>
+              Properties.ListOptions.ShowHeader = False
+              Properties.ListSource = DtsUnidade
+              Properties.ReadOnly = True
+              TabOrder = 8
+              Width = 153
+            end
+            object cxLabel1: TcxLabel
+              Left = 654
+              Top = 50
+              Caption = 'NCM/SH'
+              FocusControl = cxDBTextEdit1
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 697
+            end
+            object cxDBTextEdit1: TcxDBTextEdit
+              Left = 704
+              Top = 48
+              TabOrder = 10
+              Width = 81
+            end
+            object cxGroupBox2: TcxGroupBox
+              Left = 112
+              Top = 72
+              Caption = 'Tributa'#231#227'o'
+              TabOrder = 11
+              Height = 57
+              Width = 673
+              object cxLabel2: TcxLabel
+                Left = 34
+                Top = 26
+                Caption = 'CST'
+                FocusControl = cxDBTextEdit2
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 57
+              end
+              object cxDBTextEdit2: TcxDBTextEdit
+                Left = 64
+                Top = 24
+                TabOrder = 1
+                Width = 57
+              end
+              object cxLabel3: TcxLabel
+                Left = 131
+                Top = 26
+                Caption = 'CSOSN'
+                FocusControl = cxDBTextEdit3
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 169
+              end
+              object cxDBTextEdit3: TcxDBTextEdit
+                Left = 176
+                Top = 24
+                TabOrder = 3
+                Width = 57
+              end
+              object cxLabel4: TcxLabel
+                Left = 250
+                Top = 26
+                Caption = 'CFOP'
+                FocusControl = cxDBTextEdit4
+                Properties.Alignment.Horz = taRightJustify
+                Transparent = True
+                AnchorX = 281
+              end
+              object cxDBTextEdit4: TcxDBTextEdit
+                Left = 288
+                Top = 24
+                TabOrder = 5
+                Width = 57
+              end
+            end
+            object cxLabel5: TcxLabel
+              Left = 489
+              Top = 138
+              Caption = 'Valor Un.'
+              FocusControl = cxDBTextEdit5
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 537
+            end
+            object cxDBTextEdit5: TcxDBTextEdit
+              Left = 544
+              Top = 136
+              TabOrder = 13
+              Width = 81
+            end
+            object cxLabel6: TcxLabel
+              Left = 652
+              Top = 138
+              Caption = 'Valor IPI'
+              FocusControl = cxDBTextEdit6
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 697
+            end
+            object cxDBTextEdit6: TcxDBTextEdit
+              Left = 704
+              Top = 136
+              TabOrder = 15
+              Width = 81
+            end
+          end
+        end
       end
     end
   end
@@ -969,6 +1330,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       '      when 1 then '#39'Encerrada'#39
       '      when 2 then '#39'Cancelada'#39
       '    end as ent_status_desc'
+      '  , 0 as Itens'
       'from str_entrada me'
       
         '  inner join mny_unidade un on (un.uni_codigo = me.ent_unidade_n' +
@@ -1001,6 +1363,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
         ParamType = ptInput
         Value = 0c
       end>
+    AfterOpen = CdsMasterAfterOpen
+    AfterCancel = CdsMasterAfterCancel
+    AfterDelete = CdsMasterAfterDelete
+    OnNewRecord = CdsMasterNewRecord
     Left = 656
     Top = 8
     object CdsMasterent_ano: TSmallintField
@@ -1282,6 +1648,13 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       ProviderFlags = []
       Size = 250
     end
+    object CdsMasterItens: TBCDField
+      FieldName = 'Itens'
+      ProviderFlags = []
+      Required = True
+      Precision = 1
+      Size = 0
+    end
   end
   inherited DtsMaster: TDataSource
     Left = 688
@@ -1429,7 +1802,52 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
   end
   object QryItem: TSQLQuery
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'ent_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftBCD
+        Name = 'ent_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
+    SQL.Strings = (
+      'Select'
+      '    itm.ent_ano'
+      '  , itm.ent_codigo'
+      '  , itm.itm_sequencia'
+      '  , itm.itm_material'
+      '  , itm.itm_ncm_sh'
+      '  , itm.itm_cst'
+      '  , itm.itm_csosn'
+      '  , itm.itm_cfop'
+      '  , itm.itm_unidade_compra'
+      '  , itm.itm_quantidade'
+      '  , itm.itm_valor_unitario'
+      '  , itm.itm_valor_total'
+      '  , itm.itm_valor_ipi'
+      '  , itm.itm_percent_participa'
+      '  , itm.itm_valor_frete'
+      '  , itm.itm_valor_desconto'
+      '  , itm.itm_valor_seguro'
+      '  , itm.itm_valor_outros'
+      '  , itm.itm_valor_custo'
+      '  , mat.mat_descricao_resumo'
+      '  , unc.und_descricao'
+      '  , unc.und_sigla'
+      'from str_entrada_item itm'
+      
+        '  left join str_material mat on (mat.mat_codigo = itm.itm_materi' +
+        'al)'
+      
+        '  left join str_unidade unc on (unc.und_codigo = itm.itm_unidade' +
+        '_compra) '
+      'where itm.ent_ano    = :ent_ano'
+      '  and itm.ent_codigo = :ent_codigo')
     SQLConnection = FrmLogin.conWebMaster
     Left = 592
     Top = 40
@@ -1442,10 +1860,144 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
   object CdsItem: TClientDataSet
     Aggregates = <>
     PacketRecords = 100
-    Params = <>
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'ent_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftBCD
+        Name = 'ent_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
     ProviderName = 'DspItem'
     Left = 656
     Top = 40
+    object CdsItement_ano: TSmallintField
+      FieldName = 'ent_ano'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsItement_codigo: TFMTBCDField
+      FieldName = 'ent_codigo'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+      Precision = 20
+      Size = 0
+    end
+    object CdsItemitm_sequencia: TSmallintField
+      FieldName = 'itm_sequencia'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsItemitm_material: TFMTBCDField
+      FieldName = 'itm_material'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Precision = 20
+      Size = 0
+    end
+    object CdsItemitm_ncm_sh: TStringField
+      FieldName = 'itm_ncm_sh'
+      ProviderFlags = [pfInUpdate]
+      Size = 10
+    end
+    object CdsItemitm_cst: TStringField
+      FieldName = 'itm_cst'
+      ProviderFlags = [pfInUpdate]
+      Size = 3
+    end
+    object CdsItemitm_csosn: TStringField
+      FieldName = 'itm_csosn'
+      ProviderFlags = [pfInUpdate]
+      Size = 3
+    end
+    object CdsItemitm_cfop: TIntegerField
+      FieldName = 'itm_cfop'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsItemitm_unidade_compra: TIntegerField
+      FieldName = 'itm_unidade_compra'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsItemitm_quantidade: TFMTBCDField
+      FieldName = 'itm_quantidade'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_unitario: TFMTBCDField
+      FieldName = 'itm_valor_unitario'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_total: TFMTBCDField
+      FieldName = 'itm_valor_total'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_ipi: TFMTBCDField
+      FieldName = 'itm_valor_ipi'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_percent_participa: TFMTBCDField
+      FieldName = 'itm_percent_participa'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_frete: TFMTBCDField
+      FieldName = 'itm_valor_frete'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_desconto: TFMTBCDField
+      FieldName = 'itm_valor_desconto'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_seguro: TFMTBCDField
+      FieldName = 'itm_valor_seguro'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_outros: TFMTBCDField
+      FieldName = 'itm_valor_outros'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_valor_custo: TFMTBCDField
+      FieldName = 'itm_valor_custo'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemmat_descricao_resumo: TStringField
+      FieldName = 'mat_descricao_resumo'
+      ProviderFlags = []
+      Size = 100
+    end
+    object CdsItemund_descricao: TStringField
+      FieldName = 'und_descricao'
+      ProviderFlags = []
+      Size = 100
+    end
+    object CdsItemund_sigla: TStringField
+      FieldName = 'und_sigla'
+      ProviderFlags = []
+      Size = 10
+    end
   end
   object DtsItem: TDataSource
     AutoEdit = False

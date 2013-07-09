@@ -40,7 +40,8 @@ uses
   KeyCompetencia in 'Forms\KeyCompetencia.pas' {FrmCompetencia},
   KeyTipoDocumento in 'Forms\KeyTipoDocumento.pas' {FrmTipoDocumento},
   iStrMovimentoEntradaPesquisa in 'Forms\iStrMovimentoEntradaPesquisa.pas' {FrmMovimentoEntradaPesquisa},
-  iStrMovimentoEntradaCadastro in 'Forms\iStrMovimentoEntradaCadastro.pas' {FrmMovimentoEntradaCadastro};
+  iStrMovimentoEntradaCadastro in 'Forms\iStrMovimentoEntradaCadastro.pas' {FrmMovimentoEntradaCadastro},
+  iStrCFOP in 'Forms\iStrCFOP.pas' {FrmCFOP};
 
 {$R *.res}
 

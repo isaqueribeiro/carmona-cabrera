@@ -104,6 +104,8 @@ type
     N3: TMenuItem;
     mmFornecedor: TMenuItem;
     NvBrFornecedor: TdxNavBarItem;
+    ActnCFOP: TAction;
+    mmCFOP: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -127,6 +129,7 @@ type
     procedure ActnCompetenciaExecute(Sender: TObject);
     procedure ActnTipoDocumentoExecute(Sender: TObject);
     procedure ActnMovimentoEntradaExecute(Sender: TObject);
+    procedure ActnCFOPExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -161,7 +164,8 @@ uses
   , iStrMaterialImprimir
   , iStrTipoMovimento
   , iStrAjusteEstoquePesquisa
-  , iStrMovimentoEntradaPesquisa;
+  , iStrMovimentoEntradaPesquisa
+  , iStrCFOP;
 
 {$R *.dfm}
 
@@ -415,6 +419,16 @@ begin
     FrmMovimentoEntradaPesquisa.ShowModal;
   finally
     FrmMovimentoEntradaPesquisa.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnCFOPExecute(Sender: TObject);
+begin
+  FrmCFOP := TFrmCFOP.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmCFOP.ShowModal;
+  finally
+    FrmCFOP.Free;
   end;
 end;
 

@@ -124,12 +124,88 @@ type
     d1DocumentoNumero: TcxDBTextEdit;
     d2DocumentoNumero: TcxDBTextEdit;
     cxGroupBox1: TcxGroupBox;
-    cxLabel1: TcxLabel;
-    cxDBTextEdit1: TcxDBTextEdit;
-    cxLabel2: TcxLabel;
-    cxDBTextEdit2: TcxDBTextEdit;
+    lblBaseICMS: TcxLabel;
+    dbBaseICMS: TcxDBTextEdit;
+    lblValorICMS: TcxLabel;
+    dbValorICMS: TcxDBTextEdit;
     CdsMasterpes_documento: TStringField;
     CdsMastercfop_descricao: TStringField;
+    lblBaseICMSSubst: TcxLabel;
+    dbBaseICMSSubst: TcxDBTextEdit;
+    lblValorICMSSubst: TcxLabel;
+    dbValorICMSSubst: TcxDBTextEdit;
+    lblTotalProduto: TcxLabel;
+    dbTotalProduto: TcxDBTextEdit;
+    lblTotalFrete: TcxLabel;
+    dbTotalFrete: TcxDBTextEdit;
+    lblTotalSeguro: TcxLabel;
+    dbTotalSeguro: TcxDBTextEdit;
+    lblTotalDesconto: TcxLabel;
+    dbTotalDesconto: TcxDBTextEdit;
+    lblTotalOutros: TcxLabel;
+    dbTotalOutros: TcxDBTextEdit;
+    lblTotalIPI: TcxLabel;
+    dbTotalIPI: TcxDBTextEdit;
+    lblTotalNota: TcxLabel;
+    dbTotalNota: TcxDBTextEdit;
+    lblTotalServico: TcxLabel;
+    dbTotalServico: TcxDBTextEdit;
+    lblBaseISSQN: TcxLabel;
+    dbBaseISSQN: TcxDBTextEdit;
+    lblPercentualISS: TcxLabel;
+    dbPercentualISS: TcxDBTextEdit;
+    lblValorISSQN: TcxLabel;
+    dbValorISSQN: TcxDBTextEdit;
+    CdsMasterent_aprop_tipo_custo: TSmallintField;
+    CdsMasterent_aprop_centro_negocio: TSmallintField;
+    CdsMasterent_aprop_unidade_negocio: TSmallintField;
+    CdsMasterent_aprop_centro_custo: TSmallintField;
+    CdsMasterent_aprop_setor: TSmallintField;
+    CdsMasterent_aprop_conta: TSmallintField;
+    Panel1: TPanel;
+    Shape1: TShape;
+    Label1: TLabel;
+    pnlItemControle: TPanel;
+    BtnSalvarItem: TcxButton;
+    BtnCancelarItem: TcxButton;
+    GrpItemEdit: TcxGroupBox;
+    lblItemSequencial: TcxLabel;
+    dbItemSequencial: TcxDBTextEdit;
+    lblItemCodigo: TcxLabel;
+    dbItemCodigo: TcxDBButtonEdit;
+    dbItemDescricao: TcxDBTextEdit;
+    lblItemQuantidade: TcxLabel;
+    dbItemQuantidade: TcxDBTextEdit;
+    lblItemUnidadeCompra: TcxLabel;
+    dbItemUnidadeCompra: TcxDBLookupComboBox;
+    CdsItement_ano: TSmallintField;
+    CdsItement_codigo: TFMTBCDField;
+    CdsItemitm_sequencia: TSmallintField;
+    CdsItemitm_material: TFMTBCDField;
+    CdsItemitm_ncm_sh: TStringField;
+    CdsItemitm_cst: TStringField;
+    CdsItemitm_csosn: TStringField;
+    CdsItemitm_cfop: TIntegerField;
+    CdsItemitm_unidade_compra: TIntegerField;
+    CdsItemitm_quantidade: TFMTBCDField;
+    CdsItemitm_valor_unitario: TFMTBCDField;
+    CdsItemitm_valor_total: TFMTBCDField;
+    CdsItemitm_valor_ipi: TFMTBCDField;
+    CdsItemitm_percent_participa: TFMTBCDField;
+    CdsItemitm_valor_frete: TFMTBCDField;
+    CdsItemitm_valor_desconto: TFMTBCDField;
+    CdsItemitm_valor_seguro: TFMTBCDField;
+    CdsItemitm_valor_outros: TFMTBCDField;
+    CdsItemitm_valor_custo: TFMTBCDField;
+    CdsItemmat_descricao_resumo: TStringField;
+    CdsItemund_descricao: TStringField;
+    CdsItemund_sigla: TStringField;
+    CdsMasterItens: TBCDField;
+    cxLabel1: TcxLabel;
+    cxDBTextEdit1: TcxDBTextEdit;
+    cxGroupBox2: TcxGroupBox;
+    cxLabel2: TcxLabel;
+    cxDBTextEdit2: TcxDBTextEdit;
     cxLabel3: TcxLabel;
     cxDBTextEdit3: TcxDBTextEdit;
     cxLabel4: TcxLabel;
@@ -138,33 +214,14 @@ type
     cxDBTextEdit5: TcxDBTextEdit;
     cxLabel6: TcxLabel;
     cxDBTextEdit6: TcxDBTextEdit;
-    cxLabel7: TcxLabel;
-    cxDBTextEdit7: TcxDBTextEdit;
-    cxLabel8: TcxLabel;
-    cxDBTextEdit8: TcxDBTextEdit;
-    cxLabel9: TcxLabel;
-    cxDBTextEdit9: TcxDBTextEdit;
-    cxLabel10: TcxLabel;
-    cxDBTextEdit10: TcxDBTextEdit;
-    cxLabel11: TcxLabel;
-    cxDBTextEdit11: TcxDBTextEdit;
-    cxLabel12: TcxLabel;
-    cxDBTextEdit12: TcxDBTextEdit;
-    cxLabel13: TcxLabel;
-    cxDBTextEdit13: TcxDBTextEdit;
-    cxLabel14: TcxLabel;
-    cxDBTextEdit14: TcxDBTextEdit;
-    cxLabel15: TcxLabel;
-    cxDBTextEdit15: TcxDBTextEdit;
-    CdsMasterent_aprop_tipo_custo: TSmallintField;
-    CdsMasterent_aprop_centro_negocio: TSmallintField;
-    CdsMasterent_aprop_unidade_negocio: TSmallintField;
-    CdsMasterent_aprop_centro_custo: TSmallintField;
-    CdsMasterent_aprop_setor: TSmallintField;
-    CdsMasterent_aprop_conta: TSmallintField;
     procedure FormCreate(Sender: TObject);
+    procedure CdsMasterNewRecord(DataSet: TDataSet);
+    procedure CdsMasterAfterCancel(DataSet: TDataSet);
+    procedure CdsMasterAfterDelete(DataSet: TDataSet);
+    procedure CdsMasterAfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
+    procedure CarregarItens;
   public
     { Public declarations }
   end;
@@ -191,6 +248,17 @@ uses
 
 {$R *.dfm}
 
+procedure TFrmMovimentoEntradaCadastro.CarregarItens;
+begin
+  with CdsItem, Params do
+  begin
+    Close;
+    ParamByName('ent_ano').AsInteger     := CdsMasterent_ano.AsInteger;
+    ParamByName('ent_codigo').AsCurrency := CdsMasterent_codigo.AsCurrency;
+    Open;
+  end;
+end;
+
 procedure TFrmMovimentoEntradaCadastro.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -209,6 +277,32 @@ begin
 
   AbrirTabela := True;
 //  PgCtrlMain.ActivePage := TbsPrincipal;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsMasterNewRecord(
+  DataSet: TDataSet);
+begin
+  inherited;
+
+  CarregarItens;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsMasterAfterCancel(
+  DataSet: TDataSet);
+begin
+  CarregarItens;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsMasterAfterDelete(
+  DataSet: TDataSet);
+begin
+  CarregarItens;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsMasterAfterOpen(
+  DataSet: TDataSet);
+begin
+  CarregarItens;
 end;
 
 end.
