@@ -868,6 +868,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
               HeaderAlignmentHorz = taCenter
               MinWidth = 35
               Options.Editing = False
+              Options.Filtering = False
               Options.HorzSizing = False
               Width = 35
             end
@@ -876,6 +877,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
               DataBinding.FieldName = 'itm_material'
               MinWidth = 65
               Options.Editing = False
+              Options.Filtering = False
               Options.HorzSizing = False
               Width = 65
             end
@@ -883,11 +885,13 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
               Caption = 'Descri'#231#227'o'
               DataBinding.FieldName = 'mat_descricao_resumo'
               Options.Editing = False
+              Options.Filtering = False
             end
             object DbgItemDBitm_qtde_nova: TcxGridDBColumn
               DataBinding.FieldName = 'itm_qtde_nova'
               MinWidth = 80
               Options.Editing = False
+              Options.Filtering = False
               Options.HorzSizing = False
               Width = 80
             end
@@ -896,6 +900,7 @@ inherited FrmAjusteEstoqueCadastro: TFrmAjusteEstoqueCadastro
               DataBinding.FieldName = 'und_descricao'
               MinWidth = 150
               Options.Editing = False
+              Options.Filtering = False
               Options.HorzSizing = False
               Width = 150
             end

@@ -950,6 +950,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Anchors = [akRight, akBottom]
             Caption = '&Salvar'
             TabOrder = 1
+            OnClick = BtnSalvarItemClick
             Glyph.Data = {
               36060000424D3606000000000000360000002800000020000000100000000100
               18000000000000060000000000000000000000000000000000000000FF0000FF
@@ -1011,6 +1012,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Anchors = [akRight, akBottom]
             Caption = '&Cancelar'
             TabOrder = 2
+            OnClick = BtnCancelarItemClick
             Glyph.Data = {
               36060000424D3606000000000000360000002800000020000000100000000100
               180000000000000600000000000000000000000000000000000000FF0000FF00
@@ -1107,7 +1109,9 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
                   Default = True
                   Kind = bkEllipsis
                 end>
+              Properties.OnButtonClick = dbItemCodigoPropertiesButtonClick
               TabOrder = 3
+              OnKeyDown = dbItemCodigoKeyDown
               Width = 81
             end
             object dbItemDescricao: TcxDBTextEdit
@@ -1130,7 +1134,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemQuantidade: TcxDBTextEdit
               Left = 112
               Top = 136
-              TabOrder = 6
+              TabOrder = 9
               Width = 81
             end
             object lblItemUnidadeCompra: TcxLabel
@@ -1154,29 +1158,29 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               Properties.ListOptions.ShowHeader = False
               Properties.ListSource = DtsUnidade
               Properties.ReadOnly = True
-              TabOrder = 8
+              TabOrder = 11
               Width = 153
             end
-            object cxLabel1: TcxLabel
+            object lblItemNCM: TcxLabel
               Left = 654
               Top = 50
               Caption = 'NCM/SH'
-              FocusControl = cxDBTextEdit1
+              FocusControl = dbItemNCM
               Properties.Alignment.Horz = taRightJustify
               Transparent = True
               AnchorX = 697
             end
-            object cxDBTextEdit1: TcxDBTextEdit
+            object dbItemNCM: TcxDBTextEdit
               Left = 704
               Top = 48
-              TabOrder = 10
+              TabOrder = 6
               Width = 81
             end
-            object cxGroupBox2: TcxGroupBox
+            object GrpItemTributacao: TcxGroupBox
               Left = 112
               Top = 72
               Caption = 'Tributa'#231#227'o'
-              TabOrder = 11
+              TabOrder = 7
               Height = 57
               Width = 673
               object cxLabel2: TcxLabel
@@ -1225,36 +1229,213 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
                 Width = 57
               end
             end
-            object cxLabel5: TcxLabel
+            object lblItemValorUn: TcxLabel
               Left = 489
               Top = 138
               Caption = 'Valor Un.'
-              FocusControl = cxDBTextEdit5
+              FocusControl = dbItemValorUn
               Properties.Alignment.Horz = taRightJustify
               Transparent = True
               AnchorX = 537
             end
-            object cxDBTextEdit5: TcxDBTextEdit
+            object dbItemValorUn: TcxDBTextEdit
               Left = 544
               Top = 136
               TabOrder = 13
               Width = 81
             end
-            object cxLabel6: TcxLabel
+            object lblItemValorIPI: TcxLabel
               Left = 652
               Top = 138
               Caption = 'Valor IPI'
-              FocusControl = cxDBTextEdit6
+              FocusControl = dbItemValorIPI
               Properties.Alignment.Horz = taRightJustify
               Transparent = True
               AnchorX = 697
             end
-            object cxDBTextEdit6: TcxDBTextEdit
+            object dbItemValorIPI: TcxDBTextEdit
               Left = 704
               Top = 136
               TabOrder = 15
               Width = 81
             end
+          end
+        end
+        object Panel3: TPanel
+          Left = 0
+          Top = 233
+          Width = 824
+          Height = 19
+          Align = alTop
+          AutoSize = True
+          TabOrder = 2
+          object Shape2: TShape
+            Left = 1
+            Top = 1
+            Width = 822
+            Height = 17
+            Align = alTop
+            Brush.Color = 12615680
+            Pen.Color = 12615680
+            Pen.Style = psClear
+          end
+          object Label2: TLabel
+            Left = 6
+            Top = 3
+            Width = 116
+            Height = 13
+            Caption = 'Materiais / Produtos'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindow
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+        end
+        object DbgItem: TcxGrid
+          Left = 0
+          Top = 252
+          Width = 824
+          Height = 256
+          Align = alClient
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          object DbgItemDB: TcxGridDBTableView
+            NavigatorButtons.ConfirmDelete = False
+            NavigatorButtons.Images = DtmResource.ImgNavigator
+            NavigatorButtons.First.Hint = 'Primeiro registro'
+            NavigatorButtons.PriorPage.Visible = False
+            NavigatorButtons.Prior.Hint = 'Registro anterior'
+            NavigatorButtons.Next.Hint = 'Pr'#243'ximo registro'
+            NavigatorButtons.NextPage.Visible = False
+            NavigatorButtons.Last.Hint = #218'ltimo registro'
+            NavigatorButtons.Insert.Hint = 'Inserir registro'
+            NavigatorButtons.Insert.ImageIndex = 0
+            NavigatorButtons.Append.ImageIndex = 0
+            NavigatorButtons.Append.Visible = False
+            NavigatorButtons.Delete.Hint = 'Excluir registro'
+            NavigatorButtons.Delete.ImageIndex = 6
+            NavigatorButtons.Edit.Hint = 'Editar registro'
+            NavigatorButtons.Edit.ImageIndex = 10
+            NavigatorButtons.Post.Hint = 'Salvar edi'#231#227'o'
+            NavigatorButtons.Post.ImageIndex = 2
+            NavigatorButtons.Cancel.Hint = 'Cancelar edi'#231#227'o'
+            NavigatorButtons.Cancel.ImageIndex = 4
+            NavigatorButtons.Refresh.Hint = 'Atualizar'
+            NavigatorButtons.Refresh.ImageIndex = 19
+            NavigatorButtons.Refresh.Visible = False
+            NavigatorButtons.SaveBookmark.Visible = False
+            NavigatorButtons.GotoBookmark.Visible = False
+            NavigatorButtons.Filter.Visible = False
+            DataController.DataSource = DtsItem
+            DataController.Summary.DefaultGroupSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <>
+            DataController.Summary.SummaryGroups = <>
+            OptionsBehavior.CellHints = True
+            OptionsBehavior.FocusCellOnTab = True
+            OptionsBehavior.FocusFirstCellOnNewRecord = True
+            OptionsBehavior.GoToNextCellOnEnter = True
+            OptionsBehavior.ImmediateEditor = False
+            OptionsBehavior.NavigatorHints = True
+            OptionsBehavior.FocusCellOnCycle = True
+            OptionsData.Appending = True
+            OptionsData.CancelOnExit = False
+            OptionsData.DeletingConfirmation = False
+            OptionsSelection.CellSelect = False
+            OptionsSelection.InvertSelect = False
+            OptionsView.CellEndEllipsis = True
+            OptionsView.Navigator = True
+            OptionsView.NoDataToDisplayInfoText = '<Sem dados para exibi'#231#227'o>'
+            OptionsView.ColumnAutoWidth = True
+            OptionsView.GridLines = glNone
+            OptionsView.GroupByBox = False
+            Styles.ContentEven = DtmResource.cxStlLinhaImpar
+            Styles.ContentOdd = DtmResource.cxStlLinhaPar
+            object DbgItemDBitm_sequencia: TcxGridDBColumn
+              Caption = '#'
+              DataBinding.FieldName = 'itm_sequencia'
+              HeaderAlignmentHorz = taCenter
+              MinWidth = 35
+              Options.Editing = False
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Width = 35
+            end
+            object DbgItemDBitm_material: TcxGridDBColumn
+              Caption = 'C'#243'digo'
+              DataBinding.FieldName = 'itm_material'
+              MinWidth = 65
+              Options.Editing = False
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Width = 65
+            end
+            object DbgItemDBmat_descricao_resumo: TcxGridDBColumn
+              Caption = 'Descri'#231#227'o'
+              DataBinding.FieldName = 'mat_descricao_resumo'
+              Options.Editing = False
+              Options.Filtering = False
+            end
+            object DbgItemDBitm_qtde_nova: TcxGridDBColumn
+              DataBinding.FieldName = 'itm_quantidade'
+              MinWidth = 70
+              Options.Editing = False
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Width = 70
+            end
+            object DbgItemDBund_descricao: TcxGridDBColumn
+              Caption = 'Unidade'
+              DataBinding.FieldName = 'und_descricao'
+              MinWidth = 80
+              Options.Editing = False
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Width = 80
+            end
+            object DbgItemDBitm_valor_unitario: TcxGridDBColumn
+              Caption = 'Valor Un.'
+              DataBinding.FieldName = 'itm_valor_unitario'
+              MinWidth = 80
+              Options.Editing = False
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 80
+            end
+            object DbgItemDBitm_valor_ipi: TcxGridDBColumn
+              Caption = 'Valor IPI'
+              DataBinding.FieldName = 'itm_valor_ipi'
+              MinWidth = 80
+              Options.Editing = False
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 80
+            end
+            object DbgItemDBitm_valor_total: TcxGridDBColumn
+              Caption = 'Valor Total'
+              DataBinding.FieldName = 'itm_valor_total'
+              MinWidth = 80
+              Options.Editing = False
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 80
+            end
+          end
+          object DbgItemLvl: TcxGridLevel
+            GridView = DbgItemDB
           end
         end
       end
@@ -1684,24 +1865,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    ung.uni_nome')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 696
+    Left = 512
     Top = 384
   end
   object DspUnidadeNeg: TDataSetProvider
     DataSet = QryUnidadeNeg
-    Left = 728
+    Left = 544
     Top = 384
   end
   object CdsUnidadeNeg: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspUnidadeNeg'
-    Left = 760
+    Left = 576
     Top = 384
   end
   object DtsUnidadeNeg: TDataSource
     DataSet = CdsUnidadeNeg
-    Left = 792
+    Left = 608
     Top = 384
   end
   object QryCompetencia: TSQLQuery
@@ -1717,24 +1898,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    c.com_ano_mes')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 696
+    Left = 512
     Top = 464
   end
   object DspCompetencia: TDataSetProvider
     DataSet = QryCompetencia
-    Left = 728
+    Left = 544
     Top = 464
   end
   object CdsCompetencia: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspCompetencia'
-    Left = 760
+    Left = 576
     Top = 464
   end
   object DtsCompetencia: TDataSource
     DataSet = CdsCompetencia
-    Left = 792
+    Left = 608
     Top = 464
   end
   object QryTipoEntrada: TSQLQuery
@@ -1749,24 +1930,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    t.tmv_codigo')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 696
+    Left = 512
     Top = 496
   end
   object DspTipoEntrada: TDataSetProvider
     DataSet = QryTipoEntrada
-    Left = 728
+    Left = 544
     Top = 496
   end
   object CdsTipoEntrada: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspTipoEntrada'
-    Left = 760
+    Left = 576
     Top = 496
   end
   object DtsTipoEntrada: TDataSource
     DataSet = CdsTipoEntrada
-    Left = 792
+    Left = 608
     Top = 496
   end
   object QryUnidade: TSQLQuery
@@ -1780,24 +1961,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by '
       '    u.und_descricao')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 696
+    Left = 512
     Top = 560
   end
   object DspUnidade: TDataSetProvider
     DataSet = QryUnidade
-    Left = 728
+    Left = 544
     Top = 560
   end
   object CdsUnidade: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspUnidade'
-    Left = 760
+    Left = 576
     Top = 560
   end
   object DtsUnidade: TDataSource
     DataSet = CdsUnidade
-    Left = 792
+    Left = 608
     Top = 560
   end
   object QryItem: TSQLQuery
@@ -1827,6 +2008,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       '  , itm.itm_cfop'
       '  , itm.itm_unidade_compra'
       '  , itm.itm_quantidade'
+      '  , itm.itm_fracionador'
       '  , itm.itm_valor_unitario'
       '  , itm.itm_valor_total'
       '  , itm.itm_valor_ipi'
@@ -1894,6 +2076,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       Required = True
     end
     object CdsItemitm_material: TFMTBCDField
+      DisplayLabel = 'Material/Produto'
       FieldName = 'itm_material'
       ProviderFlags = [pfInUpdate]
       Required = True
@@ -1924,14 +2107,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       ProviderFlags = [pfInUpdate]
     end
     object CdsItemitm_quantidade: TFMTBCDField
+      DisplayLabel = 'Quantidade'
       FieldName = 'itm_quantidade'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Precision = 20
+      Size = 4
+    end
+    object CdsItemitm_fracionador: TFMTBCDField
+      FieldName = 'itm_fracionador'
       ProviderFlags = [pfInUpdate]
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_unitario: TFMTBCDField
+      DisplayLabel = 'Valor Unit'#225'rio (R$)'
       FieldName = 'itm_valor_unitario'
       ProviderFlags = [pfInUpdate]
+      Required = True
       Precision = 20
       Size = 4
     end
@@ -2043,24 +2236,24 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       'order by'
       '    td.tip_nome')
     SQLConnection = FrmLogin.conWebMaster
-    Left = 696
+    Left = 512
     Top = 528
   end
   object DspTipoDocumento: TDataSetProvider
     DataSet = QryTipoDocumento
-    Left = 728
+    Left = 544
     Top = 528
   end
   object CdsTipoDocumento: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspTipoDocumento'
-    Left = 760
+    Left = 576
     Top = 528
   end
   object DtsTipoDocumento: TDataSource
     DataSet = CdsTipoDocumento
-    Left = 792
+    Left = 608
     Top = 528
   end
 end
