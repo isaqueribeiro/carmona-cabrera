@@ -59,6 +59,9 @@ type
     CdsMastermat_unidade_compra: TIntegerField;
     CdsMastermat_unidade_consumo: TIntegerField;
     CdsMastermat_fracionador: TFMTBCDField;
+    CdsMastermat_cst: TStringField;
+    CdsMastermat_csosn: TStringField;
+    CdsMastermat_ncm_sh: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnEditarClick(Sender: TObject);

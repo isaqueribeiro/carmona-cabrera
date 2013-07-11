@@ -280,6 +280,9 @@ inherited FrmMaterialPesquisa: TFrmMaterialPesquisa
       '  , m.mat_unidade_compra'
       '  , m.mat_unidade_consumo'
       '  , m.mat_fracionador'
+      '  , m.mat_cst'
+      '  , m.mat_csosn'
+      '  , m.mat_ncm_sh'
       '  , t.tip_descricao'
       '  , g.grp_descricao'
       '  , s.sgp_descricao'
@@ -404,6 +407,18 @@ inherited FrmMaterialPesquisa: TFrmMaterialPesquisa
       Required = True
       Precision = 20
       Size = 4
+    end
+    object CdsMastermat_cst: TStringField
+      FieldName = 'mat_cst'
+      Size = 3
+    end
+    object CdsMastermat_csosn: TStringField
+      FieldName = 'mat_csosn'
+      Size = 3
+    end
+    object CdsMastermat_ncm_sh: TStringField
+      FieldName = 'mat_ncm_sh'
+      Size = 15
     end
     object CdsMastertip_descricao: TStringField
       DisplayLabel = 'Tipo'
