@@ -24,6 +24,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       ShowHint = True
       TabOrder = 6
       TabStop = False
+      OnClick = BtnProcessoClick
       Align = alRight
       Glyph.Data = {
         360C0000424D360C000000000000360000002800000020000000200000000100
@@ -131,7 +132,6 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     Height = 545
     inherited PgCtrlMain: TcxPageControl
       Height = 537
-      ActivePage = TbsItem
       ClientRectBottom = 533
       inherited TbsPrincipal: TcxTabSheet
         inherited GrpDadosNominais: TcxGroupBox
@@ -439,13 +439,13 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               DataBinding.DataField = 'ent_doc_tipo'
               DataBinding.DataSource = DtsMaster
               Properties.DropDownListStyle = lsFixedList
-              Properties.KeyFieldNames = 'uni_codigo'
+              Properties.KeyFieldNames = 'tip_codigo'
               Properties.ListColumns = <
                 item
-                  FieldName = 'uni_nome'
+                  FieldName = 'tip_nome'
                 end>
               Properties.ListOptions.ShowHeader = False
-              Properties.ListSource = DtsUnidadeNeg
+              Properties.ListSource = DtsTipoDocumento
               TabOrder = 1
               Width = 217
             end
@@ -524,6 +524,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Top = 24
             DataBinding.DataField = 'ent_base_icms'
             DataBinding.DataSource = DtsMaster
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             TabOrder = 1
             Width = 113
@@ -542,6 +543,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Top = 48
             DataBinding.DataField = 'ent_valor_icms'
             DataBinding.DataSource = DtsMaster
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             TabOrder = 3
             Width = 113
@@ -567,6 +569,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Top = 72
             DataBinding.DataField = 'ent_base_icms_st'
             DataBinding.DataSource = DtsMaster
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             TabOrder = 5
             Width = 113
@@ -585,6 +588,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Top = 96
             DataBinding.DataField = 'ent_valor_icms_st'
             DataBinding.DataSource = DtsMaster
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             TabOrder = 7
             Width = 113
@@ -611,6 +615,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             DataBinding.DataField = 'ent_valor_total_prod'
             DataBinding.DataSource = DtsMaster
             ParentFont = False
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -640,7 +645,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           object dbTotalFrete: TcxDBTextEdit
             Left = 384
             Top = 24
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_frete'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 11
@@ -665,7 +670,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           object dbTotalSeguro: TcxDBTextEdit
             Left = 384
             Top = 48
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_seguro'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 13
@@ -690,7 +695,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           object dbTotalDesconto: TcxDBTextEdit
             Left = 384
             Top = 72
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_desconto'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 15
@@ -715,7 +720,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           object dbTotalOutros: TcxDBTextEdit
             Left = 384
             Top = 96
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_outros'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 17
@@ -740,7 +745,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           object dbTotalIPI: TcxDBTextEdit
             Left = 384
             Top = 120
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_ipi'
             DataBinding.DataSource = DtsMaster
             Properties.CharCase = ecUpperCase
             TabOrder = 19
@@ -765,7 +770,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           object dbTotalNota: TcxDBTextEdit
             Left = 384
             Top = 144
-            DataBinding.DataField = 'mat_referencia'
+            DataBinding.DataField = 'ent_valor_nota'
             DataBinding.DataSource = DtsMaster
             ParentFont = False
             Properties.CharCase = ecUpperCase
@@ -800,6 +805,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             DataBinding.DataField = 'ent_valor_total_serv'
             DataBinding.DataSource = DtsMaster
             ParentFont = False
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -831,6 +837,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Top = 48
             DataBinding.DataField = 'ent_base_issqn'
             DataBinding.DataSource = DtsMaster
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             TabOrder = 25
             Width = 113
@@ -856,6 +863,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Top = 72
             DataBinding.DataField = 'ent_percent_issqn'
             DataBinding.DataSource = DtsMaster
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             TabOrder = 27
             Width = 113
@@ -882,6 +890,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             DataBinding.DataField = 'ent_valor_issqn'
             DataBinding.DataSource = DtsMaster
             ParentFont = False
+            Properties.Alignment.Horz = taRightJustify
             Properties.CharCase = ecUpperCase
             Style.Font.Charset = ANSI_CHARSET
             Style.Font.Color = clBlue
@@ -1087,6 +1096,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemSequencial: TcxDBTextEdit
               Left = 112
               Top = 24
+              DataBinding.DataField = 'itm_sequencia'
+              DataBinding.DataSource = DtsItem
               Properties.ReadOnly = True
               Style.Color = 8454143
               TabOrder = 1
@@ -1104,6 +1115,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemCodigo: TcxDBButtonEdit
               Left = 112
               Top = 48
+              DataBinding.DataField = 'itm_material'
+              DataBinding.DataSource = DtsItem
               Properties.Buttons = <
                 item
                   Default = True
@@ -1117,6 +1130,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemDescricao: TcxDBTextEdit
               Left = 196
               Top = 48
+              DataBinding.DataField = 'mat_descricao_resumo'
+              DataBinding.DataSource = DtsItem
               Properties.ReadOnly = True
               Style.Color = 8454143
               TabOrder = 4
@@ -1134,6 +1149,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemQuantidade: TcxDBTextEdit
               Left = 112
               Top = 136
+              DataBinding.DataField = 'itm_quantidade'
+              DataBinding.DataSource = DtsItem
               TabOrder = 9
               Width = 81
             end
@@ -1149,6 +1166,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemUnidadeCompra: TcxDBLookupComboBox
               Left = 304
               Top = 136
+              DataBinding.DataField = 'itm_unidade_compra'
+              DataBinding.DataSource = DtsItem
               Properties.DropDownListStyle = lsFixedList
               Properties.KeyFieldNames = 'und_codigo'
               Properties.ListColumns = <
@@ -1173,6 +1192,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemNCM: TcxDBTextEdit
               Left = 704
               Top = 48
+              DataBinding.DataField = 'itm_ncm_sh'
+              DataBinding.DataSource = DtsItem
               TabOrder = 6
               Width = 81
             end
@@ -1195,6 +1216,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               object cxDBTextEdit2: TcxDBTextEdit
                 Left = 64
                 Top = 24
+                DataBinding.DataField = 'itm_cst'
+                DataBinding.DataSource = DtsItem
                 TabOrder = 1
                 Width = 57
               end
@@ -1210,6 +1233,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               object cxDBTextEdit3: TcxDBTextEdit
                 Left = 176
                 Top = 24
+                DataBinding.DataField = 'itm_csosn'
+                DataBinding.DataSource = DtsItem
                 TabOrder = 3
                 Width = 57
               end
@@ -1225,6 +1250,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               object cxDBTextEdit4: TcxDBTextEdit
                 Left = 288
                 Top = 24
+                DataBinding.DataField = 'itm_cfop'
+                DataBinding.DataSource = DtsItem
                 TabOrder = 5
                 Width = 57
               end
@@ -1241,6 +1268,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemValorUn: TcxDBTextEdit
               Left = 544
               Top = 136
+              DataBinding.DataField = 'itm_valor_unitario'
+              DataBinding.DataSource = DtsItem
               TabOrder = 13
               Width = 81
             end
@@ -1256,6 +1285,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             object dbItemValorIPI: TcxDBTextEdit
               Left = 704
               Top = 136
+              DataBinding.DataField = 'itm_valor_ipi'
+              DataBinding.DataSource = DtsItem
               TabOrder = 15
               Width = 81
             end
@@ -1545,6 +1576,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
         Value = 0c
       end>
     AfterOpen = CdsMasterAfterOpen
+    AfterPost = CdsMasterAfterPost
     AfterCancel = CdsMasterAfterCancel
     AfterDelete = CdsMasterAfterDelete
     OnNewRecord = CdsMasterNewRecord
@@ -1562,14 +1594,9 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       Precision = 20
       Size = 0
     end
-    object CdsMasterent_tipo: TStringField
-      FieldName = 'ent_tipo'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-      Size = 3
-    end
     object CdsMasterent_unidade_neg: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Unidade de Neg'#243'cio'
       FieldName = 'ent_unidade_neg'
       ProviderFlags = [pfInUpdate]
       Required = True
@@ -1578,43 +1605,31 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       FieldName = 'ent_setor'
       ProviderFlags = [pfInUpdate]
     end
-    object CdsMasterent_pessoa: TIntegerField
-      FieldName = 'ent_pessoa'
+    object CdsMasterent_competencia: TSmallintField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Compet'#234'ncia'
+      FieldName = 'ent_competencia'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CdsMasterent_data: TDateField
+      DisplayLabel = 'Data'
       FieldName = 'ent_data'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsMasterent_hora: TTimeField
+      DisplayLabel = 'Hora'
       FieldName = 'ent_hora'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
-    object CdsMasterent_doc_tipo: TSmallintField
-      Alignment = taLeftJustify
-      FieldName = 'ent_doc_tipo'
-      ProviderFlags = [pfInUpdate]
-    end
-    object CdsMasterent_doc_numero: TStringField
-      FieldName = 'ent_doc_numero'
-      ProviderFlags = [pfInUpdate]
-      Size = 10
-    end
-    object CdsMasterent_doc_serie: TStringField
-      FieldName = 'ent_doc_serie'
-      ProviderFlags = [pfInUpdate]
-      Size = 3
-    end
-    object CdsMasterent_doc_emissao: TDateField
-      FieldName = 'ent_doc_emissao'
-      ProviderFlags = [pfInUpdate]
-    end
-    object CdsMasterent_competencia: TSmallintField
-      Alignment = taLeftJustify
-      FieldName = 'ent_competencia'
+    object CdsMasterent_tipo: TStringField
+      DisplayLabel = 'Tipo'
+      FieldName = 'ent_tipo'
       ProviderFlags = [pfInUpdate]
       Required = True
+      Size = 3
     end
     object CdsMasterent_obs: TMemoField
       FieldName = 'ent_obs'
@@ -1625,6 +1640,38 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     object CdsMasterent_cfop: TIntegerField
       FieldName = 'ent_cfop'
       ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterent_pessoa: TIntegerField
+      DisplayLabel = 'Fornecedor'
+      FieldName = 'ent_pessoa'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterent_doc_tipo: TSmallintField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Tipo Documento'
+      FieldName = 'ent_doc_tipo'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterent_doc_emissao: TDateField
+      DisplayLabel = 'Emiss'#227'o do Documento'
+      FieldName = 'ent_doc_emissao'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterent_doc_numero: TStringField
+      DisplayLabel = 'N'#250'mero do Documento'
+      FieldName = 'ent_doc_numero'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Size = 10
+    end
+    object CdsMasterent_doc_serie: TStringField
+      DisplayLabel = 'S'#233'rie'
+      FieldName = 'ent_doc_serie'
+      ProviderFlags = [pfInUpdate]
+      Size = 3
     end
     object CdsMasterent_base_icms: TFMTBCDField
       FieldName = 'ent_base_icms'
@@ -1655,8 +1702,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       Size = 4
     end
     object CdsMasterent_valor_total_prod: TFMTBCDField
+      DisplayLabel = 'Total Produto'
       FieldName = 'ent_valor_total_prod'
       ProviderFlags = [pfInUpdate]
+      Required = True
       DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
@@ -1697,15 +1746,19 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       Size = 4
     end
     object CdsMasterent_valor_nota: TFMTBCDField
+      DisplayLabel = 'Total Nota'
       FieldName = 'ent_valor_nota'
       ProviderFlags = [pfInUpdate]
+      Required = True
       DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsMasterent_valor_total_serv: TFMTBCDField
+      DisplayLabel = 'Total Servi'#231'o'
       FieldName = 'ent_valor_total_serv'
       ProviderFlags = [pfInUpdate]
+      Required = True
       DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
@@ -1735,6 +1788,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       Alignment = taLeftJustify
       FieldName = 'ent_status'
       ProviderFlags = [pfInUpdate]
+      OnGetText = CdsMasterent_statusGetText
     end
     object CdsMasterent_usuario_abertura: TStringField
       FieldName = 'ent_usuario_abertura'
@@ -1838,13 +1892,20 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     end
   end
   inherited DtsMaster: TDataSource
+    OnDataChange = DtsMasterDataChange
     Left = 688
     Top = 8
   end
   object popupProcesso: TPopupMenu
     Images = DtmResource.ImgLstSml
-    Left = 848
+    Left = 728
     Top = 13
+    object pmApropriar: TMenuItem
+      Caption = 'Apropria'#231#227'o'
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
     object pmEncerrar: TMenuItem
       Caption = 'Encerrar / Finalizar'
       ImageIndex = 6
@@ -2103,6 +2164,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       ProviderFlags = [pfInUpdate]
     end
     object CdsItemitm_unidade_compra: TIntegerField
+      Alignment = taLeftJustify
       FieldName = 'itm_unidade_compra'
       ProviderFlags = [pfInUpdate]
     end
@@ -2195,12 +2257,39 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
   object DtsItem: TDataSource
     AutoEdit = False
     DataSet = CdsItem
+    OnStateChange = DtsItemStateChange
+    OnDataChange = DtsItemDataChange
     Left = 688
     Top = 40
   end
   object QryDuplicata: TSQLQuery
     MaxBlobSize = -1
-    Params = <>
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'ent_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftBCD
+        Name = 'ent_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
+    SQL.Strings = (
+      'Select'
+      '    dup.ent_ano'
+      '  , dup.ent_codigo'
+      '  , dup.dup_sequencia'
+      '  , dup.dup_numero'
+      '  , dup.dup_vencimento'
+      '  , dup.dup_valor'
+      '  , dup.dup_mov_codigo'
+      '  , dup.dup_mov_item'
+      'from str_entrada_duplicata dup'
+      'where dup.ent_ano = :ent_ano'
+      '  and dup.ent_codigo = :ent_codigo')
     SQLConnection = FrmLogin.conWebMaster
     Left = 592
     Top = 72
@@ -2213,10 +2302,61 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
   object CdsDuplicata: TClientDataSet
     Aggregates = <>
     PacketRecords = 100
-    Params = <>
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'ent_ano'
+        ParamType = ptInput
+        Value = 0
+      end
+      item
+        DataType = ftBCD
+        Name = 'ent_codigo'
+        ParamType = ptInput
+        Value = 0c
+      end>
     ProviderName = 'DspDuplicata'
     Left = 656
     Top = 72
+    object CdsDuplicataent_ano: TSmallintField
+      FieldName = 'ent_ano'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsDuplicataent_codigo: TFMTBCDField
+      FieldName = 'ent_codigo'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+      Precision = 20
+      Size = 0
+    end
+    object CdsDuplicatadup_sequencia: TSmallintField
+      FieldName = 'dup_sequencia'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsDuplicatadup_numero: TStringField
+      FieldName = 'dup_numero'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsDuplicatadup_vencimento: TDateField
+      FieldName = 'dup_vencimento'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsDuplicatadup_valor: TFMTBCDField
+      FieldName = 'dup_valor'
+      ProviderFlags = [pfInUpdate]
+      Precision = 20
+      Size = 4
+    end
+    object CdsDuplicatadup_mov_codigo: TIntegerField
+      FieldName = 'dup_mov_codigo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsDuplicatadup_mov_item: TSmallintField
+      FieldName = 'dup_mov_item'
+      ProviderFlags = [pfInUpdate]
+    end
   end
   object DtsDuplicata: TDataSource
     AutoEdit = False
