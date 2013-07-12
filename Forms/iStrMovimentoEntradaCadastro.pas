@@ -232,6 +232,16 @@ type
     DbgItemDBitm_valor_total: TcxGridDBColumn;
     DbgItemDBitm_valor_ipi: TcxGridDBColumn;
     CdsItemitm_fracionador: TFMTBCDField;
+    pmApropriar: TMenuItem;
+    N1: TMenuItem;
+    CdsDuplicataent_ano: TSmallintField;
+    CdsDuplicataent_codigo: TFMTBCDField;
+    CdsDuplicatadup_sequencia: TSmallintField;
+    CdsDuplicatadup_numero: TStringField;
+    CdsDuplicatadup_vencimento: TDateField;
+    CdsDuplicatadup_valor: TFMTBCDField;
+    CdsDuplicatadup_mov_codigo: TIntegerField;
+    CdsDuplicatadup_mov_item: TSmallintField;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterAfterCancel(DataSet: TDataSet);
@@ -243,6 +253,15 @@ type
       AButtonIndex: Integer);
     procedure BtnCancelarItemClick(Sender: TObject);
     procedure BtnSalvarItemClick(Sender: TObject);
+    procedure DtsItemDataChange(Sender: TObject; Field: TField);
+    procedure DtsMasterDataChange(Sender: TObject; Field: TField);
+    procedure BtnProcessoClick(Sender: TObject);
+    procedure DtsMasterStateChange(Sender: TObject);
+    procedure DtsItemStateChange(Sender: TObject);
+    procedure CdsMasterent_statusGetText(Sender: TField; var Text: String;
+      DisplayText: Boolean);
+    procedure CdsMasterBeforePost(DataSet: TDataSet);
+    procedure CdsMasterAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
     procedure CarregarItens;
@@ -250,6 +269,7 @@ type
     procedure GravarItens;
     procedure GravarDuplicatas;
     procedure CarregarDadosMaterial;
+    procedure CarregarDadosCFOP;
 
     function GetCompetenciaID(inData : TDateTime) : Smallint;
   public
@@ -326,6 +346,23 @@ begin
   CdsMasterent_usuario_abertura.AsString := gUsuario.Login;
   CdsMasterent_status.AsInteger          := STATUS_ENTRADA_ESTOQUE_ABERTA;
   CdsMasterent_log_insert.AsString       := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+
+  CdsMasterent_base_icms.AsCurrency     := 0.0;
+  CdsMasterent_valor_icms.AsCurrency    := 0.0;
+  CdsMasterent_base_icms_st.AsCurrency  := 0.0;
+  CdsMasterent_valor_icms_st.AsCurrency := 0.0;
+  CdsMasterent_valor_frete.AsCurrency   := 0.0;
+  CdsMasterent_valor_seguro.AsCurrency   := 0.0;
+  CdsMasterent_valor_desconto.AsCurrency := 0.0;
+  CdsMasterent_valor_outros.AsCurrency   := 0.0;
+  CdsMasterent_valor_ipi.AsCurrency      := 0.0;
+  CdsMasterent_valor_total_serv.AsCurrency := 0.0;
+  CdsMasterent_base_issqn.AsCurrency       := 0.0;
+  CdsMasterent_percent_issqn.AsCurrency    := 0.0;
+  CdsMasterent_valor_issqn.AsCurrency      := 0.0;
+
+  CdsMasterent_valor_total_prod.Clear;
+  CdsMasterent_valor_nota.Clear;
 
   CdsMasterent_unidade_neg.Clear;
   CdsMasterent_usuario_fechamento.Clear;
@@ -471,6 +508,24 @@ begin
   end;
 end;
 
+procedure TFrmMovimentoEntradaCadastro.CarregarDadosCFOP;
+var
+  cds : TClientDataSet;
+begin
+  if ( CdsMaster.State in [dsEdit, dsInsert] ) then
+  begin
+    cds := TClientDataSet.Create(nil);
+    try
+      if GetDataSetDB(cds, 'sys_cfop', 'cfop_codigo = ' + CdsMasterent_cfop.AsString) then
+        CdsMastercfop_descricao.Assign( cds.FieldByName('cfop_descricao') )
+      else
+        CdsMastercfop_descricao.Clear;
+    finally
+      cds.Free;
+    end;
+  end;
+end;
+
 function TFrmMovimentoEntradaCadastro.GetCompetenciaID(
   inData: TDateTime): Smallint;
 begin
@@ -606,6 +661,120 @@ begin
     if ( dbItemCodigo.Visible and dbItemCodigo.Enabled ) then
       dbItemCodigo.SetFocus;
   end;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.DtsItemDataChange(Sender: TObject;
+  Field: TField);
+begin
+  if ( Field = CdsItemitm_material ) then
+    if ( not CdsItemitm_material.IsNull ) then
+      CarregarDadosMaterial;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.DtsMasterDataChange(Sender: TObject;
+  Field: TField);
+begin
+  if ( Field = CdsMasterent_cfop ) then
+    if ( not CdsMasterent_cfop.IsNull ) then
+      CarregarDadosCFOP;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.BtnProcessoClick(Sender: TObject);
+begin
+  if ( not CdsMaster.IsEmpty ) then
+    popupProcesso.Popup(BtnProcesso.ClientOrigin.X, BtnProcesso.ClientOrigin.Y + BtnProcesso.Height);
+end;
+
+procedure TFrmMovimentoEntradaCadastro.DtsMasterStateChange(
+  Sender: TObject);
+begin
+  inherited;
+  if ( CdsMaster.State = dsInsert ) then
+    PgCtrlMain.ActivePage := TbsPrincipal;
+
+  DtsItem.AutoEdit := (CdsMaster.State in [dsEdit, dsInsert]);
+  DtsItemStateChange( DtsItem );
+
+  dbUnidadeNegocio.Properties.ReadOnly := (CdsMaster.State = dsEdit);
+  dbCompetencia.Properties.ReadOnly    := (CdsMaster.State = dsEdit);
+
+  BtnProcesso.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
+    and (not CdsMaster.IsEmpty) and (not CdsItem.IsEmpty) and (CdsMasterent_status.AsInteger = STATUS_ENTRADA_ESTOQUE_ABERTA);
+end;
+
+procedure TFrmMovimentoEntradaCadastro.DtsItemStateChange(Sender: TObject);
+begin
+  BtnSalvarItem.Enabled   := ( CdsItem.State in [dsEdit, dsInsert] );
+  BtnCancelarItem.Enabled := ( CdsItem.State in [dsEdit, dsInsert] );
+  dbItemCodigo.Properties.ReadOnly := (CdsItem.State = dsEdit);
+
+  with DbgItemDB, OptionsData do
+  begin
+    Appending := DtsItem.AutoEdit;
+    Deleting  := DtsItem.AutoEdit;
+    Editing   := DtsItem.AutoEdit;
+    Inserting := DtsItem.AutoEdit;
+  end;
+
+  if ( BtnSalvarItem.Enabled and (PgCtrlMain.ActivePage = TbsItem) ) then
+    if ( dbItemCodigo.Visible and dbItemCodigo.Enabled ) then
+      dbItemCodigo.SetFocus;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsMasterent_statusGetText(
+  Sender: TField; var Text: String; DisplayText: Boolean);
+begin
+  if Sender.IsNull then
+    Exit;
+
+  Case Sender.AsInteger of
+    STATUS_ENTRADA_ESTOQUE_ABERTA    : Text := 'Aberto';
+    STATUS_ENTRADA_ESTOQUE_ENCERRADA : Text := 'Encerrado';
+    STATUS_ENTRADA_ESTOQUE_CANCELADA : Text := 'Cancelado';
+  end;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsMasterBeforePost(
+  DataSet: TDataSet);
+begin
+  if CdsItem.IsEmpty then
+    CdsMasterItens.Clear
+  else
+    CdsMasterItens.AsInteger := CdsItem.RecordCount;
+
+  if (CdsMaster.State = dsInsert) then
+    CdsMasterent_codigo.AsInteger := MaxCod(NomeTabela, CampoChave, 'ent_ano = ' + CdsMasterent_ano.AsString)
+  else
+  if ( CdsMaster.Modified and (CdsMaster.State = dsEdit) ) then
+    CdsMasterent_log_update.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+
+  if ( CdsMasterent_status.AsInteger = STATUS_ENTRADA_ESTOQUE_CANCELADA ) then
+    CdsMasterent_log_inactive.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+
+  // Verificar se a Unidade de Negócio possui Almoxarifado
+  CdsUnidadeNeg.Locate('uni_codigo', CdsMasterent_unidade_neg.AsInteger, []);
+  if ( CdsUnidadeNeg.FieldByName('uni_possui_almox').AsInteger = 0 ) then
+  begin
+    ShowMessageStop('A Unidade de Negócio ' + QuotedStr(dbUnidadeNegocio.Text) + ' não possui almoxarifado!');
+    Abort;
+  end;
+
+  // Verificar se a Competência está ativa
+  CdsCompetencia.Locate('com_codigo', CdsMasterent_competencia.AsInteger, []);
+  if ( CdsCompetencia.FieldByName('sit_codigo').AsInteger <> 1 ) then
+  begin
+    ShowMessageStop('A Competência ' + QuotedStr(dbCompetencia.Text) + ' não está ativa!');
+    Abort;
+  end;
+
+  inherited;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsMasterAfterPost(
+  DataSet: TDataSet);
+begin
+  GravarItens;
+  GravarDuplicatas;
 end;
 
 end.
