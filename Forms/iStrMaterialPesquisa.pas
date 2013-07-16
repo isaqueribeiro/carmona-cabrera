@@ -206,10 +206,10 @@ end;
 
 function TFrmMaterialPesquisa.PermitirExcluirRegistro: Boolean;
 begin
-  Result := CdsMastermat_ultcompra_data.IsNull;
+  Result := False;
 
   if not Result then
-    ShowMessageWarning('Registro não pode ser excluído por possuir histórico de movimentação!', 'Exclusão');
+    ShowMessageWarning('Apenas o setor Financeiro poderá executar essa tarefa!', 'Exclusão');
 end;
 
 end.

@@ -2491,8 +2491,9 @@ object FrmMain: TFrmMain
     end
     object ActnFornecedor: TAction
       Category = 'Cadastros Principais'
-      Caption = 'Fornecedores'
+      Caption = 'Fornecedores (Pessoas)'
       Hint = 'Cadastro e pesquisa de Fornecedores (Pessoas)'
+      OnExecute = ActnFornecedorExecute
     end
     object ActnCFOP: TAction
       Category = 'Tabelas Auxiliares'

@@ -41,7 +41,9 @@ uses
   KeyTipoDocumento in 'Forms\KeyTipoDocumento.pas' {FrmTipoDocumento},
   iStrMovimentoEntradaPesquisa in 'Forms\iStrMovimentoEntradaPesquisa.pas' {FrmMovimentoEntradaPesquisa},
   iStrMovimentoEntradaCadastro in 'Forms\iStrMovimentoEntradaCadastro.pas' {FrmMovimentoEntradaCadastro},
-  iStrCFOP in 'Forms\iStrCFOP.pas' {FrmCFOP};
+  iStrCFOP in 'Forms\iStrCFOP.pas' {FrmCFOP},
+  KeyPessoaPesquisa in 'Forms\KeyPessoaPesquisa.pas' {FrmPessoaPesquisa},
+  KeyPessoaCadastro in 'Forms\KeyPessoaCadastro.pas' {FrmPessoaCadastro};
 
 {$R *.res}
 

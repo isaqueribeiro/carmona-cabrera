@@ -130,6 +130,7 @@ type
     procedure ActnTipoDocumentoExecute(Sender: TObject);
     procedure ActnMovimentoEntradaExecute(Sender: TObject);
     procedure ActnCFOPExecute(Sender: TObject);
+    procedure ActnFornecedorExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -165,7 +166,8 @@ uses
   , iStrTipoMovimento
   , iStrAjusteEstoquePesquisa
   , iStrMovimentoEntradaPesquisa
-  , iStrCFOP;
+  , iStrCFOP
+  , KeyPessoaPesquisa;
 
 {$R *.dfm}
 
@@ -429,6 +431,16 @@ begin
     FrmCFOP.ShowModal;
   finally
     FrmCFOP.Free;
+  end;
+end;
+
+procedure TFrmMain.ActnFornecedorExecute(Sender: TObject);
+begin
+  FrmPessoaPesquisa := TFrmPessoaPesquisa.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    FrmPessoaPesquisa.ShowModal;
+  finally
+    FrmPessoaPesquisa.Free;
   end;
 end;
 
