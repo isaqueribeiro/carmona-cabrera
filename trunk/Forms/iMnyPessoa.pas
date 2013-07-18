@@ -15,7 +15,7 @@ uses
   ExtCtrls, cxPC, cxControls, cxGraphics, cxMaskEdit, cxDropDownEdit,
   cxImageComboBox, cxDBEdit, cxLabel, cxContainer, cxEdit, cxTextEdit,
   cxImage, FMTBcd, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, DB,
-  SqlExpr;
+  SqlExpr, cxLookAndFeels;
 
 type
   TFrmPessoa = class(TForm)
