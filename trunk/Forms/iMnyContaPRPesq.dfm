@@ -30,10 +30,10 @@ object FrmContaPRPesq: TFrmContaPRPesq
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ClientRectBottom = 445
-    ClientRectLeft = 4
-    ClientRectRight = 1072
-    ClientRectTop = 24
+    ClientRectBottom = 448
+    ClientRectLeft = 1
+    ClientRectRight = 1075
+    ClientRectTop = 21
     object TbShtPrincipal: TcxTabSheet
       Caption = 'Principal'
       ImageIndex = 79
@@ -64,16 +64,20 @@ object FrmContaPRPesq: TFrmContaPRPesq
         Left = 2
         Top = 8
         Caption = 'Pesquise a Conta (Nome, Data e Situa'#231#227'o)'
-        Style.LookAndFeel.Kind = lfStandard
-        StyleDisabled.LookAndFeel.Kind = lfStandard
-        StyleFocused.LookAndFeel.Kind = lfStandard
-        StyleHot.LookAndFeel.Kind = lfStandard
+        Style.LookAndFeel.Kind = lfOffice11
+        StyleDisabled.LookAndFeel.Kind = lfOffice11
+        StyleFocused.LookAndFeel.Kind = lfOffice11
+        StyleHot.LookAndFeel.Kind = lfOffice11
         TabOrder = 0
         Height = 49
         Width = 1063
         object EdtPesquisar: TcxTextEdit
           Left = 8
           Top = 18
+          Style.LookAndFeel.Kind = lfStandard
+          StyleDisabled.LookAndFeel.Kind = lfStandard
+          StyleFocused.LookAndFeel.Kind = lfStandard
+          StyleHot.LookAndFeel.Kind = lfStandard
           TabOrder = 0
           Width = 249
         end
@@ -91,6 +95,10 @@ object FrmContaPRPesq: TFrmContaPRPesq
         object EdtDataInicial: TcxDateEdit
           Left = 352
           Top = 16
+          Style.LookAndFeel.Kind = lfFlat
+          StyleDisabled.LookAndFeel.Kind = lfFlat
+          StyleFocused.LookAndFeel.Kind = lfFlat
+          StyleHot.LookAndFeel.Kind = lfFlat
           TabOrder = 2
           Width = 89
         end
@@ -1796,6 +1804,7 @@ object FrmContaPRPesq: TFrmContaPRPesq
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00}
+      LookAndFeel.Kind = lfOffice11
     end
   end
   object btnBloco: TcxButton

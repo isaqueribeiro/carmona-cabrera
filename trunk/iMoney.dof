@@ -136,6 +136,7 @@ ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
 c:\program files (x86)\borland\delphi7\Projects\Bpl\RVDBPkgD7.bpl=RichView DataAware
+C:\Program Files (x86)\Borland\Delphi7\DevExpress_v42\Delphi 7 Library\dxPScxScheduler3LnkD7.bpl=ExpressPrinting System ReportLink for ExpressScheduler 3 by Developer Express Inc.
 [HistoryLists\hlConditionals]
 Count=1
 Item0=IMONEY

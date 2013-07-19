@@ -1,9 +1,9 @@
 object DtmResource: TDtmResource
   OldCreateOrder = False
-  Left = 575
-  Top = 331
-  Height = 557
-  Width = 500
+  Left = 549
+  Top = 170
+  Height = 289
+  Width = 344
   object ImgLstSml: TImageList
     Left = 16
     Top = 8
@@ -425,7 +425,8 @@ object DtmResource: TDtmResource
     end
   end
   object LookAndFeelController: TcxLookAndFeelController
-    Kind = lfStandard
+    Kind = lfFlat
+    NativeStyle = True
     Left = 120
     Top = 8
   end
@@ -2027,8 +2028,8 @@ object DtmResource: TDtmResource
       000000000000}
   end
   object ImgNavigator: TImageList
-    Left = 176
-    Top = 272
+    Left = 216
+    Top = 16
     Bitmap = {
       494C010127002C00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000B0000000010020000000000000B0
