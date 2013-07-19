@@ -44,7 +44,8 @@ uses
   KeyVersion in 'Units\KeyVersion.pas',
   KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
   KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
-  KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro};
+  KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro},
+  KeyRequiredFields in 'Forms\KeyRequiredFields.pas' {FrmRequiredFields};
 
 {$R *.res}
 
