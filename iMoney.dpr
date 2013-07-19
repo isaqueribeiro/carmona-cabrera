@@ -41,7 +41,10 @@ uses
   iMnyContaPRDoc in 'Forms\iMnyContaPRDoc.pas' {FrmContaPRDoc},
   iMnyRFluxo in 'Reports\iMnyRFluxo.pas' {FrmRFluxo},
   KeyFuncoes in 'Units\KeyFuncoes.pas',
-  KeyVersion in 'Units\KeyVersion.pas';
+  KeyVersion in 'Units\KeyVersion.pas',
+  KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
+  KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
+  KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro};
 
 {$R *.res}
 

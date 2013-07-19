@@ -4,6 +4,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
   ActiveControl = EdtPesquisa
   BorderIcons = [biSystemMenu]
   Caption = 'Padr'#227'o Tabela Pesquisa'
+  OldCreateOrder = True
   OnCloseQuery = FormCloseQuery
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -303,10 +304,10 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
       Images = DtmResource.ImgNavigator
       ParentFont = False
       TabOrder = 0
-      ClientRectBottom = 473
-      ClientRectLeft = 4
-      ClientRectRight = 772
-      ClientRectTop = 25
+      ClientRectBottom = 476
+      ClientRectLeft = 1
+      ClientRectRight = 775
+      ClientRectTop = 22
       object TbsPrincipal: TcxTabSheet
         BorderWidth = 4
         Caption = 'Principal'
@@ -322,10 +323,10 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
           StyleHot.LookAndFeel.Kind = lfStandard
           TabOrder = 0
           DesignSize = (
-            760
+            766
             49)
           Height = 49
-          Width = 760
+          Width = 766
           object EdtPesquisa: TcxTextEdit
             Left = 248
             Top = 18
@@ -336,7 +337,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
             Width = 473
           end
           object BtnPesquisar: TcxButton
-            Left = 723
+            Left = 729
             Top = 16
             Width = 25
             Height = 25
@@ -369,8 +370,8 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
         object DbgTabela: TcxGrid
           Left = 0
           Top = 68
-          Width = 760
-          Height = 372
+          Width = 766
+          Height = 378
           Align = alClient
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
@@ -438,7 +439,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
         object Pnl: TPanel
           Left = 0
           Top = 49
-          Width = 760
+          Width = 766
           Height = 19
           Align = alTop
           AutoSize = True
@@ -446,7 +447,7 @@ inherited FrmPadraoTabela: TFrmPadraoTabela
           object ShpTitulo: TShape
             Left = 1
             Top = 1
-            Width = 758
+            Width = 764
             Height = 17
             Align = alTop
             Brush.Color = 12615680

@@ -1,6 +1,6 @@
 object FrmMain: TFrmMain
-  Left = 302
-  Top = 167
+  Left = 278
+  Top = 136
   Width = 1156
   Height = 711
   BorderIcons = [biMinimize, biMaximize, biHelp]
@@ -973,9 +973,9 @@ object FrmMain: TFrmMain
   end
   object NavBar: TdxNavBar
     Left = 0
-    Top = 28
+    Top = 26
     Width = 150
-    Height = 577
+    Height = 581
     Align = alLeft
     ActiveGroupIndex = 0
     TabOrder = 1
@@ -1070,8 +1070,8 @@ object FrmMain: TFrmMain
     DockControlHeights = (
       0
       0
-      28
-      28)
+      26
+      26)
     object BrMngrMenu: TdxBar
       Caption = 'Menu Principal'
       CaptionButtons = <>

@@ -1,5 +1,5 @@
 object FrmContaPRDoc: TFrmContaPRDoc
-  Left = 378
+  Left = 482
   Top = 226
   Width = 663
   Height = 412
