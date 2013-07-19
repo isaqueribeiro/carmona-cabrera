@@ -39,6 +39,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbCodigo: TcxDBTextEdit
             Left = 112
             Top = 24
+            DataBinding.DataField = 'pes_codigo'
             DataBinding.DataSource = DtsMaster
             Properties.ReadOnly = True
             Style.Color = 8454143
@@ -57,6 +58,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbTipo: TcxDBLookupComboBox
             Left = 232
             Top = 24
+            DataBinding.DataField = 'tip_codigo'
             DataBinding.DataSource = DtsMaster
             Properties.DropDownListStyle = lsFixedList
             Properties.KeyFieldNames = 'tip_codigo'
@@ -81,6 +83,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbDocumento: TcxDBTextEdit
             Left = 480
             Top = 24
+            DataBinding.DataField = 'pes_documento'
             DataBinding.DataSource = DtsMaster
             TabOrder = 5
             Width = 145
@@ -97,6 +100,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbNome: TcxDBTextEdit
             Left = 112
             Top = 48
+            DataBinding.DataField = 'pes_nome_fantasia'
             DataBinding.DataSource = DtsMaster
             TabOrder = 7
             Width = 513
@@ -113,6 +117,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbRazaoSocial: TcxDBTextEdit
             Left = 112
             Top = 72
+            DataBinding.DataField = 'pes_razao_social'
             DataBinding.DataSource = DtsMaster
             TabOrder = 9
             Width = 513
@@ -129,6 +134,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbInscMunicipal: TcxDBTextEdit
             Left = 112
             Top = 96
+            DataBinding.DataField = 'pes_insc_municipal'
             DataBinding.DataSource = DtsMaster
             TabOrder = 11
             Width = 169
@@ -145,6 +151,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbInscEstadual: TcxDBTextEdit
             Left = 456
             Top = 96
+            DataBinding.DataField = 'pes_insc_estadual'
             DataBinding.DataSource = DtsMaster
             TabOrder = 13
             Width = 169
@@ -174,6 +181,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbLogradouro: TcxDBTextEdit
             Left = 112
             Top = 24
+            DataBinding.DataField = 'pes_end_logra'
             DataBinding.DataSource = DtsMaster
             TabOrder = 1
             Width = 393
@@ -199,6 +207,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbBairro: TcxDBTextEdit
             Left = 336
             Top = 48
+            DataBinding.DataField = 'pes_end_bairro'
             DataBinding.DataSource = DtsMaster
             TabOrder = 7
             Width = 169
@@ -215,6 +224,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbCEP: TcxDBTextEdit
             Left = 544
             Top = 48
+            DataBinding.DataField = 'pes_end_cep'
             DataBinding.DataSource = DtsMaster
             TabOrder = 9
             Width = 81
@@ -231,6 +241,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbUF: TcxDBLookupComboBox
             Left = 544
             Top = 24
+            DataBinding.DataField = 'pes_end_uf'
             DataBinding.DataSource = DtsMaster
             Properties.DropDownListStyle = lsFixedList
             Properties.KeyFieldNames = 'est_sigla'
@@ -238,6 +249,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
               item
                 FieldName = 'est_sigla'
               end>
+            Properties.ListOptions.ShowHeader = False
             Properties.ListSource = DtsUF
             TabOrder = 3
             Width = 81
@@ -245,6 +257,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbCidade: TcxDBLookupComboBox
             Left = 112
             Top = 48
+            DataBinding.DataField = 'cid_codigo'
             DataBinding.DataSource = DtsMaster
             Properties.DropDownListStyle = lsFixedList
             Properties.KeyFieldNames = 'cid_codigo'
@@ -252,6 +265,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
               item
                 FieldName = 'cid_nome'
               end>
+            Properties.ListOptions.ShowHeader = False
             Properties.ListSource = DtsCidade
             TabOrder = 5
             Width = 169
@@ -281,6 +295,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbNomeContato: TcxDBTextEdit
             Left = 112
             Top = 24
+            DataBinding.DataField = 'pes_contato'
             DataBinding.DataSource = DtsMaster
             TabOrder = 1
             Width = 513
@@ -297,6 +312,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbTelefone: TcxDBTextEdit
             Left = 112
             Top = 48
+            DataBinding.DataField = 'pes_fones'
             DataBinding.DataSource = DtsMaster
             TabOrder = 3
             Width = 169
@@ -313,7 +329,9 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbEmail: TcxDBTextEdit
             Left = 336
             Top = 48
+            DataBinding.DataField = 'pes_email'
             DataBinding.DataSource = DtsMaster
+            Properties.CharCase = ecLowerCase
             TabOrder = 5
             Width = 289
           end
@@ -360,6 +378,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbObservacoes: TcxDBTextEdit
             Left = 248
             Top = 48
+            DataBinding.DataField = 'pes_obs'
             DataBinding.DataSource = DtsMaster
             TabOrder = 5
             Width = 377
@@ -367,6 +386,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbContaCorrente: TcxDBLookupComboBox
             Left = 112
             Top = 24
+            DataBinding.DataField = 'ccr_codigo'
             DataBinding.DataSource = DtsMaster
             Properties.DropDownListStyle = lsFixedList
             Properties.KeyFieldNames = 'ccr_codigo'
@@ -374,6 +394,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
               item
                 FieldName = 'banco_conta'
               end>
+            Properties.ListOptions.ShowHeader = False
             Properties.ListSource = DtsContaCorrente
             TabOrder = 1
             Width = 513
@@ -381,6 +402,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
           object dbStatus: TcxDBImageComboBox
             Left = 112
             Top = 48
+            DataBinding.DataField = 'pes_status'
             DataBinding.DataSource = DtsMaster
             Properties.Images = ImgStatus
             Properties.Items = <
@@ -402,6 +424,39 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
     end
   end
   inherited QryMaster: TSQLQuery
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'pes_codigo'
+        ParamType = ptInput
+        Value = 0
+      end>
+    SQL.Strings = (
+      'Select'
+      '    p.pes_codigo'
+      '  , p.tip_codigo'
+      '  , p.pes_documento'
+      '  , p.pes_razao_social'
+      '  , p.pes_nome_fantasia'
+      '  , p.pes_insc_municipal'
+      '  , p.pes_insc_estadual'
+      '  , p.pes_contato'
+      '  , p.pes_fones'
+      '  , p.pes_end_logra'
+      '  , upper(p.pes_end_cidade) as pes_end_cidade'
+      '  , p.pes_end_bairro'
+      '  , p.pes_end_cep'
+      '  , upper(p.pes_end_uf) as pes_end_uf'
+      '  , p.cid_codigo'
+      '  , p.pes_obs'
+      '  , p.pes_email'
+      '  , p.ccr_codigo'
+      '  , p.pes_status'
+      '  , p.pes_ult_datamov'
+      '  , p.pes_inc'
+      '  , p.pes_alt'
+      'from mny_pessoa p'
+      'where p.pes_codigo = :pes_codigo')
     Left = 472
     Top = 8
   end
@@ -410,8 +465,142 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
     Top = 8
   end
   inherited CdsMaster: TClientDataSet
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'pes_codigo'
+        ParamType = ptInput
+        Value = 0
+      end>
+    OnNewRecord = CdsMasterNewRecord
     Left = 536
     Top = 8
+    object CdsMasterpes_codigo: TIntegerField
+      FieldName = 'pes_codigo'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsMastertip_codigo: TSmallintField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Tipo'
+      FieldName = 'tip_codigo'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterpes_documento: TStringField
+      DisplayLabel = 'CPF/CNPJ'
+      FieldName = 'pes_documento'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterpes_nome_fantasia: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'pes_nome_fantasia'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Size = 100
+    end
+    object CdsMasterpes_razao_social: TStringField
+      DisplayLabel = 'Raz'#227'o Social'
+      FieldName = 'pes_razao_social'
+      ProviderFlags = [pfInUpdate]
+      Size = 200
+    end
+    object CdsMasterpes_insc_municipal: TStringField
+      DisplayLabel = 'Inscri'#231#227'o Municipal'
+      FieldName = 'pes_insc_municipal'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterpes_insc_estadual: TStringField
+      DisplayLabel = 'Inscri'#231#227'o Estadual'
+      FieldName = 'pes_insc_estadual'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterpes_end_logra: TStringField
+      DisplayLabel = 'Logradouro'
+      FieldName = 'pes_end_logra'
+      ProviderFlags = [pfInUpdate]
+      Size = 60
+    end
+    object CdsMasterpes_end_uf: TStringField
+      DisplayLabel = 'UF'
+      FieldName = 'pes_end_uf'
+      ProviderFlags = [pfInUpdate]
+      Size = 2
+    end
+    object CdsMasterpes_end_cidade: TStringField
+      DisplayLabel = 'Cidade'
+      FieldName = 'pes_end_cidade'
+      ProviderFlags = [pfInUpdate]
+      Size = 60
+    end
+    object CdsMastercid_codigo: TIntegerField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Cidade'
+      FieldName = 'cid_codigo'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsMasterpes_end_bairro: TStringField
+      DisplayLabel = 'Bairro'
+      FieldName = 'pes_end_bairro'
+      ProviderFlags = [pfInUpdate]
+      Size = 60
+    end
+    object CdsMasterpes_end_cep: TStringField
+      DisplayLabel = 'CEP'
+      FieldName = 'pes_end_cep'
+      ProviderFlags = [pfInUpdate]
+      Size = 8
+    end
+    object CdsMasterpes_contato: TStringField
+      DisplayLabel = 'Nome Contato'
+      FieldName = 'pes_contato'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterpes_fones: TStringField
+      DisplayLabel = 'Telefone'
+      FieldName = 'pes_fones'
+      ProviderFlags = [pfInUpdate]
+      Size = 60
+    end
+    object CdsMasterpes_email: TStringField
+      DisplayLabel = 'E-mail'
+      FieldName = 'pes_email'
+      ProviderFlags = [pfInUpdate]
+      Size = 60
+    end
+    object CdsMasterccr_codigo: TSmallintField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Conta Corrente'
+      FieldName = 'ccr_codigo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterpes_status: TSmallintField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Status'
+      FieldName = 'pes_status'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterpes_obs: TStringField
+      DisplayLabel = 'Observa'#231#245'es'
+      FieldName = 'pes_obs'
+      ProviderFlags = [pfInUpdate]
+      Size = 300
+    end
+    object CdsMasterpes_ult_datamov: TSQLTimeStampField
+      FieldName = 'pes_ult_datamov'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsMasterpes_inc: TStringField
+      FieldName = 'pes_inc'
+      ProviderFlags = [pfInUpdate]
+      Size = 60
+    end
+    object CdsMasterpes_alt: TStringField
+      FieldName = 'pes_alt'
+      ProviderFlags = [pfInUpdate]
+      Size = 60
+    end
   end
   inherited DtsMaster: TDataSource
     Left = 568
@@ -505,10 +694,6 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
   end
   object CdsCidade: TClientDataSet
     Aggregates = <>
-    IndexFieldNames = 'cid_estado'
-    MasterFields = 'est_codigo'
-    MasterSource = DtsUF
-    PacketRecords = 0
     Params = <>
     ProviderName = 'DspCidade'
     Left = 616
@@ -667,27 +852,16 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
     Params = <>
     SQL.Strings = (
       'Select'
-      '    cc.ccr_codigo'
-      '  , cc.ban_codigo  '
-      '  , bb.bco_nome'
-      '  , bb.bco_sigla'
-      '  , cc.ccr_agencia'
-      '  , cc.ccr_agencia_dv'
-      '  , cc.ccr_conta'
-      '  , cc.ccr_conta_dv'
-      '  , concat('
-      '    coalesce(bb.bco_sigla, bb.bco_nome), '
-      '    '#39' AG. '#39', cc.ccr_agencia, '
-      '    case when trim(cc.ccr_agencia_dv) = '#39#39' then '#39#39' else '#39'-'#39' end,'
-      '    cc.ccr_agencia_dv,'
-      '    '#39' C/C. '#39', cc.ccr_conta,'
-      '    case when trim(cc.ccr_conta_dv) = '#39#39' then '#39#39' else '#39'-'#39' end,'
-      '    cc.ccr_conta_dv) as banco_conta'
-      'from mny_conta_corrente cc'
-      '  left join sys_banco bb on (bb.bco_codigo = cc.ban_codigo)'
-      ''
-      'order by '
-      '    9')
+      '    ccr_codigo'
+      '  , ban_codigo  '
+      '  , bco_nome'
+      '  , bco_sigla'
+      '  , ccr_agencia'
+      '  , ccr_agencia_dv'
+      '  , ccr_conta'
+      '  , ccr_conta_dv'
+      '  , banco_conta'
+      'from vw_conta_corrente')
     SQLConnection = FrmLogin.conWebMaster
     Left = 552
     Top = 176
