@@ -132,6 +132,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     Height = 545
     inherited PgCtrlMain: TcxPageControl
       Height = 537
+      ActivePage = TbsDuplicata
       OnChange = PgCtrlMainChange
       ClientRectBottom = 533
       inherited TbsPrincipal: TcxTabSheet
@@ -1631,7 +1632,6 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               Width = 100
             end
             object DbgDuplicataDBdup_valor: TcxGridDBColumn
-              Caption = 'Valor (R$)'
               DataBinding.FieldName = 'dup_valor'
               MinWidth = 100
               Options.Filtering = False
@@ -1639,6 +1639,23 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               Options.Moving = False
               Options.Sorting = False
               Width = 100
+            end
+            object DbgDuplicataDBdup_forma_pagto: TcxGridDBColumn
+              DataBinding.FieldName = 'dup_forma_pagto'
+              PropertiesClassName = 'TcxLookupComboBoxProperties'
+              Properties.KeyFieldNames = 'fpg_codigo'
+              Properties.ListColumns = <
+                item
+                  FieldName = 'fpg_nome'
+                end>
+              Properties.ListOptions.ShowHeader = False
+              Properties.ListSource = DtsFormaPagto
+              MinWidth = 200
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 200
             end
             object DbgDuplicataDBdup_mov_codigo: TcxGridDBColumn
               Caption = 'Financeiro'
@@ -2404,54 +2421,63 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       FieldName = 'itm_valor_unitario'
       ProviderFlags = [pfInUpdate]
       Required = True
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_total: TFMTBCDField
       FieldName = 'itm_valor_total'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_ipi: TFMTBCDField
       FieldName = 'itm_valor_ipi'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_percent_participa: TFMTBCDField
       FieldName = 'itm_percent_participa'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_frete: TFMTBCDField
       FieldName = 'itm_valor_frete'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_desconto: TFMTBCDField
       FieldName = 'itm_valor_desconto'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_seguro: TFMTBCDField
       FieldName = 'itm_valor_seguro'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_outros: TFMTBCDField
       FieldName = 'itm_valor_outros'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
     object CdsItemitm_valor_custo: TFMTBCDField
       FieldName = 'itm_valor_custo'
       ProviderFlags = [pfInUpdate]
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
     end
@@ -2501,6 +2527,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       '  , dup.dup_sequencia'
       '  , dup.dup_numero'
       '  , dup.dup_vencimento'
+      '  , dup.dup_forma_pagto'
       '  , dup.dup_valor'
       '  , dup.dup_mov_codigo'
       '  , dup.dup_mov_item'
@@ -2533,6 +2560,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
         Value = 0c
       end>
     ProviderName = 'DspDuplicata'
+    OnNewRecord = CdsDuplicataNewRecord
     Left = 656
     Top = 72
     object CdsDuplicataent_ano: TSmallintField
@@ -2558,14 +2586,27 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       ProviderFlags = [pfInUpdate]
     end
     object CdsDuplicatadup_vencimento: TDateField
+      DisplayLabel = 'Data Vencimento'
       FieldName = 'dup_vencimento'
       ProviderFlags = [pfInUpdate]
+      Required = True
+      DisplayFormat = 'dd/mm/yyyy'
     end
     object CdsDuplicatadup_valor: TFMTBCDField
+      DisplayLabel = 'Valor (R$)'
       FieldName = 'dup_valor'
       ProviderFlags = [pfInUpdate]
+      Required = True
+      DisplayFormat = ',0.00'
       Precision = 20
       Size = 4
+    end
+    object CdsDuplicatadup_forma_pagto: TSmallintField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Forma de Pagamento'
+      FieldName = 'dup_forma_pagto'
+      ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CdsDuplicatadup_mov_codigo: TIntegerField
       FieldName = 'dup_mov_codigo'
@@ -2613,5 +2654,289 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     DataSet = CdsTipoDocumento
     Left = 608
     Top = 528
+  end
+  object QryFinanceiro: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'mov_codigo'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'Select'
+      '  m.*'
+      'from mny_movimento m'
+      'where m.mov_codigo = :mov_codigo')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 592
+    Top = 120
+  end
+  object DspFinanceiro: TDataSetProvider
+    DataSet = QryFinanceiro
+    Left = 624
+    Top = 120
+  end
+  object CdsFinanceiro: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'mov_codigo'
+        ParamType = ptInput
+      end>
+    ProviderName = 'DspFinanceiro'
+    Left = 656
+    Top = 120
+    object CdsFinanceiromov_codigo: TIntegerField
+      FieldName = 'mov_codigo'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object CdsFinanceiromov_data_inclusao: TDateField
+      FieldName = 'mov_data_inclusao'
+      ProviderFlags = []
+    end
+    object CdsFinanceiromov_data_emissao: TDateField
+      FieldName = 'mov_data_emissao'
+      ProviderFlags = []
+    end
+    object CdsFinanceirocus_codigo: TSmallintField
+      FieldName = 'cus_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceironeg_codigo: TSmallintField
+      FieldName = 'neg_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceirocen_codigo: TSmallintField
+      FieldName = 'cen_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceirouni_codigo: TSmallintField
+      FieldName = 'uni_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceiropes_codigo: TIntegerField
+      FieldName = 'pes_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceirocon_codigo: TSmallintField
+      FieldName = 'con_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceiroset_codigo: TSmallintField
+      FieldName = 'set_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceirosit_codigo: TSmallintField
+      FieldName = 'sit_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceirocom_codigo: TSmallintField
+      FieldName = 'com_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceiromov_obs: TStringField
+      FieldName = 'mov_obs'
+      ProviderFlags = []
+      Size = 200
+    end
+    object CdsFinanceiromov_inc: TStringField
+      FieldName = 'mov_inc'
+      ProviderFlags = []
+      Size = 60
+    end
+    object CdsFinanceiromov_alt: TStringField
+      FieldName = 'mov_alt'
+      ProviderFlags = []
+      Size = 60
+    end
+    object CdsFinanceiromov_contrato: TStringField
+      FieldName = 'mov_contrato'
+      ProviderFlags = []
+    end
+    object CdsFinanceirotip_ace_codigo: TSmallintField
+      FieldName = 'tip_ace_codigo'
+      ProviderFlags = []
+    end
+    object CdsFinanceiromov_documento: TStringField
+      FieldName = 'mov_documento'
+      ProviderFlags = []
+    end
+    object CdsFinanceiromov_previsao: TSmallintField
+      FieldName = 'mov_previsao'
+      ProviderFlags = []
+    end
+    object CdsFinanceiromov_parcelas: TSmallintField
+      FieldName = 'mov_parcelas'
+      ProviderFlags = []
+    end
+    object CdsFinanceiromov_tipo: TSmallintField
+      FieldName = 'mov_tipo'
+      ProviderFlags = []
+    end
+  end
+  object DtsFinanceiro: TDataSource
+    DataSet = CdsFinanceiro
+    Left = 688
+    Top = 120
+  end
+  object QryFinanceiroParcela: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'mov_codigo'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'mov_item'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'Select'
+      '  p.*'
+      'from mny_movimento_item p'
+      'where p.mov_codigo = :mov_codigo'
+      '  and p.mov_item = :mov_item')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 592
+    Top = 152
+  end
+  object DspFinanceiroParcela: TDataSetProvider
+    DataSet = QryFinanceiroParcela
+    Left = 624
+    Top = 152
+  end
+  object CdsFinanceiroParcela: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'mov_codigo'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'mov_item'
+        ParamType = ptInput
+      end>
+    ProviderName = 'DspFinanceiroParcela'
+    Left = 656
+    Top = 152
+    object CdsFinanceiroParcelamov_codigo: TIntegerField
+      FieldName = 'mov_codigo'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsFinanceiroParcelamov_item: TSmallintField
+      FieldName = 'mov_item'
+      ProviderFlags = [pfInUpdate, pfInKey]
+      Required = True
+    end
+    object CdsFinanceiroParcelamov_data_vencto: TDateField
+      FieldName = 'mov_data_vencto'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsFinanceiroParcelamov_data_prev: TDateField
+      FieldName = 'mov_data_prev'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsFinanceiroParcelamov_valor: TFMTBCDField
+      FieldName = 'mov_valor'
+      ProviderFlags = [pfInUpdate]
+      Precision = 17
+      Size = 2
+    end
+    object CdsFinanceiroParcelamov_juros: TFMTBCDField
+      FieldName = 'mov_juros'
+      ProviderFlags = [pfInUpdate]
+      Precision = 17
+      Size = 2
+    end
+    object CdsFinanceiroParcelamov_desconto: TFMTBCDField
+      FieldName = 'mov_desconto'
+      ProviderFlags = [pfInUpdate]
+      Precision = 17
+      Size = 2
+    end
+    object CdsFinanceiroParcelamov_valor_pagar: TFMTBCDField
+      FieldName = 'mov_valor_pagar'
+      ProviderFlags = [pfInUpdate]
+      Precision = 17
+      Size = 2
+    end
+    object CdsFinanceiroParcelafpg_codigo: TSmallintField
+      FieldName = 'fpg_codigo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsFinanceiroParcelatip_doc_codigo: TSmallintField
+      FieldName = 'tip_doc_codigo'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsFinanceiroParcelamov_status: TSmallintField
+      FieldName = 'mov_status'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsFinanceiroParcelamov_retencao: TFMTBCDField
+      FieldName = 'mov_retencao'
+      ProviderFlags = [pfInUpdate]
+      Precision = 17
+      Size = 2
+    end
+    object CdsFinanceiroParcelamov_data_inclusao: TDateField
+      FieldName = 'mov_data_inclusao'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsFinanceiroParcelamov_parcela: TSmallintField
+      FieldName = 'mov_parcela'
+      ProviderFlags = [pfInUpdate]
+    end
+    object CdsFinanceiroParcelamov_aut_financeiro: TStringField
+      FieldName = 'mov_aut_financeiro'
+      ProviderFlags = [pfInUpdate]
+      Size = 100
+    end
+    object CdsFinanceiroParcelamov_aut_gerencia: TStringField
+      FieldName = 'mov_aut_gerencia'
+      ProviderFlags = [pfInUpdate]
+      Size = 100
+    end
+  end
+  object DtsFinanceiroParcela: TDataSource
+    DataSet = CdsFinanceiroParcela
+    Left = 688
+    Top = 152
+  end
+  object QryFormaPagto: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'Select'
+      '    p.fpg_codigo'
+      '  , p.fpg_nome'
+      'from mny_forma_pagto p')
+    SQLConnection = FrmLogin.conWebMaster
+    Left = 512
+    Top = 416
+  end
+  object DspFormaPagto: TDataSetProvider
+    DataSet = QryFormaPagto
+    Left = 544
+    Top = 416
+  end
+  object CdsFormaPagto: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspFormaPagto'
+    Left = 576
+    Top = 416
+  end
+  object DtsFormaPagto: TDataSource
+    DataSet = CdsFormaPagto
+    Left = 608
+    Top = 416
   end
 end

@@ -256,6 +256,57 @@ type
     DbgDuplicataDBdup_valor: TcxGridDBColumn;
     DbgDuplicataDBdup_mov_codigo: TcxGridDBColumn;
     DbgDuplicataDBdup_mov_item: TcxGridDBColumn;
+    QryFinanceiro: TSQLQuery;
+    DspFinanceiro: TDataSetProvider;
+    CdsFinanceiro: TClientDataSet;
+    DtsFinanceiro: TDataSource;
+    QryFinanceiroParcela: TSQLQuery;
+    DspFinanceiroParcela: TDataSetProvider;
+    CdsFinanceiroParcela: TClientDataSet;
+    DtsFinanceiroParcela: TDataSource;
+    CdsFinanceiromov_codigo: TIntegerField;
+    CdsFinanceiromov_data_inclusao: TDateField;
+    CdsFinanceiromov_data_emissao: TDateField;
+    CdsFinanceirocus_codigo: TSmallintField;
+    CdsFinanceironeg_codigo: TSmallintField;
+    CdsFinanceirocen_codigo: TSmallintField;
+    CdsFinanceirouni_codigo: TSmallintField;
+    CdsFinanceiropes_codigo: TIntegerField;
+    CdsFinanceirocon_codigo: TSmallintField;
+    CdsFinanceiroset_codigo: TSmallintField;
+    CdsFinanceirosit_codigo: TSmallintField;
+    CdsFinanceirocom_codigo: TSmallintField;
+    CdsFinanceiromov_obs: TStringField;
+    CdsFinanceiromov_inc: TStringField;
+    CdsFinanceiromov_alt: TStringField;
+    CdsFinanceiromov_contrato: TStringField;
+    CdsFinanceirotip_ace_codigo: TSmallintField;
+    CdsFinanceiromov_documento: TStringField;
+    CdsFinanceiromov_previsao: TSmallintField;
+    CdsFinanceiromov_parcelas: TSmallintField;
+    CdsFinanceiromov_tipo: TSmallintField;
+    CdsFinanceiroParcelamov_codigo: TIntegerField;
+    CdsFinanceiroParcelamov_item: TSmallintField;
+    CdsFinanceiroParcelamov_data_vencto: TDateField;
+    CdsFinanceiroParcelamov_data_prev: TDateField;
+    CdsFinanceiroParcelamov_valor: TFMTBCDField;
+    CdsFinanceiroParcelamov_juros: TFMTBCDField;
+    CdsFinanceiroParcelamov_desconto: TFMTBCDField;
+    CdsFinanceiroParcelamov_valor_pagar: TFMTBCDField;
+    CdsFinanceiroParcelafpg_codigo: TSmallintField;
+    CdsFinanceiroParcelatip_doc_codigo: TSmallintField;
+    CdsFinanceiroParcelamov_status: TSmallintField;
+    CdsFinanceiroParcelamov_retencao: TFMTBCDField;
+    CdsFinanceiroParcelamov_data_inclusao: TDateField;
+    CdsFinanceiroParcelamov_parcela: TSmallintField;
+    CdsFinanceiroParcelamov_aut_financeiro: TStringField;
+    CdsFinanceiroParcelamov_aut_gerencia: TStringField;
+    CdsDuplicatadup_forma_pagto: TSmallintField;
+    QryFormaPagto: TSQLQuery;
+    DspFormaPagto: TDataSetProvider;
+    CdsFormaPagto: TClientDataSet;
+    DtsFormaPagto: TDataSource;
+    DbgDuplicataDBdup_forma_pagto: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterAfterCancel(DataSet: TDataSet);
@@ -286,6 +337,7 @@ type
       Shift: TShiftState);
     procedure pmEncerrarClick(Sender: TObject);
     procedure PgCtrlMainChange(Sender: TObject);
+    procedure CdsDuplicataNewRecord(DataSet: TDataSet);
   private
     { Private declarations }
     procedure CarregarItens;
@@ -294,10 +346,12 @@ type
     procedure GravarDuplicatas;
     procedure CarregarDadosMaterial;
     procedure CarregarDadosCFOP;
+    procedure GerarMovimentoFinanceiro;
 
     function GetCompetenciaID(inData : TDateTime) : Smallint;
     function IsMovimentoApropriado : Boolean;
     function GetValorTotalProduto : Currency;
+    function GetValorTotalDuplicata : Currency;
   public
     { Public declarations }
     procedure VisualizarConsulta; override;
@@ -353,6 +407,8 @@ begin
   CampoDescricao := 'pes_razao_social';
 
   CdsUnidadeNeg.Open;
+  CdsFormaPagto.Open;
+  
   CdsCompetencia.Open;
   CdsTipoEntrada.Open;
   CdsTipoDocumento.Open;
@@ -596,13 +652,13 @@ begin
     begin
       CdsDuplicata.First;
       while not CdsDuplicata.Eof do
-      begin (*
-        CdsDuplicatas.Edit;
-        CdsItement_ano.Assign( CdsMasterent_ano );
-        CdsItement_codigo.Assign( CdsMasterent_codigo );
-        CdsItem.Post;
+      begin
+        CdsDuplicata.Edit;
+        CdsDuplicataent_ano.Assign( CdsMasterent_ano );
+        CdsDuplicataent_codigo.Assign( CdsMasterent_codigo );
+        CdsDuplicata.Post;
 
-        ExecutarInsertUpdateTable(CdsDuplicatas, 'str_entrada_duplicata'); *)
+        ExecutarInsertUpdateTable(CdsDuplicata, 'str_entrada_duplicata');
         CdsDuplicata.Next;
       end;
     end;
@@ -942,6 +998,18 @@ begin
     Exit;
   end;
 
+  if ( GetValorTotalProduto <> CdsMasterent_valor_total_prod.AsCurrency ) then
+  begin
+    ShowMessageStop('O Valor Total dos Materiais/Produtos não está de acordo com o Valor Total do Movimento!');
+    Exit;
+  end;
+
+  if ( GetValorTotalDuplicata <> CdsMasterent_valor_nota.AsCurrency ) then
+  begin
+    ShowMessageStop('O Valor Total das Duplicatas não está de acordo com o Valor Total da Nota!');
+    Exit;
+  end;
+
   sMsg := 'Ao finalizar este movimento de entrada, as quantidades informadas nos ítens para ' +
    'a Unidade de Negócio selecionada serão adicionadas ao estoque.' + #13#13 +
    'Deseja realmente finalizar o movimento?';
@@ -949,6 +1017,8 @@ begin
   if ( CdsItem.RecordCount > 0 ) then
     if ShowMessageConfirm(sMsg, 'Encerrar Movimento de Entrada') then
     begin
+      GerarMovimentoFinanceiro;
+      
       CdsMaster.Edit;
       CdsMasterent_usuario_fechamento.AsString := gUsuario.Login;
       CdsMasterent_status.AsInteger            := STATUS_ENTRADA_ESTOQUE_ENCERRADA;
@@ -986,6 +1056,166 @@ begin
 
     2: // Duplicatas
       DbgDuplicata.SetFocus;
+  end;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsDuplicataNewRecord(
+  DataSet: TDataSet);
+begin
+  CdsDuplicataent_ano.Assign( CdsMasterent_ano );
+  CdsDuplicataent_codigo.Assign( CdsMasterent_codigo );
+  CdsDuplicatadup_sequencia.AsInteger := MaxCodDetail(CdsDuplicata, 'dup_sequencia', True);
+
+  CdsDuplicatadup_numero.Clear;
+  CdsDuplicatadup_vencimento.Clear;
+  CdsDuplicatadup_valor.Clear;
+  CdsDuplicatadup_mov_codigo.Clear;
+  CdsDuplicatadup_mov_item.Clear;
+end;
+
+function TFrmMovimentoEntradaCadastro.GetValorTotalDuplicata: Currency;
+var
+  cValor : Currency;
+begin
+  cValor := 0.0;
+
+  CdsDuplicata.First;
+  CdsDuplicata.DisableControls;
+  while not CdsDuplicata.Eof do
+  begin
+    cValor := cValor + CdsDuplicatadup_valor.AsCurrency;
+    CdsDuplicata.Next;
+  end;
+  CdsDuplicata.First;
+  CdsDuplicata.EnableControls;
+
+  Result := cValor;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.GerarMovimentoFinanceiro;
+
+  procedure CarregarMovimentoFinanceiro(iCodigo, iParcela : Integer);
+  begin
+    with CdsFinanceiro, Params do
+    begin
+      Close;
+      ParamByName('mov_codigo').AsInteger := iCodigo;
+      Open;
+    end;
+
+    with CdsFinanceiroParcela, Params do
+    begin
+      Close;
+      ParamByName('mov_codigo').AsInteger := iCodigo;
+      ParamByName('mov_item').AsInteger   := iParcela;
+      Open;
+    end;
+  end;
+
+var
+  bInserir  : Boolean;
+  iFinanMov : Integer;
+begin
+  Screen.Cursor := crSQLWait;
+  try
+    iFinanMov := CdsMasterent_mov_codigo.AsInteger;
+    bInserir  := (iFinanMov <> 0);
+
+    CarregarMovimentoFinanceiro(iFinanMov, 0);
+
+    // Gerar Movimento Financeiro
+    
+    if bInserir then
+    begin
+      iFinanMov := MaxCod('mny_movimento', 'mov_codigo', EmptyStr);
+      
+      CdsFinanceiro.Append;
+      CdsFinanceiromov_codigo.AsInteger         := iFinanMov;
+      CdsFinanceiromov_data_inclusao.AsDateTime := Now;
+      CdsFinanceiromov_inc.AsString             := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+    end
+    else
+    begin
+      CdsFinanceiro.Edit;
+      CdsFinanceiromov_alt.AsString := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+    end;
+
+    CdsFinanceiromov_data_emissao.AsDateTime := CdsMasterent_doc_emissao.AsDateTime;
+    CdsFinanceirocus_codigo.AsInteger        := CdsMasterent_aprop_tipo_custo.AsInteger;
+    CdsFinanceironeg_codigo.AsInteger        := CdsMasterent_aprop_centro_negocio.AsInteger;
+    CdsFinanceirocen_codigo.AsInteger        := CdsMasterent_aprop_centro_custo.AsInteger;
+    CdsFinanceirouni_codigo.AsInteger        := CdsMasterent_aprop_unidade_negocio.AsInteger;
+    CdsFinanceiropes_codigo.AsInteger        := CdsMasterent_pessoa.AsInteger;
+    CdsFinanceirocon_codigo.AsInteger        := CdsMasterent_aprop_conta.AsInteger;
+    CdsFinanceiroset_codigo.AsInteger        := CdsMasterent_aprop_setor.AsInteger;
+    CdsFinanceirosit_codigo.AsInteger        := 1;                                       // Movimento financeiro "Aberto"
+    CdsFinanceirocom_codigo.AsInteger        := CdsMasterent_competencia.AsInteger;
+    CdsFinanceiromov_obs.AsString            := CdsMasterent_obs.AsString;
+    CdsFinanceirotip_ace_codigo.AsInteger    := CdsMasterent_aprop_tipo_aceite.AsInteger;
+    CdsFinanceiromov_documento.AsString      := CdsMasterent_doc_numero.AsString;
+    CdsFinanceiromov_previsao.AsInteger      := 0;                                       // 0. Não | 1. Sim (Previsao)
+    CdsFinanceiromov_tipo.AsInteger          := TIPO_MOVIMENTO_APAGAR;                   // 0. A Pagar | 1. A Receber (Tipo Movimento)
+    CdsFinanceiromov_parcelas.AsInteger      := CdsDuplicata.RecordCount;
+
+    CdsFinanceiro.Post;
+    ExecutarInsertUpdateTable(CdsFinanceiro, 'mny_movimento');
+
+    // Gerar Parcelas do Movimento Financeiro
+
+    CdsDuplicata.First;
+    while not CdsDuplicata.Eof do
+    begin
+      CarregarMovimentoFinanceiro(iFinanMov, CdsDuplicatadup_sequencia.AsInteger);
+
+      if CdsFinanceiroParcela.IsEmpty then
+      begin
+        CdsFinanceiroParcela.Append;
+        CdsFinanceiroParcelamov_codigo.AsInteger := iFinanMov;
+        CdsFinanceiroParcelamov_item.AsInteger   := CdsDuplicatadup_sequencia.AsInteger;
+      end
+      else
+        CdsFinanceiroParcela.Edit;
+
+      CdsFinanceiroParcelamov_data_vencto.AsDateTime   := CdsDuplicatadup_vencimento.AsDateTime;
+      CdsFinanceiroParcelamov_data_prev.AsDateTime     := CdsDuplicatadup_vencimento.AsDateTime;
+      CdsFinanceiroParcelamov_valor.AsCurrency         := CdsDuplicatadup_valor.AsCurrency;
+      CdsFinanceiroParcelamov_juros.AsCurrency         := 0.0;
+      CdsFinanceiroParcelamov_desconto.AsCurrency      := 0.0;
+      CdsFinanceiroParcelamov_valor_pagar.AsCurrency   := CdsFinanceiroParcelamov_valor.AsCurrency + CdsFinanceiroParcelamov_juros.AsCurrency - CdsFinanceiroParcelamov_desconto.AsCurrency;
+      CdsFinanceiroParcelafpg_codigo.AsInteger         := CdsDuplicatadup_forma_pagto.AsInteger;
+      CdsFinanceiroParcelatip_doc_codigo.AsInteger     := CdsMasterent_doc_tipo.AsInteger;
+      CdsFinanceiroParcelamov_status.AsInteger         := 5; // Pendente
+      CdsFinanceiroParcelamov_retencao.AsCurrency      := 0.0;
+      CdsFinanceiroParcelamov_data_inclusao.AsDateTime := Now;
+      CdsFinanceiroParcelamov_parcela.AsInteger        := CdsDuplicatadup_sequencia.AsInteger;
+      CdsFinanceiroParcelamov_aut_financeiro.Clear;
+      CdsFinanceiroParcelamov_aut_gerencia.Clear;
+
+      CdsFinanceiroParcela.Post;
+      ExecutarInsertUpdateTable(CdsFinanceiroParcela, 'mny_movimento_item');
+
+      CdsDuplicata.Next;
+    end;
+
+    // Gravar Relação Movimento Entrada x Movimento Financeiro;
+    
+    CdsDuplicata.First;
+    while not CdsDuplicata.Eof do
+    begin
+      CdsDuplicata.Edit;
+      CdsDuplicatadup_mov_codigo.AsInteger := iFinanMov;
+      CdsDuplicatadup_mov_item.AsInteger   := CdsDuplicatadup_sequencia.AsInteger;
+      CdsDuplicata.Post;
+
+      CdsDuplicata.Next;
+    end;
+
+    CdsMaster.Edit;
+    CdsMasterent_mov_codigo.AsInteger := iFinanMov;
+    CdsMaster.Post;
+
+  finally
+    Screen.Cursor := crDefault;
   end;
 end;
 
