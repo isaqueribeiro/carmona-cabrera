@@ -12,7 +12,7 @@ uses
   cxDBLookupEdit, cxDBLookupComboBox, cxTextEdit, cxLabel, cxButtonEdit,
   cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxDBData,
   cxGridLevel, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxClasses, cxGridCustomView, cxGrid;
+  cxClasses, cxGridCustomView, cxGrid, cxImageComboBox;
 
 type
   TFrmMovimentoEntradaCadastro = class(TFrmPadraoCadastro)
@@ -307,6 +307,9 @@ type
     CdsFormaPagto: TClientDataSet;
     DtsFormaPagto: TDataSource;
     DbgDuplicataDBdup_forma_pagto: TcxGridDBColumn;
+    CdsMasterent_mov_gerar_cp: TSmallintField;
+    lblGerarCP: TcxLabel;
+    dbGerarCP: TcxDBImageComboBox;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterAfterCancel(DataSet: TDataSet);
@@ -338,6 +341,7 @@ type
     procedure pmEncerrarClick(Sender: TObject);
     procedure PgCtrlMainChange(Sender: TObject);
     procedure CdsDuplicataNewRecord(DataSet: TDataSet);
+    procedure CdsDuplicataBeforeInsert(DataSet: TDataSet);
   private
     { Private declarations }
     procedure CarregarItens;
@@ -430,6 +434,7 @@ begin
   CdsMasterent_usuario_abertura.AsString := gUsuario.Login;
   CdsMasterent_status.AsInteger          := STATUS_ENTRADA_ESTOQUE_ABERTA;
   CdsMasterent_log_insert.AsString       := FormatDateTime('dd/mm/yyyy', Date) + FormatDateTime('hh:mm:ss', Time) + gUsuario.Login;
+  CdsMasterent_mov_gerar_cp.AsInteger    := 1;
 
   CdsMasterent_base_icms.AsCurrency     := 0.0;
   CdsMasterent_valor_icms.AsCurrency    := 0.0;
@@ -998,17 +1003,12 @@ begin
     Exit;
   end;
 
-  if ( GetValorTotalProduto <> CdsMasterent_valor_total_prod.AsCurrency ) then
-  begin
-    ShowMessageStop('O Valor Total dos Materiais/Produtos não está de acordo com o Valor Total do Movimento!');
-    Exit;
-  end;
-
-  if ( GetValorTotalDuplicata <> CdsMasterent_valor_nota.AsCurrency ) then
-  begin
-    ShowMessageStop('O Valor Total das Duplicatas não está de acordo com o Valor Total da Nota!');
-    Exit;
-  end;
+  if ( CdsMasterent_mov_gerar_cp.AsInteger = 1 ) then
+    if ( GetValorTotalDuplicata <> CdsMasterent_valor_nota.AsCurrency ) then
+    begin
+      ShowMessageStop('O Valor Total das Duplicatas não está de acordo com o Valor Total da Nota!');
+      Exit;
+    end;
 
   sMsg := 'Ao finalizar este movimento de entrada, as quantidades informadas nos ítens para ' +
    'a Unidade de Negócio selecionada serão adicionadas ao estoque.' + #13#13 +
@@ -1017,7 +1017,8 @@ begin
   if ( CdsItem.RecordCount > 0 ) then
     if ShowMessageConfirm(sMsg, 'Encerrar Movimento de Entrada') then
     begin
-      GerarMovimentoFinanceiro;
+      if ( CdsMasterent_mov_gerar_cp.AsInteger = 1 ) then
+        GerarMovimentoFinanceiro;
       
       CdsMaster.Edit;
       CdsMasterent_usuario_fechamento.AsString := gUsuario.Login;
@@ -1116,6 +1117,9 @@ var
   bInserir  : Boolean;
   iFinanMov : Integer;
 begin
+  if ( CdsMasterent_mov_gerar_cp.AsInteger = 0 ) then
+    Exit;
+
   Screen.Cursor := crSQLWait;
   try
     iFinanMov := CdsMasterent_mov_codigo.AsInteger;
@@ -1216,6 +1220,16 @@ begin
 
   finally
     Screen.Cursor := crDefault;
+  end;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsDuplicataBeforeInsert(
+  DataSet: TDataSet);
+begin
+  if ( CdsMasterent_mov_gerar_cp.AsInteger = 0 ) then
+  begin
+    ShowMessageStop('Este movimenta está marcado para não gerar Contas A Pagar');
+    Abort;
   end;
 end;
 
