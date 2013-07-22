@@ -132,7 +132,6 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     Height = 545
     inherited PgCtrlMain: TcxPageControl
       Height = 537
-      ActivePage = TbsDuplicata
       OnChange = PgCtrlMainChange
       ClientRectBottom = 533
       inherited TbsPrincipal: TcxTabSheet
@@ -904,6 +903,48 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             Style.Font.Style = []
             Style.IsFontAssigned = True
             TabOrder = 29
+            Width = 113
+          end
+          object lblGerarCP: TcxLabel
+            Left = 556
+            Top = 146
+            Caption = 'Gerar Contas A Pagar'
+            FocusControl = dbGerarCP
+            ParentFont = False
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            Properties.Alignment.Horz = taRightJustify
+            Transparent = True
+            AnchorX = 665
+          end
+          object dbGerarCP: TcxDBImageComboBox
+            Left = 672
+            Top = 144
+            DataBinding.DataField = 'ent_mov_gerar_cp'
+            DataBinding.DataSource = DtsMaster
+            ParentFont = False
+            Properties.Images = DtmResource.ImgLstSml
+            Properties.Items = <
+              item
+                Description = 'N'#227'o'
+                Value = 0
+              end
+              item
+                Description = 'Siim'
+                ImageIndex = 8
+                Value = 1
+              end>
+            Style.Font.Charset = ANSI_CHARSET
+            Style.Font.Color = clBlue
+            Style.Font.Height = -11
+            Style.Font.Name = 'Tahoma'
+            Style.Font.Style = []
+            Style.IsFontAssigned = True
+            TabOrder = 31
             Width = 113
           end
         end
@@ -1741,6 +1782,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       '  , me.ent_log_insert'
       '  , me.ent_log_update'
       '  , me.ent_log_inactive'
+      '  , me.ent_mov_gerar_cp'
       '  , me.ent_mov_codigo'
       '  , me.ent_aprop_tipo_aceite'
       '  , me.ent_aprop_tipo_custo'
@@ -2032,6 +2074,11 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       FieldName = 'ent_log_inactive'
       ProviderFlags = [pfInUpdate]
       Size = 150
+    end
+    object CdsMasterent_mov_gerar_cp: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'ent_mov_gerar_cp'
+      ProviderFlags = [pfInUpdate]
     end
     object CdsMasterent_mov_codigo: TIntegerField
       FieldName = 'ent_mov_codigo'
@@ -2560,6 +2607,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
         Value = 0c
       end>
     ProviderName = 'DspDuplicata'
+    BeforeInsert = CdsDuplicataBeforeInsert
     OnNewRecord = CdsDuplicataNewRecord
     Left = 656
     Top = 72
