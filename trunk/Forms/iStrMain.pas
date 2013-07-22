@@ -106,6 +106,7 @@ type
     NvBrFornecedor: TdxNavBarItem;
     ActnCFOP: TAction;
     mmCFOP: TMenuItem;
+    NvBrMovimentoEntrada: TdxNavBarItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -219,6 +220,8 @@ begin
       MnRelatorios.Enabled := False;
     end;
 
+  NvBrFornecedor.Caption       := 'Fornecedores'#13'(Pessoas)';
+  NvBrMovimentoEntrada.Caption := 'Movimento'#13'de Entrada';
 end;
 
 procedure TFrmMain.MnEncerrarSistemaClick(Sender: TObject);

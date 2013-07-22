@@ -32,6 +32,7 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
             Top = 26
             Caption = 'C'#243'digo'
             FocusControl = dbCodigo
+            StyleFocused.TextStyle = []
             Properties.Alignment.Horz = taRightJustify
             Transparent = True
             AnchorX = 105
@@ -485,7 +486,6 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
       DisplayLabel = 'Tipo'
       FieldName = 'tip_codigo'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object CdsMasterpes_documento: TStringField
       DisplayLabel = 'CPF/CNPJ'
@@ -538,7 +538,6 @@ inherited FrmPessoaCadastro: TFrmPessoaCadastro
       DisplayLabel = 'Cidade'
       FieldName = 'cid_codigo'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object CdsMasterpes_end_bairro: TStringField
       DisplayLabel = 'Bairro'

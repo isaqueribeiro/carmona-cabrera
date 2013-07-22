@@ -132,9 +132,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     Height = 545
     inherited PgCtrlMain: TcxPageControl
       Height = 537
-      ActivePage = TbsItem
+      OnChange = PgCtrlMainChange
       ClientRectBottom = 533
       inherited TbsPrincipal: TcxTabSheet
+        Caption = '&Principal'
         inherited GrpDadosNominais: TcxGroupBox
           Height = 185
           object lblCodigo: TcxLabel
@@ -367,8 +368,10 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
                 Kind = bkEllipsis
               end>
             Properties.ReadOnly = True
+            Properties.OnButtonClick = dbFornecedorPropertiesButtonClick
             ShowHint = True
             TabOrder = 4
+            OnKeyDown = dbFornecedorKeyDown
             Width = 449
           end
           object lblCfop: TcxLabel
@@ -905,7 +908,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
         end
       end
       object TbsItem: TcxTabSheet
-        Caption = 'Controle de Itens'
+        Caption = 'Controle de &Itens'
         ImageIndex = 30
         object Panel1: TPanel
           Left = 0
@@ -1272,7 +1275,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
               DataBinding.DataField = 'itm_valor_unitario'
               DataBinding.DataSource = DtsItem
               TabOrder = 13
-              Width = 81
+              Width = 97
             end
             object lblItemValorIPI: TcxLabel
               Left = 652
@@ -1368,7 +1371,19 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             NavigatorButtons.Filter.Visible = False
             DataController.DataSource = DtsItem
             DataController.Summary.DefaultGroupSummaryItems = <>
-            DataController.Summary.FooterSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <
+              item
+                Format = ',0.00##'
+                Kind = skSum
+                FieldName = 'itm_valor_total'
+                Column = DbgItemDBitm_valor_total
+              end
+              item
+                Format = ',0.00'
+                Kind = skSum
+                FieldName = 'itm_valor_ipi'
+                Column = DbgItemDBitm_valor_ipi
+              end>
             DataController.Summary.SummaryGroups = <>
             OptionsBehavior.CellHints = True
             OptionsBehavior.FocusCellOnTab = True
@@ -1386,6 +1401,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
             OptionsView.Navigator = True
             OptionsView.NoDataToDisplayInfoText = '<Sem dados para exibi'#231#227'o>'
             OptionsView.ColumnAutoWidth = True
+            OptionsView.Footer = True
             OptionsView.GridLines = glNone
             OptionsView.GroupByBox = False
             Styles.ContentEven = DtmResource.cxStlLinhaImpar
@@ -1471,6 +1487,189 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
           end
         end
       end
+      object TbsDuplicata: TcxTabSheet
+        Caption = '&Duplicatas'
+        ImageIndex = 30
+        object pnlDuplicataTitulo: TPanel
+          Left = 0
+          Top = 0
+          Width = 824
+          Height = 19
+          Align = alTop
+          AutoSize = True
+          TabOrder = 0
+          object Shape3: TShape
+            Left = 1
+            Top = 1
+            Width = 822
+            Height = 17
+            Align = alTop
+            Brush.Color = 12615680
+            Pen.Color = 12615680
+            Pen.Style = psClear
+          end
+          object Label3: TLabel
+            Left = 6
+            Top = 3
+            Width = 204
+            Height = 13
+            Caption = 'Dados das Duplicatas do Movimento'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindow
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+        end
+        object DbgDuplicata: TcxGrid
+          Left = 0
+          Top = 19
+          Width = 824
+          Height = 489
+          Align = alClient
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          object DbgDuplicataDB: TcxGridDBTableView
+            NavigatorButtons.ConfirmDelete = False
+            NavigatorButtons.Images = DtmResource.ImgNavigator
+            NavigatorButtons.First.Hint = 'Primeiro registro'
+            NavigatorButtons.PriorPage.Visible = False
+            NavigatorButtons.Prior.Hint = 'Registro anterior'
+            NavigatorButtons.Next.Hint = 'Pr'#243'ximo registro'
+            NavigatorButtons.NextPage.Visible = False
+            NavigatorButtons.Last.Hint = #218'ltimo registro'
+            NavigatorButtons.Insert.Hint = 'Inserir registro'
+            NavigatorButtons.Insert.ImageIndex = 0
+            NavigatorButtons.Append.ImageIndex = 0
+            NavigatorButtons.Append.Visible = False
+            NavigatorButtons.Delete.Hint = 'Excluir registro'
+            NavigatorButtons.Delete.ImageIndex = 6
+            NavigatorButtons.Edit.Hint = 'Editar registro'
+            NavigatorButtons.Edit.ImageIndex = 10
+            NavigatorButtons.Post.Hint = 'Salvar edi'#231#227'o'
+            NavigatorButtons.Post.ImageIndex = 2
+            NavigatorButtons.Cancel.Hint = 'Cancelar edi'#231#227'o'
+            NavigatorButtons.Cancel.ImageIndex = 4
+            NavigatorButtons.Refresh.Hint = 'Atualizar'
+            NavigatorButtons.Refresh.ImageIndex = 19
+            NavigatorButtons.Refresh.Visible = True
+            NavigatorButtons.SaveBookmark.Visible = False
+            NavigatorButtons.GotoBookmark.Visible = False
+            NavigatorButtons.Filter.Visible = False
+            DataController.DataSource = DtsDuplicata
+            DataController.Summary.DefaultGroupSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <
+              item
+                Format = '00'
+                Kind = skCount
+                FieldName = 'ent_ano'
+                Column = DbgDuplicataDBdup_sequencia
+              end
+              item
+                Format = ',0.00#'
+                Kind = skSum
+                FieldName = 'dup_valor'
+                Column = DbgDuplicataDBdup_valor
+              end>
+            DataController.Summary.SummaryGroups = <>
+            OptionsBehavior.CellHints = True
+            OptionsBehavior.FocusCellOnTab = True
+            OptionsBehavior.FocusFirstCellOnNewRecord = True
+            OptionsBehavior.GoToNextCellOnEnter = True
+            OptionsBehavior.ImmediateEditor = False
+            OptionsBehavior.NavigatorHints = True
+            OptionsBehavior.FocusCellOnCycle = True
+            OptionsData.Appending = True
+            OptionsData.DeletingConfirmation = False
+            OptionsSelection.InvertSelect = False
+            OptionsView.CellEndEllipsis = True
+            OptionsView.Navigator = True
+            OptionsView.NoDataToDisplayInfoText = '<Sem dados para exibi'#231#227'o>'
+            OptionsView.Footer = True
+            OptionsView.GridLines = glNone
+            OptionsView.GroupByBox = False
+            Styles.ContentEven = DtmResource.cxStlLinhaImpar
+            Styles.ContentOdd = DtmResource.cxStlLinhaPar
+            object DbgDuplicataDBdup_sequencia: TcxGridDBColumn
+              Caption = '#'
+              DataBinding.FieldName = 'dup_sequencia'
+              HeaderAlignmentHorz = taCenter
+              MinWidth = 35
+              Options.Editing = False
+              Options.Filtering = False
+              Options.Focusing = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 35
+            end
+            object DbgDuplicataDBdup_numero: TcxGridDBColumn
+              Caption = 'N'#250'mero'
+              DataBinding.FieldName = 'dup_numero'
+              MinWidth = 80
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 80
+            end
+            object DbgDuplicataDBdup_vencimento: TcxGridDBColumn
+              Caption = 'Vencimento'
+              DataBinding.FieldName = 'dup_vencimento'
+              MinWidth = 100
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 100
+            end
+            object DbgDuplicataDBdup_valor: TcxGridDBColumn
+              Caption = 'Valor (R$)'
+              DataBinding.FieldName = 'dup_valor'
+              MinWidth = 100
+              Options.Filtering = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 100
+            end
+            object DbgDuplicataDBdup_mov_codigo: TcxGridDBColumn
+              Caption = 'Financeiro'
+              DataBinding.FieldName = 'dup_mov_codigo'
+              MinWidth = 70
+              Options.Editing = False
+              Options.Filtering = False
+              Options.Focusing = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 70
+            end
+            object DbgDuplicataDBdup_mov_item: TcxGridDBColumn
+              Caption = 'Parcela'
+              DataBinding.FieldName = 'dup_mov_item'
+              MinWidth = 50
+              Options.Editing = False
+              Options.Filtering = False
+              Options.Focusing = False
+              Options.HorzSizing = False
+              Options.Moving = False
+              Options.Sorting = False
+              Width = 50
+            end
+          end
+          object DbgDuplicataLvl: TcxGridLevel
+            GridView = DbgDuplicataDB
+          end
+        end
+      end
     end
   end
   inherited QryMaster: TSQLQuery
@@ -1526,6 +1725,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       '  , me.ent_log_update'
       '  , me.ent_log_inactive'
       '  , me.ent_mov_codigo'
+      '  , me.ent_aprop_tipo_aceite'
       '  , me.ent_aprop_tipo_custo'
       '  , me.ent_aprop_centro_negocio'
       '  , me.ent_aprop_unidade_negocio'
@@ -1820,33 +2020,45 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       FieldName = 'ent_mov_codigo'
       ProviderFlags = [pfInUpdate]
     end
+    object CdsMasterent_aprop_tipo_aceite: TSmallintField
+      Alignment = taLeftJustify
+      DisplayLabel = 'Tipo do Aceite'
+      FieldName = 'ent_aprop_tipo_aceite'
+      ProviderFlags = [pfInUpdate]
+    end
     object CdsMasterent_aprop_tipo_custo: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Tipo de Custo'
       FieldName = 'ent_aprop_tipo_custo'
       ProviderFlags = [pfInUpdate]
     end
     object CdsMasterent_aprop_centro_negocio: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Centro de Neg'#243'cio'
       FieldName = 'ent_aprop_centro_negocio'
       ProviderFlags = [pfInUpdate]
     end
     object CdsMasterent_aprop_unidade_negocio: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Unidade de Neg'#243'cio'
       FieldName = 'ent_aprop_unidade_negocio'
       ProviderFlags = [pfInUpdate]
     end
     object CdsMasterent_aprop_centro_custo: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Centro de Custo'
       FieldName = 'ent_aprop_centro_custo'
       ProviderFlags = [pfInUpdate]
     end
     object CdsMasterent_aprop_setor: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Setor'
       FieldName = 'ent_aprop_setor'
       ProviderFlags = [pfInUpdate]
     end
     object CdsMasterent_aprop_conta: TSmallintField
       Alignment = taLeftJustify
+      DisplayLabel = 'Conta'
       FieldName = 'ent_aprop_conta'
       ProviderFlags = [pfInUpdate]
     end
@@ -1903,6 +2115,8 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     Top = 13
     object pmApropriar: TMenuItem
       Caption = 'Apropria'#231#227'o'
+      ShortCut = 121
+      OnClick = pmApropriarClick
     end
     object N1: TMenuItem
       Caption = '-'
@@ -1910,6 +2124,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
     object pmEncerrar: TMenuItem
       Caption = 'Encerrar / Finalizar'
       ImageIndex = 6
+      OnClick = pmEncerrarClick
     end
     object pmCancelar: TMenuItem
       Caption = 'Cancelar'
@@ -2118,6 +2333,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
         Value = 0c
       end>
     ProviderName = 'DspItem'
+    OnNewRecord = CdsItemNewRecord
     Left = 656
     Top = 40
     object CdsItement_ano: TSmallintField
@@ -2332,6 +2548,7 @@ inherited FrmMovimentoEntradaCadastro: TFrmMovimentoEntradaCadastro
       Size = 0
     end
     object CdsDuplicatadup_sequencia: TSmallintField
+      Alignment = taCenter
       FieldName = 'dup_sequencia'
       ProviderFlags = [pfInUpdate, pfInKey]
       Required = True

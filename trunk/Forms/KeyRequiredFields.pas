@@ -34,6 +34,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+    procedure ClearStrings(const DataSet : TClientDataSet);
     procedure Add(const aLabel: string; aImage: Integer);
   public
     { Public declarations }
@@ -56,15 +57,17 @@ begin
   AForm := TFrmRequiredFields.Create(AOnwer);
   try
     AForm.LblDescricao.Caption := Trim(sTitulo);
+    AForm.ClearStrings(DataSet);
+
     for I := 0 to DataSet.Fields.Count - 1 do
       with DataSet do
       begin
         if Fields[I].Required and Fields[I].IsNull then
         begin
           AForm.Add(Fields[I].DisplayLabel, 1);
-        end; 
+        end;
       end;
-      
+
     AForm.CdsCampo.First;
 
     if (AForm.CdsCampo.RecordCount > 0) then
@@ -102,6 +105,19 @@ begin
     CdsCampoCAMPO.Value  := aLabel;
     Post;
   end;
+end;
+
+procedure TFrmRequiredFields.ClearStrings(const DataSet : TClientDataSet);
+var
+  I : Integer;
+begin
+  for I := 0 to DataSet.Fields.Count - 1 do
+    with DataSet do
+    begin
+      if Fields[I].Required and (Trim(Fields[I].AsString) = EmptyStr) then
+        if ( DataSet.State in [dsEdit, dsInsert] ) then
+          Fields[I].Clear;
+    end;
 end;
 
 end.

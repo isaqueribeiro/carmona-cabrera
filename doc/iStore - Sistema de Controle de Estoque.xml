@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes" ?>
 <DBMODEL Version="4.0">
 <SETTINGS>
-<GLOBALSETTINGS ModelName="iStore - Sistema de Controle de Estoque" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="463" YPos="312" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<GLOBALSETTINGS ModelName="iStore - Sistema de Controle de Estoque" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="0" YPos="1661" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
 <DATATYPEGROUPS>
 <DATATYPEGROUP Name="Numeric Types" Icon="1" />
 <DATATYPEGROUP Name="Date and Time Types" Icon="2" />
@@ -258,11 +258,11 @@
 </SETTINGS>
 <METADATA>
 <REGIONS>
-<REGION ID="4398" RegionName="Pa\237ses e Regi\245es" XPos="1653" YPos="17" Width="406" Height="478" RegionColor="4" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="106" />
-<REGION ID="3526" RegionName="Movimentos de Entrada no Estoque" XPos="11" YPos="1687" Width="854" Height="821" RegionColor="3" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="70" />
-<REGION ID="3096" RegionName="Controle de Estoque nos Setores" XPos="11" YPos="1259" Width="854" Height="425" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="52" />
-<REGION ID="1937" RegionName="Cadastro de Produtos, Servi\231os e/ou Insumos" XPos="10" YPos="14" Width="1323" Height="741" RegionColor="0" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" />
 <REGION ID="2759" RegionName="Controle de Estoque no CDI (Centro de Distribui\231\227o Interno)" XPos="11" YPos="759" Width="854" Height="496" RegionColor="1" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="36" />
+<REGION ID="1937" RegionName="Cadastro de Produtos, Servi\231os e/ou Insumos" XPos="10" YPos="14" Width="1323" Height="741" RegionColor="0" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" />
+<REGION ID="3096" RegionName="Controle de Estoque nos Setores" XPos="11" YPos="1259" Width="854" Height="425" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="52" />
+<REGION ID="3526" RegionName="Movimentos de Entrada no Estoque" XPos="11" YPos="1687" Width="854" Height="821" RegionColor="3" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="70" />
+<REGION ID="4398" RegionName="Pa\237ses e Regi\245es" XPos="1653" YPos="17" Width="406" Height="478" RegionColor="4" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="106" />
 </REGIONS>
 <TABLES>
 <TABLE ID="1915" Tablename="str_material_apresentacao" PrevTableName="Table_01" XPos="118" YPos="170" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="48" >
@@ -1929,6 +1929,12 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
+<COLUMN ID="4435" ColName="ent_aprop_tipo_aceite" PrevColName="" Pos="37" idDatatype="2" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
 <COLUMN ID="3744" ColName="ent_aprop_tipo_custo" PrevColName="" Pos="37" idDatatype="2" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
@@ -1985,6 +1991,7 @@
 <RELATION_END ID="3788" />
 <RELATION_END ID="3791" />
 <RELATION_END ID="3803" />
+<RELATION_END ID="4436" />
 </RELATIONS_END>
 <INDICES>
 <INDEX ID="3480" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -2061,6 +2068,11 @@
 <INDEX ID="3805" IndexName="str_entrada_FKIndex14" IndexKind="1" FKRefDef_Obj_id="3803">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="3748" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4438" IndexName="str_entrada_FKIndex15" IndexKind="1" FKRefDef_Obj_id="4436">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4435" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
@@ -2716,6 +2728,7 @@
 </COLUMNS>
 <RELATIONS_START>
 <RELATION_START ID="3740" />
+<RELATION_START ID="4436" />
 </RELATIONS_START>
 <INDICES>
 <INDEX ID="3736" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -3092,6 +3105,7 @@
 <RELATION ID="4411" RelationName="Pais x Estados (Prov\237ncia)" Kind="2" SrcTable="4399" DestTable="4405" FKFields="pai_codigo=est_pais\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="5" CaptionOffsetY="-6" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=1\n" Comments="" FKRefDefIndex_Obj_id="4413" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="109" />
 <RELATION ID="4420" RelationName="Estado x Cidades" Kind="2" SrcTable="4405" DestTable="4415" FKFields="est_codigo=cid_estado\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=1\n" Comments="" FKRefDefIndex_Obj_id="4422" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="111" />
 <RELATION ID="4430" RelationName="Cidade x Pessoas" Kind="2" SrcTable="4415" DestTable="2548" FKFields="cid_codigo=cid_codigo\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=1\n" Comments="" FKRefDefIndex_Obj_id="4432" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="112" />
+<RELATION ID="4436" RelationName="Tipo Aceite x Movimentos de Entrada" Kind="2" SrcTable="3733" DestTable="3477" FKFields="tip_codigo=ent_aprop_tipo_aceite\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="1" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4438" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="113" />
 </RELATIONS>
 <NOTES>
 <NOTE ID="2254" NoteName="Note_01" XPos="1365" YPos="14" NoteText="Status Descri\231\227o/Apresenta\231\227o:\n0 - Inativa (N\227o)\n1 - Ativa (Sim)\n\nStatus Material:\n0 - Inativo\n1 - Ativo\n2 - Emprestado\n\nLista:\n0 - Material/Produto\n1 - Servi\231o\n\nCusto Direto:\n0 - N\227o\n1 - Sim\n\nCusto Indireto: \n0 - N\227o \n1 - Sim \n \nTipo Al\237quota:\n0 - ICMS\n1 - ISS\n\nOrigem Material:\n0 - Nacional\n1 - Estrangeira - Importa\231\227o direta\n2 - Estrangeira - Adquirida no mercado interno\n\nCRT (C\243digo de Regime Tribut\225rio):\n0 - Normal\n1 - Simples Nacional\n\nCST (C\243diigo de Situa\231\227o Tibut\225ria), onde:\n- CST \233 para a tributa\231\227o normal\n- CSON \233 para a tributa\231\227o no Simples Nacional\n\nMaterial requisitado \npelo(s) o(s) Setor(res):\n0 - N\227o\n1 - Sim\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="21" />

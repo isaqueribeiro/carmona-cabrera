@@ -242,6 +242,20 @@ type
     CdsDuplicatadup_valor: TFMTBCDField;
     CdsDuplicatadup_mov_codigo: TIntegerField;
     CdsDuplicatadup_mov_item: TSmallintField;
+    CdsMasterent_aprop_tipo_aceite: TSmallintField;
+    TbsDuplicata: TcxTabSheet;
+    pnlDuplicataTitulo: TPanel;
+    Shape3: TShape;
+    Label3: TLabel;
+    DbgDuplicata: TcxGrid;
+    DbgDuplicataDB: TcxGridDBTableView;
+    DbgDuplicataLvl: TcxGridLevel;
+    DbgDuplicataDBdup_sequencia: TcxGridDBColumn;
+    DbgDuplicataDBdup_numero: TcxGridDBColumn;
+    DbgDuplicataDBdup_vencimento: TcxGridDBColumn;
+    DbgDuplicataDBdup_valor: TcxGridDBColumn;
+    DbgDuplicataDBdup_mov_codigo: TcxGridDBColumn;
+    DbgDuplicataDBdup_mov_item: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure CdsMasterNewRecord(DataSet: TDataSet);
     procedure CdsMasterAfterCancel(DataSet: TDataSet);
@@ -262,6 +276,16 @@ type
       DisplayText: Boolean);
     procedure CdsMasterBeforePost(DataSet: TDataSet);
     procedure CdsMasterAfterPost(DataSet: TDataSet);
+    procedure dbFornecedorKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure dbFornecedorPropertiesButtonClick(Sender: TObject;
+      AButtonIndex: Integer);
+    procedure CdsItemNewRecord(DataSet: TDataSet);
+    procedure pmApropriarClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure pmEncerrarClick(Sender: TObject);
+    procedure PgCtrlMainChange(Sender: TObject);
   private
     { Private declarations }
     procedure CarregarItens;
@@ -272,6 +296,8 @@ type
     procedure CarregarDadosCFOP;
 
     function GetCompetenciaID(inData : TDateTime) : Smallint;
+    function IsMovimentoApropriado : Boolean;
+    function GetValorTotalProduto : Currency;
   public
     { Public declarations }
     procedure VisualizarConsulta; override;
@@ -287,7 +313,8 @@ var
 implementation
 
 uses
-  KeyFuncoes
+    DateUtils
+  , KeyFuncoes
   {$IFDEF IMONEY}
   , KeyMain
   , KeyLogin
@@ -299,7 +326,8 @@ uses
   , KeyResource
   , KeyPadrao
   , KeyRequiredFields
-  , iStrMaterialPesquisa, DateUtils;
+  , KeyPessoaPesquisa
+  , iStrMaterialPesquisa, iStrMovimentoEntradaApropriar;
 
 {$R *.dfm}
 
@@ -367,6 +395,14 @@ begin
   CdsMasterent_unidade_neg.Clear;
   CdsMasterent_usuario_fechamento.Clear;
   CdsMasterItens.Clear;
+
+  CdsMasterent_aprop_tipo_custo.Clear;
+  CdsMasterent_aprop_centro_negocio.Clear;
+  CdsMasterent_aprop_unidade_negocio.Clear;
+  CdsMasterent_aprop_centro_custo.Clear;
+  CdsMasterent_aprop_setor.Clear;
+  CdsMasterent_aprop_conta.Clear;
+  CdsMasterent_aprop_tipo_aceite.Clear;
 
   CarregarItens;
   CarregarDuplicatas;
@@ -643,7 +679,7 @@ procedure TFrmMovimentoEntradaCadastro.BtnSalvarItemClick(Sender: TObject);
 begin
   if ( CdsItem.State in [dsEdit, dsInsert] ) then
   begin
-    if ( CdsItemitm_quantidade.AsInteger <= 0 ) then
+    if ( CdsItemitm_quantidade.AsCurrency <= 0 ) then
       CdsItemitm_quantidade.Clear;
 
     if ( CdsItemitm_valor_unitario.AsCurrency <= 0 ) then
@@ -651,6 +687,8 @@ begin
 
     if ( CdsItemitm_valor_ipi.AsCurrency < 0 ) then
       CdsItemitm_valor_ipi.AsCurrency := 0.0;
+
+    CdsItemitm_valor_total.AsCurrency := CdsItemitm_quantidade.AsCurrency * CdsItemitm_valor_ipi.AsCurrency;
 
     if ( not ExistRequiredFields(Self, CdsItem, 'Movimento de Entrada - Item') ) then
     begin
@@ -698,7 +736,13 @@ begin
   dbUnidadeNegocio.Properties.ReadOnly := (CdsMaster.State = dsEdit);
   dbCompetencia.Properties.ReadOnly    := (CdsMaster.State = dsEdit);
 
-  BtnProcesso.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
+  pmApropriar.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
+    and (not CdsMaster.IsEmpty) and (not CdsItem.IsEmpty) and (not CdsDuplicata.IsEmpty);
+
+  pmEncerrar.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
+    and (not CdsMaster.IsEmpty) and (not CdsItem.IsEmpty) and (CdsMasterent_status.AsInteger = STATUS_ENTRADA_ESTOQUE_ABERTA);
+
+  pmCancelar.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
     and (not CdsMaster.IsEmpty) and (not CdsItem.IsEmpty) and (CdsMasterent_status.AsInteger = STATUS_ENTRADA_ESTOQUE_ABERTA);
 end;
 
@@ -775,6 +819,174 @@ procedure TFrmMovimentoEntradaCadastro.CdsMasterAfterPost(
 begin
   GravarItens;
   GravarDuplicatas;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.dbFornecedorKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = VK_DELETE) and (Shift = [ssCtrl]) then
+    if ( CdsMaster.State in [dsEdit, dsInsert] ) then
+    begin
+      CdsMasterent_pessoa.Clear;
+      CdsMasterpes_razao_social.Clear;
+      CdsMasterpes_nome_fantasia.Clear;
+      CdsMasterpes_documento.Clear;
+    end;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.dbFornecedorPropertiesButtonClick(
+  Sender: TObject; AButtonIndex: Integer);
+var
+  AForm : TFrmPessoaPesquisa;
+begin
+  AForm := TFrmPessoaPesquisa.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    if ( CdsMaster.State in [dsEdit, dsInsert] ) then
+    begin
+      AForm.SelecionarRegistro := True;
+      if ( AForm.ShowModal = mrOk ) then
+      begin
+        CdsMasterent_pessoa.Assign( AForm.CdsMasterpes_codigo );
+        CdsMasterpes_razao_social.Assign( AForm.CdsMasterpes_razao_social );
+        CdsMasterpes_nome_fantasia.Assign( AForm.CdsMasterpes_nome_fantasia );
+        CdsMasterpes_documento.Assign( AForm.CdsMasterpes_documento );
+      end;
+    end;
+  finally
+    AForm.Free;
+  end;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.CdsItemNewRecord(DataSet: TDataSet);
+begin
+  CdsItement_ano.Assign( CdsMasterent_ano );
+  CdsItement_codigo.Assign( CdsMasterent_codigo );
+  CdsItemitm_sequencia.AsInteger   := MaxCodDetail(CdsItem, 'itm_sequencia', True);
+  CdsItemitm_fracionador.AsInteger := 1;
+
+  CdsItemitm_material.Clear;
+  CdsItemitm_quantidade.Clear;
+  CdsItemitm_valor_unitario.Clear;
+  CdsItemitm_valor_ipi.Clear;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.pmApropriarClick(Sender: TObject);
+var
+  AForm : TFrmMovimentoEntradaApropriar;
+begin
+  AForm := TFrmMovimentoEntradaApropriar.CreateTable(Self, FrmLogin, FrmLogin.conWebMaster);
+  try
+    if ( CdsMaster.State in [dsEdit, dsInsert] ) then
+      Abort;
+
+    if ( CdsItem.IsEmpty ) then
+    begin
+      ShowMessageStop('Favor informar os itens do movimento de entrada!', 'Apropriação');
+      Abort;
+    end;
+
+    if ( CdsDuplicata.IsEmpty ) then
+    begin
+      ShowMessageStop('Favor informar das duplicatas do movimento de entrada!', 'Apropriação');
+      Abort;
+    end;
+
+    AForm.DtsMovimento.AutoEdit := (CdsMasterent_status.AsInteger = STATUS_ENTRADA_ESTOQUE_ABERTA);
+
+    if ( AForm.DtsMovimento.AutoEdit ) then
+      CdsMaster.Edit;
+
+    if ( AForm.ShowModal = mrOk ) then
+      CdsMaster.Post;
+
+    if ( CdsMaster.State = dsEdit ) then
+      CdsMaster.Cancel;
+  finally
+    AForm.Free;
+  end;
+end;
+
+function TFrmMovimentoEntradaCadastro.IsMovimentoApropriado: Boolean;
+begin
+  Result :=
+    (not CdsMasterent_aprop_tipo_aceite.IsNull)     and
+    (not CdsMasterent_aprop_tipo_custo.IsNull)      and
+    (not CdsMasterent_aprop_centro_negocio.IsNull)  and
+    (not CdsMasterent_aprop_unidade_negocio.IsNull) and
+    (not CdsMasterent_aprop_centro_custo.IsNull)    and
+    (not CdsMasterent_aprop_setor.IsNull)           and
+    (not CdsMasterent_aprop_conta.IsNull);
+end;
+
+procedure TFrmMovimentoEntradaCadastro.FormKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+  if ( Key = VK_F10 ) then
+    pmApropriarClick( pmApropriar );
+end;
+
+procedure TFrmMovimentoEntradaCadastro.pmEncerrarClick(Sender: TObject);
+var
+  sMsg : String;
+begin
+  if not IsMovimentoApropriado then
+  begin
+    ShowMessageStop('É necessária a Apropriação do movimento antes de sua finalização!');
+    Exit;
+  end;
+
+  if ( GetValorTotalProduto <> CdsMasterent_valor_total_prod.AsCurrency ) then
+  begin
+    ShowMessageStop('O Valor Total dos Materiais/Produtos não está de acordo com o Valor Total do Movimento!');
+    Exit;
+  end;
+
+  sMsg := 'Ao finalizar este movimento de entrada, as quantidades informadas nos ítens para ' +
+   'a Unidade de Negócio selecionada serão adicionadas ao estoque.' + #13#13 +
+   'Deseja realmente finalizar o movimento?';
+
+  if ( CdsItem.RecordCount > 0 ) then
+    if ShowMessageConfirm(sMsg, 'Encerrar Movimento de Entrada') then
+    begin
+      CdsMaster.Edit;
+      CdsMasterent_usuario_fechamento.AsString := gUsuario.Login;
+      CdsMasterent_status.AsInteger            := STATUS_ENTRADA_ESTOQUE_ENCERRADA;
+      CdsMaster.Post;
+    end;
+end;
+
+function TFrmMovimentoEntradaCadastro.GetValorTotalProduto: Currency;
+var
+  cValor : Currency;
+begin
+  cValor := 0.0;
+
+  CdsItem.First;
+  CdsItem.DisableControls;
+  while not CdsItem.Eof do
+  begin
+    cValor := cValor + CdsItemitm_valor_total.AsCurrency;
+    CdsItem.Next;
+  end;
+  CdsItem.First;
+  CdsItem.EnableControls;
+
+  Result := cValor;
+end;
+
+procedure TFrmMovimentoEntradaCadastro.PgCtrlMainChange(Sender: TObject);
+begin
+  Case PgCtrlMain.ActivePageIndex of
+    0: // Principal
+      ;
+
+    1: // Itens
+      DbgItem.SetFocus;
+
+    2: // Duplicatas
+      DbgDuplicata.SetFocus;
+  end;
 end;
 
 end.

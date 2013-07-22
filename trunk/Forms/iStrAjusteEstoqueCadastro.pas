@@ -434,7 +434,10 @@ begin
   dbUnidadeNegocio.Properties.ReadOnly := (CdsMaster.State = dsEdit);
   dbCompetencia.Properties.ReadOnly    := (CdsMaster.State = dsEdit);
 
-  BtnProcesso.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
+  pmEncerrar.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
+    and (not CdsMaster.IsEmpty) and (not CdsDetail.IsEmpty) and (CdsMastereaj_status.AsInteger = STATUS_AJUSTE_ESTOQUE_ABERTO);
+
+  pmCancelar.Enabled := (not (CdsMaster.State in [dsEdit, dsInsert]))
     and (not CdsMaster.IsEmpty) and (not CdsDetail.IsEmpty) and (CdsMastereaj_status.AsInteger = STATUS_AJUSTE_ESTOQUE_ABERTO);
 end;
 
@@ -482,7 +485,7 @@ procedure TFrmAjusteEstoqueCadastro.BtnSalvarItemClick(Sender: TObject);
 begin
   if ( CdsDetail.State in [dsEdit, dsInsert] ) then
   begin
-    if ( CdsDetailitm_qtde_nova.AsInteger <= 0 ) then
+    if ( CdsDetailitm_qtde_nova.AsCurrency <= 0 ) then
       CdsDetailitm_qtde_nova.Clear;
 
     if ( not ExistRequiredFields(Self, CdsDetail, 'Ajuste de Estoque - Item') ) then
