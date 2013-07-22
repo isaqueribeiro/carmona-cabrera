@@ -22,6 +22,7 @@ uses
   KeyPadraoTabelaCadastro in 'Forms\KeyPadraoTabelaCadastro.pas' {FrmPadraoTabelaCadastro},
   KeyPadraoCadastro in 'Forms\KeyPadraoCadastro.pas' {FrmPadraoCadastro},
   KeyPadraoImprimir in 'Forms\KeyPadraoImprimir.pas' {FrmPadraoImprimir},
+  KeyPadraoDialogo in 'Forms\KeyPadraoDialogo.pas' {FrmPadraoDialogo},
   KeyObjeto in 'Forms\KeyObjeto.pas' {FrmObjeto},
   KeySetor in 'Forms\KeySetor.pas' {FrmSetor},
   KeyRequiredFields in 'Forms\KeyRequiredFields.pas' {FrmRequiredFields},
@@ -43,7 +44,8 @@ uses
   iStrMovimentoEntradaCadastro in 'Forms\iStrMovimentoEntradaCadastro.pas' {FrmMovimentoEntradaCadastro},
   iStrCFOP in 'Forms\iStrCFOP.pas' {FrmCFOP},
   KeyPessoaPesquisa in 'Forms\KeyPessoaPesquisa.pas' {FrmPessoaPesquisa},
-  KeyPessoaCadastro in 'Forms\KeyPessoaCadastro.pas' {FrmPessoaCadastro};
+  KeyPessoaCadastro in 'Forms\KeyPessoaCadastro.pas' {FrmPessoaCadastro},
+  iStrMovimentoEntradaApropriar in 'Forms\iStrMovimentoEntradaApropriar.pas' {FrmMovimentoEntradaApropriar};
 
 {$R *.res}
 

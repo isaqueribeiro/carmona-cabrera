@@ -1916,6 +1916,9 @@ object FrmMain: TFrmMain
         end
         item
           Item = NvBrFornecedor
+        end
+        item
+          Item = NvBrMovimentoEntrada
         end>
     end
     object NvBrMaterial: TdxNavBarItem
@@ -1927,6 +1930,11 @@ object FrmMain: TFrmMain
       Action = ActnFornecedor
       LargeImageIndex = 1
       SmallImageIndex = 1
+    end
+    object NvBrMovimentoEntrada: TdxNavBarItem
+      Action = ActnMovimentoEntrada
+      LargeImageIndex = 7
+      SmallImageIndex = 7
     end
   end
   object BrMngr: TdxBarManager
