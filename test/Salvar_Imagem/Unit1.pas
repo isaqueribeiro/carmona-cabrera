@@ -8,7 +8,7 @@ uses
   DBClient, Provider, SqlExpr, ExtDlgs, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, dxSkinsCore,
   dxSkinMcSkin, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, cxImage, cxDBEdit;
+  dxSkinOffice2010Silver, cxImage, cxDBEdit, IniFiles;
 
 type
   TForm1 = class(TForm)
@@ -84,7 +84,32 @@ implementation
 {$R *.dfm}
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  ini : TIniFile;
 begin
+  conWebMaster.Connected := False;
+
+  ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'Conexao.ini');
+
+  With conWebMaster do
+    Begin
+      Connected := False;
+
+      Params.Clear;
+      Params.Add('DriverName=MySQL50');
+      Params.Add('HostName='  + ini.ReadString('ACESSO', 'SERVIDOR', ''));
+      Params.Add('Database='  + ini.ReadString('ACESSO', 'BANCO', ''));
+      Params.Add('User_Name=' + ini.ReadString('ACESSO', 'UserNet', ''));
+      Params.Add('Password='  + ini.ReadString('ACESSO', 'PassNet', ''));
+      Params.Add('Port='  + '3308');
+
+      Params.Add('BlobSize=-1');
+      Params.Add('ErrorResourceFile=');
+      Params.Add('LocaleCode=0000');
+
+      Connected := True;
+    End;
+
   ClientDataSet1.Open;
 end;
 

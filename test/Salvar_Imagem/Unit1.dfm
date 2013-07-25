@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 247
-  Top = 116
-  Width = 1305
-  Height = 675
+  Left = 572
+  Top = 226
+  Width = 817
+  Height = 625
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,51 +11,52 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 480
-    Top = 208
+    Left = 8
+    Top = 40
     Width = 58
     Height = 13
     Caption = 'emp_codigo'
     FocusControl = DBEdit1
   end
   object Label2: TLabel
-    Left = 480
-    Top = 248
+    Left = 8
+    Top = 80
     Width = 85
     Height = 13
     Caption = 'emp_razao_social'
     FocusControl = DBEdit2
   end
   object Label3: TLabel
-    Left = 480
-    Top = 288
+    Left = 8
+    Top = 120
     Width = 63
     Height = 13
     Caption = 'emp_fantasia'
     FocusControl = DBEdit3
   end
   object Label4: TLabel
-    Left = 480
-    Top = 328
+    Left = 8
+    Top = 160
     Width = 46
     Height = 13
     Caption = 'emp_cnpj'
     FocusControl = DBEdit4
   end
   object Label5: TLabel
-    Left = 480
-    Top = 368
+    Left = 8
+    Top = 200
     Width = 62
     Height = 13
     Caption = 'emp_imagem'
   end
   object DBEdit1: TDBEdit
-    Left = 480
-    Top = 224
+    Left = 8
+    Top = 56
     Width = 134
     Height = 21
     DataField = 'emp_codigo'
@@ -63,8 +64,8 @@ object Form1: TForm1
     TabOrder = 0
   end
   object DBEdit2: TDBEdit
-    Left = 480
-    Top = 264
+    Left = 8
+    Top = 96
     Width = 784
     Height = 21
     DataField = 'emp_razao_social'
@@ -72,8 +73,8 @@ object Form1: TForm1
     TabOrder = 1
   end
   object DBEdit3: TDBEdit
-    Left = 480
-    Top = 304
+    Left = 8
+    Top = 136
     Width = 784
     Height = 21
     DataField = 'emp_fantasia'
@@ -81,8 +82,8 @@ object Form1: TForm1
     TabOrder = 2
   end
   object DBEdit4: TDBEdit
-    Left = 480
-    Top = 344
+    Left = 8
+    Top = 176
     Width = 264
     Height = 21
     DataField = 'emp_cnpj'
@@ -90,22 +91,22 @@ object Form1: TForm1
     TabOrder = 3
   end
   object DBNavigator1: TDBNavigator
-    Left = 448
-    Top = 144
+    Left = 8
+    Top = 8
     Width = 240
     Height = 25
     DataSource = DataSource1
     TabOrder = 4
   end
   object cxDBImage1: TcxDBImage
-    Left = 480
-    Top = 384
+    Left = 8
+    Top = 216
     DataBinding.DataField = 'emp_imagem'
     DataBinding.DataSource = DataSource1
     Properties.GraphicClassName = 'TJPEGImage'
     TabOrder = 5
-    Height = 193
-    Width = 449
+    Height = 329
+    Width = 785
   end
   object conWebMaster: TSQLConnection
     ConnectionName = 'MySQLConnection'
@@ -125,17 +126,17 @@ object Form1: TForm1
       'LocaleCode=0000'
       'Port=3308')
     VendorLib = 'libmysql.dll'
-    Left = 336
-    Top = 48
+    Left = 256
+    Top = 8
   end
   object SQLQuery1: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      'Select * from SYS_EMPRESA')
+      'Select * from sys_empresa')
     SQLConnection = conWebMaster
-    Left = 336
-    Top = 80
+    Left = 256
+    Top = 40
     object SQLQuery1emp_codigo: TSmallintField
       FieldName = 'emp_codigo'
       Required = True
@@ -216,16 +217,16 @@ object Form1: TForm1
   end
   object DataSetProvider1: TDataSetProvider
     DataSet = SQLQuery1
-    Left = 368
-    Top = 80
+    Left = 288
+    Top = 40
   end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider1'
     AfterPost = ClientDataSet1AfterPost
-    Left = 400
-    Top = 80
+    Left = 320
+    Top = 40
     object ClientDataSet1emp_codigo: TSmallintField
       FieldName = 'emp_codigo'
       ProviderFlags = [pfInUpdate, pfInKey]
@@ -326,7 +327,7 @@ object Form1: TForm1
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
-    Left = 432
-    Top = 80
+    Left = 352
+    Top = 40
   end
 end
