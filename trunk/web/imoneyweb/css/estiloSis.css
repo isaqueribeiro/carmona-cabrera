@@ -1,0 +1,297 @@
+.form
+{display: inline;margin: 0;padding: 0;	}
+
+
+.Borda_tabela 
+{   
+border: black; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px
+}
+
+.Borda_esquerda
+{   
+border: black; border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 1px
+}
+.Borda_esquerda_e_Em_Cima
+{   
+border: black; border-style: solid; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 1px
+}
+
+
+.Borda_so_em_baixo
+{   
+border: black; border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px
+}
+
+.Borda_so_em_cima
+{   
+border: black; border-style: solid; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px
+}
+
+.botao_enviar
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 13px;
+color: black;
+background-color: gainsboro;
+}
+
+.campos_formulario
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 14px;
+color: dimgray;
+background-color: white;
+border: 1px solid black;
+}
+
+
+.campo_alerta
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 14px;
+border: 1px solid black;
+background-color: cyan;
+}
+
+
+.exibe_registros
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 11px;
+width: 100%;
+color: black;
+background-color: white;
+}
+.tabela_registros
+{
+width: 100%;
+background-color: black;
+}
+.tabela_paginacao
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 11px;
+width: 100%;
+color: black;
+border-top: 1px solid white;
+background-color: white;
+}
+
+
+.tabela_formulario
+{
+width: 700;
+/*background-color:black;
+color: dimgray; */
+}
+
+.texto_pagina
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 13px;
+color: black;
+}
+
+.texto_pagina_11
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 11px;
+color: black;
+}
+
+
+.texto_erro
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 13px;
+color: red;
+}
+
+
+.titulos_registros
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 11px;
+color: black;
+background-color: white;
+}
+
+.titulo_pagina
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 16px;
+color: black;
+font-weight: bold;
+}
+
+
+
+.titulo_campos
+{
+font-family: Tahoma, Verdana, Arial;
+font-size: 12px;
+color: black;
+/*background-color: white;*/
+}
+
+
+.links_paginacao
+{
+color: blue;
+text-decoration: none;
+}
+
+.links_paginacao:hover
+{
+color: gray;
+text-decoration: underline;
+}
+
+
+a.LinskMenuPagina:link,a.LinskMenuPagina:visited
+{
+font-size: 13px;
+color: #FFFFFF;
+text-decoration: none;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+a.LinskMenuPagina:hover
+{
+font-size: 13px;
+color: #FFFFFF;
+text-decoration: underline;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+a.LinskMenuPagina:active
+{
+font-size: 13px;
+color: #FFFFFF;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+
+
+
+a:link,a:visited
+{
+font-size: 13px;
+color: #666666;
+text-decoration: none;
+font-family: Tahoma, Verdana, Arial;
+
+}
+
+a:hover
+{
+font-size: 13px;
+color: #666666;
+text-decoration: underline;
+font-family: Tahoma, Verdana, Arial;
+}
+
+a:active
+{
+font-size: 13px;
+color: #666666;
+font-family: Tahoma, Verdana, Arial;
+
+}
+
+a.LinskSelacaoRegistro:link,a.LinskSelacaoRegistro:visited
+{
+font-size: 13px;
+color: #FF0000;
+text-decoration: none;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+a.LinskSelacaoRegistro:hover
+{
+font-size: 13px;
+color: #FF0000;
+text-decoration: underline;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+a.LinskSelacaoRegistro:active
+{
+font-size: 13px;
+color: #FF0000;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+
+
+
+
+
+a.LinskSelacaoRegistroAzul:link,a.LinskSelacaoRegistroAzul:visited
+{
+font-size: 13px;
+color: #0066FF;
+text-decoration: none;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+a.LinskSelacaoRegistroAzul:hover
+{
+font-size: 13px;
+color: #0066FF;
+text-decoration: underline;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+a.LinskSelacaoRegistroAzul:active
+{
+font-size: 13px;
+color: #0066FF;
+font-family: Tahoma, Verdana, Arial;
+font-weight: bold;
+}
+
+
+
+
+
+.commonButton 
+	{
+	display: inline;
+	}
+
+.commonButton button 
+	{
+	background-image: url('./img/glyph/btn_ok_bg.gif');
+	border: 0 solid white;
+	background-repeat: no-repeat;
+	}
+
+.commonButton button[disabled] 
+	{
+	background-image: url('./img/glyph/btn_bg-disabled.gif'); 
+	color: #999999;
+	}  
+
+.commonButton button,
+.commonButton 
+	{
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: transparent;
+	}
+
+#bid-ok button 
+	{
+	background-image: url('./img/glyph/btn_ok_bg.gif');
+	padding-left: 8px;
+	}
