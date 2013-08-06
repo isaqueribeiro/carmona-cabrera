@@ -7,6 +7,7 @@
 
 if session("dDtIni")="" then session("dDtIni")= formatdatetime(now,2)
 if session("dDtFim")="" then session("dDtFim")= formatdatetime(now,2)
+
 sNomedaPagina="Programações de Pagamentos"
 
 'String de conexão para o banco de dados do Microsoft Access
@@ -105,7 +106,7 @@ function confirm_delete(form) {
 <hr size=1 color=gainsboro>
 <table width="697" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="697"><form name="form1" method="post" action="p_filtroAceiteresp.asp" class="form">
+    <td width="697"><form name="form1" method="post" action="p_filtroProgramacaoPagtoResp.asp" class="form">
       <table width="519" border="0" cellpadding="0" cellspacing="0" class="Borda_tabela">
         <tr> 
           <td height="24" colspan="6" background="back3.gif" class="texto_pagina"><div align="center" class="titulo_campos style1"><strong>Filtro de Registros:</strong></div></td>
@@ -150,190 +151,205 @@ function confirm_delete(form) {
 </table>
 <br>
 <%
-If Request.QueryString("PagAtual") = "" Then
-  PagAtual = 1
-  NumPagMax = VarPagMax
-Else
-  NumPagMax = CInt(Request.QueryString("NumPagMax"))
-  PagAtual = CInt(Request.QueryString("PagAtual"))
-  Select Case Request.QueryString("Submit")
-    Case "Anterior" : PagAtual = PagAtual - 1
-    Case "Proxima" : PagAtual = PagAtual + 1
-    Case "Menos" : NumPagMax = NumPagMax - VarPagMax
-    Case "Mais" : NumPagMax = NumPagMax + VarPagMax
-    Case Else : PagAtual = CInt(Request.QueryString("Submit"))
-  End Select
-  If NumPagMax < PagAtual then
-    NumPagMax = NumPagMax + VarPagMax
+  If Request.QueryString("PagAtual") = "" Then
+    PagAtual = 1
+    NumPagMax = VarPagMax
+  Else
+    NumPagMax = CInt(Request.QueryString("NumPagMax"))
+    PagAtual = CInt(Request.QueryString("PagAtual"))
+    Select Case Request.QueryString("Submit")
+      Case "Anterior" : PagAtual = PagAtual - 1
+      Case "Proxima" : PagAtual = PagAtual + 1
+      Case "Menos" : NumPagMax = NumPagMax - VarPagMax
+      Case "Mais" : NumPagMax = NumPagMax + VarPagMax
+      Case Else : PagAtual = CInt(Request.QueryString("Submit"))
+    End Select
+    
+	If NumPagMax < PagAtual then
+      NumPagMax = NumPagMax + VarPagMax
+    End If
+    
+	If NumPagMax - (VarPagMax - 1) > PagAtual then
+      NumPagMax = NumPagMax - VarPagMax
+    End If
   End If
-  If NumPagMax - (VarPagMax - 1) > PagAtual then
-    NumPagMax = NumPagMax - VarPagMax
-  End If
-End If
 
-Set objCon = Server.CreateObject("ADODB.Connection")
-objCon.Open strCon
+  Set objCon = Server.CreateObject("ADODB.Connection")
+  objCon.Open strCon
 
   If Session("admin") <> "" And Session("ip_admin") = Request.ServerVariables("REMOTE_ADDR") Then
-  If Request.Form("recordno") <> "" Then
-    Set objRS_delete = Server.CreateObject("ADODB.Recordset")
-    objRS_delete.CursorLocation = 3
-    objRS_delete.CursorType = 0
-    objRS_delete.LockType = 3
+    If Request.Form("recordno") <> "" Then
+      Set objRS_delete = Server.CreateObject("ADODB.Recordset")
+      objRS_delete.CursorLocation = 3
+      objRS_delete.CursorType = 0
+      objRS_delete.LockType = 3
 
-    strQ_delete = Request.Form("strQ")
-    indice = Trim(Request.Form("indice"))
-    If indice <> "" Then strQ_delete = " SELECT * FROM mny_movimento WHERE " & indice
+      strQ_delete = Request.Form("strQ")
+      indice = Trim(Request.Form("indice"))
+    
+	  If indice <> "" Then strQ_delete = " Select * from mny_pagto_lista where " & indice
 
-    objRS_delete.Open strQ_delete, objCon, , , &H0001
-    If indice = "" Then objRS_delete.Move Request.Form("recordno") - 1
-    If Not objRS_delete.EOF Then
-      objRS_delete.Delete
-      objRS_delete.UpdateBatch
-    End IF
+      objRS_delete.Open strQ_delete, objCon, , , &H0001
+    
+	  If indice = "" Then objRS_delete.Move Request.Form("recordno") - 1
+    
+  	  If Not objRS_delete.EOF Then
+        objRS_delete.Delete
+        objRS_delete.UpdateBatch
+      End IF
 
-    objRS_delete.Close
-    Set objRS_delete = Nothing
-    Set strQ_delete = Nothing
+      objRS_delete.Close
+      Set objRS_delete = Nothing
+      Set strQ_delete = Nothing
+    End If
   End If
-  End If
 
-Set objRS = Server.CreateObject("ADODB.Recordset")
-objRS.CursorLocation = 3
-objRS.CursorType = 2
-objRS.LockType = 1
-objRS.CacheSize = RegPorPag
-'strQ = "SELECT * FROM mny_movimento"
-if session("gS_CriterioProgramacao")="" then sComplemento= " and mny_movimento.mov_codigo=0" else sComplemento=session("gS_CriterioProgramacao")
-strQ = "SELECT mny_movimento.*,mov_data_vencto,mov_valor_pagar,mov_item,ta.tip_nome as aceite,pes_nome_fantasia as fantasia,pes_razao_social,SI.sit_nome as sitItem ,mov_data_prev"
-strQ = strQ & " FROM mny_movimento ,mny_movimento_item , "
-strQ = strQ  & " mny_tipo_aceite ta, "
-strQ = strQ  & " mny_pessoa , "
-strQ = strQ  & " sys_competencia c, "
-strQ = strQ  & " sys_situacao SM, "
-strQ = strQ  & " mny_custo TC, "
-strQ = strQ  & " mny_centro_negocio CN, "
-strQ = strQ  & " mny_unidade UN, "
-strQ = strQ  & " mny_centro_custo cc, "
-strQ = strQ  & " mny_conta cta, "
-strQ = strQ  & " mny_setor setor, "
-strQ = strQ  & " mny_forma_pagto f, "
-strQ = strQ  & " mny_tipo_documento d, "
-strQ = strQ  & " sys_situacao SI "
-strQ = strQ  & " where mny_movimento_item.fpg_codigo = f.fpg_codigo and mny_movimento_item.tip_doc_codigo= d.tip_codigo and mny_movimento_item.mov_status=SI.sit_codigo"
-strQ = strQ  & " and mny_movimento.mov_codigo=mny_movimento_item.mov_codigo"
-strQ = strQ  & " and mny_movimento.tip_ace_codigo=ta.tip_codigo"
-strQ = strQ  & " and mny_movimento.pes_codigo =mny_pessoa.pes_codigo"
-strQ = strQ  & " and mny_movimento.com_codigo =c.com_codigo"
-strQ = strQ  & " and mny_movimento.sit_codigo =SM.sit_codigo"
-strQ = strQ  & " and mny_movimento.cus_codigo =TC.cus_codigo"
-strQ = strQ  & " and mny_movimento.neg_codigo =CN.neg_codigo"
-strQ = strQ  & " and mny_movimento.uni_codigo =UN.uni_codigo"
-strQ = strQ  & " and mny_movimento.cen_codigo=cc.cen_codigo"
-strQ = strQ  & " and mny_movimento.con_codigo=cta.con_codigo"
-strQ = strQ  & " and mny_movimento.set_codigo=setor.set_codigo"
-strQ = strQ  & " and mny_movimento.set_codigo=setor.set_codigo" & sComplemento
-strQ = strQ  & " order by mny_movimento_item.mov_codigo desc,mny_movimento_item.mov_item asc " 
+  Set objRS = Server.CreateObject("ADODB.Recordset")
+  objRS.CursorLocation = 3
+  objRS.CursorType = 2
+  objRS.LockType = 1
+  objRS.CacheSize = RegPorPag
 
+  if trim(session("gS_CriterioProgramacao")) = "" then 
+    sComplemento= "pg.pgt_status = 0"
+  else 
+    sComplemento = session("gS_CriterioProgramacao")
+  end if
 
+  strQ = " Select "
+  strQ = strQ & "     pg.pgt_codigo "
+  strQ = strQ & "   , pg.pgt_data "
+  strQ = strQ & "   , pg.pgt_obs "
+  strQ = strQ & "   , sum( case when m.mov_tipo = 0 then mi.mov_valor_pagar else 0 end ) as total_apagar "
+  strQ = strQ & "   , sum( case when m.mov_tipo = 1 then mi.mov_valor_pagar else 0 end ) as total_areceber "
+  strQ = strQ & "   , pg.pgt_status "
+  strQ = strQ & "   , Case pg.pgt_status "
+  strQ = strQ & "       when 0 then 'Aberto/Pendente' "
+  strQ = strQ & "       when 1 then 'Encerrado' "
+  strQ = strQ & "       when 2 then 'Cancelado' "
+  strQ = strQ & "     end as pgt_status_desc "
+  strQ = strQ & "   , pg.pgt_usuario "
+  strQ = strQ & " from mny_pagto_lista pg "
+  strQ = strQ & "   inner join mny_pagto_lista_item i on (i.pgt_codigo = pg.pgt_codigo) "
+  strQ = strQ & "   inner join mny_movimento_item mi on (mi.mov_codigo = i.mov_codigo and mi.mov_item = i.mov_item) "
+  strQ = strQ & "   inner join mny_movimento m on (m.mov_codigo = mi.mov_codigo) "
+  strQ = strQ & " where " & sComplemento
+  strQ = strQ & " group by "
+  strQ = strQ & "     pg.pgt_codigo "
+  strQ = strQ & "   , pg.pgt_data "
+  strQ = strQ & "   , pg.pgt_obs "
+  strQ = strQ & "   , pg.pgt_status "
+  strQ = strQ & "   , pg.pgt_usuario "
+  strQ = strQ & " order by "
+  strQ = strQ & "     pg.pgt_data "
 
+  'response.Write(strQ)
 
-'response.Write(strQ)
+  'strQ = "SELECT * FROM mny_movimento"
 
-'strQ = "SELECT * FROM mny_movimento"
+  'If Trim(Request.QueryString("Ordem")) <> "" Then
+  '  strQ = strQ & " ORDER BY " & Request.QueryString("Ordem")
+  'End If
 
+  objRS.Open strQ, objCon, , , &H0001
+  objRS.PageSize = RegPorPag
 
+  Set objRS_indice = Server.CreateObject("ADODB.Recordset")
+  objRS_indice.CursorLocation = 2
+  objRS_indice.CursorType     = 0
+  objRS_indice.LockType       = 2
+  strQ_indice = "Select * from mny_pagto_lista where 1 <> 1"
+  objRS_indice.Open strQ_indice, objCon, , , &H0001
 
-'If Trim(Request.QueryString("Ordem")) <> "" Then
-'  strQ = strQ & " ORDER BY " & Request.QueryString("Ordem")
-'End If
+   'response.Write(strQ)
 
+  indice = ""
+  For Each item In objRS_indice.Fields
+    If item.properties("IsAutoIncrement") = True Then
+      indice = item.name
+       Exit For
+    End If
+  Next
+  objRS_indice.Close
+	
+  Set objRS_indice = Nothing
+  Set strQ_indice = Nothing
 
-
-objRS.Open strQ, objCon, , , &H0001
-objRS.PageSize = RegPorPag
-
-Set objRS_indice = Server.CreateObject("ADODB.Recordset")
-objRS_indice.CursorLocation = 2
-objRS_indice.CursorType = 0
-objRS_indice.LockType = 2
-strQ_indice = "SELECT * FROM mny_movimento WHERE 1 <> 1"
-objRS_indice.Open strQ_indice, objCon, , , &H0001
-
-'response.Write(strQ)
-
-indice = ""
-For Each item In objRS_indice.Fields
-  If item.properties("IsAutoIncrement") = True Then
-    indice = item.name
-    Exit For
-  End If
-Next
-objRS_indice.Close
-Set objRS_indice = Nothing
-Set strQ_indice = Nothing
-
-Set objRS.ActiveConnection = Nothing
-objCon.Close
-Set objCon = Nothing
+  Set objRS.ActiveConnection = Nothing
+  objCon.Close
+  Set objCon = Nothing
 %>
 <%if true = false then %>
-<B>Consultar Registros</B><BR>Visualize os registros da 
-tabela abaixo:<BR>
+<B>Consultar Registros</B>
+<BR>Visualize os registros da tabela abaixo:<BR>
 <%end if%>
 <%
 If Not(objRS.EOF) Then
-  objRS.AbsolutePage = PagAtual
-  TotPag = objRS.PageCount
+	objRS.AbsolutePage = PagAtual
+TotPag = objRS.PageCount
 %>
-
 Foram encontrados <%= objRS.RecordCount%> registros<BR>
 <%
-'Totalizando resultado
-s_Sql = " select sum(mov_valor_pagar) AS TOT,mov_tipo FROM mny_movimento ,mny_movimento_item,mny_pessoa  where "
-s_Sql = s_Sql  & " mny_movimento.pes_codigo =mny_pessoa.pes_codigo"
-s_Sql = s_Sql  & " and mny_movimento.mov_codigo=mny_movimento_item.mov_codigo " & sComplemento
-s_Sql = s_Sql & " group by mov_tipo order by mov_tipo"
-set rsTot = conexao.execute(s_Sql)
-while not rsTot.eof
-	if rsTot("mov_tipo")="0" then sValAPagar="Total a Pagar R$: " & formatnumber(rsTot("tot"),2)
-	if rsTot("mov_tipo")="1" then sValAReceber="Total a Receber R$: " & formatnumber(rsTot("tot"),2)
-	rsTot.movenext
-wend
-if sValAPagar<>"" then  response.Write("<strong>" & sValAPagar & "</strong><br>")
-if sValAReceber<>"" then  response.Write("<strong>" & sValAReceber & "</strong><br>")
-'Fim totalização
+  ' Totalizando resultado
+  s_Sql = " Select "
+  s_Sql = s_Sql & "     sum(mi.mov_valor_pagar) as mov_total_pagar "
+  s_Sql = s_Sql & "   , m.mov_tipo "
+  s_Sql = s_Sql & " from mny_pagto_lista pg "
+  s_Sql = s_Sql & "   inner join mny_pagto_lista_item i on (i.pgt_codigo = pg.pgt_codigo) "
+  s_Sql = s_Sql & "   inner join mny_movimento_item mi on (mi.mov_codigo = i.mov_codigo and mi.mov_item = i.mov_item) "
+  s_Sql = s_Sql & "   inner join mny_movimento m on (m.mov_codigo = mi.mov_codigo) "
+  s_Sql = s_Sql & " where " & sComplemento
+  s_Sql = s_Sql & " group by "
+  s_Sql = s_Sql & "     m.mov_tipo "
+  set rsTot = conexao.execute(s_Sql)
+  while not rsTot.eof
+    if rsTot("mov_tipo") = "0" then sValAPagar   = "Total a Pagar R$: " & formatnumber(rsTot("mov_total_pagar"),2)
+    if rsTot("mov_tipo") = "1" then sValAReceber = "Total a Receber R$: " & formatnumber(rsTot("mov_total_pagar"),2)
+    rsTot.movenext
+  wend
+
+  if sValAPagar   <> "" then  response.Write("<strong>" & sValAPagar & "</strong><br>")
+  if sValAReceber <> "" then  response.Write("<strong>" & sValAReceber & "</strong><br>")
+  ' Fim totalização
 %>
+<br>
 <TABLE width="101%" border=0 cellpadding=2 cellspacing=1 class=tabela_registros>
   <TR class=titulos_registros>
-
 <%
-If Session("admin") <> "" And Session("ip_admin") = Request.ServerVariables("REMOTE_ADDR") Then
-  Response.Write "<TD align=""center"" style=""background-color: crimson; color: white"" width=""1%"" nowrap><b>Editar</b></TD>"
-End IF
+  If (Session("admin") <> "" and Session("ip_admin") = Request.ServerVariables("REMOTE_ADDR")) Then
+    Response.Write "<TD align=""center"" style=""background-color: crimson; color: white"" width=""1%"" nowrap><b>Editar</b></TD>"
+  End IF
 
-If Right(Request.QueryString("Ordem"), 3) = "asc" Then
-  Ordem = "desc"
-Else
-  Ordem = "asc"
-End IF
+  If Right(Request.QueryString("Ordem"), 3) = "asc" Then
+    Ordem = "desc"
+  Else
+    Ordem = "asc"
+  End IF
 %>
 
-  <TD width="7%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=mov_codigo+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 10) = "mov_codigo" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%><b>Cod.Mov</b></TD>
-  <TD width="8%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=tip_ace_codigo+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 14) = "tip_ace_codigo" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%><b>Cod.Item</b></TD>
-  <TD width="14%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=pes_codigo+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 10) = "pes_codigo" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%><b>Rz.Social</b></TD>
-  <TD width="11%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=mov_data_emissao+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 16) = "mov_data_emissao" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%><b>Nome Fantasia</b></TD>
-  <TD width="14%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=mov_contrato+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 12) = "mov_contrato" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%><b>Obs</b></TD>
-  <TD width="9%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=mov_data_inclusao+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 17) = "mov_data_inclusao" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%><b>Inclusão</b></TD>
-  <TD width="10%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=mov_data_vencto+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 10) = "com_codigo" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%><b>Vencimento</b></TD>
-  <TD width="7%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=mov_data_vencto+<%=Ordem%>', '_self')"><%If Left(Request.QueryString("Ordem"), 10) = "com_codigo" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If%>
-    <b>Prorrog.</b></TD>
-  <TD width="5%" valign=top nowrap style="cursor: hand" ><div align="right">
-   <b>Status</b></div></TD>
-  <TD width="5%" valign=top nowrap style="cursor: hand" ><strong>P/R</strong></TD>
-  <TD width="5%" valign=top nowrap style="cursor: hand" ><div align="right"><b>Valor a <br>
-    Pg/Rec</b></div></TD>
-  <TD width="5%" valign=top nowrap style="cursor: hand" ><strong>Usu&aacute;rio</strong></TD>
+  <TD width="6%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=pgt_codigo+<%=Ordem%>', '_self')">
+<%
+  If Left(Request.QueryString("Ordem"), 10) = "pgt_codigo" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If
+%>
+    <b>C&oacute;digo</b></TD>
+  <TD width="6%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=pgt_data+<%=Ordem%>', '_self')">
+<%
+  If Left(Request.QueryString("Ordem"), 10) = "pgt_data" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If
+%>
+  <b>Data</b></TD>
+  <TD width="50%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=pgt_obs+<%=Ordem%>', '_self')">
+<%
+  If Left(Request.QueryString("Ordem"), 12) = "pgt_obs" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If
+%>
+    <b>Observa&ccedil;&otilde;es</b></TD>
+  <TD width="8%" valign=top nowrap style="cursor: hand" ><div align="right"><b>Valor A Receber</b></div></TD>
+  <TD width="8%" valign=top nowrap style="cursor: hand" ><div align="right"><b>Valor A Pagar</b></div></TD>
+  <TD width="12%" valign=top nowrap style="cursor: hand" onClick="window.open('<%=Request.ServerVariables("SCRIPT_NAME")%>?Ordem=pgt_status_desc+<%=Ordem%>', '_self')">
+<%
+  If Left(Request.QueryString("Ordem"), 12) = "pgt_status_desc" Then : Response.Write "<img src=""imagens\ordem_" & Ordem & ".gif"" width=9 height=10>&nbsp;" : End If
+%>
+    <b>Status</b></TD>
+  <TD width="10%" valign=top nowrap style="cursor: hand" ><strong>Usu&aacute;rio</strong></TD>
   </TR>
 
 <%
@@ -362,20 +378,15 @@ End If
 'strQ = "SELECT M.*,i.* ta.tip_nome as aceite,p.pes_nome_fantasia as fantasia,p.pes_razao_social,SI.sit_nome as sitItem FROM mny_movimento M,mny_movimento_item i, "
 %>
 	
-    <TD><%response.Write("<a class='LinskSelacaoRegistroAzul' href='pg_operacoesAceite.asp?ope=edita&idlan=" & objRS("mov_codigo") & "'>" & FormataNumero(objRS("mov_codigo"),6) & " </a>")%></TD>
-    <TD><%response.Write("<a  class='LinskSelacaoRegistroAzul' href='pg_operacoesAceiteItem.asp?ope=edita2&idlan=" & objRS("mov_codigo") & "&idItem=" & objRS("mov_item") & "'>" & FormataNumero(objRS("mov_item"),6) & "</a>&nbsp;&nbsp;<a target='_blank' href='pg_fichaAceite.asp?idlan=" & objRS("mov_codigo") & "&idItem=" & objRS("mov_item") & "'><img src='imagens/printer.png' border=0 title='Imprimir Ficha de Aceite' /></a>" )%></TD>
-    <TD><%=(objRS.Fields.Item("pes_razao_social").Value)%></TD>
-    <TD><%=(objRS.Fields.Item("fantasia").Value)%></TD>
-    <TD><%=(objRS.Fields.Item("mov_obs").Value)%></TD>
-    <TD><%response.Write(objRS.Fields.Item("mov_data_emissao").Value)%></TD>
-    <TD><%response.Write(objRS.Fields.Item("mov_data_vencto").Value)%></TD>
-    <TD><%response.Write(objRS.Fields.Item("mov_data_prev").Value)%></TD>
-    <TD><div align="center">
-      <%response.Write(objRS.Fields.Item("sitItem").Value)%>
+    <TD><%response.Write("<a class='LinskSelacaoRegistroAzul' href='pg_operacoesProgramacaoPagto.asp?ope=listar&idlan=" & objRS("pgt_codigo") & "'>" & FormataNumero(objRS("pgt_codigo"),6) & " </a>")%></TD>
+    <TD><%response.Write(objRS.Fields.Item("pgt_data").Value)%></TD>
+    <TD><%=(objRS.Fields.Item("pgt_obs").Value)%></TD>
+    <TD><div align="right"><%response.Write(formatNumber((objRS.Fields.Item("total_areceber").Value),2))%></div></TD>
+    <TD><div align="right">
+      <%response.Write(formatNumber((objRS.Fields.Item("total_apagar").Value),2))%>
     </div></TD>
-    <TD><%if objRS.Fields.Item("mov_tipo") ="0" then response.Write("A pagar") else response.Write("A receber") %></TD>
-    <TD><div align="right"><%response.Write(formatNumber((objRS.Fields.Item("mov_valor_pagar").Value),2))%></div></TD>
-    <TD><%=mid(objRS("MOV_INC"),19,len(objRS("MOV_INC")))%></TD>
+    <TD><%=(objRS.Fields.Item("pgt_status_desc").Value)%></TD>
+    <TD><%=(objRS.Fields.Item("pgt_usuario").Value)%></TD>
   </TR>
 
 <%
@@ -396,13 +407,16 @@ Set Cont = Nothing
 Else
 %>
 
-<%if session("gS_CriterioMovimento")="" then%>
+<%
+  if (trim(session("gS_CriterioMovimento")) = "") then
+%>
 	<BR><B>Informe critérios de pesquisa e clique em "Pesquisar"</B><BR><BR>
-<%else %>
+<%
+  else 
+%>
 <BR><B>Nenhum registro foi encontrado</B><BR><BR>
 <%
-end if
-
+  end if
 
 End If
 %>
@@ -412,6 +426,7 @@ End If
 
 <%
 Sub LinksNavegacao()
+
 'O código a seguir insere uma tabela com todos os links de navegação das páginas
 Response.Write "<TABLE border=0 cellPadding=2 cellSpacing=0 class=tabela_paginacao>"
 Response.Write "<TR><TD align=center vAlign=top noWrap colspan=5>"
