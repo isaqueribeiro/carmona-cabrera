@@ -209,6 +209,8 @@ type
     QryRAceitemov_aut_financeiro: TStringField;
     QryRAceitemov_aut_gerencia: TStringField;
     btnDocs: TcxButton;
+    PpMnu: TPopupMenu;
+    PpMuIncluir: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure ActnIncExecute(Sender: TObject);
     procedure ActnAltExecute(Sender: TObject);
@@ -231,6 +233,7 @@ type
     procedure btnBaixarClick(Sender: TObject);
     procedure btnExcelClick(Sender: TObject);
     procedure btnDocsClick(Sender: TObject);
+    procedure PpMuIncluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -244,7 +247,7 @@ var
 implementation
 
 uses KeyResource, KeyMain, KeyLogin, KeyUsuario, iMnyPessoa, iMnyContaPR,
-  iMnyContaPRDoc;
+  iMnyContaPRDoc, iMnyPagtoListaView;
 
 {$R *.dfm}
 
@@ -596,6 +599,16 @@ begin
     Free;
   end;
 
+end;
+
+procedure TFrmContaPRPesq.PpMuIncluirClick(Sender: TObject);
+begin
+  FrmPagtoListaView := TFrmPagtoListaView.Create(Application);
+  with FrmPagtoListaView do
+  begin
+    ShowModal;
+    Free;
+  end;
 end;
 
 end.

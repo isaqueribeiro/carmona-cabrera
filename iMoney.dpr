@@ -18,7 +18,7 @@ uses
   KeyUsuarioPesq in 'Forms\KeyUsuarioPesq.pas' {FrmUsuarioPesq},
   iMnyTotalizadorPesq in 'Forms\iMnyTotalizadorPesq.pas' {FrmTotalizadorPesq},
   iMnyFormaPesq in 'Forms\iMnyFormaPesq.pas' {FrmFormaPesq},
-  iMnyCompetencia in 'Forms\iMnyCompetencia.pas' {FrmCompetencia},
+  iMnyPagtoLista in 'Forms\iMnyPagtoLista.pas' {FrmPagtoLista},
   iMnyCaixa in 'Forms\iMnyCaixa.pas' {FrmCaixa},
   iMnyCorrentePesq in 'Forms\iMnyCorrentePesq.pas' {FrmCorrentePesq},
   iMnySetorPesq in 'Forms\iMnySetorPesq.pas' {FrmSetorPesq},
@@ -45,7 +45,9 @@ uses
   KeyPadrao in 'Forms\KeyPadrao.pas' {FrmPadrao},
   KeyPadraoTabela in 'Forms\KeyPadraoTabela.pas' {FrmPadraoTabela},
   KeyPadraoTabelaFormularioCadastro in 'Forms\KeyPadraoTabelaFormularioCadastro.pas' {FrmPadraoTabelaFormularioCadastro},
-  KeyRequiredFields in 'Forms\KeyRequiredFields.pas' {FrmRequiredFields};
+  KeyRequiredFields in 'Forms\KeyRequiredFields.pas' {FrmRequiredFields},
+  iMnyCompetencia in 'Forms\iMnyCompetencia.pas' {FrmCompetencia},
+  iMnyPagtoListaView in 'Forms\iMnyPagtoListaView.pas' {FrmPagtoListaView};
 
 {$R *.res}
 
@@ -58,6 +60,7 @@ begin
   Application.CreateForm(TDtmResource, DtmResource);
   Application.CreateForm(TFrmSplash, FrmSplash);
   Application.CreateForm(TFrmLogin, FrmLogin);
+
   Ini := TIniFile.Create(ExtractFilePath( ParamStr(0) ) + 'iMoney.ini');
   IF Ini.ReadString('DIVERSOS', 'SPLASH', '') = 'S' Then
     Begin

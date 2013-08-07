@@ -1627,6 +1627,10 @@ object FrmMain: TFrmMain
       Caption = '&Caixas'
       OnExecute = ActnRCaixasExecute
     end
+    object ActnPagtoLista: TAction
+      Caption = '&Lista de Pagamento'
+      OnExecute = ActnPagtoListaExecute
+    end
   end
   object TmrDateTime: TTimer
     OnTimer = TmrDateTimeTimer
@@ -1717,8 +1721,11 @@ object FrmMain: TFrmMain
       object bbContaPR: TMenuItem
         Action = ActnContaPR
       end
-      object Caixa1: TMenuItem
+      object bbCaixa: TMenuItem
         Action = ActnCaixa
+      end
+      object bbPagtoLista: TMenuItem
+        Action = ActnPagtoLista
       end
     end
     object MnRelatorios: TMenuItem

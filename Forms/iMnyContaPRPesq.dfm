@@ -1,6 +1,6 @@
 object FrmContaPRPesq: TFrmContaPRPesq
-  Left = 131
-  Top = 93
+  Left = 140
+  Top = 215
   Width = 1107
   Height = 581
   BorderIcons = [biSystemMenu]
@@ -30,10 +30,10 @@ object FrmContaPRPesq: TFrmContaPRPesq
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ClientRectBottom = 448
-    ClientRectLeft = 1
-    ClientRectRight = 1075
-    ClientRectTop = 21
+    ClientRectBottom = 445
+    ClientRectLeft = 4
+    ClientRectRight = 1072
+    ClientRectTop = 24
     object TbShtPrincipal: TcxTabSheet
       Caption = 'Principal'
       ImageIndex = 79
@@ -142,6 +142,7 @@ object FrmContaPRPesq: TFrmContaPRPesq
         ParentFont = False
         TabOrder = 1
         object DbGridDBTblVw: TcxGridDBTableView
+          PopupMenu = PpMnu
           NavigatorButtons.ConfirmDelete = False
           OnCellDblClick = DbGridDBTblVwCellDblClick
           DataController.DataSource = DtSMaster
@@ -8186,6 +8187,14 @@ object FrmContaPRPesq: TFrmContaPRPesq
           ParentFont = False
         end
       end
+    end
+  end
+  object PpMnu: TPopupMenu
+    Left = 612
+    Top = 296
+    object PpMuIncluir: TMenuItem
+      Caption = '&Incluir Lista de Pagamento'
+      OnClick = PpMuIncluirClick
     end
   end
 end
