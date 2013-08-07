@@ -99,7 +99,7 @@ type
     ActnContaPR: TAction;
     bbPermissao: TMenuItem;
     ActnCaixa: TAction;
-    Caixa1: TMenuItem;
+    bbCaixa: TMenuItem;
     QryQtde: TSQLQuery;
     QryQtdemov_codigo: TIntegerField;
     QryQtdeCOUNT: TFMTBCDField;
@@ -117,6 +117,8 @@ type
     NvBrContaCorrente: TdxNavBarItem;
     ActnRCaixas: TAction;
     Caixas1: TMenuItem;
+    ActnPagtoLista: TAction;
+    bbPagtoLista: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bbFinalizarClick(Sender: TObject);
     procedure TmrDateTimeTimer(Sender: TObject);
@@ -148,6 +150,7 @@ type
     procedure btnAtualiza2Click(Sender: TObject);
     procedure ActnRFluxoExecute(Sender: TObject);
     procedure ActnRCaixasExecute(Sender: TObject);
+    procedure ActnPagtoListaExecute(Sender: TObject);
   private
     { Private declarations }
     iAcesso :Integer;
@@ -168,7 +171,7 @@ uses KeyResource, IniFiles, KeyLogin, KeyObjeto, KeyUsuarioPesq,
   iMnyCompetencia, iMnySetorPesq, iMnyUnidadePesq, iMnyCustoPesq,
   iMnyCentroPesq, iMnyNegocioPesq, iMnyTipoDocPesq, iMnyTipoPesPesq,
   iMnyFormaPesq, iMnyCorrentePesq, iMnyTipoAceitePesq, iMnyPessoaPesq,
-  iMnyContaPRPesq, iMnyCaixa, iMnyRFluxo, iMnyRCaixas;
+  iMnyContaPRPesq, iMnyCaixa, iMnyRFluxo, iMnyRCaixas, iMnyPagtoLista;
 {$R *.dfm}
 
 { TFrmMain }
@@ -634,4 +637,17 @@ begin
   end;
 end;
 
+procedure TFrmMain.ActnPagtoListaExecute(Sender: TObject);
+Var
+  iNivel: Integer;
+begin
+  FrmLogin.GR_Refresh;
+
+  FrmPagtoLista := TFrmPagtoLista.Create(Application);
+  with FrmPagtoLista do
+  begin
+    ShowModal;
+    Free;
+  end;
+end;
 end.

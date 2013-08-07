@@ -24,7 +24,6 @@ uses
 
 type
   TFrmRFluxo = class(TForm)
-    ImgR: TImage;
     PgCtrlLogin: TcxPageControl;
     TbShtPrincipal: TcxTabSheet;
     cxGroupBox2: TcxGroupBox;
@@ -36,32 +35,13 @@ type
     EdtDtIni: TcxDateEdit;
     EdtDtFin: TcxDateEdit;
     FrRMain: TfrxReport;
-    QrySaldo: TSQLQuery;
-    QrySaldocax_saldo: TFMTBCDField;
-    QryDebito: TSQLQuery;
-    QryDebitomov_val: TFMTBCDField;
-    QryCredito: TSQLQuery;
-    QryCreditomov_val: TFMTBCDField;
+    QryDDiaCon: TSQLQuery;
     ClntDtStFluxo: TClientDataSet;
-    ClntDtStFluxoFlxData: TDateField;
-    ClntDtStFluxoFlxDebito: TCurrencyField;
-    ClntDtStFluxoFlxDebAcum: TCurrencyField;
-    ClntDtStFluxoFlxReceita: TCurrencyField;
-    ClntDtStFluxoFlxRecAcum: TCurrencyField;
-    ClntDtStFluxoFlxFluxo: TCurrencyField;
     DbGrd: TcxGrid;
     DbGridDBTblVw: TcxGridDBTableView;
     DbGridLvl: TcxGridLevel;
     DtSFluxo: TDataSource;
-    DbGridDBTblVwFlxData: TcxGridDBColumn;
-    DbGridDBTblVwFlxDebito: TcxGridDBColumn;
-    DbGridDBTblVwFlxDebAcum: TcxGridDBColumn;
-    DbGridDBTblVwFlxReceita: TcxGridDBColumn;
-    DbGridDBTblVwFlxRecAcum: TcxGridDBColumn;
-    DbGridDBTblVwFlxFluxo: TcxGridDBColumn;
     Shape2: TShape;
-    Shape1: TShape;
-    Label1: TLabel;
     Label2: TLabel;
     Shape3: TShape;
     Label3: TLabel;
@@ -69,9 +49,66 @@ type
     Label4: TLabel;
     Shape5: TShape;
     LblDados: TLabel;
-    Label5: TLabel;
-    Shape6: TShape;
     FrDtStFluxo: TfrxDBDataset;
+    ClntDtStFluxoDtStData: TDateField;
+    ClntDtStFluxoDtStDDiaCon: TBCDField;
+    ClntDtStFluxoDtStDDiaPrev: TBCDField;
+    ClntDtStFluxoDtStDProCon: TBCDField;
+    ClntDtStFluxoDtStDProPrev: TBCDField;
+    ClntDtStFluxoDtStDAtrCon: TBCDField;
+    ClntDtStFluxoDtStDAtrPrev: TBCDField;
+    ClntDtStFluxoDtStDTotCon: TBCDField;
+    ClntDtStFluxoDtStDTotPrev: TBCDField;
+    ClntDtStFluxoDtStDTotTot: TBCDField;
+    ClntDtStFluxoDtStDValAcu: TBCDField;
+    ClntDtStFluxoDtStRVal: TBCDField;
+    ClntDtStFluxoDtStRValAcu: TBCDField;
+    ClntDtStFluxoDtStFluxo: TBCDField;
+    DbGridDBTblVwDtStData: TcxGridDBColumn;
+    DbGridDBTblVwDtStDDiaCon: TcxGridDBColumn;
+    DbGridDBTblVwDtStDDiaPrev: TcxGridDBColumn;
+    DbGridDBTblVwDtStDProCon: TcxGridDBColumn;
+    DbGridDBTblVwDtStDProPrev: TcxGridDBColumn;
+    DbGridDBTblVwDtStDAtrCon: TcxGridDBColumn;
+    DbGridDBTblVwDtStDAtrPrev: TcxGridDBColumn;
+    DbGridDBTblVwDtStDTotCon: TcxGridDBColumn;
+    DbGridDBTblVwDtStDTotPrev: TcxGridDBColumn;
+    DbGridDBTblVwDtStDTotTot: TcxGridDBColumn;
+    DbGridDBTblVwDtStDValAcu: TcxGridDBColumn;
+    DbGridDBTblVwDtStRVal: TcxGridDBColumn;
+    DbGridDBTblVwDtStRValAcu: TcxGridDBColumn;
+    DbGridDBTblVwDtStFluxo: TcxGridDBColumn;
+    Shape7: TShape;
+    Label6: TLabel;
+    Shape8: TShape;
+    Label7: TLabel;
+    Shape9: TShape;
+    Label8: TLabel;
+    Shape10: TShape;
+    Label9: TLabel;
+    Label10: TLabel;
+    Shape11: TShape;
+    Shape12: TShape;
+    Label11: TLabel;
+    Shape13: TShape;
+    Label12: TLabel;
+    Label13: TLabel;
+    Shape14: TShape;
+    QryDDiaConmov_valor: TFMTBCDField;
+    QryDDiaPrev: TSQLQuery;
+    QryDDiaPrevmov_valor: TFMTBCDField;
+    QryDProCon: TSQLQuery;
+    QryDProPrev: TSQLQuery;
+    QryDProConmov_valor: TFMTBCDField;
+    QryDProPrevmov_valor: TFMTBCDField;
+    QryDAtrPrev: TSQLQuery;
+    QryDAtrPrevmov_valor: TFMTBCDField;
+    QryDAtrCon: TSQLQuery;
+    QryDAtrConmov_valor: TFMTBCDField;
+    QryReceita: TSQLQuery;
+    QryReceitamov_valor: TFMTBCDField;
+    EdtSaldo: TEdit;
+    LblSaldo: TLabel;
     procedure btnFecharClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FrRMainGetValue(const VarName: String; var Value: Variant);
@@ -123,107 +160,131 @@ begin
 end;
 
 procedure TFrmRFluxo.btnImprimirClick(Sender: TObject);
-var
-  dDataOpe :TDate;
-  dData1, dData2: TDate;
-  iData :Integer;
-  cDespValor, cDespAcum, cRecValor, cRecAcum, cFluxo :Currency;
-  cDespAnt, cRecAnt :Currency ;
+Var
+  dDataCorr, dDataSaldo :TDate;
+  cDesTotCon, cDesTotPre, cDesTotTot, cDesTotAcu :Currency;
+  cRec, cRecTot :Currency;
+  cFluxo :Currency;
+  sPri :String;
 begin
+  //*** Calculando Saldo
+  dDataSaldo := EdtDtIni.Date - 1;
+  ClntDtStFluxo.Open;
+  sPri := 'S';
 
-   iData := 0;
-   dDataIni := EdtDtIni.Date;
-   dDataFim := EdtDtFin.Date;
-   dDataOpe := EdtDtIni.Date -1;
+  ClntDtStFluxo.Append;
+  ClntDtStFluxoDtStData.Value := dDataSaldo;
+  ClntDtStFluxoDtStFluxo.Value := StrToCurr(EdtSaldo.Text);
+  ClntDTStFluxo.Post; 
 
-   //*** Definindo Saldo Inicial
-   while iData < 1 do
-   begin
-     with QrySaldo do
-       begin
-         Close;
-         Params.ParamByName('data').AsDate := dDataOpe;
-         Open;
-       end;
-       if CurrToStr(QrySaldocax_saldo.AsCurrency) = '0' then
-         begin
-           iData := 0;
-           dDataOpe := dDataOpe - 1;
-         end
-       else
-         begin
-           iData := 1;
-         end;
-     end;
+  dDataCorr := EdtDtIni.Date;
+  cDesTotCon  := 0;
+  cDesTotPre  := 0;
+  cDesTotTot  := 0;
+  cDesTotAcu  := 0;
 
-   with ClntDtStFluxo do
-     begin
-       Close;
-       Open;
-       Append;
-       ClntDtStFluxoFlxData.Value    := dDataOpe;
-       ClntDtStFluxoFlxDebito.Value  := 0;
-       ClntDtStFluxoFlxDebAcum.Value := 0;
-       ClntDtStFluxoFlxReceita.Value := QrySaldocax_saldo.AsCurrency;
-       ClntDtStFluxoFlxRecAcum.Value := QrySaldocax_saldo.AsCurrency;
-       ClntDtStFluxoFlxFluxo.Value   := QrySaldocax_saldo.AsCurrency;
-       Post;
-       Application.ProcessMessages;
-     end;
+  cRec := 0;
+  cRecTot := 0;
 
-   cDespValor := 0;
-   cDespAcum := 0;
-   cRecValor := 0;
-   cRecAcum := QrySaldocax_saldo.AsCurrency;
-   cFluxo  := 0;
-   cDespAnt := 0;
-   cRecAnt  := 0;
+  //*** Laço de Data
+  while dDataCorr <= EdtDtFin.Date do
+  begin
 
-   //*** Recuperando Todos os Débitos/Créditos da Data
-   while dDataIni <= dDataFim do
-   begin
-     cDespValor := 0;
-     cRecValor := 0;
-     cFluxo  := 0;
-     //*** Débito na Data
-     QryDebito.Close;
-     QryDebito.Params.ParamByName('data1').AsDate := dDataIni;
-     QryDebito.Open;
+    ClntDtStFluxo.Append;
+    ClntDtStFluxoDtStData.Value := dDataCorr;
+    //*** Despesas
+    //*** Do Dia/Consolidada
+    with QryDDiaCon do
+    begin
+      Close;
+      Params.ParamByName('data1').AsDate := dDataCorr;
+      Open;
+      ClntDtStFluxoDtStDDiaCon.Value := QryDDiaConmov_valor.AsCurrency;
+    end;
+    //*** Do Dia/Previsão
+    with QryDDiaPrev do
+    begin
+      Close;
+      Params.ParamByName('data1').AsDate := dDataCorr;
+      Open;
+      ClntDtStFluxoDtStDDiaPrev.Value := QryDDiaPrevmov_valor.AsCurrency;
+    end;
 
-     //*** Crédito na Data
-     QryCredito.Close;
-     QryCredito.Params.ParamByName('data1').AsDate := dDataIni;
-     QryCredito.Open;
+    //*** Do Prorrogada/Consolidada
+    with QryDProCon do
+    begin
+      Close;
+      Params.ParamByName('data1').AsDate := dDataCorr;
+      Open;
+      ClntDtStFluxoDtStDProCon.Value := QryDProConmov_valor.AsCurrency;
+    end;
+    //*** Do Prorrogada/Previsão
+    with QryDProPrev do
+    begin
+      Close;
+      Params.ParamByName('data1').AsDate := dDataCorr;
+      Open;
+      ClntDtStFluxoDtStDProPrev.Value := QryDProPrevmov_valor.AsCurrency;
+    end;
 
-     cDespAnt   := cDespAcum;
-     cDespValor := QryDebitomov_val.AsCurrency;
-     cDespAcum  := cDespAnt + cDespValor;
+    //*** Do Atraso/Consolidada
+    with QryDAtrCon do
+    begin
+      Close;
+      Params.ParamByName('data1').AsDate := dDataCorr;
+      Open;
+      ClntDtStFluxoDtStDAtrCon.Value := QryDAtrConmov_valor.AsCurrency;
+    end;
+    //*** Do Atraso/Previsão
+    with QryDAtrPrev do
+    begin
+      Close;
+      Params.ParamByName('data1').AsDate := dDataCorr;
+      Open;
+      ClntDtStFluxoDtStDAtrPrev.Value := QryDAtrPrevmov_valor.AsCurrency;
+    end;
 
-     cRecAnt   := cRecAcum;
-     cRecValor := QryCreditomov_val.AsCurrency;
-     cRecAcum  := cRecAnt + cRecValor;
+    //*** Receitas
+    //*** Dia
+    with QryReceita do
+    begin
+      Close;
+      Params.ParamByName('data1').AsDate := dDataCorr;
+      Open;
+      ClntDtStFluxoDtStRVal.Value := QryReceitamov_valor.AsCurrency;
+    end;
 
-     with ClntDtStFluxo do
-     begin
-       Close;
-       Open;
-       Append;
-       ClntDtStFluxoFlxData.Value    := dDataIni;
-       ClntDtStFluxoFlxDebito.Value  := cDespValor;
-       ClntDtStFluxoFlxDebAcum.Value := cDespAcum;
-       ClntDtStFluxoFlxReceita.Value := cRecValor;
-       ClntDtStFluxoFlxRecAcum.Value := cRecAcum;
-       ClntDtStFluxoFlxFluxo.Value   := cRecAcum - cDespAcum;
-       Post;
-       Application.ProcessMessages;
-     end;
-     dDataIni  := dDataIni + 1;
-   end;
+    cDesTotCon := QryDDiaConmov_valor.AsCurrency + QryDProConmov_valor.AsCurrency + QryDAtrConmov_valor.AsCurrency;
+    cDesTotPre := QryDDiaPrevmov_valor.AsCurrency + QryDProPrevmov_valor.AsCurrency + QryDAtrPrevmov_valor.AsCurrency;
+    cDesTotTot := cDesTotCon + cDesTotPre;
+    cDesTotAcu := cDesTotAcu + cDesTotTot;
 
-   Application.MessageBox('Fluxo de Caixa Gerado Com Sucesso !!!', 'Confirmação', MB_OK+MB_ICONINFORMATION);
+     if sPri = 'S' then
+      begin
+        cRec := QryReceitamov_valor.AsCurrency + StrToCurr(EdtSaldo.Text);
+        sPri := 'N';
+      end
+    else
+      cRec := QryReceitamov_valor.AsCurrency;
+      
+    cRecTot := cRecTot + cRec;
 
-   if FrRMain.PrepareReport then FrRMain.ShowPreparedReport;
+    ClntDtStFluxoDtStDTotCon.Value  := cDesTotCon;
+    ClntDtStFluxoDtStDTotPrev.Value := cDesTotPre;
+    ClntDtStFluxoDtStDTotTot.Value  := cDesTotTot;
+    ClntDtStFluxoDtStDValAcu.Value  := ClntDtStFluxoDtStDValAcu.Value + cDesTotAcu;
 
+    ClntDtStFluxoDtStRVal.Value := cRec;
+    ClntDtStFluxoDtStRValAcu.Value := cRecTot;
+
+    cFluxo := cRecTot - ClntDtStFluxoDtStDValAcu.Value;
+
+    ClntDtStFluxoDtStFluxo.Value := cFluxo;
+
+    ClntDtStFluxo.Post;
+    Application.ProcessMessages;
+    dDataCorr := dDataCorr + 1;
+  end;
 end;
 
 end.
