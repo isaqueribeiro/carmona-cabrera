@@ -1,0 +1,7 @@
+[sandrobriglia]
+AWSAccessKeyId=AKIAJWS5LOKHFUKW2UVQ
+AWSSecretKey=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
+
+[financeiro]
+AWSAccessKeyId=AKIAIJJUG74B4XNYEZ4A
+AWSSecretKey=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
