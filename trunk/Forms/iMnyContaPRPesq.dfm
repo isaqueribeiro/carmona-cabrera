@@ -1,6 +1,6 @@
 object FrmContaPRPesq: TFrmContaPRPesq
-  Left = 140
-  Top = 215
+  Left = 163
+  Top = 90
   Width = 1107
   Height = 581
   BorderIcons = [biSystemMenu]
@@ -276,6 +276,29 @@ object FrmContaPRPesq: TFrmContaPRPesq
           object DbGridDBTblVwmov_data_pagto: TcxGridDBColumn
             Caption = 'Data Pagto'
             DataBinding.FieldName = 'cax_data'
+          end
+          object DbGridDBTblVwcax_num: TcxGridDBColumn
+            Caption = 'Caixa'
+            DataBinding.FieldName = 'cax_num'
+          end
+          object DbGridDBTblVwcax_seq: TcxGridDBColumn
+            Caption = 'Seq'
+            DataBinding.FieldName = 'cax_seq'
+          end
+          object DbGridDBTblVwforma: TcxGridDBColumn
+            Caption = 'Forma'
+            DataBinding.FieldName = 'fpg_nome'
+            Width = 88
+          end
+          object DbGridDBTblVwtipo: TcxGridDBColumn
+            Caption = 'Tipo'
+            DataBinding.FieldName = 'tip_nome'
+            Width = 85
+          end
+          object DbGridDBTblVwunidade: TcxGridDBColumn
+            Caption = 'Unidade'
+            DataBinding.FieldName = 'uni_nome'
+            Width = 96
           end
         end
         object DbGridLvl: TcxGridLevel
@@ -2080,6 +2103,10 @@ object FrmContaPRPesq: TFrmContaPRPesq
       '  b.`mov_documento`,'
       '  0 as imprimir,'
       '  b.mov_tipo,'
+      '  case '
+      '    when b.mov_tipo = 0 then '#39'Pagar'#39
+      '    else '#39'Receber'#39
+      '  end as '#39'PR'#39','
       '  substring(b.mov_inc from 19 for 60) as mov_inclusao,'
       '  e.`cus_nome`,'
       '  f.`neg_nome`,'
@@ -2087,8 +2114,12 @@ object FrmContaPRPesq: TFrmContaPRPesq
       '  h.`cen_nome`,'
       '  i.`con_nome`,'
       '  j.`set_nome`,'
-      '  m.`cax_data`'
-      '   '
+      '  m.`cax_data`,'
+      '  m.`cax_num`,'
+      '  l.`cax_seq`,'
+      '  n.`fpg_nome`,'
+      '  o.`tip_nome`,'
+      '  p.`uni_nome`  as unidade  '
       'from'
       '  `mny_movimento_item` a'
       '  join `mny_movimento` b on( b.`mov_codigo`=a.`mov_codigo`'
@@ -2109,6 +2140,17 @@ object FrmContaPRPesq: TFrmContaPRPesq
       '  left join `mny_caixa_item` l on( l.`mov_codigo`=a.`mov_codigo`'
       '                               and l.`mov_item`= a.`mov_item`)'
       '  left join `mny_caixa`      m on( m.`cax_num`=l.`cax_num`)'
+      '  '
+      
+        '  left join `mny_forma_pagto` n on(n.`fpg_codigo`=a.`fpg_codigo`' +
+        ')'
+      
+        '  left join `mny_tipo_documento` o on( o.`tip_codigo`=a.`tip_doc' +
+        '_codigo`)'
+      
+        '  left join `mny_unidade`     p on(p.`uni_codigo`=m.`uni_codigo`' +
+        ')'
+      '  '
       'where'
       '  a.`mov_data_prev` between :data1 and :data2'
       'order by '
@@ -2209,6 +2251,28 @@ object FrmContaPRPesq: TFrmContaPRPesq
     end
     object QryMastercax_data: TDateField
       FieldName = 'cax_data'
+    end
+    object QryMasterPR: TStringField
+      FieldName = 'PR'
+      Size = 7
+    end
+    object QryMastercax_num: TIntegerField
+      FieldName = 'cax_num'
+    end
+    object QryMastercax_seq: TSmallintField
+      FieldName = 'cax_seq'
+    end
+    object QryMasterfpg_nome: TStringField
+      FieldName = 'fpg_nome'
+      Size = 60
+    end
+    object QryMastertip_nome: TStringField
+      FieldName = 'tip_nome'
+      Size = 60
+    end
+    object QryMasterunidade: TStringField
+      FieldName = 'unidade'
+      Size = 60
     end
   end
   object DtStPvdMaster: TDataSetProvider
@@ -2317,6 +2381,28 @@ object FrmContaPRPesq: TFrmContaPRPesq
     end
     object ClntDtStMastercax_data: TDateField
       FieldName = 'cax_data'
+    end
+    object ClntDtStMasterPR: TStringField
+      FieldName = 'PR'
+      Size = 7
+    end
+    object ClntDtStMastercax_num: TIntegerField
+      FieldName = 'cax_num'
+    end
+    object ClntDtStMastercax_seq: TSmallintField
+      FieldName = 'cax_seq'
+    end
+    object ClntDtStMasterfpg_nome: TStringField
+      FieldName = 'fpg_nome'
+      Size = 60
+    end
+    object ClntDtStMastertip_nome: TStringField
+      FieldName = 'tip_nome'
+      Size = 60
+    end
+    object ClntDtStMasterunidade: TStringField
+      FieldName = 'unidade'
+      Size = 60
     end
   end
   object QryMax: TSQLQuery

@@ -1522,6 +1522,8 @@ object FrmContaPR: TFrmContaPR
       '  a.`com_nome`'
       'from'
       '  `sys_competencia` a'
+      'where'
+      '  a.`sit_codigo` = 1'
       'order by 2')
     SQLConnection = FrmLogin.conWebMaster
     Left = 161
