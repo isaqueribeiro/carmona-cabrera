@@ -211,6 +211,23 @@ type
     btnDocs: TcxButton;
     PpMnu: TPopupMenu;
     PpMuIncluir: TMenuItem;
+    QryMasterPR: TStringField;
+    QryMastercax_num: TIntegerField;
+    QryMastercax_seq: TSmallintField;
+    QryMasterfpg_nome: TStringField;
+    QryMastertip_nome: TStringField;
+    QryMasterunidade: TStringField;
+    ClntDtStMasterPR: TStringField;
+    ClntDtStMastercax_num: TIntegerField;
+    ClntDtStMastercax_seq: TSmallintField;
+    ClntDtStMasterfpg_nome: TStringField;
+    ClntDtStMastertip_nome: TStringField;
+    ClntDtStMasterunidade: TStringField;
+    DbGridDBTblVwcax_num: TcxGridDBColumn;
+    DbGridDBTblVwcax_seq: TcxGridDBColumn;
+    DbGridDBTblVwforma: TcxGridDBColumn;
+    DbGridDBTblVwtipo: TcxGridDBColumn;
+    DbGridDBTblVwunidade: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
     procedure ActnIncExecute(Sender: TObject);
     procedure ActnAltExecute(Sender: TObject);
@@ -603,6 +620,7 @@ end;
 
 procedure TFrmContaPRPesq.PpMuIncluirClick(Sender: TObject);
 begin
+  FrmLogin.GR_Refresh;
   FrmPagtoListaView := TFrmPagtoListaView.Create(Application);
   with FrmPagtoListaView do
   begin

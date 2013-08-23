@@ -34,7 +34,6 @@ type
     cxLabel2: TcxLabel;
     EdtDtIni: TcxDateEdit;
     EdtDtFin: TcxDateEdit;
-    FrRMain: TfrxReport;
     QryDDiaCon: TSQLQuery;
     ClntDtStFluxo: TClientDataSet;
     DbGrd: TcxGrid;
@@ -49,7 +48,6 @@ type
     Label4: TLabel;
     Shape5: TShape;
     LblDados: TLabel;
-    FrDtStFluxo: TfrxDBDataset;
     ClntDtStFluxoDtStData: TDateField;
     ClntDtStFluxoDtStDDiaCon: TBCDField;
     ClntDtStFluxoDtStDDiaPrev: TBCDField;
@@ -107,19 +105,30 @@ type
     QryDAtrConmov_valor: TFMTBCDField;
     QryReceita: TSQLQuery;
     QryReceitamov_valor: TFMTBCDField;
-    EdtSaldo: TEdit;
     LblSaldo: TLabel;
+    EdtSaldo: TcxTextEdit;
+    FrMaster: TfrxReport;
+    FrDtStFluxo: TfrxDBDataset;
+    btnLimpar: TButton;
     procedure btnFecharClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FrRMainGetValue(const VarName: String; var Value: Variant);
     procedure btnImprimirClick(Sender: TObject);
+    procedure FrMasterGetValue(const VarName: String; var Value: Variant);
+    procedure btnLimparClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     dDataIni, dDataFim :TDate;
+    //*** Totais
+    DDC, DDP, DDT :Currency;
+    PC, PP, PT :Currency;
+    AC, AP, AT :Currency;
+    TC, TP, TT :Currency;
+    FD, FR, FS :Currency;
+    cSaldo :Currency;
   end;
-
 var
   FrmRFluxo: TFrmRFluxo;
 
@@ -166,7 +175,11 @@ Var
   cRec, cRecTot :Currency;
   cFluxo :Currency;
   sPri :String;
+
 begin
+
+  btnLimparClick(Self);
+
   //*** Calculando Saldo
   dDataSaldo := EdtDtIni.Date - 1;
   ClntDtStFluxo.Open;
@@ -284,6 +297,93 @@ begin
     ClntDtStFluxo.Post;
     Application.ProcessMessages;
     dDataCorr := dDataCorr + 1;
+  end;
+
+  //*** Somando Colunas
+  DDC := 0.0;
+  DDP := 0.0;
+  DDT := 0.0;
+  PC  := 0.0;
+  PP  := 0.0;
+  PT  := 0.0;
+  AC  := 0.0;
+  AP  := 0.0;
+  AT  := 0.0;
+  TC  := 0.0;
+  TP  := 0.0;
+  TT  := 0.0;
+  FD  := 0.0;
+  FR  := 0.0;
+  FS  := 0.0;
+  with ClntDtStFluxo do
+  begin
+    First;
+    while Not EOF do
+    begin
+      DDC := DDC + ClntDtStFluxoDtStDDiaCon.Value;
+      DDP := DDP + ClntDtStFluxoDtStDDiaPrev.Value;
+      PC  := PC  + ClntDtStFluxoDtStDProCon.Value;
+      PP  := PP  + ClntDtStFluxoDtStDDiaPrev.Value;
+      AC  := AC  + ClntDtStFluxoDtStDAtrCon.Value;
+      AP  := AP  + ClntDtStFluxoDtStDAtrPrev.Value;
+      FR  := FR  + ClntDtStFluxoDtStRVal.Value;
+      Next;
+    end;
+    DDT := DDC + DDP;
+    PT  := PC  + PP;
+    AT  := AC  + AP;
+    TC  := DDC + PC + AC;
+    TP  := DDP + PT + AP;
+    TT  := TC  + TP;
+
+    FD  := TT;
+    FS  := FR - FD;
+  end;
+  if FrMaster.PrepareReport then FrMaster.ShowPreparedReport;
+end;
+
+procedure TFrmRFluxo.FrMasterGetValue(const VarName: String;
+  var Value: Variant);
+begin
+  if VarName = 'sUsuario' then Value := FrmMain.USR_Nome;
+  if VarName = 'sData' then Value := FormatDateTime('dd/mm/yyyy', Date);
+  if VarName = 'sHora' then Value := FormatDateTime('hh:mm:ss', Time);
+
+  if VarName = 'dDataIni' then Value := FormatDateTime('dd/mm/yyyy', EdtDtIni.Date);
+  if VarName = 'dDataFim' then Value := FormatDateTime('dd/mm/yyyy', EdtDtFin.Date);
+
+  cSaldo := StrToCurr(EdtSaldo.Text);
+  if VarName = 'sSaldo' then Value := FormatFloat('#,###,##0.00', cSaldo);
+
+  if VarName = 'sDC' then Value := FormatFloat('#,###,##0.00', DDC);
+  if VarName = 'sDP' then Value := FormatFloat('#,###,##0.00', DDP);
+  if VarName = 'sDT' then Value := FormatFloat('#,###,##0.00', DDT);
+  if VarName = 'sPC' then Value := FormatFloat('#,###,##0.00', PC);
+  if VarName = 'sPP' then Value := FormatFloat('#,###,##0.00', PP);
+  if VarName = 'sPT' then Value := FormatFloat('#,###,##0.00', PT);
+  if VarName = 'sAC' then Value := FormatFloat('#,###,##0.00', AC);
+  if VarName = 'sAP' then Value := FormatFloat('#,###,##0.00', AP);
+  if VarName = 'sAT' then Value := FormatFloat('#,###,##0.00', AT);
+  if VarName = 'sTC' then Value := FormatFloat('#,###,##0.00', TC);
+  if VarName = 'sTP' then Value := FormatFloat('#,###,##0.00', TP);
+  if VarName = 'sTT' then Value := FormatFloat('#,###,##0.00', TT);
+  if VarName = 'sFD' then Value := FormatFloat('#,###,##0.00', FD);
+  if VarName = 'sFR' then Value := FormatFloat('#,###,##0.00', FR);
+  if VarName = 'sFS' then Value := FormatFloat('#,###,##0.00', FS);
+end;
+
+procedure TFrmRFluxo.btnLimparClick(Sender: TObject);
+begin
+  with ClntDtStFluxo do
+  begin
+    Close;
+    Open;
+    First;
+    while not Eof do
+    begin
+      Delete;
+    end;
+    ShowMessage('Dados Precisam Ser Revalidados');
   end;
 end;
 
