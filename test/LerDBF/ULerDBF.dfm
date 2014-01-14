@@ -66,6 +66,7 @@ object frmLerDBF: TfrmLerDBF
     TitleFont.Style = []
   end
   object VKDBFNTX: TVKDBFNTX
+    OEM = True
     SetDeleted = False
     FastPostRecord = False
     LookupOptions = []
