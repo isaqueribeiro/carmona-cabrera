@@ -92,15 +92,17 @@ begin
     end;
   end;
 
-  //MyXLWorksheet.Cells.(EmptyParam, EmptyParam).Activate;
+  MyXLWorkbook.Worksheets.Item['Plan1'].Range['A11'].Select;
 
   MyXLWorkbook.Save;
 
-  // Faça algura coisa
+  XLApp.DisplayAlerts[LCID] := True;
 
   XLBook.Disconnect;
   XLApp.Quit;
   XLApp.Disconnect;
+
+  ShowMessage( 'Planilha modificada com sucesso!' + #13 + sArquivo );
 end;
 
 end.
