@@ -8,6 +8,7 @@ object ServerContainer: TServerContainer
   end
   object DSAuthenticationManager: TDSAuthenticationManager
     OnUserAuthenticate = DSAuthenticationManagerUserAuthenticate
+    OnUserAuthorize = DSAuthenticationManagerUserAuthorize
     Roles = <>
     Left = 96
     Top = 61

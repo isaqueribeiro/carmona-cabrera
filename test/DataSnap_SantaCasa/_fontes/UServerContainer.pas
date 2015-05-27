@@ -20,6 +20,8 @@ type
     procedure DSAuthenticationManagerUserAuthenticate(Sender: TObject;
       const Protocol, Context, User, Password: string; var valid: Boolean;
       UserRoles: TStrings);
+    procedure DSAuthenticationManagerUserAuthorize(Sender: TObject;
+      AuthorizeEventObject: TDSAuthorizeEventObject; var valid: Boolean);
   private
     { Private declarations }
   public
@@ -36,11 +38,11 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, UServerMethods;
+  Winapi.Windows, Datasnap.DSSession, UServerMethods;
 
 var
-  FModule: TComponent;
-  FDSServer: TDSServer;
+  FModule   : TComponent;
+  FDSServer : TDSServer;
   FDSAuthenticationManager: TDSAuthenticationManager;
 
 function DSServer: TDSServer;
@@ -76,12 +78,36 @@ end;
 procedure TServerContainer.DSAuthenticationManagerUserAuthenticate(
   Sender: TObject; const Protocol, Context, User, Password: string;
   var valid: Boolean; UserRoles: TStrings);
+//var
+//  Secao : TDSSession;
 begin
-  { TODO : Validate the client user and password.
-    If role-based authorization is needed, add role names to the UserRoles parameter  }
   valid := True;
+{
+  valid := (User = Password) and (Trim(User) <> EmptyStr);
+
+  if valid then
+  begin
+    Secao := TDSSessionManager.GetThreadSession;
+    Secao.PutData('username', User);
+    UserRoles.Add('standart');
+    if (Trim(User) = 'admin') then
+      UserRoles.Add('admin');
+  end;
+}
 end;
 
+
+procedure TServerContainer.DSAuthenticationManagerUserAuthorize(Sender: TObject;
+  AuthorizeEventObject: TDSAuthorizeEventObject; var valid: Boolean);
+//var
+//  Secao : TDSSession;
+begin
+  valid := True;
+{
+  Secao := TDSSessionManager.GetThreadSession;
+  valid := (AuthorizeEventObject.UserName = Secao.GetData('username'));
+}
+end;
 
 initialization
   FModule := TServerContainer.Create(nil);
