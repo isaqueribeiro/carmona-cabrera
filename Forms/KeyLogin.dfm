@@ -1209,15 +1209,15 @@ object FrmLogin: TFrmLogin
     Hint = 'Salvar'
     Caption = '&OK'
     Default = True
+    LookAndFeel.Kind = lfOffice11
+    TabOrder = 4
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
     OnClick = btnOKClick
-    LookAndFeel.Kind = lfOffice11
   end
   object btnFechar: TcxButton
     Left = 224
@@ -1227,15 +1227,15 @@ object FrmLogin: TFrmLogin
     Hint = 'Pesquisar'
     Cancel = True
     Caption = '&Encerrar'
+    LookAndFeel.Kind = lfOffice11
+    TabOrder = 5
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 5
     OnClick = btnFecharClick
-    LookAndFeel.Kind = lfOffice11
   end
   object EdtBanco: TcxTextEdit
     Left = 169
@@ -1413,9 +1413,7 @@ object FrmLogin: TFrmLogin
   object conWebMaster: TSQLConnection
     ConnectionName = 'MySQLConnection'
     DriverName = 'MySQL50'
-    GetDriverFunc = 'getSQLDriverMYSQL50'
     KeepConnection = False
-    LibraryName = 'dbxopenmysql50.dll'
     LoginPrompt = False
     Params.Strings = (
       'DriverName=MySQL50'
@@ -1426,7 +1424,6 @@ object FrmLogin: TFrmLogin
       'BlobSize=-1'
       'ErrorResourceFile='
       'LocaleCode=0000')
-    VendorLib = 'libmysql.dll'
     Left = 336
     Top = 48
   end
@@ -1578,6 +1575,7 @@ object FrmLogin: TFrmLogin
       'emp_financeiro=emp_financeiro'
       'emp_diretor=emp_diretor')
     DataSet = QryEmpresa
+    BCDToCurrency = False
     Left = 344
     Top = 288
   end
