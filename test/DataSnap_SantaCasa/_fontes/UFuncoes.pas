@@ -16,6 +16,7 @@ Uses
 
   function EncriptSenha(const aValue, aKey : String) : String;
   function DecriptarSenha(const aValue, aKey : String; const aAlertar : Boolean = FALSE) : String;
+  function IsEncriptSenha(const aValue, aKey : String) : Boolean;
 
   function GetGuidID(const Conn : TFDConnection) : String;
 
@@ -76,6 +77,26 @@ begin
   finally
     Result := sRetorno;
 
+    IdEncoder.Free;
+    IdDecoder.Free;
+  end;
+end;
+
+function IsEncriptSenha(const aValue, aKey : String) : Boolean;
+var
+  sKeyChar   ,
+  sStrEncode : String;
+  IdEncoder  : TIdEncoderMIME;
+  IdDecoder  : TIdDecoderMIME;
+begin
+  IdEncoder := TIdEncoderMIME.Create(nil);
+  IdDecoder := TIdDecoderMIME.Create(nil);
+  try
+    sKeyChar   := IdEncoder.EncodeString(aKey);
+    sStrEncode := aValue;
+
+    Result := (Pos(sKeyChar, sStrEncode) > 0);
+  finally
     IdEncoder.Free;
     IdDecoder.Free;
   end;

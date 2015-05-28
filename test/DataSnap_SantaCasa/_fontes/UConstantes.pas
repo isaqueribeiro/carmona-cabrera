@@ -11,6 +11,7 @@ Uses
 
 const
   KEY_PASSWORD  = 'Eu sei que meu Redentor vive!';
+  USER_ADMIN    = 'admin';
   USER_NAME     = 'jonh_conner';
   USER_PASSWORD = 'masterkey@!21';
 
@@ -21,6 +22,9 @@ const
   INI_CONEXAO_DB_BASE     = 'Base';
   INI_CONEXAO_DB_USUARIO  = 'Usuario';
   INI_CONEXAO_DB_SENHA    = 'Senha';
+
+  table_perfil  = 'sys_perfil';
+  table_usuario = 'sys_usuario';
 
 implementation
 

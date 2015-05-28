@@ -5,6 +5,7 @@ interface
 uses
   UFuncoesFormulario, Winapi.Messages, System.SysUtils, System.Variants, IniFiles,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.Clipbrd,
   Vcl.AppEvnts, Vcl.StdCtrls, IdHTTPWebBrokerBridge, Web.HTTPApp, Vcl.ExtCtrls,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
@@ -49,6 +50,7 @@ type
     procedure BtnTestarConexaoClick(Sender: TObject);
     procedure BtnSalvarConexaoDBClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     FServer : TIdHTTPWebBrokerBridge;
     FArquivoConexao : TIniFile;
@@ -122,10 +124,23 @@ begin
     SantaCasaConnection.Connected := False;
 end;
 
+procedure TFrmServerMain.Button2Click(Sender: TObject);
+begin
+  Conectar;
+  Formularios.ShowModalForm(Self, 'FrmUsuario');
+
+  if SantaCasaConnection.Connected then
+    SantaCasaConnection.Connected := False;
+end;
+
 procedure TFrmServerMain.ButtonOpenBrowserClick(Sender: TObject);
 var
-  LURL: string;
+  LURL ,
+  sPwd : String;
 begin
+  sPwd := EncriptSenha(KEY_PASSWORD, EmptyStr);
+  Clipboard.AsText := sPwd;
+
   StartServer;
   LURL := Format('http://localhost:%s', [EdtPortaServico.Text]);
   ShellExecute(0, nil, PChar(LURL), nil, nil, SW_SHOWNOACTIVATE);

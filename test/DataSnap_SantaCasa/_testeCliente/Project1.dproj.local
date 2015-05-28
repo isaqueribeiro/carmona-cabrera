@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/01/30 11:24:08.000.040,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/01/30 12:10:36.000.265,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/01/30 12:12:50.000.726,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/02/02 14:07:28.000.573,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/02/02 14:32:57.000.998,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/02/27 19:42:39.000.252,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/02/27 20:57:22.000.359,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/02/27 21:23:10.000.877,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/03/25 10:32:51.000.401,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/03/25 10:42:08.000.883,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/03/27 00:39:10.000.479,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/05/19 12:32:47.000.963,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/05/28 14:57:01.000.632,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/05/28 14:58:31.000.747,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\ClientClassesUnit1.pas</Transaction>
+    <Transaction>2015/05/28 14:58:33.000.104,=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\ClientModuleUnit1.pas</Transaction>
+    <Transaction>2015/05/28 15:30:34.000.975,D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Unit1.dfm=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2015/05/28 15:30:34.000.975,D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Unit1.pas=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/05/28 15:30:36.000.162,D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientClassesUnit1.pas=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\ClientClassesUnit1.pas</Transaction>
+    <Transaction>2015/05/28 15:30:37.000.424,D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientModuleUnit1.dfm=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\ClientModuleUnit1.dfm</Transaction>
+    <Transaction>2015/05/28 15:30:37.000.424,D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientModuleUnit1.pas=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\ClientModuleUnit1.pas</Transaction>
+    <Transaction>2015/05/28 15:30:38.000.514,D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Project1.dproj=C:\Users\Isaque\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2015/05/28 15:59:00.846,=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

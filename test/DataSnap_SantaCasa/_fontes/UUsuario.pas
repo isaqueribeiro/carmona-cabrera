@@ -1,4 +1,4 @@
-unit UPerfilAcesso;
+unit UUsuario;
 
 interface
 
@@ -12,23 +12,25 @@ uses
   Vcl.StdCtrls, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids;
 
 type
-  TFrmPerfilAcesso = class(TForm)
-    QryPerfil: TFDQuery;
+  TFrmUsuario = class(TForm)
+    QryUsuario: TFDQuery;
     PgcControle: TPageControl;
     TbsPerfil: TTabSheet;
-    DtsPerfil: TDataSource;
+    DtsUsuario: TDataSource;
     dbgTabela: TDBGrid;
     GroupBox1: TGroupBox;
     DBNavigator: TDBNavigator;
     PnlFinal: TPanel;
     ButtonClose: TButton;
-    UpdPerfil: TFDUpdateSQL;
+    UpdUsuario: TFDUpdateSQL;
     EdtBusca: TEdit;
     LblBusca: TLabel;
     BtnPesquisar: TButton;
+    QryPerfil: TFDQuery;
+    DtsPerfil: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure QryPerfilNewRecord(DataSet: TDataSet);
+    procedure QryUsuarioNewRecord(DataSet: TDataSet);
     procedure BtnPesquisarClick(Sender: TObject);
     procedure dbgTabelaKeyPress(Sender: TObject; var Key: Char);
     procedure DBNavigatorClick(Sender: TObject; Button: TNavigateBtn);
@@ -41,28 +43,28 @@ type
   end;
 
 var
-  FrmPerfilAcesso: TFrmPerfilAcesso;
+  FrmUsuario: TFrmUsuario;
 
 implementation
 
 {$R *.dfm}
 
 uses
-  UServerMain, UFuncoes, UPerfilAcessoCadastro;
+  UServerMain, UFuncoes, UUsuarioCadastro;
 
-procedure TFrmPerfilAcesso.BtnPesquisarClick(Sender: TObject);
+procedure TFrmUsuario.BtnPesquisarClick(Sender: TObject);
 begin
-  with QryPerfil do
+  with QryUsuario do
   begin
     if not Active then
       Open;
 
-    if LocateEx('ds_perfil like ' + QuotedStr(EdtBusca.Text + '%'), [lxoPartialKey, lxoCaseInsensitive]) then
+    if LocateEx('nm_login like ' + QuotedStr(EdtBusca.Text + '%'), [lxoPartialKey, lxoCaseInsensitive]) then
       dbgTabela.SetFocus;
   end;
 end;
 
-procedure TFrmPerfilAcesso.dbgTabelaKeyPress(Sender: TObject; var Key: Char);
+procedure TFrmUsuario.dbgTabelaKeyPress(Sender: TObject; var Key: Char);
 begin
   if (Key in ['a'..'z', 'A'..'Z', #32]) then
   begin
@@ -72,13 +74,13 @@ begin
   end;
 end;
 
-procedure TFrmPerfilAcesso.dbgTabelaTitleClick(Column: TColumn);
+procedure TFrmUsuario.dbgTabelaTitleClick(Column: TColumn);
 begin
-  if QryPerfil.Active then
-    QryPerfil.IndexFieldNames := Column.FieldName;
+  if QryUsuario.Active then
+    QryUsuario.IndexFieldNames := Column.FieldName;
 end;
 
-procedure TFrmPerfilAcesso.DBNavigatorClick(Sender: TObject;
+procedure TFrmUsuario.DBNavigatorClick(Sender: TObject;
   Button: TNavigateBtn);
 begin
   Case Button of
@@ -88,10 +90,13 @@ begin
     nbLast: ;
 
     nbInsert, nbEdit:
-      if CadastroPerfil(Self) then
-        QryPerfil.Post
+      if CadastroUsuario(Self) then
+      begin
+        QryUsuario.Post;
+        QryUsuario.Refresh;
+      end
       else
-        QryPerfil.Cancel;
+        QryUsuario.Cancel;
 
     nbDelete: ;
     nbPost: ;
@@ -102,14 +107,15 @@ begin
   end;
 end;
 
-procedure TFrmPerfilAcesso.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFrmUsuario.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
 end;
 
-procedure TFrmPerfilAcesso.FormCreate(Sender: TObject);
+procedure TFrmUsuario.FormCreate(Sender: TObject);
 begin
   try
+    QryUsuario.Open;
     QryPerfil.Open;
   except
     On E : Exception do
@@ -117,16 +123,17 @@ begin
   end;
 end;
 
-procedure TFrmPerfilAcesso.QryPerfilNewRecord(DataSet: TDataSet);
+procedure TFrmUsuario.QryUsuarioNewRecord(DataSet: TDataSet);
 begin
-  with QryPerfil do
+  with QryUsuario do
   begin
-    FieldByName('id_perfil').AsString  := GetGuidID(TFDConnection(Connection));
-    FieldByName('sn_perfil').AsInteger := 1;
+    FieldByName('id_usuario').AsString  := GetGuidID(TFDConnection(Connection));
+    FieldByName('sn_ativo').AsInteger         := 1;
+    FieldByName('sn_alterar_senha').AsInteger := 1;
   end;
 end;
 
 initialization
-  Formularios.RegisterForm('FrmPerfilAcesso', TFrmPerfilAcesso);
+  Formularios.RegisterForm('FrmUsuario', TFrmUsuario);
 
 end.

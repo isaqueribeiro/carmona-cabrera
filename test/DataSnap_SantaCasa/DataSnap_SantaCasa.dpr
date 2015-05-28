@@ -16,7 +16,10 @@ uses
   UFuncoes in '_fontes\UFuncoes.pas',
   UFuncoesFormulario in '_fontes\UFuncoesFormulario.pas',
   UObserverInterface in '_fontes\UObserverInterface.pas',
-  UPerfilAcesso in '_fontes\UPerfilAcesso.pas' {FrmPerfilAcesso};
+  UPerfilAcesso in '_fontes\UPerfilAcesso.pas' {FrmPerfilAcesso},
+  UPerfilAcessoCadastro in '_fontes\UPerfilAcessoCadastro.pas' {FrmPerfilAcessoCadastro},
+  UUsuario in '_fontes\UUsuario.pas' {FrmUsuario},
+  UUsuarioCadastro in '_fontes\UUsuarioCadastro.pas' {FrmUsuarioCadastro};
 
 {$R *.res}
 

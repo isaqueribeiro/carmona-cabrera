@@ -210,6 +210,7 @@ object FrmServerMain: TFrmServerMain
       Height = 25
       Caption = 'Usu'#225'rios do sistema'
       TabOrder = 1
+      OnClick = Button2Click
     end
     object Button3: TButton
       Left = 16

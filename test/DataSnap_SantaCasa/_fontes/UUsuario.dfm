@@ -1,8 +1,8 @@
-object FrmPerfilAcesso: TFrmPerfilAcesso
+object FrmUsuario: TFrmUsuario
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'Tabela de Perfis de Acesso aos Sistemas'
+  Caption = 'Tabela de Usu'#225'rios dos Sistemas'
   ClientHeight = 354
   ClientWidth = 656
   Color = clBtnFace
@@ -36,7 +36,7 @@ object FrmPerfilAcesso: TFrmPerfilAcesso
         Width = 636
         Height = 207
         Align = alClient
-        DataSource = DtsPerfil
+        DataSource = DtsUsuario
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgTitleClick, dgTitleHotTrack]
         ReadOnly = True
         TabOrder = 0
@@ -50,22 +50,36 @@ object FrmPerfilAcesso: TFrmPerfilAcesso
         Columns = <
           item
             Expanded = False
-            FieldName = 'id_perfil'
+            FieldName = 'id_usuario'
             Title.Caption = 'ID'
-            Width = 250
+            Width = 230
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nm_login'
+            Title.Caption = 'Login'
+            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ds_perfil'
-            Title.Caption = 'Descri'#231#227'o'
-            Width = 300
+            Title.Caption = 'Perfil de acesso'
+            Width = 200
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nm_usuario'
+            Title.Caption = 'Nome completo'
+            Width = 350
             Visible = True
           end
           item
             Alignment = taCenter
             Expanded = False
-            FieldName = 'sn_perfil'
+            FieldName = 'sn_ativo'
             Title.Alignment = taCenter
             Title.Caption = 'Ativo?'
             Width = 40
@@ -82,12 +96,12 @@ object FrmPerfilAcesso: TFrmPerfilAcesso
         Caption = 'Controle'
         TabOrder = 1
         object LblBusca: TLabel
-          Left = 331
+          Left = 303
           Top = 29
-          Width = 28
+          Width = 56
           Height = 13
           Alignment = taRightJustify
-          Caption = 'Busca'
+          Caption = 'Busca Login'
           FocusControl = EdtBusca
         end
         object DBNavigator: TDBNavigator
@@ -95,7 +109,7 @@ object FrmPerfilAcesso: TFrmPerfilAcesso
           Top = 19
           Width = 250
           Height = 33
-          DataSource = DtsPerfil
+          DataSource = DtsUsuario
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
@@ -142,42 +156,70 @@ object FrmPerfilAcesso: TFrmPerfilAcesso
       TabOrder = 0
     end
   end
-  object QryPerfil: TFDQuery
-    OnNewRecord = QryPerfilNewRecord
+  object QryUsuario: TFDQuery
+    OnNewRecord = QryUsuarioNewRecord
     Connection = FrmServerMain.SantaCasaConnection
     Transaction = FrmServerMain.SantaCasaTransaction
     UpdateTransaction = FrmServerMain.SantaCasaTransaction
-    UpdateObject = UpdPerfil
+    UpdateObject = UpdUsuario
+    SQL.Strings = (
+      'Select '
+      '  u.*, p.ds_perfil '
+      'from sys_usuario u'
+      '  inner join sys_perfil p on (p.id_perfil = u.id_perfil)')
+    Left = 336
+    Top = 96
+  end
+  object DtsUsuario: TDataSource
+    DataSet = QryUsuario
+    Left = 336
+    Top = 144
+  end
+  object UpdUsuario: TFDUpdateSQL
+    Connection = FrmServerMain.SantaCasaConnection
+    InsertSQL.Strings = (
+      'INSERT INTO skynet.sys_usuario'
+      '(id_usuario, nm_login, ds_senha, id_perfil, '
+      '  nm_usuario, sn_ativo, sn_alterar_senha)'
+      
+        'VALUES (:NEW_id_usuario, :NEW_nm_login, :NEW_ds_senha, :NEW_id_p' +
+        'erfil, '
+      '  :NEW_nm_usuario, :NEW_sn_ativo, :NEW_sn_alterar_senha)')
+    ModifySQL.Strings = (
+      'UPDATE skynet.sys_usuario'
+      
+        'SET id_usuario = :NEW_id_usuario, nm_login = :NEW_nm_login, ds_s' +
+        'enha = :NEW_ds_senha, '
+      '  id_perfil = :NEW_id_perfil, nm_usuario = :NEW_nm_usuario, '
+      
+        '  sn_ativo = :NEW_sn_ativo, sn_alterar_senha = :NEW_sn_alterar_s' +
+        'enha'
+      'WHERE id_usuario = :OLD_id_usuario')
+    DeleteSQL.Strings = (
+      'DELETE FROM skynet.sys_usuario'
+      'WHERE id_usuario = :OLD_id_usuario')
+    FetchRowSQL.Strings = (
+      
+        'SELECT id_usuario, nm_login, ds_senha, id_perfil, nm_usuario, sn' +
+        '_ativo, '
+      '  sn_alterar_senha'
+      'FROM skynet.sys_usuario'
+      'WHERE id_usuario = :id_usuario')
+    Left = 368
+    Top = 96
+  end
+  object QryPerfil: TFDQuery
+    Connection = FrmServerMain.SantaCasaConnection
+    Transaction = FrmServerMain.SantaCasaTransaction
+    UpdateTransaction = FrmServerMain.SantaCasaTransaction
     SQL.Strings = (
       'Select * from sys_perfil')
-    Left = 336
+    Left = 472
     Top = 96
   end
   object DtsPerfil: TDataSource
     DataSet = QryPerfil
-    Left = 336
+    Left = 472
     Top = 144
-  end
-  object UpdPerfil: TFDUpdateSQL
-    Connection = FrmServerMain.SantaCasaConnection
-    InsertSQL.Strings = (
-      'INSERT INTO skynet.sys_perfil'
-      '(id_perfil, ds_perfil, sn_perfil)'
-      'VALUES (:NEW_id_perfil, :NEW_ds_perfil, :NEW_sn_perfil)')
-    ModifySQL.Strings = (
-      'UPDATE skynet.sys_perfil'
-      
-        'SET id_perfil = :NEW_id_perfil, ds_perfil = :NEW_ds_perfil, sn_p' +
-        'erfil = :NEW_sn_perfil'
-      'WHERE id_perfil = :OLD_id_perfil')
-    DeleteSQL.Strings = (
-      'DELETE FROM skynet.sys_perfil'
-      'WHERE id_perfil = :OLD_id_perfil')
-    FetchRowSQL.Strings = (
-      'SELECT id_perfil, ds_perfil, sn_perfil'
-      'FROM skynet.sys_perfil'
-      'WHERE id_perfil = :id_perfil')
-    Left = 368
-    Top = 96
   end
 end

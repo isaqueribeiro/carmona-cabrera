@@ -38,7 +38,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, Datasnap.DSSession, UServerMethods;
+  Winapi.Windows, Datasnap.DSSession, UServerMethods, UFuncoes, UConstantes;
 
 var
   FModule   : TComponent;
@@ -78,35 +78,32 @@ end;
 procedure TServerContainer.DSAuthenticationManagerUserAuthenticate(
   Sender: TObject; const Protocol, Context, User, Password: string;
   var valid: Boolean; UserRoles: TStrings);
-//var
-//  Secao : TDSSession;
+var
+  Secao : TDSSession;
+  sPwd  : String;
 begin
-  valid := True;
-{
-  valid := (User = Password) and (Trim(User) <> EmptyStr);
+  sPwd  := EncriptSenha(KEY_PASSWORD, EmptyStr);
+  valid := (Trim(User) <> EmptyStr) and (sPwd = Password);
 
   if valid then
   begin
     Secao := TDSSessionManager.GetThreadSession;
     Secao.PutData('username', User);
     UserRoles.Add('standart');
-    if (Trim(User) = 'admin') then
-      UserRoles.Add('admin');
+
+    if (Trim(User) = USER_ADMIN) then
+      UserRoles.Add(USER_ADMIN);
   end;
-}
 end;
 
 
 procedure TServerContainer.DSAuthenticationManagerUserAuthorize(Sender: TObject;
   AuthorizeEventObject: TDSAuthorizeEventObject; var valid: Boolean);
-//var
-//  Secao : TDSSession;
+var
+  Secao : TDSSession;
 begin
-  valid := True;
-{
   Secao := TDSSessionManager.GetThreadSession;
   valid := (AuthorizeEventObject.UserName = Secao.GetData('username'));
-}
 end;
 
 initialization

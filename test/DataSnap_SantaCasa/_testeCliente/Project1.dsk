@@ -1,83 +1,53 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UUsuario.pas',0,1,73,111,74,0,0,,
-File_1=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UUsuarioCadastro.pas',0,1,35,113,36,0,0,,
+File_0=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMain.pas',0,1,120,3,133,0,0,,
+File_1=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UWebModuleLocal.pas',0,1,1,74,26,0,0,,
 File_2=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UPerfilAcessoCadastro.pas',0,1,22,38,49,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\dbx\Data.DBXJSONReflect.pas',0,1,1895,76,1897,0,0,,
-File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\firedac\FireDAC.Stan.Error.pas',0,1,174,83,176,0,0,,
-File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\firedac\FireDAC.Comp.Client.pas',0,1,5926,1,5941,0,0,,
-File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\datasnap\Data.FireDACJSONReflect.pas',0,1,827,1,842,0,0,{{18,0}
-File_7=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFormFactoryU.pas',0,1,1,3,21,0,0,,
-File_8=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFuncoesFormulario.pas',0,1,40,14,62,0,0,,
-File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,11965,106,11965,0,0,,
-File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\Indy10\Core\IdThread.pas',0,1,439,85,442,0,0,,
-File_11=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\datasnap\Datasnap.DSProviderDataModuleAdapter.pas',0,1,32,3,52,0,0,,
-File_12=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UWebModule.pas',0,1,71,1,74,0,0,,
-File_13=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\rtl\common\System.Classes.pas',0,1,8976,98,8976,0,0,,
-File_14=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\Internet\Web.HTTPProd.pas',0,1,1016,1,1031,0,0,,
+File_3=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UPerfilAcesso.pas',0,1,30,51,78,0,0,,
+File_4=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerContainer.pas',0,1,11,1,107,0,0,,
+File_5=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMethods.pas',0,1,91,60,5,0,0,,
+File_6=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UConstantes.pas',0,1,1,1,26,0,0,,
+File_7=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFuncoes.pas',0,1,16,3,33,0,0,,
+File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\firedac\FireDAC.Stan.Error.pas',0,1,174,83,176,0,0,,
+File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\firedac\FireDAC.Comp.Client.pas',0,1,5926,1,5941,0,0,,
+File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\data\datasnap\Data.FireDACJSONReflect.pas',0,1,827,1,842,0,0,{{18,0}
+File_11=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFormFactoryU.pas',0,1,1,3,21,0,0,,
+File_12=TSourceModule,'D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFuncoesFormulario.pas',0,1,40,14,62,0,0,,
+File_13=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,11965,106,11965,0,0,,
+File_14=TSourceModule,'c:\program files (x86)\embarcadero\studio\15.0\source\Indy10\Core\IdThread.pas',0,1,439,85,442,0,0,,
 
 [Modules]
-Module0=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMain.pas
-Module1=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMethods.pas
-Module2=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFuncoes.pas
-Module3=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerContainer.pas
-Module4=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UWebModuleLocal.pas
-Module5=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UConstantes.pas
-Module6=default.htm
-Module7=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\DataSnap_SantaCasa.dproj
-Count=8
+Module0=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Unit1.pas
+Module1=default.htm
+Module2=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientClassesUnit1.pas
+Module3=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientModuleUnit1.pas
+Count=4
 EditWindowCount=1
 
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMain.pas]
+[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Unit1.pas]
 ModuleType=TSourceModule
 FormState=1
 FormOnTop=1
-
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMethods.pas]
-ModuleType=TSourceModule
-FormState=1
-FormOnTop=1
-
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFuncoes.pas]
-ModuleType=TSourceModule
-FormState=0
-FormOnTop=0
-
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerContainer.pas]
-ModuleType=TSourceModule
-FormState=1
-FormOnTop=1
-
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UWebModuleLocal.pas]
-ModuleType=TSourceModule
-FormState=1
-FormOnTop=0
-
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UConstantes.pas]
-ModuleType=TSourceModule
-FormState=0
-FormOnTop=0
 
 [default.htm]
 ModuleType=TURLModule
 
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\DataSnap_SantaCasa.dproj]
-ModuleType=TBaseProject
+[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientClassesUnit1.pas]
+ModuleType=TSourceModule
+FormState=0
+FormOnTop=0
 
-[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UPerfilAcesso.pas]
+[D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientModuleUnit1.pas]
+ModuleType=TSourceModule
 FormState=1
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=8
-CurrentEditView=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMain.pas
+ViewCount=4
+CurrentEditView=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Unit1.pas
 View0=0
 View1=1
 View2=2
 View3=3
-View4=4
-View5=5
-View6=6
-View7=7
 PercentageSizes=1
 Create=1
 Visible=1
@@ -96,13 +66,13 @@ BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
 LeftPanelSize=1341
 LeftPanelClients=PropertyInspector,DockSite3
-LeftPanelData=00000800010100000000B510000000000000013D050000000000000100000000550E000009000000446F636B53697465330100000000B41D00001100000050726F7065727479496E73706563746F72FFFFFFFF
+LeftPanelData=000008000101000000000C13000000000000013D050000000000000100000000550E000009000000446F636B53697465330100000000DD2100001100000050726F7065727479496E73706563746F72FFFFFFFF
 RightPanelSize=1309
 RightPanelClients=DockSite2,DockSite4
-RightPanelData=00000800010100000000B510000000000000011D0500000000000001000000004412000009000000446F636B53697465320100000000B41D000009000000446F636B5369746534FFFFFFFF
-BottomPanelSize=995
+RightPanelData=000008000101000000000C13000000000000011D0500000000000001000000004412000009000000446F636B53697465320100000000DD21000009000000446F636B5369746534FFFFFFFF
+BottomPanelSize=0
 BottomPanelClients=DockSite1,MessageView
-BottomPanelData=0000080001020100000009000000446F636B5369746531724500000000000002E3030000000000000100000000724500000F0000004D65737361676556696577466F726DFFFFFFFF
+BottomPanelData=0000080001020200000009000000446F636B53697465310F0000004D65737361676556696577466F726D724500000000000002D604000000000000FFFFFFFF
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,GraphDrawingModel
 BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779D1D00000000000002F606000000000000FFFFFFFF
@@ -113,80 +83,36 @@ WelcomePageURL=bds:/default.htm
 
 [View1]
 CustomEditViewType=TEditView
-Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\DataSnap_SantaCasa.dpr
-CursorX=1
-CursorY=13
-TopLine=1
+Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\Unit1.pas
+CursorX=22
+CursorY=85
+TopLine=83
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\DataSnap_SantaCasa.dpr
+EditViewName=Borland.FormDesignerView
 
 [View2]
 CustomEditViewType=TEditView
-Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UConstantes.pas
+Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientClassesUnit1.pas
+CursorX=46
+CursorY=13
+TopLine=31
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientClassesUnit1.pas
+
+[View3]
+CustomEditViewType=TEditView
+Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_testeCliente\ClientModuleUnit1.pas
 CursorX=1
-CursorY=17
+CursorY=1
 TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UConstantes.pas
-
-[View3]
-CustomEditViewType=TEditView
-Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMain.pas
-CursorX=65
-CursorY=162
-TopLine=157
-LeftCol=1
-Elisions=
-Bookmarks=
 EditViewName=Borland.FormDesignerView
-
-[View4]
-CustomEditViewType=TEditView
-Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFuncoes.pas
-CursorX=1
-CursorY=87
-TopLine=70
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UFuncoes.pas
-
-[View5]
-CustomEditViewType=TEditView
-Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerMethods.pas
-CursorX=37
-CursorY=135
-TopLine=22
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=Borland.FormDesignerView
-
-[View6]
-CustomEditViewType=TEditView
-Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UServerContainer.pas
-CursorX=1
-CursorY=76
-TopLine=33
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=Borland.FormDesignerView
-
-[View7]
-CustomEditViewType=TEditView
-Module=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UWebModuleLocal.pas
-CursorX=74
-CursorY=26
-TopLine=109
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Projetos\ASS\CarmonaCabrera\test\DataSnap_SantaCasa\_fontes\UWebModuleLocal.pas
 
 [Watches]
 Count=0
@@ -202,11 +128,11 @@ State=0
 Left=0
 Top=0
 Width=3828
-Height=545
+Height=714
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=3828
-ClientHeight=545
+ClientHeight=714
 TBDockHeight=218
 LRDockWidth=13600
 Dockable=1
@@ -272,18 +198,18 @@ StayOnTop=0
 [MessageView]
 PercentageSizes=1
 Create=1
-Visible=1
+Visible=0
 Docked=1
 State=0
 Left=0
 Top=23
-Width=10000
-Height=763
+Width=2767
+Height=1017
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=10000
-ClientHeight=763
-TBDockHeight=763
+ClientWidth=2767
+ClientHeight=1017
+TBDockHeight=1017
 LRDockWidth=2767
 Dockable=1
 StayOnTop=0
@@ -297,11 +223,11 @@ State=0
 Left=0
 Top=0
 Width=1309
-Height=2785
+Height=3898
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1309
-ClientHeight=2785
+ClientHeight=3898
 TBDockHeight=7155
 LRDockWidth=1999
 Dockable=1
@@ -316,16 +242,21 @@ State=0
 Left=0
 Top=340
 Width=1341
-Height=3838
+Height=4952
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1341
-ClientHeight=3838
+ClientHeight=4952
 TBDockHeight=6707
 LRDockWidth=1341
 Dockable=1
 StayOnTop=0
 SplitPos=117
+
+[PropInspDesignerSelection]
+ArrangeBy=Name
+SelectedItem=Action,OnClick
+ExpandedItems=LiveBindings=0,"LiveBindings Designer=0",Margins=0,Anchors=0,Constraints=0,Font=0,StyleElements=0,Touch=0,BevelEdges=0,FocusControl=0,ImageMargins=0,Options=0,DataSource=0,HorzScrollBar=0,GlassFrame=0,BorderIcons=0,Padding=0,VertScrollBar=0,ActiveStoredUsage=0,Connection=0,FetchOptions=0,FieldOptions=0,FilterChanges=0,FilterOptions=0,FormatOptions=0,ResourceOptions=0,UpdateOptions=0,UpdateOptions.AssignedValues=0,Transaction=0,ConnectedStoredUsage=0,Params=0,TxOptions=0,TitleFont=0,TableScope=0,Driver=1,Driver.DelegateConnection=0,SQLConnection=0
 
 [ModelViewTool]
 PercentageSizes=1
@@ -453,11 +384,11 @@ State=0
 Left=0
 Top=0
 Width=3828
-Height=545
+Height=714
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=3828
-ClientHeight=545
+ClientHeight=714
 TBDockHeight=412
 LRDockWidth=4948
 Dockable=1
@@ -472,11 +403,11 @@ State=0
 Left=0
 Top=0
 Width=3828
-Height=545
+Height=714
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=3828
-ClientHeight=545
+ClientHeight=714
 TBDockHeight=218
 LRDockWidth=7409
 Dockable=1
@@ -495,11 +426,11 @@ State=0
 Left=0
 Top=0
 Width=3828
-Height=545
+Height=714
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=3828
-ClientHeight=545
+ClientHeight=714
 TBDockHeight=1538
 LRDockWidth=3483
 Dockable=1
@@ -514,11 +445,11 @@ State=0
 Left=0
 Top=0
 Width=3828
-Height=545
+Height=714
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=3828
-ClientHeight=545
+ClientHeight=714
 TBDockHeight=2058
 LRDockWidth=3483
 Dockable=1
@@ -636,11 +567,11 @@ State=0
 Left=0
 Top=0
 Width=3828
-Height=545
+Height=714
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=3828
-ClientHeight=545
+ClientHeight=714
 TBDockHeight=1550
 LRDockWidth=8743
 Dockable=1
@@ -729,12 +660,12 @@ State=0
 Left=0
 Top=23
 Width=3828
-Height=847
+Height=1017
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=3828
-ClientHeight=847
-TBDockHeight=847
+ClientHeight=1017
+TBDockHeight=1017
 LRDockWidth=3828
 Dockable=1
 StayOnTop=0
@@ -801,11 +732,11 @@ State=0
 Left=0
 Top=427
 Width=1309
-Height=2785
+Height=3898
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1309
-ClientHeight=2785
+ClientHeight=3898
 TBDockHeight=6707
 LRDockWidth=1309
 Dockable=1
