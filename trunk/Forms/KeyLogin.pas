@@ -16,7 +16,8 @@ uses
   dxSkinXmas2008Blue, Menus, dxSkinscxPCPainter, cxPC, dxGDIPlusClasses,
   cxGraphics, cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit,
   cxDBLookupComboBox, DBXpress, SqlExpr, FMTBcd, frxClass, frxDBSet,
-  cxLookAndFeels, DBClient, Provider;
+  cxLookAndFeels, DBClient, Provider, dxSkinOffice2013DarkGray,
+  dxSkinOffice2013LightGray, dxSkinOffice2013White;
 
 type
   TFrmLogin = class(TForm)
